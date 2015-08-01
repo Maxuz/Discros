@@ -1,6 +1,4 @@
- <!-- CONTENEDOR -->
-	<div class="row">
-		<div class="col-md-12">
+
                     
                         <!-- CAROUSEL -->
 			<div class="carousel slide" id="carousel-57344">
@@ -56,7 +54,7 @@
 			<div class="jumbotron">
 				<div>
                                     <img alt="400x400" src="../../img/cd.jpg" class="img2"/>
-                                
+                                   
                                     <h2>
                                         BIENVENIDO A DISCROS
                                     </h2>
@@ -136,6 +134,4 @@
                         </div>
                         
                         
-                         
-		</div>
-	</div>
+         
