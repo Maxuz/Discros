@@ -1,0 +1,28 @@
+
+        
+        
+        String email=request.getParameter("txbEmail");
+        if(email == null){
+            email="";
+        }
+        String pass=request.getParameter("txbPass");
+        if(pass == null){
+            pass="";
+        }
+        if ( email.equals("") || pass.equals(""))
+        { /*response.sendRedirect("index.jsp");
+        
+      
+            /*Inicializo variables para usar temporalmente*/
+            Integer tipo;
+            if (pass.equals("admin"))
+                    {tipo = 1;} 
+                else { tipo=2;};
+            
+            String usuario= email;
+            /*seteo variable de sesion*/
+            HttpSession sesion=request.getSession(); 
+            sesion.setAttribute("usuario",usuario);
+            sesion.setAttribute("tipo",tipo);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+          }
