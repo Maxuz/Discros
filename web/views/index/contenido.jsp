@@ -1,6 +1,4 @@
- <!-- CONTENEDOR -->
-	<div class="row">
-		<div class="col-md-12">
+
                     
                         <!-- CAROUSEL -->
 			<div class="carousel slide" id="carousel-57344">
@@ -55,7 +53,8 @@
                         <!-- JUMBOTRON -->
 			<div class="jumbotron">
 				<div>
-                                    <img alt="400x400" src="http://images.coveralia.com/audio/z/Zoe-Musica_De_Fondo_Mtv_Unplugged-CD.jpg?503" class="img2"/>
+                                    <img alt="400x400" src="../../img/cd.jpg" class="img2"/>
+                                   
                                     <h2>
                                         BIENVENIDO A DISCROS
                                     </h2>
@@ -135,6 +134,4 @@
                         </div>
                         
                         
-                         
-		</div>
-	</div>
+         
