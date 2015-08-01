@@ -7,12 +7,8 @@
 
     <title>Discros INC</title>
 
-    <meta name="description" content="Source code generated using layoutit.com">
-    <meta name="author" content="LayoutIt!">
+    <jsp:include page="views/gral/referencias.jsp"/>
     
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
   </head>
   <body>
 
@@ -20,12 +16,11 @@
         
         <jsp:include page="views/gral/header.jsp"/>
         <jsp:include page="views/index/contenido.jsp"/>
-         
+        <jsp:include page="views/gral/pie.jsp" />
+
 </div>
 
       
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
+    
   </body>
 </html>
