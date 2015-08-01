@@ -1,5 +1,4 @@
 
-	
 		
                 <div class="carousel slide" id="carousel-483114">
 				<ol class="carousel-indicators">
