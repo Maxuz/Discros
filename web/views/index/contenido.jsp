@@ -53,7 +53,7 @@
                         <!-- JUMBOTRON -->
 			<div class="jumbotron">
 				<div>
-                                    <img alt="400x400" src="../../img/cd.jpg" class="img2"/>
+                                    <img alt="400x400" src="img/cd.jpg" class="img2"/>
                                    
                                     <h2>
                                         BIENVENIDO A DISCROS
