@@ -1,7 +1,7 @@
 
-                    
-                        <!-- CAROUSEL -->
-			<div class="carousel slide" id="carousel-57344">
+
+<!-- CAROUSEL -->
+<div class="carousel slide" id="carousel-57344">
 				<ol class="carousel-indicators">
 					<li class="active" data-slide-to="0" data-target="#carousel-57344">
 					</li>
@@ -50,8 +50,8 @@
 				</div> <a class="left carousel-control" href="#carousel-57344" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-57344" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 			</div>
                         
-                        <!-- JUMBOTRON -->
-			<div class="jumbotron">
+<!-- JUMBOTRON -->
+<div class="jumbotron">
 				<div>
                                     <img alt="400x400" src="img/cd.jpg" class="img2"/>
                                    
@@ -67,8 +67,8 @@
                             <p><a class="btn btn-primary btn-large" href="qsomos.html">¿Quiénes somos?</a></p>
 			</div>
                         
-                        <!-- THUMBNAIL -->
-                        <div class="row">
+ <!-- THUMBNAIL -->
+<div class="row">
                                 <%--PRIMERA COLUMNA--%>
                                <div class="col-md-4">
                                    <div class="thumbnail">

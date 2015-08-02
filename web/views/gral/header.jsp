@@ -11,9 +11,13 @@
                      <%--BOTONES--%>
                     <ul class="nav navbar-nav">
 
+                        <% StringBuffer url = request.getRequestURL();
+                            
+                        %> 
                         <li class="active">
                             <a href="index.jsp">HOME</a>
                         </li>
+                        
                         <li>
                             <a href="qsomos.jsp">QUIENES SOMOS</a>
                         </li>

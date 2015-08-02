@@ -18,9 +18,7 @@
         <jsp:include page="views/index/contenido.jsp"/>
         <jsp:include page="views/gral/pie.jsp" />
 
-</div>
-
-      
-    
+    </div>
+        
   </body>
 </html>
