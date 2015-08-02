@@ -1,5 +1,7 @@
    
 <%--BARRA DE MENÚ--%>
+
+
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">MENU</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
@@ -10,15 +12,22 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                      <%--BOTONES--%>
                     <ul class="nav navbar-nav">
-
-                        <% StringBuffer url = request.getRequestURL();
-                            
-                        %> 
-                        <li class="active">
-                            <a href="index.jsp">HOME</a>
+                        
+                        <li  <% if(session.getAttribute("paginaActual").equals("index")) 
+                                {   %>class="active"><% 
+                        
+                              } else {%> >  <%};%> 
+                        
+                       
+                            <a href="index.jsp">HOME 
+                            <% System.out.println(request.getRequestURI()) ; %> </a>
                         </li>
                         
-                        <li>
+                        <li
+                            <% if(session.getAttribute("paginaActual").equals("qsomos"))
+                        {%>  class="active">  <% 
+                        
+                        } else {%> >  <%};%> 
                             <a href="qsomos.jsp">QUIENES SOMOS</a>
                         </li>
 

@@ -7,6 +7,10 @@
 
     <title>Discros INC</title>
 
+    <%
+        session.setAttribute("paginaActual", "index");
+    %>
+    
     <jsp:include page="views/gral/referencias.jsp"/>
     
   </head>

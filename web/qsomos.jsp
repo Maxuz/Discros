@@ -7,6 +7,8 @@
 
     <title>Quiénes somos - Discros INC</title>
 
+    <%session.setAttribute("paginaActual", "qsomos");%>
+    
     <jsp:include page="views/gral/referencias.jsp"/>
     
   </head>
