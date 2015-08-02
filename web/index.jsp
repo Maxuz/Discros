@@ -12,17 +12,26 @@
     %>
     
     <jsp:include page="views/gral/referencias.jsp"/>
+   
+    
+    <style type="text/css">
+        body{background-image:url("img/wall.jgp");
+        
+        }
+    </style>
     
   </head>
   <body>
-
-    <div class="container-fluid">
-        
+       <div class="container-fluid">
+          
         <jsp:include page="views/gral/header.jsp"/>
+        
         <jsp:include page="views/index/contenido.jsp"/>
+        
         <jsp:include page="views/gral/pie.jsp" />
-
-    </div>
+        
+        </div>
+    
         
   </body>
 </html>
