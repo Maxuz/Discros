@@ -117,13 +117,15 @@
                                       
                                     <div class="form-group">
                                     <label for="lEmail">Email</label>
-                                    <input type="email" class="form-control" name="txbEmail" id="txbEmail" placeholder="Introduce tu email">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Introduce tu email">
                                     </div>
                                   
                                     <div class="form-group">
                                     <label for="lPass">Contraseña</label>
-                                    <input type="password" class="form-control" id="txbPass" name="txbPass"  placeholder="Contraseña">
+                                    <input type="password" class="form-control" id="pass" name="pass"  placeholder="Contraseña">
                                    
+                                    <input type="text" name="funcion" size="5" value="alta" hidden readonly="true">
+                                    
                                     </div>
                                 
                                      <button type="submit" class="btn btn-default">Enviar</button>
@@ -133,14 +135,9 @@
                                      
                                       <div>
                                    <!--DIV PARA MOSTRAR ERRORES-->
-                                    
-                                    <% //ESCRIBIR CONDICIÓN PARA MOSTRAR O NO EL DIV
-                                        Integer condicion = 0;
-                                        if (condicion==0){ out.print("<div class=\"alert alert-danger\"> Usuario o contraseña incorrecto.</div> ");}
-                                        else{ out.print("<div class=\"alert alert-success\"> Logueado exitosamente.</div>");};
-                                    
-                                    %> 
-                                    <div id="divError" class="alert alert-danger hidden"></div>
+                                   <div id="divError" class="alert alert-danger hidden"></div>
+                                   
+                                   
                                     </div>
                                     </form>
                             

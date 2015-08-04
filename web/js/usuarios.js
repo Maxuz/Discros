@@ -1,7 +1,10 @@
+/* global global */
+
+
 var validacion = {
     ejecutar: function (){
-        var email = $("#txbEmail").val();
-        var pass = $("#txbPass").val();
+        var email = $("#email").val();
+        var pass = $("#pass").val();
         
         /*VALIDAR QUE NO SEAN VACÍOS*/
         if(valido(email, pass))
@@ -9,26 +12,36 @@ var validacion = {
         $.ajax("usuario.do", {
              method: "POST",
              contentType: 'application/json',
+             
              error: function (a, b, c){
                  alert("Ocurrió un error al validar un usuario");
-                 /*AGREGAR DIV EN JSP PARA LA MUESTRA DE ERRORES*/
-                 $('#divError').removeClass('hidden').text(c);
+                 
+                 
+                 /*QUITA LA CLASE HIDDEN DEL DIV ERROR*/
+                 $('#divError').removeClass('hidden').text("<strong> ERROR GRAVE EN EL CONTROLADOR.");
                  
              },
+             
              success: function (data, textStatus, jqXHR) {
                 if (data.result=true)
-                {
+                {     
                     
+                    
+                      $('#divError').removeClass('hidden').text("Contraseña re correcta."); 
                 }
                 else {
-                    /*AGREGAR DIV EN JSP PARA LA MUESTRA DE ERRORES*/
-                    $('#divError').removeClass('hidden').text("Contraseña incorrecta.");
+                    /*QUITA LA CLASE HIDDEN DEL DIV ERROR*/
+                    $('#divError').removeClass('hidden').text("Contraseña incorrectaaaaaaa.");
                     
                 }
                 
             },
-             data: { name: "John", location: "Boston" }
+             data: {
+                        funcion: alta
+                     
+                     }
             });
+            
         } else {$('#divError').removeClass('hidden').text("Email o contraseña vacios.");};
 }
 };
