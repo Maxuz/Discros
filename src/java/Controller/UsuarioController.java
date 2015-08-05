@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import Model.Usuario;
 import Actions.Validacion;
+import javax.servlet.RequestDispatcher;
 
 
 public class UsuarioController extends HttpServlet {
@@ -53,9 +54,12 @@ public class UsuarioController extends HttpServlet {
                                             sesion.setAttribute("dni", user.getdni());
                                             sesion.setAttribute("provincia", user.getProvincia());
                                             
-                                            response.getWriter().print("Login exitoso.");
+                                            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+                                            dispatcher.forward(request, response);  
 
                                         }else{
+                                                
+                                                
                                                 response.getWriter().print("Usuario no encontado.");
                                         }
                                     } else {response.getWriter().print("Ya hay un usuario registrado."); }
@@ -64,7 +68,7 @@ public class UsuarioController extends HttpServlet {
                                     }
                                 catch (Exception e)
                                     {
-                                    response.getWriter().print("ERROR OCURRIDO:  "+e);break;
+                                     System.out.println(e); break;
                                     }
                                 // </editor-fold>
                               }

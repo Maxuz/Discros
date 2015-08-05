@@ -124,7 +124,7 @@
                                     <label for="lPass">Contraseña</label>
                                     <input type="password" class="form-control" id="pass" name="pass"  placeholder="Contraseña">
                                    
-                                    <input type="text" name="funcion" size="5" value="alta" hidden readonly="true">
+                                    <input type="text" name="funcion" id="funcion" size="5" value="login" hidden readonly="true">
                                     
                                     </div>
                                 
