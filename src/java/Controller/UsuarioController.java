@@ -10,7 +10,7 @@ import Model.Usuario;
 import Actions.Validacion;
 import javax.servlet.RequestDispatcher;
 
-import com.google.appengine.labs.repackaged.org.json.JSONObject;
+import Json.*;
 
 
 public class UsuarioController extends HttpServlet {
@@ -71,6 +71,9 @@ public class UsuarioController extends HttpServlet {
                                 catch (Exception e)
                                     {  // ObjectMapper mapper = new ObjectMapper();
                                         response.setContentType("aplication/json");
+                                        
+                                        //Creo objeto JSON
+                                        JSONObject obj = new JSONObject();
                                         
                                         
                                         System.out.println(e); break;
