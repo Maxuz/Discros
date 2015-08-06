@@ -11,6 +11,7 @@ import Actions.Validacion;
 import javax.servlet.RequestDispatcher;
 
 import Json.*;
+import java.io.PrintWriter;
 
 
 public class UsuarioController extends HttpServlet {
@@ -71,12 +72,16 @@ public class UsuarioController extends HttpServlet {
                                 catch (Exception e)
                                     {  // ObjectMapper mapper = new ObjectMapper();
                                         response.setContentType("aplication/json");
+                                      
                                         
-                                        //Creo objeto JSON
                                         JSONObject obj = new JSONObject();
+                                        obj.put("texto", e.toString());
                                         
                                         
-                                        System.out.println(e); break;
+                                        PrintWriter out = response.getWriter();
+                                        out.printf(obj.toString());
+                                        out.flush();
+                                        break;
                                     }
                                 // </editor-fold>
                               }

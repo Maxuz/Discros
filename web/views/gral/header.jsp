@@ -59,7 +59,7 @@
                             <%--BIENVENIDA USUARIO O MENU DE LOGUEO--%>
                             <% Integer valor = 0;
                             
-                                String nombre = "Rogelio";
+                            String nombre = (String) session.getAttribute("nombre");
                             if(valor==1)
                             { out.print(" <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"> <img src=\"img/usuario.png\" alt=\"Usuario\" WIDTH=20 HEIGHT=20/> <strong>"+ nombre +  "</strong><strong class=\"caret\"></strong></a>");
                             } 
@@ -67,6 +67,8 @@
                             };
 
                             %>
+                            
+                            
                             
                             <ul class="dropdown-menu">
                                 <%--CONTROL DE INICIO DE SESIÓN DE USUARIO--%>
