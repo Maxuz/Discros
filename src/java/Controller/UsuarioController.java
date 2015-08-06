@@ -11,6 +11,10 @@ import Actions.Validacion;
 import javax.servlet.RequestDispatcher;
 
 
+
+
+
+
 public class UsuarioController extends HttpServlet {
 
     
@@ -67,8 +71,11 @@ public class UsuarioController extends HttpServlet {
                                     break;
                                     }
                                 catch (Exception e)
-                                    {
-                                     System.out.println(e); break;
+                                    {  // ObjectMapper mapper = new ObjectMapper();
+                                        response.setContentType("aplication/json");
+                                        
+                                        
+                                        System.out.println(e); break;
                                     }
                                 // </editor-fold>
                               }
