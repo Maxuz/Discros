@@ -1,3 +1,6 @@
 /nbproject/private/
+/nbproject/project.properties
+/src/java/Actions/Conexion.java
+/src/java/Actions/ConexionSingleton.java
 /build/
 /dist/
