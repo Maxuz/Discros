@@ -15,8 +15,8 @@ public class Conexion {
         
         String host = "localhost";//cambiar por tu host de la base de datos
         String user = "root";//cambiar por tu usuario de la base de datos
-        String pass = "clubnautico11";//cambiar por tu contraseña de la base de datos
-        String dtbs = "dbTP";//cambiar por tu nombre de la base de datos
+        String pass = "root";//cambiar por tu contraseña de la base de datos
+        String dtbs = "dbtp";//cambiar por tu nombre de la base de datos
  
         try { // preparamos la conexión
             Class.forName("com.mysql.jdbc.Driver");
