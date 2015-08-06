@@ -20,14 +20,12 @@ var funciones = {
              error: function (a, b, c)
                      {
                        
-                       
-                        /*QUITA LA CLASE HIDDEN DEL DIV ERROR*/
-                        $('#divError').removeClass('hidden').text("ERROR A:  " + a + "\n B:  " +b+" \n C:"+c);
+                     location.reload();
                  
              },
              success: function (data)
                      {
-                         location.reload();
+                         
                         /*if (data.result=true)
                         {     
                                     

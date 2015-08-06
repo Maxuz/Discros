@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import Model.Usuario;
 import Actions.Validacion;
 import javax.servlet.RequestDispatcher;
+
 import Json.*;
 import java.io.PrintWriter;
 
@@ -58,14 +59,18 @@ public class UsuarioController extends HttpServlet {
                                             sesion.setAttribute("tipo", user.getTipo());    
                                             
                                             
-                                            response.setContentType("json");
+                                            response.setContentType("application/json");
+                                          //  ObjectMapper mapper = new ObjectMapper();
+                                            
+                                            response.getWriter().write("Success Data");
+                                            
                                             
                                         }else{
                                                 
                                                 
-                                                response.getWriter().print("Usuario no encontado.");
+                                                response.getWriter().write("Usuario no encontado.");
                                         }
-                                    } else {response.getWriter().print("Ya hay un usuario registrado."); }
+                                    } else {response.getWriter().write("Ya hay un usuario registrado."); }
                                     
                                     break;
                                     }
@@ -79,7 +84,7 @@ public class UsuarioController extends HttpServlet {
                                         
                                         
                                         PrintWriter out = response.getWriter();
-                                        out.printf(obj.toString());
+                                        out.write(obj.toString());
                                         out.flush();
                                         break;
                                     }
