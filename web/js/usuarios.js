@@ -5,10 +5,7 @@ var funciones = {
         var email = $("#email").val();
         var pass = $("#pass").val();
         var funcion = $("#funcion").val();
-        
-        dataString = "email="+email;
-        dataString = "pass="+pass;
-        dataString = "funcion="+funcion;
+       
         
         /*VALIDAR QUE NO SEAN VACÍOS*/
         if(estaVacio(email, pass))
@@ -16,17 +13,19 @@ var funciones = {
         $.ajax("usuario.do", {
              
              type: "POST",
-             dataType: "json",
+             dataType: "application/json",
+             
              data: { "email": email, "pass":pass, "funcion":funcion},
              
              error: function (a, b, c)
                      {
                        
+                       
                         /*QUITA LA CLASE HIDDEN DEL DIV ERROR*/
-                       $('#divError').removeClass('hidden').text("ERROR: "+ c.toString());
+                        $('#divError').removeClass('hidden').text("ERROR A:  " + a + "\n B:  " +b+" \n C:"+c);
                  
              },
-             success: function (data)
+             success: function (sanata)
                      {
                         if (data.result=true)
                         {     
