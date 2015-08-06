@@ -56,10 +56,11 @@ public class UsuarioController extends HttpServlet {
                                             sesion.setAttribute("ciudad", user.getCiudad());
                                             sesion.setAttribute("dni", user.getdni());
                                             sesion.setAttribute("provincia", user.getProvincia());
+                                            sesion.setAttribute("tipo", user.getTipo());    
                                             
-                                            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-                                            dispatcher.forward(request, response);  
-
+                                            
+                                            response.setContentType("json");
+                                            
                                         }else{
                                                 
                                                 

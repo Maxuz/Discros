@@ -25,19 +25,20 @@ var funciones = {
                         $('#divError').removeClass('hidden').text("ERROR A:  " + a + "\n B:  " +b+" \n C:"+c);
                  
              },
-             success: function (sanata)
+             success: function (data)
                      {
-                        if (data.result=true)
+                         location.reload();
+                        /*if (data.result=true)
                         {     
                                     
 
                               $('#divError').removeClass('hidden').text("Contraseña re correcta."); 
                         }
                         else {
-                            /*QUITA LA CLASE HIDDEN DEL DIV ERROR*/
+                            /*QUITA LA CLASE HIDDEN DEL DIV ERROR
                             $('#divError').removeClass('hidden').text("Contraseña incorrectaaaaaaa.");
-
-                        }
+                            
+                        }*/
                      },
             
             });
