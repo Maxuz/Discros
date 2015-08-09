@@ -36,7 +36,7 @@
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">TIENDA VIRTUAL<strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                <a href="tienda.jsp">Ingreso a Tienda Virtual</a>
+                                <a href="t_index.jsp">Ingreso a Tienda Virtual</a>
                                 </li> 
                                 <li class="divider">
                                 </li>
@@ -53,9 +53,9 @@
                     </ul>
                     
                      <%--USUARIOS--%>
-                    <ul class="nav navbar-nav navbar-right">
+                     <ul class="nav navbar-nav navbar-right" style="margin-right: 10px;">
                     
-                        <% if (session.getAttribute("email")== null)
+                        <% if (session.getAttribute("nombre")== null)
                                 {%>
                                 <% if(session.getAttribute("paginaActual").equals("u_alta"))
                                     {%>
@@ -65,6 +65,36 @@
                                             <%} 
                                  }%>
                         
+
+                    <li class="dropdown">
+                            <!--INICIO DE SESIÓN O MENÚ DE OPCIONES PARA EL USUARIO-->
+                            <% 
+                            session.setAttribute("nombre", null);
+                            String nombre2 = (String)session.getAttribute("nombre");
+                            if(nombre2==null)
+                            {%>  <%-- INICIAR SESIÓN --%>
+                                 <a id="userclimodal1" href="#ModalInicioSesion" role="button" class="btn" data-toggle="modal">INICIA SESION</a>   
+                            <%
+                            }else{%>
+                            
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/usuario.png" alt="Usuario" WIDTH=20 HEIGHT=20/> <strong>
+                                <% out.print(nombre2);  %> </strong>
+                            </a>
+                                        
+                            <ul class="dropdown-menu">
+                                
+                                <li><a href="#">Cerrar Sesión</a></li>
+                                
+                            </ul>
+                            
+                                        
+                                        
+                            <%}%>
+                           
+                                               
+                   </li>                             
+                                                 
+                                                 
                     <li class="dropdown">
                         
                             <%--BIENVENIDA USUARIO O MENU DE LOGUEO--%>
@@ -73,9 +103,7 @@
                             if(nombre==null)
                             {out.print(" <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"> <img src=\"img/usuario.png\" alt=\"Usuario\" WIDTH=20 HEIGHT=20/> USUARIOS");
                             }else{out.print(" <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"> <img src=\"img/usuario.png\" alt=\"Usuario\" WIDTH=20 HEIGHT=20/> <strong>"+ nombre +  "</strong><strong class=\"caret\"></strong></a>");%>
-                             
                             <%}
-                            
                             Integer valor = 0;
                             
                             /*
@@ -113,9 +141,17 @@
                                  %>
                               
                             </ul>
+                                 
                         </li>
+                        
+                   
+                        
                     </ul>
+                                 
                 </div>
+                            
+
+	
 
             </nav>
 
