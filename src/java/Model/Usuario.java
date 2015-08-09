@@ -15,6 +15,7 @@ public class Usuario {
     private String ciudad;
     private String provincia;
     private int dni;
+    private String estado;
     // </editor-fold>  
 
     // <editor-fold desc="CONSTRUCTORES">
@@ -34,11 +35,15 @@ public class Usuario {
         this.dni=dni;
        
         this.tipo = "cliente";
+        this.estado = "habilitado";
     }
     
     public Usuario(String email, String pass) {
         this.email = email;
         this.pass = pass;
+        
+        this.tipo = "cliente";
+        this.estado = "habilitado";
     }
     // </editor-fold>
     
@@ -75,6 +80,11 @@ public class Usuario {
         return this.email;
     }
    
+    public String getEstado()
+    {
+        return this.estado;
+    }
+    
     public String getPass()
     {
         return this.pass;

@@ -9,6 +9,7 @@
                   <a class="navbar-brand" href="#">DISCROS INC.</a>
                 </div>
 
+                
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                      <%--BOTONES--%>
                     <ul class="nav navbar-nav">
@@ -51,11 +52,21 @@
                         </li>
                     </ul>
                     
-                    
-                     <%--PESTAÑA USUARIOS--%>
+                     <%--USUARIOS--%>
                     <ul class="nav navbar-nav navbar-right">
-                     
-                        <li class="dropdown">
+                    
+                        <% if (session.getAttribute("email")== null)
+                                {%>
+                                <% if(session.getAttribute("paginaActual").equals("u_alta"))
+                                    {%>
+                                    <li class="active"><a href="u_alta.jsp">REGISTRATE</a></li>
+                                    <%} else {%>
+                                                 <li><a href="u_alta.jsp">REGISTRATE</a></li>
+                                            <%} 
+                                 }%>
+                        
+                    <li class="dropdown">
+                        
                             <%--BIENVENIDA USUARIO O MENU DE LOGUEO--%>
                             <% 
                             String nombre = (String)session.getAttribute("nombre");

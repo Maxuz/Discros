@@ -94,27 +94,35 @@ public class UsuarioController extends HttpServlet {
                                try{
                                     String email = request.getParameter("email");
                                     String pass  = request.getParameter("pass");
+                                    String email2 = request.getParameter("email2");
+                                    String pass2 = request.getParameter("pass2");
                                     
-                                    if(funciones.buscar(email))
-                                    {response.getWriter().print("EL USUARIO YA SE ENCUENTRA REGISTRADO");
-                                        
-                                    }else{
-                                        
-                                        String nombre = request.getParameter("nombre");
-                                        String apellido = request.getParameter("apellido");
-                                        String direccion = request.getParameter("direccion");
-                                        String ciudad = request.getParameter("ciudad");
-                                        String provincia = request.getParameter("provincia");
-                                        Integer dni = Integer.parseInt(request.getParameter("dni"));
-                                        
-                                        Usuario user = new Usuario(email, pass);
-                                        user.setDatospersonales(nombre, apellido, direccion, ciudad, provincia, dni);
-                                        
-                                        funciones.alta(user);
-                                        response.getWriter().print("USUARIO SE REGISTRO DE MANERA EXITOSA");
-                                    }
+                                    if(validar.esIgual(email, email2) && validar.estaVacio(email) && validar.estaVacio(email2))
+                                    {
+                                      if(validar.esIgual(pass, pass2)&& validar.estaVacio(pass) && validar.estaVacio(pass2))
+                                        {
+                                        if(funciones.buscar(email))
+                                            {response.getWriter().print("EL USUARIO YA SE ENCUENTRA REGISTRADO");
+
+                                            }else{
+
+                                                String nombre = request.getParameter("nombre");
+                                                String apellido = request.getParameter("apellido");
+                                                String direccion = request.getParameter("direccion");
+                                                String ciudad = request.getParameter("ciudad");
+                                                String provincia = request.getParameter("provincia");
+                                                Integer dni = Integer.parseInt(request.getParameter("dni"));
+
+                                                Usuario user = new Usuario(email, pass);
+                                                user.setDatospersonales(nombre, apellido, direccion, ciudad, provincia, dni);
+
+                                                funciones.alta(user);
+                                                response.getWriter().print("USUARIO SE REGISTRO DE MANERA EXITOSA");
+                                                }
+                                          }
+                                    } 
                                     break;
-                                    }
+                                   }
                                 catch (Exception e)
                                     {
                                     response.getWriter().print("EL ERROR ES EL SIGUIENTE:  "+e);break;

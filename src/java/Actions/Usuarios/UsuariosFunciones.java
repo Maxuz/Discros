@@ -48,7 +48,9 @@ public void alta (Usuario user) throws Exception
               
                
                 pst = con.prepareStatement("INSERT INTO `usuarios` values('"+user.getEmail()+"','"+user.getPass()+"','"+user.getTipo()+"','"+user.getNombre()+"','"+user.getApellido()+"'"
-                        + ",'"+user.getDireccion()+"','"+user.getCiudad()+"','"+user.getdni()+"','"+user.getProvincia()+"')");
+                        + ",'"+user.getDireccion()+"','"+user.getCiudad()+"','"+user.getdni()+"','"+user.getProvincia()+"','"+ user.getEstado()+"')");
+                
+                
                 
                 pst.executeUpdate();
                 
