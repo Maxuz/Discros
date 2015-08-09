@@ -1,5 +1,4 @@
-<%@page import="java.util.Random"%>
-<%@page import="javax.xml.transform.Source"%>
+
 <div style="background-color: floralwhite; margin-top:75px; margin-bottom: 15px">
 <div class="row" >
     
@@ -86,5 +85,5 @@
 </form>
     </div>
 </div>
-</div>
+
     
