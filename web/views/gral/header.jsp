@@ -1,7 +1,5 @@
-   
-<%--BARRA DE MENÚ--%>
 
-
+            <%--BARRA DE MENÚ--%>
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">MENU</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
@@ -130,7 +128,7 @@
                                     if(cantidad==null)
                                     {
                                         %> 
-                                        <p style="margin: 2px; text-align: center;"> UPS!<br> Carrito vacío <br> <br>Agregue su primer producto </p>
+                                        <p style="margin: 2px; text-align: center;"> UPS!<br> Carrito vacío <br> <br><a href="t_index.jsp">Agregue su primer producto</a> </p>
                                         <%
                                      } else{
                                  %>
@@ -152,8 +150,9 @@
 
             </nav>
 
-            <%--MODAL CLIENTE--%>
+            <%--MODAL LOGIN--%>
             <div class="modal fade" id="ModalInicioSesion" role="dialog" aria-labelledby="myModalLabelInisioSesion" aria-hidden="true">
+                
                 <%--DECLARACIÓN DEL MODAL--%>
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -251,26 +250,4 @@
                 </div>
             </div>
 
-            <%--MODAL MODIFICAR DATOS DE USUARIOS--%>           
-            <div class="modal fade" id="Modal_modificardatos" role="dialog" aria-labelledby="myModalLabelModDatos" aria-hidden="true">
-                <%--DECLARACIÓN DEL MODAL--%>
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title" id="myModalLabelModDatos">
-                                MODIFICAR DATOS 
-                            </h4>
-                        </div>
-                        
-                        <%--CONTENEDOR DEL MODAL--%>
-                        <div class="modal-body">
-                           
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div> 
-            </div>
+       
