@@ -1,7 +1,5 @@
-   
-<%--BARRA DE MENÚ--%>
 
-
+            <%--BARRA DE MENÚ--%>
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">MENU</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
@@ -9,6 +7,7 @@
                   <a class="navbar-brand" href="#">DISCROS INC.</a>
                 </div>
 
+                
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                      <%--BOTONES--%>
                     <ul class="nav navbar-nav">
@@ -35,7 +34,7 @@
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">TIENDA VIRTUAL<strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                <a href="tienda.jsp">Ingreso a Tienda Virtual</a>
+                                <a href="t_index.jsp">Ingreso a Tienda Virtual</a>
                                 </li> 
                                 <li class="divider">
                                 </li>
@@ -51,65 +50,109 @@
                         </li>
                     </ul>
                     
+                     <%--USUARIOS--%>
+                     <%--CONTENEDOR PRINCIPAL DE BOTONES DE USUARIO--%>
+                     <ul class="nav navbar-nav navbar-right" style="margin-right: 10px;">
                     
-                     <%--PESTAÑA USUARIOS--%>
-                    <ul class="nav navbar-nav navbar-right">
-                     
-                        <li class="dropdown">
-                            <%--BIENVENIDA USUARIO O MENU DE LOGUEO--%>
+                         <%--BOTÓN PARA REGISTRARSE REGISTRARSE--%>
+                        <% 
+                                session.setAttribute("nombre", null);
+                        
+                                if (session.getAttribute("nombre")== null)
+                                {%>
+                                <% if(session.getAttribute("paginaActual").equals("u_alta"))
+                                    {%>
+                                    <li class="active"><a href="u_alta.jsp">REGISTRATE</a></li>
+                                    <%} else {%>
+                                                 <li><a href="u_alta.jsp">REGISTRATE</a></li>
+                                            <%} 
+                                 }%>
+                                                 
+                        
+                    <li class="dropdown">
+                    <!--INICIO DE SESIÓN O MENÚ DE OPCIONES PARA EL USUARIO-->
+                    <li class="dropdown">
+                            
                             <% 
-                            String nombre = (String)session.getAttribute("nombre");
-                            if(nombre==null)
-                            {out.print(" <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"> <img src=\"img/usuario.png\" alt=\"Usuario\" WIDTH=20 HEIGHT=20/> USUARIOS");
-                            }else{out.print(" <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"> <img src=\"img/usuario.png\" alt=\"Usuario\" WIDTH=20 HEIGHT=20/> <strong>"+ nombre +  "</strong><strong class=\"caret\"></strong></a>");%>
-                             
-                            <%}
                             
-                            Integer valor = 0;
+                            String nombre2 = (String)session.getAttribute("nombre");
+                            if(nombre2==null)
+                            {%>  
+                            <%-- INICIAR SESIÓN --%>
+                            <a id="userclimodal1" href="#ModalInicioSesion" role="button" class="btn" data-toggle="modal">INICIA SESION</a>   
+                            <%
+                            }else{%>
                             
-                            /*
-                            if(valor==1)
-                            { out.print(" <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"> <img src=\"img/usuario.png\" alt=\"Usuario\" WIDTH=20 HEIGHT=20/> <strong>"+ nombre +  "</strong><strong class=\"caret\"></strong></a>");
-                            } 
-                            else { out.print(" <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"> <img src=\"img/usuario.png\" alt=\"Usuario\" WIDTH=20 HEIGHT=20/> USUARIOS");
-                            };
-                              */
-                            %>
-                            
-                          
-                            
-                            <ul class="dropdown-menu">
-                                <%--CONTROL DE INICIO DE SESIÓN DE USUARIO--%>
-                                <%  String tipo = "admin";
-                            
-                            
-                                    if (valor==0){
-                                    /*USUARIO NO LOGUEADO*/
-                                    out.println("<td> <li><a id=\"userclimodal1\" href=\"#ModalInicioSesion\" role=\"button\" class=\"btn\" data-toggle=\"modal\">Iniciar Sesion</a></li>");
-                                    }
-                                    else{  
-                                        /*USUARIO LOGUEADO*/
-                                        out.println("<td> <li><a id=\"userclimodal1\" href=\"#Modal_modificardatos\" role=\"button\" class=\"btn\" "
-                                                     + "data-toggle=\"modal\"></i>Modificar mis datos.</a></li>");
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/usuario.png" alt="Usuario" WIDTH=20 HEIGHT=20/> <strong>
+                                <% out.print(nombre2);  %> </strong><strong class="caret"></strong>
+                            </a>
                                         
-                                        /*OPCIONES SEGÚN PRIVILEGIOS*/
-                                        if(tipo.equals("")==false && tipo.equals("admin")){ 
-                                         out.println("<td> <li><a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Agregar Productos</a></td> </li>");
-                                              
-                                         } 
-                                              
-                                       }
-                                 %>
-                              
+                            <ul class="dropdown-menu">
+                                
+                                <li><a href="#">Cerrar Sesión</a></li>
+                                <li><a id="userclimodal1" href="u_modificar.jsp" role="button" class="btn" ></i>Modificar mis datos.</a></li>
+                                
                             </ul>
-                        </li>
+                            
+                                        
+                                        
+                            <%}%>
+                           
+                                               
+                   </li>                             
+                                                 
+                     <%--CARRITO DE COMPRAS--%>                            
+                    <li class="dropdown">
+                       
+                            
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/carrito.png" alt="Usuario" WIDTH=20 HEIGHT=20/> <strong>
+                                Carrito 
+                                <% 
+                                    String cantidad = (String)session.getAttribute("itemsTotal");
+                                    if(cantidad==null)
+                                    {
+                                        out.print("(0)");
+                                        
+                                    } else {
+                                            out.print("("+cantidad+")");
+                                            }
+                                
+                                %>
+                                
+                                </strong><strong class="caret"></strong>
+                            </a>
+                            
+                            
+                             <ul class="dropdown-menu">                             
+                                 <% 
+                                    if(cantidad==null)
+                                    {
+                                        %> 
+                                        <p style="margin: 2px; text-align: center;"> UPS!<br> Carrito vacío <br> <br><a href="t_index.jsp">Agregue su primer producto</a> </p>
+                                        <%
+                                     } else{
+                                 %>
+                                        
+                                            <li><a href="#">Cerrar Sesión</a></li>
+                                 <% }%>
+                                
+                            </ul>
+                       </li>
+                        
+                   
+                        
                     </ul>
+                                 
                 </div>
+                            
+
+	
 
             </nav>
 
-            <%--MODAL CLIENTE--%>
+            <%--MODAL LOGIN--%>
             <div class="modal fade" id="ModalInicioSesion" role="dialog" aria-labelledby="myModalLabelInisioSesion" aria-hidden="true">
+                
                 <%--DECLARACIÓN DEL MODAL--%>
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -207,26 +250,4 @@
                 </div>
             </div>
 
-            <%--MODAL MODIFICAR DATOS DE USUARIOS--%>           
-            <div class="modal fade" id="Modal_modificardatos" role="dialog" aria-labelledby="myModalLabelModDatos" aria-hidden="true">
-                <%--DECLARACIÓN DEL MODAL--%>
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title" id="myModalLabelModDatos">
-                                MODIFICAR DATOS 
-                            </h4>
-                        </div>
-                        
-                        <%--CONTENEDOR DEL MODAL--%>
-                        <div class="modal-body">
-                           
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div> 
-            </div>
+       
