@@ -5,10 +5,7 @@ var funciones = {
         var email = $("#email").val();
         var pass = $("#pass").val();
         var funcion = $("#funcion").val();
-        
-        dataString = "email="+email;
-        dataString = "pass="+pass;
-        dataString = "funcion="+funcion;
+       
         
         /*VALIDAR QUE NO SEAN VACÍOS*/
         if(estaVacio(email, pass))
@@ -16,29 +13,30 @@ var funciones = {
         $.ajax("usuario.do", {
              
              type: "POST",
-             dataType: "json",
+             dataType: "application/json",
+             
              data: { "email": email, "pass":pass, "funcion":funcion},
              
              error: function (a, b, c)
                      {
                        
-                        /*QUITA LA CLASE HIDDEN DEL DIV ERROR*/
-                       $('#divError').removeClass('hidden').text("ERROR: "+ c.toString());
+                     location.reload();
                  
              },
              success: function (data)
                      {
-                        if (data.result=true)
+                         
+                        /*if (data.result=true)
                         {     
                                     
 
                               $('#divError').removeClass('hidden').text("Contraseña re correcta."); 
                         }
                         else {
-                            /*QUITA LA CLASE HIDDEN DEL DIV ERROR*/
+                            /*QUITA LA CLASE HIDDEN DEL DIV ERROR
                             $('#divError').removeClass('hidden').text("Contraseña incorrectaaaaaaa.");
-
-                        }
+                            
+                        }*/
                      },
             
             });

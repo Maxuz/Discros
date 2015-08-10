@@ -6,10 +6,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;  
 import java.sql.ResultSet;  
 import java.util.ArrayList;
-import java.util.Collection;
+
 
 
 /* LIBRERÍAS QUE FUERON IMPORTADASS PERO QUE NO SE UTILIZAN
+import java.util.Collection;
 import java.sql.SQLException;  
 import java.sql.DriverManager;  
 import java.io.IOException;

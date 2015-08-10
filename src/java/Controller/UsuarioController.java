@@ -10,6 +10,9 @@ import Model.Usuario;
 import Actions.Validacion;
 import javax.servlet.RequestDispatcher;
 
+import Json.*;
+import java.io.PrintWriter;
+
 
 public class UsuarioController extends HttpServlet {
 
@@ -53,22 +56,37 @@ public class UsuarioController extends HttpServlet {
                                             sesion.setAttribute("ciudad", user.getCiudad());
                                             sesion.setAttribute("dni", user.getdni());
                                             sesion.setAttribute("provincia", user.getProvincia());
+                                            sesion.setAttribute("tipo", user.getTipo());    
                                             
-                                            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-                                            dispatcher.forward(request, response);  
-
+                                            
+                                            response.setContentType("application/json");
+                                          //  ObjectMapper mapper = new ObjectMapper();
+                                            
+                                            response.getWriter().write("Success Data");
+                                            
+                                            
                                         }else{
                                                 
                                                 
-                                                response.getWriter().print("Usuario no encontado.");
+                                                response.getWriter().write("Usuario no encontado.");
                                         }
-                                    } else {response.getWriter().print("Ya hay un usuario registrado."); }
+                                    } else {response.getWriter().write("Ya hay un usuario registrado."); }
                                     
                                     break;
                                     }
                                 catch (Exception e)
-                                    {
-                                     System.out.println(e); break;
+                                    {  // ObjectMapper mapper = new ObjectMapper();
+                                        response.setContentType("aplication/json");
+                                      
+                                        
+                                        JSONObject obj = new JSONObject();
+                                        obj.put("texto", e.toString());
+                                        
+                                        
+                                        PrintWriter out = response.getWriter();
+                                        out.write(obj.toString());
+                                        out.flush();
+                                        break;
                                     }
                                 // </editor-fold>
                               }
