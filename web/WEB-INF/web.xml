@@ -5,16 +5,8 @@
         <servlet-class>Controller.UsuarioController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CarritoController</servlet-name>
-        <servlet-class>Controller.CarritoController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>PersonaController</servlet-name>
         <servlet-class>Controller.PersonaController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ProductoController</servlet-name>
-        <servlet-class>Controller.ProductoController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Header</servlet-name>
@@ -44,6 +36,70 @@
         <servlet-name>PedidosCancionesController</servlet-name>
         <servlet-class>Controller.PedidosCancionesController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>uAltaController</servlet-name>
+        <servlet-class>Controller.Usuario.uAltaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>uLoginController</servlet-name>
+        <servlet-class>Controller.Usuario.uLoginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>uModificarController</servlet-name>
+        <servlet-class>Controller.Usuario.uModificarController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>uLogoutController</servlet-name>
+        <servlet-class>Controller.Usuario.uLogoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cpAltaController</servlet-name>
+        <servlet-class>Controller.PedidosCanciones.cpAltaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cpBajaController</servlet-name>
+        <servlet-class>Controller.PedidosCanciones.cpBajaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cpModificarController</servlet-name>
+        <servlet-class>Controller.PedidosCanciones.cpModificarController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>pAltaController</servlet-name>
+        <servlet-class>Controller.Pedidos.pAltaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>pBajaController</servlet-name>
+        <servlet-class>Controller.Pedidos.pBajaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>pModificarController</servlet-name>
+        <servlet-class>Controller.Pedidos.pModificarController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>dAltaController</servlet-name>
+        <servlet-class>Controller.Discos.dAltaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>dBajaController</servlet-name>
+        <servlet-class>Controller.Discos.dBajaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>dModificarController</servlet-name>
+        <servlet-class>Controller.Discos.dModificarController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cAltaController</servlet-name>
+        <servlet-class>Controller.Canciones.cAltaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cBajaController</servlet-name>
+        <servlet-class>Controller.Canciones.cBajaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cModificarController</servlet-name>
+        <servlet-class>Controller.Canciones.cModificarController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/usuario.do</url-pattern>
@@ -55,10 +111,6 @@
     <servlet-mapping>
         <servlet-name>PersonaController</servlet-name>
         <url-pattern>/persona.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ProductoController</servlet-name>
-        <url-pattern>/producto.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Header</servlet-name>
@@ -87,6 +139,70 @@
     <servlet-mapping>
         <servlet-name>PedidosCancionesController</servlet-name>
         <url-pattern>/pedidoscanciones.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>uAltaController</servlet-name>
+        <url-pattern>/uAlta.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>uLoginController</servlet-name>
+        <url-pattern>/uLogin.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>uModificarController</servlet-name>
+        <url-pattern>/uModificar.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>uLogoutController</servlet-name>
+        <url-pattern>/uLogout.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cpAltaController</servlet-name>
+        <url-pattern>/cpAlta.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cpBajaController</servlet-name>
+        <url-pattern>/cpBaja.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cpModificarController</servlet-name>
+        <url-pattern>/cpModificar.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>pAltaController</servlet-name>
+        <url-pattern>/pAlta.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>pBajaController</servlet-name>
+        <url-pattern>/pBaja.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>pModificarController</servlet-name>
+        <url-pattern>/pModificar.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dAltaController</servlet-name>
+        <url-pattern>/dAlta.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dBajaController</servlet-name>
+        <url-pattern>/dBaja.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dModificarController</servlet-name>
+        <url-pattern>/dModificar.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cAltaController</servlet-name>
+        <url-pattern>/cAlta.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cBajaController</servlet-name>
+        <url-pattern>/cBaja.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cModificarController</servlet-name>
+        <url-pattern>/cModificar.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

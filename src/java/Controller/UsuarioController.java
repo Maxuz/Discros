@@ -20,11 +20,11 @@ public class UsuarioController extends HttpServlet {
     @SuppressWarnings("empty-statement")
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-        HttpSession sesion = request.getSession(true); 
+        
                 
         Validacion validar = new Validacion();
         String funcion = request.getParameter("funcion");
-        
+        HttpSession sesion = request.getSession(true); 
         Actions.Usuarios.UsuariosFunciones funciones = new Actions.Usuarios.UsuariosFunciones();
         
         if(validar.estaVacio(funcion)==true)
