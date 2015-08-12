@@ -104,10 +104,7 @@
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/usuario.do</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CarritoController</servlet-name>
-        <url-pattern>/carrito.do</url-pattern>
-    </servlet-mapping>
+   
     <servlet-mapping>
         <servlet-name>PersonaController</servlet-name>
         <url-pattern>/persona.do</url-pattern>
