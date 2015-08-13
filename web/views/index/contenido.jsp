@@ -64,7 +64,7 @@
                                    <div class="thumbnail">
                                        <img alt="300x200" src="img/descargamusica.jpg">
                                        
-                                       <div class="caption" style="height: 300px">
+                                       <div class="caption" style="height: 260px">
                                            <h3 style="text-align: center;">
                                                ¡Descarga MP3 a precios increíbles!<br><br>
                                            </h3>
@@ -72,7 +72,7 @@
                                                Más de 5000 canciones disponibles para descarga inmediata.
                                                <br><br>
                                                ¿Qué estas esperando?
-                                               <br><br><br><br><br><br>
+                                               <br><br><br><br><br>
 
                                            </h5>
                                            <p>
@@ -85,7 +85,7 @@
                                <div class="col-md-4">
                                    <div class="thumbnail">
                                        <img alt="300x200" src="img/ventacds.jpg">
-                                       <div class="caption" style="height: 300px;">
+                                       <div class="caption" style="height: 260px;">
                                            <h3 style="text-align: center;">
                                                Visitá nuestra Tienda.. ¡ONLINE!<br><br>
                                            </h3>
@@ -103,18 +103,18 @@
                                <%--TERCERA COLUMNA--%>        
                                <div class="col-md-4">
                                    <div class="thumbnail">
-                                       <img alt="300x200" src="http://www.dimusa.cl/NOTICIAS/BannerNoticias.jpg">
-                                       <div class="caption" style="height: 300px;">
-                                           <h2>
-                                               ¡Enterate de los próximos lanzamientos!
-                                           </h2>
-                                           <h4>
+                                       <img alt="300x200" src="img/newspaper.jpg">
+                                       <div class="caption" style="height: 260px;">
+                                           <h3>
+                                               ¡Registrate a nuestro Newspaper!<br><br>
+                                           </h3>
+                                           <h5>
                                                Como ya te contamos, todos los miércoles tenemos nuevos discos en la tienda y cada quince días nuevos Longplay.
                                                <br><br>
                                                Enterate de cuáles son las novedades.
-                                               <br><br><br><br><br>
+                                               <br><br><br><br>
 
-                                           </h4>
+                                           </h5>
                                            <p>
                                                <a class="btn btn-primary" href="#">Ingresar a la Tienda</a> <a class="btn" href="#">Leer más</a>
                                            </p>

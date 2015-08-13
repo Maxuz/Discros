@@ -56,7 +56,7 @@
                     
                          <%--BOTÓN PARA REGISTRARSE REGISTRARSE--%>
                         <% 
-                                session.setAttribute("nombre", null);
+                               
                         
                                 if (session.getAttribute("nombre")== null)
                                 {%>
@@ -71,35 +71,47 @@
                         
                     <li class="dropdown">
                     <!--INICIO DE SESIÓN O MENÚ DE OPCIONES PARA EL USUARIO-->
-                    <li class="dropdown">
+                    
                             
                             <% 
                             
-                            String nombre2 = (String)session.getAttribute("nombre");
-                            if(nombre2==null)
+                            String nombre = (String)session.getAttribute("nombre");
+                            if(nombre==null)
                             {%>  
                             <%-- INICIAR SESIÓN --%>
-                            <a id="userclimodal1" href="#ModalInicioSesion" role="button" class="btn" data-toggle="modal">INICIA SESION</a>   
+                            <li
+                            <% if(session.getAttribute("paginaActual").equals("u_login"))
+                                {%>
+                              class="active" 
+                              <% } %>><a href="u_login.jsp" role="button" >INICIA SESION</a></li>
+                            
+                        
+                            
+                            
                             <%
                             }else{%>
+                            <li class="dropdown">
+                            <%-- MENÚ DEL USUARIO LOGUEADO --%>
                             
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/usuario.png" alt="Usuario" WIDTH=20 HEIGHT=20/> <strong>
-                                <% out.print(nombre2);  %> </strong><strong class="caret"></strong>
+                                <% out.print(nombre);  %> </strong><strong class="caret"></strong>
+                            
+                            
                             </a>
                                         
                             <ul class="dropdown-menu">
                                 
-                                <li><a href="#">Cerrar Sesión</a></li>
-                                <li><a id="userclimodal1" href="u_modificar.jsp" role="button" class="btn" ></i>Modificar mis datos.</a></li>
+                                <li><a href="uLogout.do">Cerrar Sesión</a></li>
+                                <li><a id="btnModificardatos" href="u_modificar.jsp" role="button" class="btn" ></i>Modificar mis datos.</a></li>
                                 
                             </ul>
                             
-                                        
+                             </li>            
                                         
                             <%}%>
                            
                                                
-                   </li>                             
+                                               
                                                  
                      <%--CARRITO DE COMPRAS--%>                            
                     <li class="dropdown">
@@ -150,59 +162,7 @@
 
             </nav>
 
-            <%--MODAL LOGIN--%>
-            <div class="modal fade" id="ModalInicioSesion" role="dialog" aria-labelledby="myModalLabelInisioSesion" aria-hidden="true">
-                
-                <%--DECLARACIÓN DEL MODAL--%>
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title" id="myModalLabelInisioSesion">
-                                Ingreso de usuarios.
-                            </h4>
-                        </div>
-                        
-                        <%--CONTENEDOR DEL MODAL--%>
-                        <div class="modal-body">
-                            <%--FORMULARIO DE INGRESO--%>
-                            <form role="form" id="login" method="post" >
-                                      
-                                    <div class="form-group">
-                                    <label for="lEmail">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Introduce tu email">
-                                    </div>
-                                  
-                                    <div class="form-group">
-                                    <label for="lPass">Contraseña</label>
-                                    <input type="password" class="form-control" id="pass" name="pass"  placeholder="Contraseña">
-                                   
-                                    <input type="text" name="funcion" id="funcion" size="5" value="login" hidden readonly="true">
-                                    
-                                    </div>
-                                
-                                     <button type="submit" class="btn btn-default">Enviar</button>
-                                     
-                                     <br><br><a href="#">Olvidé mi contraseña.</a>
-                                     <br><a href="views/usuario/registroUsuario.jsp">Registrarme.</a><br><br>
-                                     
-                                      <div>
-                                   <!--DIV PARA MOSTRAR ERRORES-->
-                                   <div id="divError" class="alert alert-danger hidden"></div>
-                                   
-                                   
-                                    </div>
-                                    </form>
-                            
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
+          
              <%--MODAL FORMA DE PAGO--%>
             <div class="modal fade" id="Formasdepago" role="dialog" aria-labelledby="myModalLabelPagos" aria-hidden="true">
                 <%--DECLARACIÓN DEL MODAL--%>

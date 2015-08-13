@@ -100,11 +100,14 @@
         <servlet-name>cModificarController</servlet-name>
         <servlet-class>Controller.Canciones.cModificarController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>uOlvideController</servlet-name>
+        <servlet-class>Controller.Usuario.uOlvideController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/usuario.do</url-pattern>
     </servlet-mapping>
-   
     <servlet-mapping>
         <servlet-name>PersonaController</servlet-name>
         <url-pattern>/persona.do</url-pattern>
@@ -200,6 +203,10 @@
     <servlet-mapping>
         <servlet-name>cModificarController</servlet-name>
         <url-pattern>/cModificar.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>uOlvideController</servlet-name>
+        <url-pattern>/uOlvide.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

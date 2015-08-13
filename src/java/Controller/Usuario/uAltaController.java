@@ -4,6 +4,8 @@ import Actions.Validacion;
 import Model.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +26,9 @@ public class uAltaController extends HttpServlet {
                                     String email2 = request.getParameter("email2");
                                     String pass2 = request.getParameter("pass2");
                                     
-                                    if(validar.esIgual(email, email2) && validar.estaVacio(email) && validar.estaVacio(email2))
+                                    if(validar.esIgual(email, email2) && !validar.estaVacio(email) && !validar.estaVacio(email2))
                                     {
-                                      if(validar.esIgual(pass, pass2)&& validar.estaVacio(pass) && validar.estaVacio(pass2))
+                                      if(validar.esIgual(pass, pass2)&& !validar.estaVacio(pass) && !validar.estaVacio(pass2))
                                         {
                                         if(funciones.buscar(email))
                                             {response.getWriter().print("EL USUARIO YA SE ENCUENTRA REGISTRADO");
@@ -44,7 +46,14 @@ public class uAltaController extends HttpServlet {
                                                 user.setDatospersonales(nombre, apellido, direccion, ciudad, provincia, dni);
 
                                                 funciones.alta(user);
-                                                response.getWriter().print("USUARIO SE REGISTRO DE MANERA EXITOSA");
+                                                
+                                                sesion.setAttribute("nombre", user.getNombre());
+                                                
+                                                sesion.setAttribute("mensajeExito", "Usuario logueado correctamene.");
+                                                RequestDispatcher rd =null;
+
+                                                rd=request.getRequestDispatcher("u_alta.jsp");
+                                                rd.forward(request,response);
                                                 }
                                           }
                                     } 
@@ -52,7 +61,12 @@ public class uAltaController extends HttpServlet {
                                    }
                                 catch (Exception e)
                                     {
-                                    response.getWriter().print("EL ERROR ES EL SIGUIENTE:  "+e);
+                                        sesion.setAttribute("errorCatch", e.toString());
+                                        RequestDispatcher rd =null;
+                                                                               
+                                        rd=request.getRequestDispatcher("error.jsp");
+                                        rd.forward(request,response);
+                                        
                                     }     
     }
 

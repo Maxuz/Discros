@@ -1,68 +1,72 @@
 
 <div style="background-color: #ffffff; margin-top:75px; margin-bottom: 15px">
-<div class="row" >
+    
+<% if(session.getAttribute("nombre")==null){%>
+
+<!-- FORMULARIO DE REGISTRO DE NUEVO CLIENTE-->
+<div class="row" style="margin-left: 15%; margin-right: 15%; margin-bottom: 2%" >
     
     <h2 style="text-align: center;">Registro de nuevo cliente</h2>
+    <hr> 
     
-    <form role="form" class="form-horizontal" style="margin-left: 15%; margin-right: 15%; margin-bottom: 2%" method="post" action="usuario.do">
-   <hr>     
+   <form role="form" class="form-horizontal"  method="post" action="uAlta.do">
+      
    <h4>Datos de inicio de sesión</h4>
    <hr>
+   
     <div class="col-xs-8">
     <label for="email">Email</label>
     <input type="email" class="form-control" id="email" name="email"  placeholder="Introduce tu email">
     </div>
-   
     <br><br><br><br>
+    
     
     <div class="col-xs-8">
     <label for="email2">Reescribe tu Email</label>
     <input type="email" class="form-control" id="email" name="email2" placeholder="Introduce tu email">
-    </div>
-       
+    </div> 
     <br><br><br><br>
   
-  
+    
     <div class="col-xs-8">
     <label for="password">Contraseña</label>
     <input type="password" class="form-control" id="pass"  name="pass" placeholder="Contraseña">
     </div>
-     
     <br><br><br><br>
+    
     
     <div class="col-xs-8">
     <label for="password2">Reescribe tu Contraseña</label>
     <input type="password" class="form-control" id="pass"  name="pass2" placeholder="Contraseña">
     </div>
-  
     <br><br><br><br>
-      <hr>
+    <hr>
+    
      <h4>Datos personales</h4>
      <hr>
-            <div class="col-xs-8">
-            <label for=Nombre">Ingrese su Nombre</label>
-            <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre"><br>
-            </div>
      
-            <br><br><br><br>
+    <div class="col-xs-8">
+    <label for=Nombre">Ingrese su Nombre</label>
+    <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre"><br>
+    </div>
+    <br><br><br><br>
+           
+    
+    <div class="col-xs-8">
+    <label for="Apellido">Ingrese su Apellido</label>
+    <input type="text" class="form-control" placeholder="Apellido" name="apellido" id="apellido"><br>
+    </div>
+    <br><br><br><br>
             
-            <div class="col-xs-8">
-            <label for="Apellido">Ingrese su Apellido</label>
-            <input type="text" class="form-control" placeholder="Apellido" name="apellido" id="apellido"><br>
-            </div>
+    <div class="col-xs-8">
+    <label for="DNI">Ingrese su DNI</label>
+    <input type="text" class="form-control" placeholder="DNI" name="dni" id="dni"><br>
+    </div>
+    <br><br><br><br>
             
-            <br><br><br><br>
-            
-            <div class="col-xs-8">
-            <label for="DNI">Ingrese su DNI</label>
-            <input type="text" class="form-control" placeholder="DNI" name="dni" id="dni"><br>
-            </div>
-            
-            <br><br><br><br>
-            
-            <div class="col-xs-8">
-            <label for="Provincia">Elija su Provincia</label>
-            <select class="form-control" name="provincia" id="provincia" >
+    <div class="col-xs-8">
+    <label for="Provincia">Elija su Provincia</label>
+    <select class="form-control" name="provincia" id="provincia" >
             
             <option> Elegir provincia.. </option>  
             <option value="Buenos Aires">Buenos Aires</option>
@@ -90,35 +94,62 @@
             <option value="Tierra del Fuego">Tierra del Fuego</option>
             <option value="Tucumán">Tucumán</option>
             </select><br>
-            </div>
+    </div>
+    <br><br><br><br>
+      
+    
+    <div class="col-xs-8">
+    <label for="Ciudad">Ingrese su Ciudad</label>
+    <input type="text" class="form-control" placeholder="Ciudad" name="ciudad" id="ciudad">
+    </div>
+    <br><br><br><br>
+      
+    
+    <div class="col-xs-8">
+    <label for="Dirección">Ingrese su Dirección </label>
+    <input type="text" class="form-control" placeholder="Direccion" name="direccion" id="direccion">
+    </div>    
+    <br><br><br><br>
             
-            <br><br><br><br>
-            
-            <div class="col-xs-8">
-            <label for="Ciudad">Ingrese su Ciudad</label>
-            <input type="text" class="form-control" placeholder="Ciudad" name="ciudad" id="ciudad">
-            </div>
-            
-            <br><br><br><br>
-            
-            <div class="col-xs-8">
-            <label for="Dirección">Ingrese su Dirección </label>
-            <input type="text" class="form-control" placeholder="Direccion" name="direccion" id="direccion">
-            </div>    
-           
-            <br><br><br><br>
-            
-            <div class="col-xs-8">
-            <input type="text" name="funcion" size="5" value="alta" hidden readonly="true"><br>
-            </div>
-            <br><br>
-            
-            
-          
-            <button type="submit" class="btn btn-default" style="width: 220px; margin-left: 15px;">Registrar</button>
-           
+                
+    <button type="submit" class="btn btn-default" style="width: 220px; margin-left: 15px;">Registrar</button>
+    <br><br>
+   
 </form>
     </div>
+    
+       <% }else{
+                if(session.getAttribute("mensajeExito")!=null)
+                {%>
+                        <!-- USUARIO RECIÉN LOGUEADO-->
+                        <div class="row" style="margin-left: 15%; margin-right: 15%; margin-bottom: 2%" >
+                            <br><br><br>        
+                            <div class="alert alert-success">
+                                <% out.print((String)session.getAttribute("mensajeExito"));
+                                    session.setAttribute("mensajeExito", null);
+                                    %>
+                                
+                            </div>
+                                <br><br>
+                                <a href="index.jsp"><strong>Ir al inicio..</strong></a>    
+                                <br><br>
+                        
+                        </div>
+                
+              <%}else{%>
+                        <!-- USUARIO LOGUEADO-->
+                        <div class="row" style="margin-left: 15%; margin-right: 15%; margin-bottom: 2%" >
+
+                        <h3 style="text-align: center; font-style: italic;">Hay un usuario logueado, por favor cierra la sesión y vuelve a intentarlo.</h3>
+                        <hr> 
+                        </div>
+                    <%}%>
+              <%}
+    %>
+       
+        
+    
+  
 </div>
 
     

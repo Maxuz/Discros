@@ -14,10 +14,12 @@
         
     <% } else{
 %>
-    
-    <div class="row" style="margin-top: 80px; background-color: #ffffff; margin-bottom: 15px;">
-        <h1 style="text-align:center;"> Modificar datos de usuario </h1><br><br><br><br><br><br><br><br>
+<div class="span6 center-block">
+    <div class="row" style="background-color: #ffffff;">
+        <h1 style="text-align:center;"> Modificar datos de usuario </h1><br><br><br>
+        
     </div>
+</div>
 
 <%}%>
     

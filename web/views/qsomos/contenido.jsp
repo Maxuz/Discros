@@ -22,7 +22,7 @@
     <div class="row">
 
         <div class="col-md-4">
-            <div class="thumbnail" style="text-align: center">
+            <div class="thumbnail" style="text-align: center; height: 300px;">
                 <img src="img/MISION.jpg" alt=""/>
                 <div class="caption">
                     <p>
@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="thumbnail" style="text-align: center">
+            <div class="thumbnail" style="text-align: center;height: 300px;">
                 <img src="img/VISION.jpg" alt=""/>
                 <div class="caption">
                     <p>
@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="thumbnail">
+            <div class="thumbnail" style=" height: 300px;">
 
                 <img src="img/VALORES.jpg" alt=""/>
                 <div class="caption">

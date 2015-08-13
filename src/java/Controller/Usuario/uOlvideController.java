@@ -1,40 +1,32 @@
+
 package Controller.Usuario;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-public class uLogoutController extends HttpServlet {
 
+public class uOlvideController extends HttpServlet {
+
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         HttpSession sesion = request.getSession(true); 
-        Actions.Usuarios.UsuariosFunciones funciones = new Actions.Usuarios.UsuariosFunciones();
-        
+    
        try{
-                                    String temp = (String)sesion.getAttribute("nombre"); 
-                                    if( temp == null)        
-                                    {
-                                        response.getWriter().print("No hay ningún usuario logueado.");
-                                        
-                                    } else { 
-                                            sesion.invalidate();
-                                        
-                                            RequestDispatcher rd =null;
-                                            rd=request.getRequestDispatcher("index.jsp");
-                                            rd.forward(request, response);
-                                            }
-                              
-                                    }
-                                catch (Exception e)
-                                    {
-                                    response.getWriter().print("EL ERROR OCURRIDO ES: "+e);
-                                    } 
+          
+              
+       }
+       
+       catch(Exception e)
+       {
+       }
+       
+       
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
