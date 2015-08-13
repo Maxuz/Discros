@@ -18,6 +18,7 @@ public class uAltaController extends HttpServlet {
             throws ServletException, IOException {
         Validacion validar = new Validacion();
         HttpSession sesion = request.getSession(true); 
+        RequestDispatcher rd =null;
         Actions.Usuarios.UsuariosFunciones funciones = new Actions.Usuarios.UsuariosFunciones();
        
         try{
@@ -31,7 +32,10 @@ public class uAltaController extends HttpServlet {
                                       if(validar.esIgual(pass, pass2)&& !validar.estaVacio(pass) && !validar.estaVacio(pass2))
                                         {
                                         if(funciones.buscar(email))
-                                            {response.getWriter().print("EL USUARIO YA SE ENCUENTRA REGISTRADO");
+                                            { 
+                                             sesion.setAttribute("mensajeExito", "El email ya se encuentra registrado. Por favor elija otro.");
+                                             rd=request.getRequestDispatcher("u_alta.jsp");
+                                             rd.forward(request,response);
 
                                             }else{
 
@@ -50,7 +54,7 @@ public class uAltaController extends HttpServlet {
                                                 sesion.setAttribute("nombre", user.getNombre());
                                                 
                                                 sesion.setAttribute("mensajeExito", "Usuario logueado correctamene.");
-                                                RequestDispatcher rd =null;
+                                                
 
                                                 rd=request.getRequestDispatcher("u_alta.jsp");
                                                 rd.forward(request,response);
@@ -62,8 +66,7 @@ public class uAltaController extends HttpServlet {
                                 catch (Exception e)
                                     {
                                         sesion.setAttribute("errorCatch", e.toString());
-                                        RequestDispatcher rd =null;
-                                                                               
+                                                                          
                                         rd=request.getRequestDispatcher("error.jsp");
                                         rd.forward(request,response);
                                         

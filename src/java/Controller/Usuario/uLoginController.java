@@ -60,7 +60,8 @@ public class uLoginController extends HttpServlet {
                                                 
                                         }
                                     
-                                    } else {response.getWriter().write("Ya hay un usuario registrado."); }
+                                    } else {    rd=request.getRequestDispatcher("u_login.jsp");
+                                                rd.forward(request, response); }
                                     
                                  
                                     }

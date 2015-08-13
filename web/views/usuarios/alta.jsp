@@ -1,20 +1,33 @@
 
 <div style="background-color: #ffffff; margin-top:75px; margin-bottom: 15px">
-    
-<% if(session.getAttribute("nombre")==null){%>
+  
 
 <!-- FORMULARIO DE REGISTRO DE NUEVO CLIENTE-->
 <div class="row" style="margin-left: 15%; margin-right: 15%; margin-bottom: 2%" >
+    
     
     <h2 style="text-align: center;">Registro de nuevo cliente</h2>
     <hr> 
     
    <form role="form" class="form-horizontal"  method="post" action="uAlta.do">
-      
+      <% if(session.getAttribute("nombre")==null){%>
+
+    <% if(session.getAttribute("mensajeExito")!= null)
+    {%>
+           <br><br><br>        
+           <div class="alert alert-danger">
+           <% out.print((String)session.getAttribute("mensajeExito"));
+           session.setAttribute("mensajeExito", null);
+           %>
+           </div>     
+    
+   <% }%>
    <h4>Datos de inicio de sesión</h4>
    <hr>
    
     <div class="col-xs-8">
+          
+    
     <label for="email">Email</label>
     <input type="email" class="form-control" id="email" name="email"  placeholder="Introduce tu email">
     </div>
