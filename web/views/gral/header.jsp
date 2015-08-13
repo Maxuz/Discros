@@ -57,9 +57,9 @@
                           <!--INICIO DE SESIÓN O MENÚ DE OPCIONES PARA EL USUARIO-->
                     
                             <% 
+                            String tipo = (String)session.getAttribute("tipoUsuario");
                             
-                            
-                            if(session.getAttribute("tipoUsuario").equals("admin"))
+                            if(tipo!=null)
                             {%>  
                             <%-- INICIAR SESIÓN --%>
                             
@@ -84,6 +84,12 @@
                             <%
                             }%>
                             
+                                      
+                                        
+                            
+                         
+                         
+                         
                          <%--BOTÓN PARA REGISTRARSE  --%>
                         <% if (session.getAttribute("nombre")== null)
                                 {%>
