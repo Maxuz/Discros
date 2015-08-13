@@ -54,11 +54,38 @@
                      <%--CONTENEDOR PRINCIPAL DE BOTONES DE USUARIO--%>
                      <ul class="nav navbar-nav navbar-right" style="margin-right: 10px;">
                     
-                         <%--BOTÓN PARA REGISTRARSE REGISTRARSE--%>
-                        <% 
-                               
-                        
-                                if (session.getAttribute("nombre")== null)
+                          <!--INICIO DE SESIÓN O MENÚ DE OPCIONES PARA EL USUARIO-->
+                    
+                            <% 
+                            
+                            
+                            if(session.getAttribute("tipoUsuario").equals("admin"))
+                            {%>  
+                            <%-- INICIAR SESIÓN --%>
+                            
+                            <li class="dropdown">
+                            <%-- MENÚ DEL USUARIO LOGUEADO --%>
+                            
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">  <strong>
+                                Menu Admin </strong><strong class="caret"></strong>
+                            
+                            
+                            </a>
+                                        
+                            <ul class="dropdown-menu">
+                                
+                                <li><a id="btnModificardatos" href="#" role="button" class="btn">Agregar Discos</a></li>
+                                <li><a id="btnModificardatos" href="#" role="button" class="btn">Agregar canciones</a></li>
+                                
+                            </ul>
+                            
+                             </li>  
+                             
+                            <%
+                            }%>
+                            
+                         <%--BOTÓN PARA REGISTRARSE  --%>
+                        <% if (session.getAttribute("nombre")== null)
                                 {%>
                                 <% if(session.getAttribute("paginaActual").equals("u_alta"))
                                     {%>
@@ -69,10 +96,9 @@
                                  }%>
                                                  
                         
-                    <li class="dropdown">
+                    
                     <!--INICIO DE SESIÓN O MENÚ DE OPCIONES PARA EL USUARIO-->
                     
-                            
                             <% 
                             
                             String nombre = (String)session.getAttribute("nombre");
@@ -84,12 +110,10 @@
                                 {%>
                               class="active" 
                               <% } %>><a href="u_login.jsp" role="button" >INICIA SESION</a></li>
-                            
-                        
-                            
-                            
+                             
                             <%
                             }else{%>
+                            
                             <li class="dropdown">
                             <%-- MENÚ DEL USUARIO LOGUEADO --%>
                             
