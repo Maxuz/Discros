@@ -18,6 +18,7 @@ public class uLoginController extends HttpServlet {
         
          HttpSession sesion = request.getSession(true); 
         Actions.Usuarios.UsuariosFunciones funciones = new Actions.Usuarios.UsuariosFunciones();
+        RequestDispatcher rd =null;
         try{
                                     String email = request.getParameter("email");
                                     String pass  = request.getParameter("pass");
@@ -45,15 +46,17 @@ public class uLoginController extends HttpServlet {
                                             sesion.setAttribute("provincia", user.getProvincia());
                                             sesion.setAttribute("tipo", user.getTipo());    
                                             
-                                            RequestDispatcher rd =null;
+                                            
                                             rd=request.getRequestDispatcher("index.jsp");
                                             rd.forward(request, response);
                                                                                       
                                             
                                             
                                             
-                                        }else{
-                                                response.getWriter().write("Usuario no encontado.");
+                                        }else{  
+                                                sesion.setAttribute("mensajeExito", "Usuario o contraseña incorrecta.");
+                                                rd=request.getRequestDispatcher("u_login.jsp");
+                                                rd.forward(request, response);
                                                 
                                         }
                                     
@@ -63,7 +66,6 @@ public class uLoginController extends HttpServlet {
                                     }
                                 catch (Exception e)
                                     {   sesion.setAttribute("errorCatch", e.toString());
-                                        RequestDispatcher rd =null;
                                                                                
                                         rd=request.getRequestDispatcher("error.jsp");
                                         rd.forward(request,response);

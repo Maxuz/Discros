@@ -3,17 +3,22 @@ package Controller.Usuario;
 import Model.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "uBorrarController", urlPatterns = {"/uBorrar.do"})
 public class uBorrarController extends HttpServlet {
 protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession sesion = request.getSession(true); 
         Actions.Usuarios.UsuariosFunciones funciones = new Actions.Usuarios.UsuariosFunciones();
+        
         try{
                                     String email = request.getParameter("email");
                                     String pass  = request.getParameter("pass");
@@ -36,7 +41,11 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
                                     }
                                 catch (Exception e)
                                     {
-                                    response.getWriter().print("EL ERROR OCURRIDO ES:"+e);
+                                        sesion.setAttribute("errorCatch", e.toString());
+                                        RequestDispatcher rd =null;
+                                                                               
+                                        rd=request.getRequestDispatcher("error.jsp");
+                                        rd.forward(request,response);
                                     } 
                     
     }

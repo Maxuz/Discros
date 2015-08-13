@@ -64,7 +64,7 @@
                                    <div class="thumbnail">
                                        <img alt="300x200" src="img/descargamusica.jpg">
                                        
-                                       <div class="caption" style="height: 260px">
+                                       <div class="caption" style="height: 300px">
                                            <h3 style="text-align: center;">
                                                ¡Descarga MP3 a precios increíbles!<br><br>
                                            </h3>
@@ -72,7 +72,7 @@
                                                Más de 5000 canciones disponibles para descarga inmediata.
                                                <br><br>
                                                ¿Qué estas esperando?
-                                               <br><br><br><br><br>
+                                               <br><br><br><br><br><br>
 
                                            </h5>
                                            <p>
@@ -85,7 +85,7 @@
                                <div class="col-md-4">
                                    <div class="thumbnail">
                                        <img alt="300x200" src="img/ventacds.jpg">
-                                       <div class="caption" style="height: 260px;">
+                                       <div class="caption" style="height: 300px;">
                                            <h3 style="text-align: center;">
                                                Visitá nuestra Tienda.. ¡ONLINE!<br><br>
                                            </h3>
@@ -104,7 +104,7 @@
                                <div class="col-md-4">
                                    <div class="thumbnail">
                                        <img alt="300x200" src="img/newspaper.jpg">
-                                       <div class="caption" style="height: 260px;">
+                                       <div class="caption" style="height: 300px;">
                                            <h3>
                                                ¡Registrate a nuestro Newspaper!<br><br>
                                            </h3>

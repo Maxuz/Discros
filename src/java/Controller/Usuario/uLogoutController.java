@@ -33,7 +33,11 @@ public class uLogoutController extends HttpServlet {
                                     }
                                 catch (Exception e)
                                     {
-                                    response.getWriter().print("EL ERROR OCURRIDO ES: "+e);
+                                        sesion.setAttribute("errorCatch", e.toString());
+                                        RequestDispatcher rd =null;
+                                                                               
+                                        rd=request.getRequestDispatcher("error.jsp");
+                                        rd.forward(request,response);
                                     } 
     }
 
