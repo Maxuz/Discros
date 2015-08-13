@@ -44,7 +44,7 @@ public class uLoginController extends HttpServlet {
                                             sesion.setAttribute("ciudad", user.getCiudad());
                                             sesion.setAttribute("dni", user.getdni());
                                             sesion.setAttribute("provincia", user.getProvincia());
-                                            sesion.setAttribute("tipo", user.getTipo());    
+                                            sesion.setAttribute("tipoUsuario", user.getTipo());    
                                             
                                             
                                             rd=request.getRequestDispatcher("index.jsp");

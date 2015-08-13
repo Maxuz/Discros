@@ -66,11 +66,7 @@
                             <li class="dropdown">
                             <%-- MENÚ DEL USUARIO LOGUEADO --%>
                             
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">  <strong>
-                                Menu Admin </strong><strong class="caret"></strong>
-                            
-                            
-                            </a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><strong>Menu Admin </strong><strong class="caret"></strong></a>
                                         
                             <ul class="dropdown-menu">
                                 
