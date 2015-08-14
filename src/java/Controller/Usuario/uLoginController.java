@@ -29,12 +29,7 @@ public class uLoginController extends HttpServlet {
                                     {if(funciones.login(user))
                                         {   
                                             user = funciones.getOne(email);
-                                            //GUARDA LA INFORMACIÓN DEL USUARIO LOGUEADO
-                                            
-                                            /*
-                                            *   NO ES LA MEJOR OPCIÓN, PUEDE MEJORAR, SE PUSO DE ESTA FORMA PARA PROBAR LA VARIABLE DE SESION
-                                            *
-                                            */
+                                           
                                             
                                             sesion.setAttribute("email", email);
                                             sesion.setAttribute("pass", user.getPass());
