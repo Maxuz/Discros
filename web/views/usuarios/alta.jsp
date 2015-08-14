@@ -9,7 +9,7 @@
     <h2 style="text-align: center;">Registro de nuevo cliente</h2>
     <hr> 
    
-   <form role="form" class="form-horizontal"  method="post"  onsubmit="valida(event)" action="uAlta.do" >
+   <form role="form" class="form-horizontal"  method="post"  onsubmit="validaAlta(event)" action="uAlta.do" >
       <% if(session.getAttribute("nombre")==null){%>
 
     <% if(session.getAttribute("mensajeExito")!= null)

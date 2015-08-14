@@ -8,7 +8,7 @@
         <h1 style="text-align:center;"> Inicio de sesión de usuario</h1>
         <hr>
         
-        <form role="form" id="login" method="post" action="uLogin.do">
+        <form role="form" id="login" method="post" onsubmit="validaLogin(event)" action="uLogin.do">
                                       
                                     <div class="form-group">
                                     <label for="lEmail">Email</label>

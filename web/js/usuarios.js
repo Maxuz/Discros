@@ -4,7 +4,7 @@ $('#email').focus();
 });
 
 
-var valida = function(event){
+var validaAlta = function(event){
 
     var mensaje = "";
     var mail = $('#email').val();
@@ -80,7 +80,9 @@ var valida = function(event){
         event.preventDefault();
     }
 };
-
+var validaLogin = function(event){
+    
+};
 var isEmail = function(email){
     expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if (expr.test(email)){
