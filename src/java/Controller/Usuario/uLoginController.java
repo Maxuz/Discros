@@ -44,14 +44,10 @@ public class uLoginController extends HttpServlet {
                                             sesion.setAttribute("ciudad", user.getCiudad());
                                             sesion.setAttribute("dni", user.getdni());
                                             sesion.setAttribute("provincia", user.getProvincia());
-                                            sesion.setAttribute("tipoUsuario", user.getTipo());    
-                                            
-                                            
+                                            sesion.setAttribute("tipoUsuario", user.getTipo()); 
+                                           
                                             rd=request.getRequestDispatcher("index.jsp");
                                             rd.forward(request, response);
-                                                                                      
-                                            
-                                            
                                             
                                         }else{  
                                                 sesion.setAttribute("mensajeExito", "Usuario o contraseña incorrecta.");
@@ -63,7 +59,6 @@ public class uLoginController extends HttpServlet {
                                     } else {    rd=request.getRequestDispatcher("u_login.jsp");
                                                 rd.forward(request, response); }
                                     
-                                 
                                     }
                                 catch (Exception e)
                                     {   sesion.setAttribute("errorCatch", e.toString());

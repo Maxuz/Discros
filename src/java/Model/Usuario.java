@@ -42,13 +42,13 @@ public class Usuario {
         this.email = email;
         this.pass = pass;
         
-        this.tipo = "cliente";
+        
         this.estado = "habilitado";
     }
     // </editor-fold>
     
     // <editor-fold desc="SET DE DATOS PERSONALES USADO EN EL ALTA DEL USUARIO">
-    public void setDatos(String email, String pass, String nombre, String apellido, String direccion, String ciudad, String provincia, Integer dni)
+    public void setDatos(String email, String pass, String nombre, String apellido, String direccion, String ciudad, String provincia, Integer dni, String tipo)
     {   this.email=email;
         this.pass=pass;
         this.nombre=nombre;
@@ -57,7 +57,7 @@ public class Usuario {
         this.ciudad=ciudad;
         this.provincia=provincia;
         this.dni=dni;
-        this.tipo = "cliente";
+        this.tipo = tipo;
     }    
     // </editor-fold>
     

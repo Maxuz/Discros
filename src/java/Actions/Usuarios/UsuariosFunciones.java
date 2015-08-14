@@ -228,8 +228,10 @@ public Usuario getOne (String email) throws Exception
             
            
             if(rs.next()){
-            String texto = rs.getString("email");
-            user.setDatos(rs.getString("email"), rs.getString("password"),rs.getString("nombre"),rs.getString("apellido"), rs.getString("direccion"),rs.getString("ciudad"),rs.getString("provincia"),rs.getInt("dni"));
+            
+            
+            user.setDatos(rs.getString("email"), rs.getString("password"),rs.getString("nombre"),rs.getString("apellido"), 
+            rs.getString("direccion"),rs.getString("ciudad"),rs.getString("provincia"),rs.getInt("dni"),rs.getString("tipo"));
             }
              
             
@@ -292,7 +294,8 @@ public ArrayList<Usuario>  getAll () throws Exception
             
             while(rs.next())
             {
-                user.setDatos(rs.getString("email"), rs.getString("password"),rs.getString("nombre"),rs.getString("apellido"), rs.getString("direccion"),rs.getString("ciudad"),rs.getString("provincia"),rs.getInt("dni"));
+                user.setDatos(rs.getString("email"), rs.getString("password"),rs.getString("nombre"),rs.getString("apellido"), 
+                rs.getString("direccion"),rs.getString("ciudad"),rs.getString("provincia"),rs.getInt("dni"),rs.getString("tipo"));
                 lista.add(user);
             }
 

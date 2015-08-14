@@ -20,7 +20,7 @@
         <jsp:include page="views/disco/alta.jsp"/>
         <jsp:include page="views/gral/pie.jsp" />
         
-</div>
+   </div>
 
       
     

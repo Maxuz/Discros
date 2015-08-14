@@ -2,115 +2,69 @@
 <div style="background-color: #ffffff; margin-top:75px; margin-bottom: 15px">
   
 
-<!-- FORMULARIO DE REGISTRO DE NUEVO CLIENTE-->
+<!-- FORMULARIO DE REGISTRO DE NUEVO DISCO-->
 <div class="row" style="margin-left: 15%; margin-right: 15%; margin-bottom: 2%" >
     
-    
-    <h2 style="text-align: center;">Registro de nuevo cliente</h2>
     <hr> 
-    <!--  le saco por un el action para probar -->
-   <form role="form" class="form-horizontal"  method="post"  onsubmit="valida()" action="uAlta.do">
-      <% if(session.getAttribute("nombre")==null){%>
-
-    <% if(session.getAttribute("mensajeExito")!= null)
-    {%>
-           <br><br><br>        
-           <div class="alert alert-danger">
-           <% out.print((String)session.getAttribute("mensajeExito"));
-           session.setAttribute("mensajeExito", null);
-           %>
-           </div>     
     
-   <% }%>
-   <h4>Datos de inicio de sesión</h4>
+   
+    <%  String s = (String)session.getAttribute("tipoUsuario");
+        
+        if(s!=null){%>
+      
+        <% if(session.getAttribute("mensajeExito")!= null)
+        {%>
+               <br><br>    
+               <div class="alert alert-danger">
+               <% out.print((String)session.getAttribute("mensajeExito"));
+               session.setAttribute("mensajeExito", null);
+               %>
+               </div>     
+    
+     <%}%>
+      
+      
+   <form role="form" class="form-horizontal"  method="post"  action="dAlta.do">
+   <h2 style="text-align: center;">Registro de nuevo disco.</h2>
+   <hr>
+   <h4>Datos del disco</h4>
    <hr>
    
     <div class="col-xs-8">
           
     
-    <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" name="email"  placeholder="Introduce tu email">
+    <label for="UPC">UPC:</label>
+    <input type="text" class="form-control" id="upc" name="upc"  placeholder="Introduce UPC del disco">
     </div>
     <br><br><br><br>
     
     
     <div class="col-xs-8">
-    <label for="email2">Reescribe tu Email</label>
-    <input type="email" class="form-control" id="email2" name="email2" placeholder="Introduce tu email">
-    </div> 
-    <br><br><br><br>
-  
-    
-    <div class="col-xs-8">
-    <label for="password">Contraseña</label>
-    <input type="password" class="form-control" id="pass"  name="pass" placeholder="Contraseña">
+    <label for="Artista">Artista:</label>
+    <input type="text" class="form-control" id="artista"  name="artista" placeholder="Ingrese el artista.">
     </div>
     <br><br><br><br>
     
-    
+       
     <div class="col-xs-8">
-    <label for="password2">Reescribe tu Contraseña</label>
-    <input type="password" class="form-control" id="pass2"  name="pass2" placeholder="Contraseña">
-    </div>
-    <br><br><br><br>
-    <hr>
-    
-     <h4>Datos personales</h4>
-     <hr>
-     
-    <div class="col-xs-8">
-    <label for=Nombre">Ingrese su Nombre</label>
-    <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre"><br>
+    <label for="album">Album:</label>
+    <input type="text" class="form-control" placeholder="Ingrese el Album" name="album" id="album"><br>
     </div>
     <br><br><br><br>
            
     
     <div class="col-xs-8">
-    <label for="Apellido">Ingrese su Apellido</label>
-    <input type="text" class="form-control" placeholder="Apellido" name="apellido" id="apellido"><br>
+    <label for="genero">Género:</label>
+    <input type="text" class="form-control" placeholder="Ingrese el genero" name="genero" id="genero"><br>
     </div>
     <br><br><br><br>
             
     <div class="col-xs-8">
-    <label for="DNI">Ingrese su DNI</label>
-    <input type="text" class="form-control" placeholder="DNI" name="dni" id="dni"><br>
+    <label for="stock">Stock:</label>
+    <input type="text" class="form-control" placeholder="Ingrese Stock" name="stock" id="stock"><br>
     </div>
     <br><br><br><br>
             
-    <div class="col-xs-8">
-    <label for="Provincia">Elija su Provincia</label>
-    <select class="form-control" name="provincia" id="provincia" >
-            
-            <option> Elegir provincia.. </option>  
-            <option value="Buenos Aires">Buenos Aires</option>
-            <option value="Catamarca">Catamarca</option>
-            <option value="Capital Federal">Capital Federal</option>
-            <option value="Chaco">Chaco</option>
-            <option value="Chubut">Chubut</option>
-            <option value="Córdoba">Córdoba</option>
-            <option value="Corrientes">Corrientes</option>
-            <option value="Entre Ríos">Entre Ríos</option>
-            <option value="Formosa">Formosa</option>
-            <option value="Jujuy">Jujuy</option>
-            <option value="La Pampa">La Pampa</option>
-            <option value="La Rioja">La Rioja</option>
-            <option value="Mendoza">Mendoza</option>
-            <option value="Misiones">Misiones</option>
-            <option value="Nequén">Nequén</option>
-            <option value="Río Negro">Río Negro</option>
-            <option value="Salta">Salta</option>
-            <option value="San Juan">San Juan</option>
-            <option value="San Luis">San Luis</option>
-            <option value="Santa Crúz">Santa Crúz</option>
-            <option value="Santa Fe">Santa Fe</option>
-            <option value="Santiago del Estero">Santiago del Estero</option>
-            <option value="Tierra del Fuego">Tierra del Fuego</option>
-            <option value="Tucumán">Tucumán</option>
-            </select><br>
-    </div>
-    <br><br><br><br>
-      
-    
     <div class="col-xs-8">
     <label for="Ciudad">Ingrese su Ciudad</label>
     <input type="text" class="form-control" placeholder="Ciudad" name="ciudad" id="ciudad">
@@ -119,8 +73,14 @@
       
     
     <div class="col-xs-8">
-    <label for="Dirección">Ingrese su Dirección </label>
-    <input type="text" class="form-control" placeholder="Direccion" name="direccion" id="direccion">
+    <label for="descripcion">Descripción:</label>
+    <input type="text" class="form-control" placeholder="Ingrese descripcion" name="descripcion" id="descripcion">
+    </div>    
+    <br><br><br><br>
+    
+    <div class="col-xs-8">
+    <label for="precio">Precio:</label>
+    <input type="text" class="form-control" placeholder="Ingrese Precio:" name="precio" id="precio">
     </div>    
     <br><br><br><br>
             
@@ -131,34 +91,16 @@
 </form>
     </div>
     
-       <% }else{
-                if(session.getAttribute("mensajeExito")!=null)
-                {%>
-                        <!-- USUARIO RECIÉN LOGUEADO-->
-                        <div class="row" style="margin-left: 15%; margin-right: 15%; margin-bottom: 2%" >
-                            <br><br><br>        
-                            <div class="alert alert-success">
-                                <% out.print((String)session.getAttribute("mensajeExito"));
-                                    session.setAttribute("mensajeExito", null);
-                                    %>
-                                
-                            </div>
-                                <br><br>
-                                <a href="index.jsp"><strong>Ir al inicio..</strong></a>    
-                                <br><br>
-                        
-                        </div>
-                
-              <%}else{%>
-                        <!-- USUARIO LOGUEADO-->
+        <% }else{%>     <!-- USUARIO NO LOGUEADO-->
                         <div class="row" style="margin-left: 15%; margin-right: 15%; margin-bottom: 2%" >
 
-                        <h3 style="text-align: center; font-style: italic;">Hay un usuario logueado, por favor cierra la sesión y vuelve a intentarlo.</h3>
+                        <h3 style="text-align: center; font-style: italic;">
+                        Lo sentimos, debe iniciar sesión como administrador.
+                        </h3>
                         <hr> 
                         </div>
                     <%}%>
-              <%}
-    %>
+              
        
         
     

@@ -70,7 +70,7 @@
                                         
                             <ul class="dropdown-menu">
                                 
-                                <li><a id="btnModificardatos" href="#" role="button" class="btn">Agregar Discos</a></li>
+                                <li><a id="btnModificardatos" href="d_alta.jsp" role="button" class="btn">Agregar Discos</a></li>
                                 <li><a id="btnModificardatos" href="#" role="button" class="btn">Agregar canciones</a></li>
                                 
                             </ul>
