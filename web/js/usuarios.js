@@ -1,235 +1,97 @@
-//FUNCIONES PARA TRABAJAR CON LOS USUARIOS
-var funciones = {
+//hacer foco en el primer campo del formulario de usuarios
+$(document).ready(function(){
+$('#email').focus();
+});
+
+var valida = function(event){
+
+    var mensaje = "";
+    var mail = $('#email').val();
+    var mail2= $('#email2').val();
+    var pass = $('#pass').val();
+    var pass2 = $('#pass2').val();
+    var nombre = $('#nombre').val();
+    var apellido = $('#apellido').val();
+    var dni = $('#dni').val();
+    var provincia = $('#provincia').val();
+    var ciudad= $('#ciudad').val();
+    var direccion = $('#direccion').val();
+
+    if(!estaVacio(mail)){
+     mensaje = mensaje + "debe completar el campo email\n";   
+    }else if (!isEmail(mail)){
+       mensaje = mensaje + "formato de mail incorrecto\n";
+    }else if(!estaVacio(mail2)){
+        mensaje = mensaje + "debe completar el campo verificar email\n";
+    }else if (mail != mail2){
+       mensaje = mensaje + "los emails no son iguales\n";
+    }else if(!estaVacio(pass)){
+      mensaje = mensaje + "debe completar el campo contraseña\n";
+    }else if(!estaVacio(pass2)){
+        mensaje = mensaje + "debe completar el campo repetir contraseña\n";
+    }else if(pass != pass2){
+        mensaje = mensaje + "las contraseñas no coinciden\n";
+    }else if(!estaVacio(nombre)){
+        mensaje = mensaje + "debe completar el campo nombre\n";
+    }else if(!soloTexto(nombre)){
+        mensaje = mensaje + "solo debe ingresar letras en el campo nombre";
+    }else if (!estaVacio(apellido)){
+        mensaje = mensaje + "debe completar el campo apellido\n";
+    }else if(!soloTexto(apellido)){
+        mensaje = mensaje + "solo debe ingresar letras en el campo apellido"
+    }else if (!estaVacio(dni)){
+        mensaje = mensaje + "debe completar el campo dni\n";
+    }else if(!soloNumero(dni)){
+        mensaje = mensaje + "debe ingresar unicamente numeros en el campo dni\n";
+    }else if(!estaVacio(provincia)){
+        mensaje = mensaje +"debe seleccionar una provincia\n";
+    }else if(!estaVacio(ciudad)){
+        mensaje = mensaje +"debe completar el campo ciudad\n";
+    }else if(!estaVacio(direccion)){
+        mensaje = mensaje +"debe completar el campo direccion\n";
+    }else if(mensaje == ""){
+        return true;
+    }    
+    //si llego aca es por qué no se verifico todo
+    //podemos ver lo de mostrar el mensaje 
+    //o solo retornar false cuando corta
+    //revisar...
+    alert(mensaje);
+   
     
-    login: function (){
-        var email = $("#email").val();
-        var pass = $("#pass").val();
-        var funcion = $("#funcion").val();
-       
-        
-        /*VALIDAR QUE NO SEAN VACÍOS*/
-        if(estaVacio(email, pass))
-        {
-        $.ajax("usuario.do", {
-             
-             type: "POST",
-             dataType: "application/json",
-             
-             data: { "email": email, "pass":pass, "funcion":funcion},
-             
-             error: function (a, b, c)
-                     {
-                       
-                     location.reload();
-                 
-             },
-             success: function (data)
-                     {
-                         
-                        /*if (data.result=true)
-                        {     
-                                    
-
-                              $('#divError').removeClass('hidden').text("Contraseña re correcta."); 
-                        }
-                        else {
-                            /*QUITA LA CLASE HIDDEN DEL DIV ERROR
-                            $('#divError').removeClass('hidden').text("Contraseña incorrectaaaaaaa.");
-                            
-                        }*/
-                     },
-            
-            });
-            
-        } else {$('#divError').removeClass('hidden').text("Email o contraseña vacios.");};
-},
-
-    alta: function (){
-        var email = $("#email").val();
-        var pass = $("#pass").val();
-        var funcion = $("#funcion").val();
-        
-        dataString = "email="+email;
-        dataString = "pass="+pass;
-        dataString = "funcion="+funcion;
-        
-        /*VALIDAR QUE NO SEAN VACÍOS*/
-        if(estaVacio(email, pass))
-        {
-        $.ajax("usuario.do", {
-             
-             type: "POST",
-             dataType: "json",
-             data: { "email": email, "pass":pass, "funcion":funcion},
-             
-             error: function (a, b, c)
-                     {
-                       
-                        /*QUITA LA CLASE HIDDEN DEL DIV ERROR*/
-                       $('#divError').removeClass('hidden').text("ERROR: "+ c.toString());
-                 
-             },
-             success: function (data)
-                     {
-                        if (data.result=true)
-                        {     
-                                    
-
-                              $('#divError').removeClass('hidden').text("Contraseña re correcta."); 
-                        }
-                        else {
-                            /*QUITA LA CLASE HIDDEN DEL DIV ERROR*/
-                            $('#divError').removeClass('hidden').text("Contraseña incorrectaaaaaaa.");
-
-                        }
-                     },
-            
-            });
-            
-        } else {$('#divError').removeClass('hidden').text("Email o contraseña vacios.");};
-},
-    
-    baja: function (){
-        var email = $("#email").val();
-        var pass = $("#pass").val();
-        var funcion = $("#funcion").val();
-        
-        dataString = "email="+email;
-        dataString = "pass="+pass;
-        dataString = "funcion="+funcion;
-        
-        /*VALIDAR QUE NO SEAN VACÍOS*/
-        if(estaVacio(email, pass))
-        {
-        $.ajax("usuario.do", {
-             
-             type: "POST",
-             dataType: "json",
-             data: { "email": email, "pass":pass, "funcion":funcion},
-             
-             error: function (a, b, c)
-                     {
-                       
-                        /*QUITA LA CLASE HIDDEN DEL DIV ERROR*/
-                       $('#divError').removeClass('hidden').text("ERROR: "+ c.toString());
-                 
-             },
-             success: function (data)
-                     {
-                        if (data.result=true)
-                        {     
-                                    
-
-                              $('#divError').removeClass('hidden').text("Contraseña re correcta."); 
-                        }
-                        else {
-                            /*QUITA LA CLASE HIDDEN DEL DIV ERROR*/
-                            $('#divError').removeClass('hidden').text("Contraseña incorrectaaaaaaa.");
-
-                        }
-                     },
-            
-            });
-            
-        } else {$('#divError').removeClass('hidden').text("Email o contraseña vacios.");};
-},
-
-    modificar: function (){
-        var email = $("#email").val();
-        var pass = $("#pass").val();
-        var funcion = $("#funcion").val();
-        
-        dataString = "email="+email;
-        dataString = "pass="+pass;
-        dataString = "funcion="+funcion;
-        
-        /*VALIDAR QUE NO SEAN VACÍOS*/
-        if(estaVacio(email, pass))
-        {
-        $.ajax("usuario.do", {
-             
-             type: "POST",
-             dataType: "json",
-             data: { "email": email, "pass":pass, "funcion":funcion},
-             
-             error: function (a, b, c)
-                     {
-                       
-                        /*QUITA LA CLASE HIDDEN DEL DIV ERROR*/
-                       $('#divError').removeClass('hidden').text("ERROR: "+ c.toString());
-                 
-             },
-             success: function (data)
-                     {
-                        if (data.result=true)
-                        {     
-                                    
-
-                              $('#divError').removeClass('hidden').text("Contraseña re correcta."); 
-                        }
-                        else {
-                            /*QUITA LA CLASE HIDDEN DEL DIV ERROR*/
-                            $('#divError').removeClass('hidden').text("Contraseña incorrectaaaaaaa.");
-
-                        }
-                     },
-            
-            });
-            
-        } else {$('#divError').removeClass('hidden').text("Email o contraseña vacios.");};
+    //esto último es para que no se ejecute el submit
+    //hay que ver como lo usamos con el servlet
+    event.preventDefault();
 }
 
+var isEmail = function(email){
+    expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if (expr.test(email)){
+        return true;
+    } else {
+        return false;
+    }
 };
-
-
-//LLAMADAS A FUNCIONES
-
-
-//LOGIN
-$(document).ready(function(){
-    $("#login").submit(function(e){
-        e.preventDefault();
-        funciones.login();
-    });
-});
-
-//ALTA
-$(document).ready(function(){
-    $("#alta").submit(function(e){
-        e.preventDefault();
-        funciones.alta();
-    });
-});
-
-//BAJA
-$(document).ready(function(){
-    $("#baja").submit(function(e){
-        e.preventDefault();
-        funciones.baja();
-    });
-});
-
-//MODIFICAR
-$(document).ready(function(){
-    $("#modificar").submit(function(e){
-        e.preventDefault();
-        funciones.alta();
-    });
-});
-
-
-//FUNCIONES DE APOYO
-function estaVacio (user, pass)
-{
-    if (user === undefined || user==="")
+var estaVacio = function(campo){
+    if (campo === undefined || campo==="")
         {
            return false; 
         }
-        
-     if (pass === undefined || pass==="")
-        {
-           return false; 
-        }
-    return true;    
-        
-}
+    return true;        
+};
+var soloNumero = function(campo){
+    expr = /^([0-9])*$/;
+    if(expr.test(campo))
+        return true;
+    else{
+        return false;
+    }
+};
+var soloTexto = function(campo){
+  expr = /^[A-Za-z\_\-\.\s\xF1\xD1]+$/;
+    if (expr.test(campo)){
+        return true;
+    }else {
+        return false;
+    }
+};

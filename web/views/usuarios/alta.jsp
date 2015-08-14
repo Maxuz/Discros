@@ -8,8 +8,8 @@
     
     <h2 style="text-align: center;">Registro de nuevo cliente</h2>
     <hr> 
-    
-   <form role="form" class="form-horizontal"  method="post" action="uAlta.do">
+    <!-- action="uAlta.do" le saco por un el action para probar -->
+   <form role="form" class="form-horizontal"  method="post"  onsubmit="valida()">
       <% if(session.getAttribute("nombre")==null){%>
 
     <% if(session.getAttribute("mensajeExito")!= null)
@@ -36,7 +36,7 @@
     
     <div class="col-xs-8">
     <label for="email2">Reescribe tu Email</label>
-    <input type="email" class="form-control" id="email" name="email2" placeholder="Introduce tu email">
+    <input type="email" class="form-control" id="email2" name="email2" placeholder="Introduce tu email">
     </div> 
     <br><br><br><br>
   
@@ -50,7 +50,7 @@
     
     <div class="col-xs-8">
     <label for="password2">Reescribe tu Contraseña</label>
-    <input type="password" class="form-control" id="pass"  name="pass2" placeholder="Contraseña">
+    <input type="password" class="form-control" id="pass2"  name="pass2" placeholder="Contraseña">
     </div>
     <br><br><br><br>
     <hr>
