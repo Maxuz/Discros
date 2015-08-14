@@ -30,10 +30,16 @@ var valida = function(event){
        mensaje = mensaje + "los emails no son iguales\n";
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 1ca1ce0... no message
     }else if(!estaVacio(pass)){
       $('#divErrorPass').removeClass('hidden').text("Contraseña Incorrecta.");
     }else if(!estaVacio(pass2)){
+=======
+<<<<<<< HEAD
+>>>>>>> parent of 1ca1ce0... no message
 =======
 >>>>>>> parent of 1ca1ce0... no message
     }
@@ -42,12 +48,16 @@ var valida = function(event){
     }
     if(!estaVacio(pass2)){
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
     }else if(!estaVacio(pass)){
       mensaje = mensaje + "debe completar el campo contraseña\n";
     }else if(!estaVacio(pass2)){
 >>>>>>> parent of 65eaaf5... no message
+=======
+>>>>>>> e3c15a0cf67d3475a4797c08a620333824413dd2
+>>>>>>> parent of 1ca1ce0... no message
 =======
 >>>>>>> e3c15a0cf67d3475a4797c08a620333824413dd2
 >>>>>>> parent of 1ca1ce0... no message
