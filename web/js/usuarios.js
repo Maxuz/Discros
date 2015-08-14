@@ -19,64 +19,59 @@ var valida = function(event){
     var direccion = $('#direccion').val();
 
     if(!estaVacio(mail)){
-     $('#lblEmail1').addClass(lblError).text("(*)Email - Debe ingresar un email.");
+     $('#lblemail1').addClass('lblError').text("(*)Email - Debe ingresar un email.");
       mensaje = mensaje + " email\n";
     } 
     if(!estaVacio(mail2)){
-       $('#divErrorEmail2').removeClass('hidden').text("Ingrese verificación de email.");
+      $('#lblemail2').addClass('lblError').text("(*)Reescribe tu Email - Debe verificar el email.");
        mensaje = mensaje + "email2\n";
-    }
-    if (mail != mail2){
+    }else if (mail != mail2){
        mensaje = mensaje + "emails disntitos\n";
-       $('#divErrorEmail2').removeClass('hidden').text("Los email no coinciden.");
+       $('#lblEmail2').addClass('lblError').text("(*)Reescribe tu Email - Los correos no coinciden.");
     }
     if(!estaVacio(pass)){
       mensaje = mensaje + "contraseña\n";
-      $('#divErrorPass').removeClass('hidden').text("Ingresar contraseña.");
+      $('#lblPass').addClass('lblError').text("(*)Contraseña - Debe ingresar una contraseña.");
     }
     if(!estaVacio(pass2)){
         mensaje = mensaje + "contraseña2\n";
-        $('#divErrorPass2').removeClass('hidden').text("Ingresar verificación de contraseña.");
-    }
-    if(pass != pass2){
+        $('#lblPass2').addClass('lblError').text("(*)Reescribe tu Contraseña - Debe verificar la contraseña.");
+    }else if(pass != pass2){
         mensaje = mensaje + "contraseñas distintas\n";
-        $('#divErrorPass2').removeClass('hidden').text("Las contraseñas no coinciden.");
+       $('#lblPass2').addClass('lblError').text("(*)Reescribe tu Contraseña - Las contraseñas no coinciden.");
     }
     if(!estaVacio(nombre)){
         mensaje = mensaje + "nombre\n";
-        $('#divErrorNombre').removeClass('hidden').text("Ingrese el nombre.");
-    }
-    if(!soloTexto(nombre)){
+        $('#lblNombre').addClass('lblError').text("(*)Ingrese su nombre - Debe ingresar un nombre.");
+    }else if(!soloTexto(nombre)){
         mensaje = mensaje + "Solo letras nombre\n";
-        $('#divErrorNombre').removeClass('hidden').text("Solo debe ingresar letras en el nombre.");
+       $('#lblNombre').addClass('lblError').text("(*)Ingrese su nombre - El nombre solo debe contener letras.");
     }
     if (!estaVacio(apellido)){
         mensaje = mensaje + "apellido\n";
-        $('#divErrorApellido').removeClass('hidden').text("Ingrese apellido.");
-    }
-    if(!soloTexto(apellido)){
+        $('#lblApellido').addClass('lblError').text("(*)Ingrese su Apellido - Debe ingresar un apellido.");
+    } else if(!soloTexto(apellido)){
         mensaje = mensaje + "solo letras apellido\n"
-        $('#divErrorApellido').removeClass('hidden').text("Solo debe ingresar letras en el apellido.");
+        $('#lblApellido').addClass('lblError').text("(*)Ingrese su Apellido - El apellido solo debe contener letras.");
     }
     if (!estaVacio(dni)){
         mensaje = mensaje + "dni\n";
-        $('#divErrorDni').removeClass('hidden').text("Ingrese dni.");
+       $('#lblDni').addClass('lblError').text("(*)Ingrese su DNI - Debe ingresar un DNI.");
+    } else if(!soloNumero(dni)){
+        mensaje = mensaje + "numeros dni\n";
+        $('#lblDni').addClass('lblError').text("(*)Ingrese su DNI - Debe ingresar un DNI.");
     }
-    if(!soloNumero(dni)){
-        mensaje = mensaje + "debe ingresar unicamente numeros en el campo dni\n";
-        $('#divErrorDni').removeClass('hidden').text("El dni no puede contener letras.");
-    }
-    if(!estaVacio(provincia)){
+    if(provincia == "Elegir provincia.."){
         mensaje = mensaje +"provincia\n";
-        $('#divErrorProvincia').removeClass('hidden').text("Seleccione una provincia.");
+        $('#lblProvincia').addClass('lblError').text("(*)Elija su Provincia - Debe seleccionar una provincia.");
     }
     if(!estaVacio(ciudad)){
         mensaje = mensaje +"ciudad\n";
-        $('#divErrorCiudad').removeClass('hidden').text("Ingrese ciudad.");
+        $('#lblCiudad').addClass('lblError').text("(*)Ingrese su Ciudad - Debe ingresar una ciudad.");
     }
     if(!estaVacio(direccion)){
-        mensaje = mensaje +"debe completar el campo direccion\n";
-        $('#divErrorDirec').removeClass('hidden').text("Ingrese dirección.");
+        mensaje = mensaje +"direccion\n";
+        $('#lblDireccion').addClass('lblError').text("(*)Ingrese su Direccion - Debe ingresar una Direccion.");
     }   
     if(mensaje === ""){
         return true;

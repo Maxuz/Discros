@@ -28,38 +28,30 @@
     <div class="col-xs-8">
           
     
-     <label for="email" id="lblEmail1">Email</label>
+     <label for="email" id="lblemail1">Email</label>
     <input type="email" class="form-control" id="email" name="email"  placeholder="Introduce tu email">
-    <br>
-    <div class="alert alert-danger hidden"  id="divErrorEmail1" ></div>
     </div>
     <br><br><br><br>
     
     
     <div class="col-xs-8">
-    <label for="email2">Reescribe tu Email</label>
+    <label id="lblemail2" for="email2">Reescribe tu Email</label>
     <input type="email" class="form-control" id="email2" name="email2" placeholder="Introduce tu email">
-    <br>
-    <div class="alert alert-danger hidden"  id="divErrorEmail2" ></div>
     </div> 
      
     <br><br><br><br>
   
     
     <div class="col-xs-8">
-    <label for="password">Contraseña</label>
-    <input type="password" class="form-control" id="pass"  name="pass" placeholder="Contraseña">
-    <br>
-    <div class="alert alert-danger hidden"  id="divErrorPass" ></div>
+    <label id="lblPass" for="password">Contraseña</label>
+    <input type="text" class="form-control" id="pass"  name="pass" placeholder="Contraseña">
     </div>
     <br><br><br><br>
     
     
     <div class="col-xs-8">
-    <label for="password2">Reescribe tu Contraseña</label>
+    <label id="lblPass2" for="password2">Reescribe tu Contraseña</label>
     <input type="password" class="form-control" id="pass2"  name="pass2" placeholder="Contraseña">
-    <br>
-    <div class="alert alert-danger hidden"  id="divErrorPass2" ></div>
     </div>
     <br><br><br><br>
     <hr>
@@ -68,32 +60,26 @@
      <hr>
      
     <div class="col-xs-8">
-    <label for="Nombre">Ingrese su Nombre</label>
+    <label id="lblNombre" for="Nombre">Ingrese su Nombre</label>
     <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre"><br>
-    <br>
-    <div class="alert alert-danger hidden"  id="divErrorNombre" ></div>
     </div>
     <br><br><br><br>
            
     
     <div class="col-xs-8">
-    <label for="Apellido">Ingrese su Apellido</label>
+    <label id="lblApellido" for="Apellido">Ingrese su Apellido</label>
     <input type="text" class="form-control" placeholder="Apellido" name="apellido" id="apellido"><br>
-    <br>
-    <div class="alert alert-danger hidden"  id="divErrorApellido" ></div>
     </div>
     <br><br><br><br>
             
     <div class="col-xs-8">
-    <label for="DNI">Ingrese su DNI</label>
+    <label id="lblDni" for="DNI">Ingrese su DNI</label>
     <input type="text" class="form-control" placeholder="DNI" name="dni" id="dni"><br>
-    <br>
-    <div class="alert alert-danger hidden"  id="divErrorDni" ></div>
     </div>
     <br><br><br><br>
             
     <div class="col-xs-8">
-    <label for="Provincia">Elija su Provincia</label>
+    <label id="lblProvincia" for="Provincia">Elija su Provincia</label>
     <select class="form-control" name="provincia" id="provincia" >
             
             <option> Elegir provincia.. </option>  
@@ -122,26 +108,20 @@
             <option value="Tierra del Fuego">Tierra del Fuego</option>
             <option value="Tucumán">Tucumán</option>
             </select><br>
-    <br>
-    <div class="alert alert-danger hidden"  id="divErrorProvincia" ></div>
     </div>
     <br><br><br><br>
       
     
     <div class="col-xs-8">
-    <label for="Ciudad">Ingrese su Ciudad</label>
+    <label id="lblCiudad" for="Ciudad">Ingrese su Ciudad</label>
     <input type="text" class="form-control" placeholder="Ciudad" name="ciudad" id="ciudad">
-    <br>
-    <div class="alert alert-danger hidden"  id="divErrorCiudad" ></div>
     </div>
     <br><br><br><br>
       
     
     <div class="col-xs-8">
-    <label for="Dirección">Ingrese su Dirección </label>
+    <label id="lblDireccion" for="Dirección">Ingrese su Dirección </label>
     <input type="text" class="form-control" placeholder="Direccion" name="direccion" id="direccion">
-    <br>
-    <div class="alert alert-danger hidden"  id="divErrorDirec" ></div>
     </div>    
     <br><br><br><br>
             
