@@ -1,27 +1,8 @@
-
-
-<div class="carousel slide" id="carousel-483114">
-    <ol class="carousel-indicators">
-        <li class="active" data-slide-to="0" data-target="#carousel-483114"></li>
-    </ol>
-    <div class="carousel-inner">
-        <%--PRIMERA IMÁGEN--%>
-        <div class="item active" >
-            <img alt="" src="img/about1.jpg" />
-            <div class="carousel-caption">
-
-            </div>
-        </div>
-
-    </div> 
-</div>
-        
 <!--MISION - VISION - VALORES -->
 <div style="background-color: #fffefd; margin-top:0px;">
 
     
     <div class="row">
-
         <div class="col-md-4">
             <div class="thumbnail" style="text-align: center; height: 300px;">
                 <img src="img/MISION.jpg" alt=""/>
