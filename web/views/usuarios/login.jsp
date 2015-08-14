@@ -30,7 +30,7 @@
 
 
                                               <br><br><br>        
-                                              <div class="alert alert-danger">
+                                              <div class="alert alert-danger" id="divErrorServlet">
                                                   <% out.print((String)session.getAttribute("mensajeExito"));
                                                       session.setAttribute("mensajeExito", null);
                                                       %>
