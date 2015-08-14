@@ -10,6 +10,7 @@
     <%session.setAttribute("paginaActual", "d_alta");%>
     
     <jsp:include page="views/gral/referencias.jsp"/>
+    <jsp:include page="views/gral/d_referencias.jsp"/>
     
   </head>
   <body>

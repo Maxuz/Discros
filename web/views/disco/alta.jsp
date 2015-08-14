@@ -24,7 +24,7 @@
             
             if(s.equals("admin"))
             {%>
-                <form role="form" class="form-horizontal"  method="post"  action="dAlta.do">
+                <form role="form" class="form-horizontal"  method="post"  onsubmit="validaAlta(event)" action="dAlta.do">
                 <h2 style="text-align: center;">Registro de nuevo disco</h2>
                 <hr>
                 <h4>Datos del disco</h4>
@@ -72,11 +72,11 @@
                  </div>    
                  <br><br><br><br>
 
-                 <div class="col-xs-8">
-                 <label for="precio" id="lblPrecio">Precio:</label>
-                 <input type="text" class="form-control" placeholder="Ingrese Precio:" name="precio" id="precio">
-                 </div>    
-                 <br><br><br><br>
+                <div class="col-xs-8"> 
+                    <label for="precio" id="lblPrecio">Precio:</label>
+                    <input type="number" value="0" min="0" step="5.0" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="precio" />
+                </div>
+                <br><br><br><br>
 
                  <div class="col-xs-8">
                  <label for="imagen" id="lblImagen">Imágen de la tapa del disco</label>
