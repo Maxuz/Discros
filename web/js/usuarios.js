@@ -3,6 +3,7 @@ $(document).ready(function(){
 $('#email').focus();
 });
 
+
 var valida = function(event){
 
     var mensaje = "";
@@ -18,7 +19,7 @@ var valida = function(event){
     var direccion = $('#direccion').val();
 
     if(!estaVacio(mail)){
-     mensaje = mensaje + "debe completar el campo email\n";   
+     mensaje = mensaje + "debe completar el campo email\n"; 
     } 
     if (!isEmail(mail)){
        mensaje = mensaje + "formato de mail incorrecto\n";
@@ -28,6 +29,7 @@ var valida = function(event){
     }
     if (mail != mail2){
        mensaje = mensaje + "los emails no son iguales\n";
+    }
     if(!estaVacio(pass)){
       mensaje = mensaje + "debe completar el campo contraseña\n";
     }
@@ -63,21 +65,15 @@ var valida = function(event){
     }
     if(!estaVacio(direccion)){
         mensaje = mensaje +"debe completar el campo direccion\n";
-    }
-    if(mensaje == ""){
+    }   
+    if(mensaje === ""){
         return true;
+    }else{
+        console.log(mensaje);
+        event.preventDefault();
     }
-    
-    //si llego aca es por qué no se verifico todo
-    //podemos ver lo de mostrar el mensaje 
-    //o solo retornar false cuando corta
-    //revisar...
-    alert(mensaje);
-    //esto último es para que no se ejecute el submit
-    //hay que ver como lo usamos con el servlet
-    event.preventDefault();
-    return false;
-}
+};
+
 var isEmail = function(email){
     expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if (expr.test(email)){
