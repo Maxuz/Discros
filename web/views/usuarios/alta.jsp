@@ -8,7 +8,7 @@
     
     <h2 style="text-align: center;">Registro de nuevo cliente</h2>
     <hr> 
-    <!--  le saco por un el action para probar action="uAlta.do"-->
+   
    <form role="form" class="form-horizontal"  method="post"  onsubmit="valida(event)" action="uAlta.do" >
       <% if(session.getAttribute("nombre")==null){%>
 
@@ -28,7 +28,7 @@
     <div class="col-xs-8">
           
     
-    <label for="email">Email</label>
+     <label for="email" id="lblEmail1">Email</label>
     <input type="email" class="form-control" id="email" name="email"  placeholder="Introduce tu email">
     <br>
     <div class="alert alert-danger hidden"  id="divErrorEmail1" ></div>

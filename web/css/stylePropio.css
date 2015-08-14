@@ -24,3 +24,9 @@
     text-align: right;
     
 }
+
+.lblError
+{
+    color: red;
+    font-weight: bold;
+}

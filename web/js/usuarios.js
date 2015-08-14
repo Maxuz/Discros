@@ -19,7 +19,7 @@ var valida = function(event){
     var direccion = $('#direccion').val();
 
     if(!estaVacio(mail)){
-     $('#divErrorEmail1').removeClass('hidden').text("Ingrese email.");
+     $('#lblEmail1').addClass(lblError).text("(*)Email - Debe ingresar un email.");
       mensaje = mensaje + " email\n";
     } 
     if(!estaVacio(mail2)){
