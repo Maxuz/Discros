@@ -45,7 +45,10 @@ var validaAlta = function(event){
     if (!estaVacio(stock)){
         $('#lblStock').addClass('lblError').text("(*)Stock: - Debe ingresar Stock.");
         mensaje = mensaje +"stock\n";
-    }else {
+    }else if(!soloNumero(stock)){
+       $('#lblStock').addClass('lblError').text("(*)Stock: - Debe ingresar sólo números en Stock.");
+       mensaje = mensaje +"stock sólo número\n";
+    } else {
         $('#lblStock').removeClass('lblError').text("Stock:");
     }
     if (!estaVacio(descri)){

@@ -61,16 +61,16 @@
 
                  <div class="col-xs-8">
                  <label for="stock" id="lblStock">Stock:</label>
-                 <input type="text" class="form-control" placeholder="Ingrese Stock" name="stock" id="stock"><br>
+                 <text type="text" class="form-control" placeholder="Ingrese Stock" name="stock" id="stock"><br>
                  </div>
                  <br><br><br><br>
 
 
                  <div class="col-xs-8">
                  <label for="descripcion" id="lblDescripcion">Descripción:</label>
-                 <input type="text" class="form-control" placeholder="Ingrese descripcion" name="descripcion" id="descripcion">
+                 <textarea rows="3" type="text" class="form-control" placeholder="Ingrese descripcion" name="descripcion" id="descripcion"></textarea>
                  </div>    
-                 <br><br><br><br>
+                 <br><br><br><br><br><br>
 
                 <div class="col-xs-8"> 
                     <label for="precio" id="lblPrecio">Precio:</label>
