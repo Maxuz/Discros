@@ -10,6 +10,7 @@
     <%session.setAttribute("paginaActual", "u_olvide");%>
     
     <jsp:include page="views/gral/referencias.jsp"/>
+      <jsp:include page="views/gral/u_referencias.jsp"/>
     
   </head>
   <body>
