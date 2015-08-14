@@ -7,17 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;  
 import java.util.ArrayList;
 
-
-
-/* LIBRERÍAS QUE FUERON IMPORTADASS PERO QUE NO SE UTILIZAN
-import java.util.Collection;
-import java.sql.SQLException;  
-import java.sql.DriverManager;  
-import java.io.IOException;
-import Actions.ConexionSingleton;
-import java.sql.Statement;
-*/
-
 public class UsuariosFunciones {
   
 // <editor-fold desc="FUNCIONES: ALTA BAJA MODIFICAR">   
@@ -223,13 +212,16 @@ public Usuario getOne (String email) throws Exception
         
           try { // <editor-fold desc="QUERY Y RESULTADO">
               //ESCRIBIR LA CONSULTA CORRECTA
-            pst = con.prepareStatement("select * from usuarios where email='"+email+"'");  
+            pst = con.prepareStatement("select * from usuarios where email=?");  
+            
+            pst.setString(1, email);
             rs = pst.executeQuery();  
             
            
             if(rs.next()){
             
-            
+          
+                
             user.setDatos(rs.getString("email"), rs.getString("password"),rs.getString("nombre"),rs.getString("apellido"), 
             rs.getString("direccion"),rs.getString("ciudad"),rs.getString("provincia"),rs.getInt("dni"),rs.getString("tipo"));
             }

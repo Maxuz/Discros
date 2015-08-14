@@ -97,7 +97,7 @@
                                             <%} 
                                  }%>
                                                  
-                        
+                                                
                     
                     <!--INICIO DE SESIÓN O MENÚ DE OPCIONES PARA EL USUARIO-->
                     
@@ -119,7 +119,7 @@
                             <li class="dropdown">
                             <%-- MENÚ DEL USUARIO LOGUEADO --%>
                             
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/usuario.png" alt="Usuario" WIDTH=20 HEIGHT=20/> <strong>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/usuario.png" alt="Usuario" WIDTH=20 HEIGHT=20> <strong>
                                 <% out.print(nombre);  %> </strong><strong class="caret"></strong>
                             
                             
@@ -128,7 +128,7 @@
                             <ul class="dropdown-menu">
                                 
                                 <li><a href="uLogout.do">Cerrar Sesión</a></li>
-                                <li><a id="btnModificardatos" href="u_modificar.jsp" role="button" class="btn" ></i>Modificar mis datos.</a></li>
+                                <li><a id="btnModificardatos" href="u_modificar.jsp" role="button" class="btn" >Modificar mis datos.</a></li>
                                 
                             </ul>
                             
@@ -137,13 +137,12 @@
                             <%}%>
                            
                                                
-                                               
-                                                 
+                                                              
                      <%--CARRITO DE COMPRAS--%>                            
                     <li class="dropdown">
                        
                             
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/carrito.png" alt="Usuario" WIDTH=20 HEIGHT=20/> <strong>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/carrito.png" alt="Usuario" WIDTH=20 HEIGHT=20> <strong>
                                 Carrito 
                                 <% 
                                     String cantidad = (String)session.getAttribute("itemsTotal");
@@ -160,13 +159,15 @@
                                 </strong><strong class="caret"></strong>
                             </a>
                             
+                                
                             
-                             <ul class="dropdown-menu">                             
+                                <ul class="dropdown-menu" >                             
                                  <% 
                                     if(cantidad==null)
                                     {
                                         %> 
-                                        <p style="margin: 2px; text-align: center;"> UPS!<br> Carrito vacío <br> <br><a href="t_index.jsp">Agregue su primer producto</a> </p>
+                                        <li><p style="margin: 2px; text-align: center;"> UPS!<br> Carrito vacío</p></li>
+                                        <li><p style="margin: 2px; text-align: center;"> <br><br><a href="t_index.jsp">Agregue su primer producto</a> </p></li>
                                         <%
                                      } else{
                                  %>
@@ -178,6 +179,10 @@
                        </li>
                         
                    
+                       
+                       
+                       
+                       
                         
                     </ul>
                                  
