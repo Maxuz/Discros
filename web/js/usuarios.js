@@ -17,8 +17,9 @@ var valida = function(event){
     var ciudad= $('#ciudad').val();
     var direccion = $('#direccion').val();
 
+ 
     if(!estaVacio(mail)){
-     mensaje = mensaje + "debe completar el campo email\n";   
+    // $('#divErrorEmail1').removeClass('hidden').text("Debe completar el campo.");
     } 
     if (!isEmail(mail)){
        mensaje = mensaje + "formato de mail incorrecto\n";
@@ -28,17 +29,12 @@ var valida = function(event){
     }
     if (mail != mail2){
        mensaje = mensaje + "los emails no son iguales\n";
-<<<<<<< HEAD
-    }else if(!estaVacio(pass)){
-      $('#divErrorPass').removeClass('hidden').text("Contraseña Incorrecta.");
-    }else if(!estaVacio(pass2)){
-=======
     }
     if(!estaVacio(pass)){
       mensaje = mensaje + "debe completar el campo contraseña\n";
     }
     if(!estaVacio(pass2)){
->>>>>>> e3c15a0cf67d3475a4797c08a620333824413dd2
+
         mensaje = mensaje + "debe completar el campo repetir contraseña\n";
     }
     if(pass != pass2){
@@ -54,7 +50,7 @@ var valida = function(event){
         mensaje = mensaje + "debe completar el campo apellido\n";
     }
     if(!soloTexto(apellido)){
-        mensaje = mensaje + "solo debe ingresar letras en el campo apellido\n"
+        mensaje = mensaje + "solo debe ingresar letras en el campo apellido\n";
     }
     if (!estaVacio(dni)){
         mensaje = mensaje + "debe completar el campo dni\n";
@@ -71,10 +67,10 @@ var valida = function(event){
     if(!estaVacio(direccion)){
         mensaje = mensaje +"debe completar el campo direccion\n";
     }
-    if(mensaje == ""){
+    if(mensaje != ""){
         return true;
     }
-    return false;
+    
     //si llego aca es por qué no se verifico todo
     //podemos ver lo de mostrar el mensaje 
     //o solo retornar false cuando corta
@@ -83,7 +79,8 @@ var valida = function(event){
     //esto último es para que no se ejecute el submit
     //hay que ver como lo usamos con el servlet
     event.preventDefault();
-}
+    return false;
+};
 
 var isEmail = function(email){
     expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
