@@ -82,7 +82,26 @@ var validaAlta = function(event){
 };
 var validaLogin = function(event){
     
+   var email = $('#email').val();
+   var pass = $('#pass').val();
+   var mensaje ="";
+    if (!estaVacio(email)){
+        mensaje = mensaje + "email\n";
+        $('#lblEmail').addClass('lblError').text("(*)Email - Debe ingresar un email.");
+    }
+    if(!estaVacio(pass)){
+        mensaje = mensaje + "pass\n";
+        $('#lblPass').addClass('lblError').text("(*)Contraseña - Debe ingresar una contraseña.");
+    }
+    if(mensaje===""){
+        return true;
+    }else{
+        console.log(mensaje);
+        event.preventDefault();
+    }
+   
 };
+
 var isEmail = function(email){
     expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if (expr.test(email)){
