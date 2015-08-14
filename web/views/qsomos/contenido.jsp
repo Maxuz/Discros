@@ -15,10 +15,11 @@
 
     </div> 
 </div>
-
+        
+<!--MISION - VISION - VALORES -->
 <div style="background-color: #fffefd; margin-top:0px;">
 
-    <!--MISION - VISION - VALORES -->
+    
     <div class="row">
 
         <div class="col-md-4">
