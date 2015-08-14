@@ -28,39 +28,10 @@ var valida = function(event){
     }
     if (mail != mail2){
        mensaje = mensaje + "los emails no son iguales\n";
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 1ca1ce0... no message
-    }else if(!estaVacio(pass)){
-      mensaje = mensaje + "debe completar el campo contraseña\n";
-    }else if(!estaVacio(pass2)){
-=======
-<<<<<<< HEAD
->>>>>>> parent of 1ca1ce0... no message
-=======
->>>>>>> parent of 1ca1ce0... no message
-    }
     if(!estaVacio(pass)){
       mensaje = mensaje + "debe completar el campo contraseña\n";
     }
     if(!estaVacio(pass2)){
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-    }else if(!estaVacio(pass)){
-      mensaje = mensaje + "debe completar el campo contraseña\n";
-    }else if(!estaVacio(pass2)){
->>>>>>> parent of 65eaaf5... no message
-=======
->>>>>>> e3c15a0cf67d3475a4797c08a620333824413dd2
->>>>>>> parent of 1ca1ce0... no message
-=======
->>>>>>> e3c15a0cf67d3475a4797c08a620333824413dd2
->>>>>>> parent of 1ca1ce0... no message
         mensaje = mensaje + "debe completar el campo repetir contraseña\n";
     }
     if(pass != pass2){
