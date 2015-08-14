@@ -14,11 +14,7 @@
     <jsp:include page="views/gral/referencias.jsp"/>
    
     
-    <style type="text/css">
-        body{background-image:url("img/wall.jgp");
-        
-        }
-    </style>
+    
     
   </head>
   <body>
