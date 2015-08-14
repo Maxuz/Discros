@@ -66,12 +66,16 @@
                             <li class="dropdown">
                             <%-- MENÚ DEL USUARIO LOGUEADO --%>
                             
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><strong>Menu Admin </strong><strong class="caret"></strong></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"  ><strong>Menu Administrador </strong><strong class="caret"></strong></a>
                                         
-                            <ul class="dropdown-menu">
-                                
-                                <li><a id="btnModificardatos" href="d_alta.jsp" role="button" class="btn">Agregar Discos</a></li>
-                                <li><a id="btnModificardatos" href="#" role="button" class="btn">Agregar canciones</a></li>
+                            <ul class="dropdown-menu" style="width: 100%;">
+                                <li style="background-color:#2a6496; color: #ffffff; text-align: center;"><strong>PRODUCTOS</strong></li>
+                                <li><a id="btnModificardatos" href="d_alta.jsp" role="button" class="btn">Administrar Discos</a></li>
+                                <li class="divider"></li>
+                                <li style="background-color:#2a6496; color: #ffffff; text-align: center;"><strong>REPORTES</strong></li>
+                                <li><a id="btnModificardatos" href="#" role="button" class="btn">Usuarios</a></li>
+                                <li><a id="btnModificardatos" href="#" role="button" class="btn">Pedidos</a></li>
+                                <li><a id="btnModificardatos" href="#" role="button" class="btn">Productos</a></li>
                                 
                             </ul>
                             
@@ -127,8 +131,9 @@
                                         
                             <ul class="dropdown-menu">
                                 
-                                <li><a href="uLogout.do">Cerrar Sesión</a></li>
                                 <li><a id="btnModificardatos" href="u_modificar.jsp" role="button" class="btn" >Modificar mis datos.</a></li>
+                                <li class="divider"></li>
+                                <li><a href="uLogout.do">Cerrar Sesión</a></li>
                                 
                             </ul>
                             

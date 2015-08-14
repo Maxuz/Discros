@@ -19,7 +19,7 @@ public class uLoginController extends HttpServlet {
          HttpSession sesion = request.getSession(true); 
         Actions.Usuarios.UsuariosFunciones funciones = new Actions.Usuarios.UsuariosFunciones();
         RequestDispatcher rd =null;
-        try{
+        try{                        sesion.setAttribute("mensajeExito", null);
                                     String email = request.getParameter("email");
                                     String pass  = request.getParameter("pass");
                                     Usuario user = new Usuario(email, pass);
