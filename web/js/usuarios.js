@@ -19,46 +19,61 @@ var valida = function(event){
 
     if(!estaVacio(mail)){
      mensaje = mensaje + "debe completar el campo email\n";   
-    }else if (!isEmail(mail)){
+    } 
+    if (!isEmail(mail)){
        mensaje = mensaje + "formato de mail incorrecto\n";
-    }else if(!estaVacio(mail2)){
+    }
+    if(!estaVacio(mail2)){
         mensaje = mensaje + "debe completar el campo verificar email\n";
-    }else if (mail != mail2){
+    }
+    if (mail != mail2){
        mensaje = mensaje + "los emails no son iguales\n";
-    }else if(!estaVacio(pass)){
+    }
+    if(!estaVacio(pass)){
       mensaje = mensaje + "debe completar el campo contraseña\n";
-    }else if(!estaVacio(pass2)){
+    }
+    if(!estaVacio(pass2)){
         mensaje = mensaje + "debe completar el campo repetir contraseña\n";
-    }else if(pass != pass2){
+    }
+    if(pass != pass2){
         mensaje = mensaje + "las contraseñas no coinciden\n";
-    }else if(!estaVacio(nombre)){
+    }
+    if(!estaVacio(nombre)){
         mensaje = mensaje + "debe completar el campo nombre\n";
-    }else if(!soloTexto(nombre)){
-        mensaje = mensaje + "solo debe ingresar letras en el campo nombre";
-    }else if (!estaVacio(apellido)){
+    }
+    if(!soloTexto(nombre)){
+        mensaje = mensaje + "solo debe ingresar letras en el campo nombre\n";
+    }
+    if (!estaVacio(apellido)){
         mensaje = mensaje + "debe completar el campo apellido\n";
-    }else if(!soloTexto(apellido)){
-        mensaje = mensaje + "solo debe ingresar letras en el campo apellido"
-    }else if (!estaVacio(dni)){
+    }
+    if(!soloTexto(apellido)){
+        mensaje = mensaje + "solo debe ingresar letras en el campo apellido\n"
+    }
+    if (!estaVacio(dni)){
         mensaje = mensaje + "debe completar el campo dni\n";
-    }else if(!soloNumero(dni)){
+    }
+    if(!soloNumero(dni)){
         mensaje = mensaje + "debe ingresar unicamente numeros en el campo dni\n";
-    }else if(!estaVacio(provincia)){
+    }
+    if(!estaVacio(provincia)){
         mensaje = mensaje +"debe seleccionar una provincia\n";
-    }else if(!estaVacio(ciudad)){
+    }
+    if(!estaVacio(ciudad)){
         mensaje = mensaje +"debe completar el campo ciudad\n";
-    }else if(!estaVacio(direccion)){
+    }
+    if(!estaVacio(direccion)){
         mensaje = mensaje +"debe completar el campo direccion\n";
-    }else if(mensaje == ""){
+    }
+    if(mensaje == ""){
         return true;
-    }    
+    }
+    return false;
     //si llego aca es por qué no se verifico todo
     //podemos ver lo de mostrar el mensaje 
     //o solo retornar false cuando corta
     //revisar...
     alert(mensaje);
-   
-    
     //esto último es para que no se ejecute el submit
     //hay que ver como lo usamos con el servlet
     event.preventDefault();
