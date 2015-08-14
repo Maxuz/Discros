@@ -35,7 +35,7 @@ var valida = function(event){
 =======
 >>>>>>> parent of 1ca1ce0... no message
     }else if(!estaVacio(pass)){
-      $('#divErrorPass').removeClass('hidden').text("Contraseña Incorrecta.");
+      mensaje = mensaje + "debe completar el campo contraseña\n";
     }else if(!estaVacio(pass2)){
 =======
 <<<<<<< HEAD
