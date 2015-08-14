@@ -11,12 +11,12 @@
         <form role="form" id="login" method="post" onsubmit="validaLogin(event)" action="uLogin.do">
                                       
                                     <div class="form-group">
-                                    <label for="lEmail">Email</label>
+                                    <label id="lblEmail" for="lEmail">Email</label>
                                     <input type="email" class="form-control" name="email" id="email" placeholder="Introduce tu email">
                                     </div>
                                   
                                     <div class="form-group">
-                                    <label for="lPass">Contraseña</label>
+                                    <label id="lblPass" for="lPass">Contraseña</label>
                                     <input type="password" class="form-control" id="pass" name="pass"  placeholder="Contraseña">
                                    
                                                                        
