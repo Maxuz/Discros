@@ -9,7 +9,7 @@
     <h2 style="text-align: center;">Registro de nuevo cliente</h2>
     <hr> 
     <!--  le saco por un el action para probar -->
-   <form role="form" class="form-horizontal"  method="post"  onsubmit="valida()">
+   <form role="form" class="form-horizontal"  method="post"  onsubmit="valida()" action="uAlta.do">
       <% if(session.getAttribute("nombre")==null){%>
 
     <% if(session.getAttribute("mensajeExito")!= null)
@@ -30,7 +30,6 @@
     
     <label for="email">Email</label>
     <input type="email" class="form-control" id="email" name="email"  placeholder="Introduce tu email">
-    <div class="alert alert-danger hidden" id="divErrorEmail1" name="divErrorEmail1">adfadf</div>
     </div>
     <br><br><br><br>
     
