@@ -19,8 +19,7 @@
                                     <label for="lPass">Contraseña</label>
                                     <input type="password" class="form-control" id="pass" name="pass"  placeholder="Contraseña">
                                    
-                                    <input type="text" name="funcion" id="funcion" size="5" value="login" hidden readonly="true">
-                                    
+                                                                       
                                     </div>
                                 
                                      <button type="submit" class="btn btn-default">Enviar</button>

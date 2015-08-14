@@ -19,7 +19,7 @@ var valida = function(event){
     var direccion = $('#direccion').val();
 
     if(!estaVacio(mail)){
-     mensaje = mensaje + "debe completar el campo email\n"; 
+     $('#divErrorEmail1').removeClass('hidden').text("Ingrese email.");
     } 
     if (!isEmail(mail)){
        mensaje = mensaje + "formato de mail incorrecto\n";

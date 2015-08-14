@@ -30,6 +30,8 @@
     
     <label for="email">Email</label>
     <input type="email" class="form-control" id="email" name="email"  placeholder="Introduce tu email">
+    <br>
+    <div class="alert alert-danger hidden"  id="divErrorEmail1" ></div>
     </div>
     <br><br><br><br>
     
@@ -38,6 +40,7 @@
     <label for="email2">Reescribe tu Email</label>
     <input type="email" class="form-control" id="email2" name="email2" placeholder="Introduce tu email">
     </div> 
+     
     <br><br><br><br>
   
     
@@ -59,7 +62,7 @@
      <hr>
      
     <div class="col-xs-8">
-    <label for=Nombre">Ingrese su Nombre</label>
+    <label for="Nombre">Ingrese su Nombre</label>
     <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre"><br>
     </div>
     <br><br><br><br>
