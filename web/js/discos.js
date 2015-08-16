@@ -95,7 +95,7 @@ var funciones = {
     
     $("#prueba").removeClass('hidden');
     }
-}
+};
 
 $(document).ready(function(){
     $("#dAlta").submit(function(e){
