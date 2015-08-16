@@ -83,7 +83,59 @@
                  <input type="file" id="imagen">
                  <p class="help-block">Seleccione un archivo con extensión .jpg y no menor a: 200x200px.</p>
                  </div>
-
+                 <br><br><br><br><br><br>
+                 
+                 <hr>
+                 
+                 
+                 <h3> Canciones del disco </h3>
+                 <br><br>
+                 
+                 <div class="col-xs-8">
+                 <label for="isrc" id="lblIsrc">ISRC</label>
+                 <text type="text" class="form-control" placeholder="Ingrese ISRC" name="isrc" id="isrc"><br>
+                 </div>
+                 <br><br><br><br>
+                 
+                 <div class="col-xs-8">
+                 <label for="track" id="lblTrack">Track:</label>
+                 <text type="text" class="form-control" placeholder="Ingrese Track" name="track" id="track"><br>
+                 </div>
+                 <br><br><br><br>
+                 
+                 <div class="col-xs-8">
+                 <label for="duracion" id="lblDuracion">Duración</label>
+                 <text type="text" class="form-control" placeholder="Ingrese Duración" name="duracion" id="duracion"><br>
+                 </div>
+                 <br><br><br><br>
+                 
+                 <div class="col-xs-8">
+                 <label for="precio" id="lblPrecio">Precio:</label>
+                 <text type="text" class="form-control" placeholder="Ingrese Precio" name="precio" id="precio"><br>
+                 </div>
+                 <br><br><br><br>
+                 
+                 
+                 <button id="add">Añadir Canción</button>
+                 
+                 <br><br>
+                  <!-- TABLA DE CANCIONES: RECORDAR QUE EL PRECIO DE UN DISCO ES LA CANCION DEL DISCO CON CÓDIGO = 0-->
+                 <div class="table-responsive">
+                 <table class="table" id="tablaCanciones">
+                     <!-- CODIGO PARA EL ENCABEZADO-->
+                     <tr>
+                         <td><strong>ISRC</strong></td>
+                         <td><strong>Track</strong></td>
+                         <td><strong>Nombre</strong></td>
+                         <td><strong>Duración</strong></td>
+                         <td><strong>Precio</strong></td>
+                     </tr>
+                 </table>
+                 </div>
+                 <br><br>
+                 
+                 <div id="prueba" hidden> holahola </div>
+                 
                  <button type="submit" class="btn btn-default" style="width: 220px; margin-left: 15px;">Registrar</button>
                  <br><br>
 

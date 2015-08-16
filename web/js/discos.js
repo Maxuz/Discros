@@ -1,10 +1,56 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//FUNCION PARA REFACTORIZAR LA TABLA DE CANCIONES
+$("#add").click(function(event) 
+{
+    var isrc = $("#isrc").val();
+    var track = $("#track").val();
+    var nombre = $("#nombre").val();
+    var duracion = $("#duracion").val();
+    var precio = $("#precio").val();
+    
+    var n = $('tr:last td', $("#tablaCanciones")).length;
+    var tds = '<tr>';
+    
+    for(var i = 0; i < n; i++){
+        tds += '<td>'+isrc+'</td>';
+        tds += '<td>'+track+'</td>';
+        tds += '<td>'+nombre+'</td>';
+        tds += '<td>'+duracion+'</td>';
+        tds += '<td>'+precio+'</td>';
+        }
+        
+    tds += '</tr>';
+    
+    $("#tablaCanciones").append(tds);
+    
+    $("#prueba").removeClass('hidden');
+}
+                );
 
+
+//FUNCION PARA VALIDAR EL FORMULARIO ALTA
 var validaAlta = function(event){
+    
+    
+    
+     var isrc = $("#isrc").val();
+    var track = $("#track").val();
+    var nombre = $("#nombre").val();
+    var duracion = $("#duracion").val();
+    var precio = $("#precio").val();
+    
+    
+    var tds = '<tr>';
+    
+        tds += '<td>'+isrc+'</td>';
+        tds += '<td>'+track+'</td>';
+        tds += '<td>'+nombre+'</td>';
+        tds += '<td>'+duracion+'</td>';
+        tds += '<td>'+precio+'</td>';
+           
+    tds += '</tr>';
+    
+    $("#tablaCanciones").append(tds);
+    
     var upc = $("#upc").val();
     var artista = $("#artista").val();
     var album = $("#album").val();
@@ -71,6 +117,7 @@ var validaAlta = function(event){
     }
 };
 
+//FUNCIONES PARA VALIDAR CAMPOS DEL FORMULARIO
 var estaVacio = function(campo){
     if (campo === undefined || campo==="")
         {
