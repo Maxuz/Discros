@@ -67,34 +67,71 @@ var funciones = {
         return true;
     }else {
         console.log(mensaje+"imagen: "+img);
-        event.preventDefault();
     }
 },
 
     agregarCancion: function(){
         
-    var isrc = $("#isrc").val();
-    var track = $("#track").val();
-    var nombre = $("#nombre").val();
-    var duracion = $("#duracion").val();
-    var precio = $("#precio2").val();
+        var isrc = $("#isrc").val();            //vacio y longitud 12
+        var track = $("#track").val();          //vacio solo numero
+        var nombre = $("#nombre").val();        //vacio 
+        var duracion = $("#duracion").val();    //vacio y solo numero
+        var precio = $("#precio2").val();       //vacio y solo numero
+        var mensaje ="";
     
-
-    var tds = '<tr>';
-    
-        tds += '<td>'+isrc+'</td>';
-        tds += '<td>'+track+'</td>';
-        tds += '<td>'+nombre+'</td>';
-        tds += '<td>'+duracion+'</td>';
-        tds += '<td>'+precio+'</td>';
-       
-        
-    tds += '</tr>';
-    
-    $("#tablaCanciones").append(tds);
-    
-    $("#prueba").removeClass('hidden');
+        if(!estaVacio(isrc)){
+            $('#lblIsrc').addClass('lblError').text("(*)ISRC: - Debe ingresar un ISRC.");
+            mensaje = mensaje + " ISRC\n";
+        }else if(isrc.length !== 12){
+            $('#lblIsrc').addClass('lblError').text("(*)ISRC: - La longitud del ISRC debe ser 12.");
+            mensaje = mensaje + " ISRC\n";
+        } else{
+            $('#lblIsrc').removeClass('lblError').text("ISRC:");
+        }
+        if (!estaVacio(track)){
+            $('#lblTrack').addClass('lblError').text("(*)Track: - Debe ingresar un Track.");
+            mensaje = mensaje + " Track\n";
+        }
+        else if (!soloNumero(track)){
+            $('#lblTrack').addClass('lblError').text("(*)Track: - El track debe ser sólo númerico.");
+            mensaje = mensaje + " Track numero\n";
+        }else {
+            $('#lblTrack').removeClass('lblError').text("Track:");
+        }
+        if (!estaVacio(nombre)){
+            $('#lblNombre').addClass('lblError').text("(*)Nombre: - Debe ingresar un Nombre.");
+            mensaje = mensaje + " Nombre\n";
+        }else{
+            $('#lblNombre').removeClass('lblError').text("Nombre:");
+        }
+        if (!estaVacio(duracion)){
+            $('#lblTrack').addClass('lblError').text("(*)Duracion: - Debe ingresar un Track.");
+            mensaje = mensaje + " Duracion\n";
+        }
+        else if (!soloNumero(duracion)){
+            $('#lblTrack').addClass('lblError').text("(*)Track: - El track debe ser sólo númerico.");
+            mensaje = mensaje + " Duracion numero\n";
+        }else {
+            $('#lblTrack').removeClass('lblError').text("Track:");
+        }
+        if (mensaje ===""){
+            var tds = '<tr>';
+            tds += '<td>'+isrc+'</td>';
+            tds += '<td>'+track+'</td>';
+            tds += '<td>'+nombre+'</td>';
+            tds += '<td>'+duracion+'</td>';
+            tds += '<td>'+precio+'</td>';
+            tds += '</tr>';
+            $("#tablaCanciones").append(tds);
+            $("#prueba").removeClass('hidden');
+            return true;
+        }else{
+            console.log(mensaje);
+            return false;
+        }
     }
+        
+    
 };
 
 $(document).ready(function(){
@@ -111,27 +148,3 @@ $(document).ready(function(){
     });
 });
 
-//FUNCIONES PARA VALIDAR CAMPOS DEL FORMULARIO
-var estaVacio = function(campo){
-    if (campo === undefined || campo==="")
-        {
-           return false; 
-        }
-    return true;        
-};
-var soloNumero = function(campo){
-    expr = /^([0-9])*$/;
-    if(expr.test(campo))
-        return true;
-    else{
-        return false;
-    }
-};
-var soloTexto = function(campo){
-  expr = /^[A-Za-z\_\-\.\s\xF1\xD1]+$/;
-    if (expr.test(campo)){
-        return true;
-    }else {
-        return false;
-    }
-};

@@ -92,7 +92,7 @@
                  <br><br>
                  
                  <div class="col-xs-8">
-                 <label for="isrc" id="lblIsrc">ISRC</label>
+                 <label for="isrc" id="lblIsrc">ISRC:</label>
                  <input type="text" class="form-control" placeholder="Ingrese ISRC" name="isrc" id="isrc"><br>
                  </div>
                  <br><br><br><br>
@@ -104,13 +104,13 @@
                  <br><br><br><br>
                  
                  <div class="col-xs-8">
-                 <label for="nombre" id="lblTrack">Nombre:</label>
+                 <label for="nombre" id="lblNombre">Nombre:</label>
                  <input type="text" class="form-control" placeholder="Ingrese Nombre" name="nombre" id="nombre"><br>
                  </div>
                  <br><br><br><br>
                  
                  <div class="col-xs-8">
-                 <label for="duracion" id="lblDuracion">Duración</label>
+                 <label for="duracion" id="lblDuracion">Duración:</label>
                  <input type="text" class="form-control" placeholder="Ingrese Duración" name="duracion" id="duracion"><br>
                  </div>
                  <br><br><br><br>
