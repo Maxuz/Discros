@@ -33,7 +33,7 @@ public void alta (Usuario user) throws Exception
                 pst.setString(7, user.getCiudad());
                 pst.setInt(8, user.getdni());
                 pst.setString(9, user.getProvincia());
-                pst.setString(10,  user.getEstado());
+                pst.setBoolean(10,  user.getEstado());
                 
                 
                 pst.executeUpdate();
@@ -223,7 +223,7 @@ public Usuario getOne (String email) throws Exception
           
                 
             user.setDatos(rs.getString("email"), rs.getString("password"),rs.getString("nombre"),rs.getString("apellido"), 
-            rs.getString("direccion"),rs.getString("ciudad"),rs.getString("provincia"),rs.getInt("dni"),rs.getString("tipo"));
+            rs.getString("direccion"),rs.getString("ciudad"),rs.getString("provincia"),rs.getInt("dni"),rs.getString("tipo"), rs.getBoolean("estado"));
             }
              
             
@@ -287,7 +287,7 @@ public ArrayList<Usuario>  getAll () throws Exception
             while(rs.next())
             {
                 user.setDatos(rs.getString("email"), rs.getString("password"),rs.getString("nombre"),rs.getString("apellido"), 
-                rs.getString("direccion"),rs.getString("ciudad"),rs.getString("provincia"),rs.getInt("dni"),rs.getString("tipo"));
+                rs.getString("direccion"),rs.getString("ciudad"),rs.getString("provincia"),rs.getInt("dni"),rs.getString("tipo"), rs.getBoolean("estado"));
                 lista.add(user);
             }
 

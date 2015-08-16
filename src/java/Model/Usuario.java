@@ -15,7 +15,7 @@ public class Usuario {
     private String ciudad;
     private String provincia;
     private int dni;
-    private String estado;
+    private Boolean estado;
     // </editor-fold>  
 
     // <editor-fold desc="CONSTRUCTORES">
@@ -35,20 +35,19 @@ public class Usuario {
         this.dni=dni;
        
         this.tipo = "cliente";
-        this.estado = "habilitado";
+        this.estado = true;
     }
     
     public Usuario(String email, String pass) {
         this.email = email;
         this.pass = pass;
         
-        
-        this.estado = "habilitado";
+     
     }
     // </editor-fold>
     
     // <editor-fold desc="SET DE DATOS PERSONALES USADO EN EL ALTA DEL USUARIO">
-    public void setDatos(String email, String pass, String nombre, String apellido, String direccion, String ciudad, String provincia, Integer dni, String tipo)
+    public void setDatos(String email, String pass, String nombre, String apellido, String direccion, String ciudad, String provincia, Integer dni, String tipo, boolean estado)
     {   this.email=email;
         this.pass=pass;
         this.nombre=nombre;
@@ -58,6 +57,7 @@ public class Usuario {
         this.provincia=provincia;
         this.dni=dni;
         this.tipo = tipo;
+        this.estado = estado;
     }    
     // </editor-fold>
     
@@ -80,7 +80,7 @@ public class Usuario {
         return this.email;
     }
    
-    public String getEstado()
+    public boolean getEstado()
     {
         return this.estado;
     }

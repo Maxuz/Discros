@@ -30,7 +30,8 @@ public class uLoginController extends HttpServlet {
                                         {   
                                             user = funciones.getOne(email);
                                            
-                                            
+                                            if(user.getEstado())
+                                            {
                                             sesion.setAttribute("email", email);
                                             sesion.setAttribute("pass", user.getPass());
                                             sesion.setAttribute("nombre", user.getNombre());
@@ -43,7 +44,11 @@ public class uLoginController extends HttpServlet {
                                            
                                             rd=request.getRequestDispatcher("index.jsp");
                                             rd.forward(request, response);
-                                            
+                                            } else {
+                                                     sesion.setAttribute("mensajeExito", "Usuario no habilitado");
+                                                        rd=request.getRequestDispatcher("u_login.jsp");
+                                                        rd.forward(request, response);
+                                                    };
                                         }else{  
                                                 sesion.setAttribute("mensajeExito", "Usuario o contraseña incorrecta.");
                                                 rd=request.getRequestDispatcher("u_login.jsp");
