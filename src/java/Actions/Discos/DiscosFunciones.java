@@ -252,7 +252,7 @@ public class DiscosFunciones {
          Connection con = Conexion.getConexion();
          PreparedStatement pst = null;  
          ResultSet rs = null;  
-         Disco disco = new Disco();
+       
          ArrayList<Disco> lista = new ArrayList<>();
          
         // </editor-fold>
@@ -267,7 +267,11 @@ public class DiscosFunciones {
             
             
             while(rs.next())
-            { disco.setDatos(rs.getString("artista"), rs.getString("album"),rs.getString("genero"),
+            { 
+                
+                Disco disco = new Disco();
+                
+                disco.setDatos(rs.getString("artista"), rs.getString("album"),rs.getString("genero"),
                                     rs.getString("descripcion"), rs.getString("imagen"),rs.getInt("upc"),
                                     rs.getInt("stock"),rs.getString("fecha_salida"));
               lista.add(disco);
@@ -310,7 +314,7 @@ public class DiscosFunciones {
             
           }
          // </editor-fold>
-        
+         
          return lista; 
     }
      // </editor-fold>

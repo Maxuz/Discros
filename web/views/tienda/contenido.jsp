@@ -1,3 +1,4 @@
+<%@page import="Actions.Canciones.CancionesFunciones"%>
 <%@page import="java.util.*"%>
 <%@page import="Model.Disco"%>
 <%@page import="Actions.Discos.DiscosFunciones"%>
@@ -7,40 +8,31 @@
     <ul id="cd-gallery-items" class="cd-container" style="padding-top: 20px">
 			
                    <% 
-                        try{ 
+                       
                         DiscosFunciones funciones = new DiscosFunciones();
+                        CancionesFunciones funcionesCanciones = new CancionesFunciones();
                         Disco dis = new Disco();
-                     //   ArrayList<Disco> lista = new ArrayList<>();
                         ArrayList<Model.Disco> lista = new ArrayList<Model.Disco>();
+                        
                         lista = funciones.getAll();
                         
                         int i;
                         int f = lista.size();
                         for(i=0;i<f;i++) 
-                        {%>
+                        { dis = lista.get(i); 
+                          double precio = funcionesCanciones.getOne(dis.getUpc(), 0).getPrecio();
+                            %>
                              <li>
                                  <img src="img/thumb.jpg" alt="Preview image" class="img-responsive" style=" float: left;" >
-                                 <div class="texto-tienda">
+                                 <div class="texto-tienda" style="text-align: left;">
                                      
-                                     Artista: <% dis = lista.get(i); 
-                                                 out.print(dis.getArtista()); 
-                                              %> <br>
-                                     Album:<br>
-                                     Ver Canciones:<br>
+                                     <strong>Artista:</strong><%out.print(dis.getArtista());%> <br>
+                                     <strong>Album:</strong><%out.print(dis.getAlbum());%> <br>
+                                     <strong>Precio:</strong>  $<%out.print(precio);%> <br>
+                                     <strong>Stock:</strong><%out.print(dis.getStock());%> <br>
                                  </div>
                                 </li>
-                       <% }
-                       
-                        }
-                       catch (Exception e)
-                       {
-                                        session.setAttribute("errorCatch", e.toString());
-                                        RequestDispatcher rd =null;
-                                                                               
-                                        rd=request.getRequestDispatcher("error.jsp");
-                                        rd.forward(request,response);
-                       }
-                       %>
+                       <% } %>
                        
 
 		</ul> <!-- cd-gallery-items -->

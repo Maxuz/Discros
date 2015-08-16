@@ -44,7 +44,7 @@
     
     <div class="col-xs-8">
     <label id="lblPass" for="password">Contraseña:</label>
-    <input type="text" class="form-control" id="pass"  name="pass" placeholder="Contraseña">
+    <input type="password" class="form-control" id="pass"  name="pass" placeholder="Contraseña">
     </div>
     <br><br><br><br>
     
