@@ -4,19 +4,22 @@ import Actions.Canciones.CancionesFunciones;
 import Model.Cancion;
 import Model.Disco;
 import java.io.IOException;
-import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 public class dAltaController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Actions.Discos.DiscosFunciones funciones = new Actions.Discos.DiscosFunciones();
         Actions.Canciones.CancionesFunciones funcionesCanciones = new CancionesFunciones();
-        
+        HttpSession sesion = request.getSession(true); 
         try{
+                        
                                     if(funciones.buscar(Integer.parseInt(request.getParameter("upc"))))
                                     {
                                         response.getWriter().print("EL DISCO YA SE ENCUENTRA REGISTRADO");
@@ -40,7 +43,13 @@ public class dAltaController extends HttpServlet {
                                                                               
                                         funciones.alta(disco);
                                         funcionesCanciones.alta(cancion);
-                                        response.getWriter().print("EL DISCO SE REGISTRÓ CORRECTAMENTE");
+                                    
+                                        
+                                        sesion.setAttribute("mensajeExito", "Disco agregado correctamente.");
+                                        RequestDispatcher rd =null;
+                                                                               
+                                        rd=request.getRequestDispatcher("d_alta.jsp");
+                                        rd.forward(request,response);
                                         
                                         }
                                     
@@ -48,7 +57,11 @@ public class dAltaController extends HttpServlet {
                                     }
                                 catch (Exception e)
                                     {
-                                    response.getWriter().print("ERROR OCURRIDO:  "+e);
+                                        sesion.setAttribute("errorCatch", e.toString());
+                                        RequestDispatcher rd =null;
+                                                                               
+                                        rd=request.getRequestDispatcher("error.jsp");
+                                        rd.forward(request,response);
                                     }
     }
 

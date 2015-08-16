@@ -22,6 +22,9 @@ public class uAltaController extends HttpServlet {
         Actions.Usuarios.UsuariosFunciones funciones = new Actions.Usuarios.UsuariosFunciones();
        
         try{
+                            //VALIDA SI NO HAY UN USUARIO YA LOGUEADO
+                            if(sesion.getAttribute("nombre")==null)
+                            {
                                     String email = request.getParameter("email");
                                     String pass  = request.getParameter("pass");
                                     String email2 = request.getParameter("email2");
@@ -46,9 +49,12 @@ public class uAltaController extends HttpServlet {
                                                 String provincia = request.getParameter("provincia");
                                                 Integer dni = Integer.parseInt(request.getParameter("dni"));
 
-                                                Usuario user = new Usuario(email, pass);
-                                                user.setDatospersonales(nombre, apellido, direccion, ciudad, provincia, dni);
-
+                                                //Usuario user = new Usuario(email, pass);
+                                                
+                                                //user.setDatospersonales(nombre, apellido, direccion, ciudad, provincia, dni);
+                                                  
+                                                Usuario user = new Usuario(email, pass, nombre, apellido, direccion, ciudad, provincia, dni);
+                                                
                                                 funciones.alta(user);
                                                 
                                                 sesion.setAttribute("nombre", user.getNombre());
@@ -61,8 +67,10 @@ public class uAltaController extends HttpServlet {
                                                 }
                                           }
                                     } 
-                             
-                                   }
+                                    //terminar    
+                                   }else {}
+        }
+                            
                                 catch (Exception e)
                                     {
                                         sesion.setAttribute("errorCatch", e.toString());

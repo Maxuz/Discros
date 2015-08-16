@@ -153,7 +153,7 @@ var funciones = {
 
 $(document).ready(function(){
     $("#dAlta").submit(function(e){
-        e.preventDefault();
+         
         funciones.validaAlta();
     });
 });

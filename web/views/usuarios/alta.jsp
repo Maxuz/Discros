@@ -11,17 +11,7 @@
    
    <form role="form" class="form-horizontal"  method="post"  onsubmit="validaAlta(event)" action="uAlta.do" >
       <% if(session.getAttribute("nombre")==null){%>
-
-    <% if(session.getAttribute("mensajeExito")!= null)
-    {%>
-           <br><br><br>        
-           <div class="alert alert-danger">
-           <% out.print((String)session.getAttribute("mensajeExito"));
-           session.setAttribute("mensajeExito", null);
-           %>
-           </div>     
-    
-   <% }%>
+      
    <h4>Datos de inicio de sesión</h4>
    <hr>
    
