@@ -93,7 +93,7 @@ var funciones = {
             mensaje = mensaje + " Track\n";
         }
         else if (!soloNumero(track)){
-            $('#lblTrack').addClass('lblError').text("(*)Track: - El track debe ser sólo númerico.");
+            $('#lblTrack').addClass('lblError').text("(*)Track: - El track acepta sólo números.");
             mensaje = mensaje + " Track numero\n";
         }else {
             $('#lblTrack').removeClass('lblError').text("Track:");
@@ -105,15 +105,26 @@ var funciones = {
             $('#lblNombre').removeClass('lblError').text("Nombre:");
         }
         if (!estaVacio(duracion)){
-            $('#lblTrack').addClass('lblError').text("(*)Duracion: - Debe ingresar un Track.");
+            $('#lblDuracion').addClass('lblError').text("(*)Duración: - Debe ingresar la duración.");
             mensaje = mensaje + " Duracion\n";
         }
         else if (!soloNumero(duracion)){
-            $('#lblTrack').addClass('lblError').text("(*)Track: - El track debe ser sólo númerico.");
+            $('#lblDuracion').addClass('lblError').text("(*)Duración: - La duracción acepta sólo números.");
             mensaje = mensaje + " Duracion numero\n";
         }else {
-            $('#lblTrack').removeClass('lblError').text("Track:");
+            $('#lblDuracion').removeClass('lblError').text("Duración:");
         }
+         if (!estaVacio(precio)){
+            $('#lblPrecio2').addClass('lblError').text("(*)Precio: - Debe ingresar el precio.");
+            mensaje = mensaje + " Precio\n";
+        }
+        else if (!soloNumero(precio)){
+            $('#lblPrecio2').addClass('lblError').text("(*)Precio: - El precio acepta sólo números.");
+            mensaje = mensaje + " Precio número\n";
+        }else {
+            $('#lblPrecio2').removeClass('lblError').text("Precio:");
+        }
+        
         if (mensaje ===""){
             var tds = '<tr>';
             tds += '<td>'+isrc+'</td>';
@@ -124,6 +135,12 @@ var funciones = {
             tds += '</tr>';
             $("#tablaCanciones").append(tds);
             $("#prueba").removeClass('hidden');
+            
+            $("#isrc").val("");         
+            $("#track").val("");          
+            $("#nombre").val("");         
+            $("#duracion").val("");    
+            $("#precio2").val("");       
             return true;
         }else{
             console.log(mensaje);
