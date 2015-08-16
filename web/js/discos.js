@@ -1,55 +1,9 @@
-//FUNCION PARA REFACTORIZAR LA TABLA DE CANCIONES
-$("#add").click(function(event) 
-{
-    var isrc = $("#isrc").val();
-    var track = $("#track").val();
-    var nombre = $("#nombre").val();
-    var duracion = $("#duracion").val();
-    var precio = $("#precio").val();
-    
-    var n = $('tr:last td', $("#tablaCanciones")).length;
-    var tds = '<tr>';
-    
-    for(var i = 0; i < n; i++){
-        tds += '<td>'+isrc+'</td>';
-        tds += '<td>'+track+'</td>';
-        tds += '<td>'+nombre+'</td>';
-        tds += '<td>'+duracion+'</td>';
-        tds += '<td>'+precio+'</td>';
-        }
-        
-    tds += '</tr>';
-    
-    $("#tablaCanciones").append(tds);
-    
-    $("#prueba").removeClass('hidden');
-}
-                );
 
 
 //FUNCION PARA VALIDAR EL FORMULARIO ALTA
-var validaAlta = function(event){
-    
-    
-    
-     var isrc = $("#isrc").val();
-    var track = $("#track").val();
-    var nombre = $("#nombre").val();
-    var duracion = $("#duracion").val();
-    var precio = $("#precio").val();
-    
-    
-    var tds = '<tr>';
-    
-        tds += '<td>'+isrc+'</td>';
-        tds += '<td>'+track+'</td>';
-        tds += '<td>'+nombre+'</td>';
-        tds += '<td>'+duracion+'</td>';
-        tds += '<td>'+precio+'</td>';
-           
-    tds += '</tr>';
-    
-    $("#tablaCanciones").append(tds);
+var funciones = {
+
+    validaAlta: function(){
     
     var upc = $("#upc").val();
     var artista = $("#artista").val();
@@ -115,7 +69,47 @@ var validaAlta = function(event){
         console.log(mensaje+"imagen: "+img);
         event.preventDefault();
     }
-};
+},
+
+    agregarCancion: function(){
+        
+    var isrc = $("#isrc").val();
+    var track = $("#track").val();
+    var nombre = $("#nombre").val();
+    var duracion = $("#duracion").val();
+    var precio = $("#precio2").val();
+    
+
+    var tds = '<tr>';
+    
+        tds += '<td>'+isrc+'</td>';
+        tds += '<td>'+track+'</td>';
+        tds += '<td>'+nombre+'</td>';
+        tds += '<td>'+duracion+'</td>';
+        tds += '<td>'+precio+'</td>';
+       
+        
+    tds += '</tr>';
+    
+    $("#tablaCanciones").append(tds);
+    
+    $("#prueba").removeClass('hidden');
+    }
+}
+
+$(document).ready(function(){
+    $("#dAlta").submit(function(e){
+        e.preventDefault();
+        funciones.validaAlta();
+    });
+});
+
+$(document).ready(function(){
+    $("#add").click(function(e){
+        e.preventDefault();
+        funciones.agregarCancion();
+    });
+});
 
 //FUNCIONES PARA VALIDAR CAMPOS DEL FORMULARIO
 var estaVacio = function(campo){

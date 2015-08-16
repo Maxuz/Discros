@@ -23,10 +23,8 @@ public class uLoginController extends HttpServlet {
                                     String email = request.getParameter("email");
                                     String pass  = request.getParameter("pass");
                                     Usuario user = new Usuario(email, pass);
-                                    
-                                    String temp = (String)sesion.getAttribute("email"); 
-                                    if( temp == null)        
-                                    {if(funciones.login(user))
+                                  
+                                    if(funciones.login(user))
                                         {   
                                             user = funciones.getOne(email);
                                            
@@ -45,10 +43,10 @@ public class uLoginController extends HttpServlet {
                                             rd=request.getRequestDispatcher("index.jsp");
                                             rd.forward(request, response);
                                             } else {
-                                                     sesion.setAttribute("mensajeExito", "Usuario no habilitado");
+                                                        sesion.setAttribute("mensajeExito", "Usuario no habilitado");
                                                         rd=request.getRequestDispatcher("u_login.jsp");
                                                         rd.forward(request, response);
-                                                    };
+                                                    }
                                         }else{  
                                                 sesion.setAttribute("mensajeExito", "Usuario o contraseña incorrecta.");
                                                 rd=request.getRequestDispatcher("u_login.jsp");
@@ -56,9 +54,7 @@ public class uLoginController extends HttpServlet {
                                                 
                                         }
                                     
-                                    } else {    rd=request.getRequestDispatcher("u_login.jsp");
-                                                rd.forward(request, response); }
-                                    
+                                                                      
                                     }
                                 catch (Exception e)
                                     {   sesion.setAttribute("errorCatch", e.toString());

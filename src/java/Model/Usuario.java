@@ -41,8 +41,6 @@ public class Usuario {
     public Usuario(String email, String pass) {
         this.email = email;
         this.pass = pass;
-        
-     
     }
     // </editor-fold>
     

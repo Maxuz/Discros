@@ -24,7 +24,7 @@
             
             if(s.equals("admin"))
             {%>
-                <form role="form" class="form-horizontal"  method="post"  onsubmit="validaAlta(event)" action="dAlta.do">
+                <form role="form" class="form-horizontal" id="dAlta" method="post"  onsubmit="validaAlta(event)" action="dAlta.do">
                 <h2 style="text-align: center;">Registro de nuevo disco</h2>
                 <hr>
                 <h4>Datos del disco</h4>
@@ -61,7 +61,7 @@
 
                  <div class="col-xs-8">
                  <label for="stock" id="lblStock">Stock:</label>
-                 <text type="text" class="form-control" placeholder="Ingrese Stock" name="stock" id="stock"><br>
+                 <input type="text" class="form-control" placeholder="Ingrese Stock" name="stock" id="stock"><br>
                  </div>
                  <br><br><br><br>
 
@@ -93,25 +93,31 @@
                  
                  <div class="col-xs-8">
                  <label for="isrc" id="lblIsrc">ISRC</label>
-                 <text type="text" class="form-control" placeholder="Ingrese ISRC" name="isrc" id="isrc"><br>
+                 <input type="text" class="form-control" placeholder="Ingrese ISRC" name="isrc" id="isrc"><br>
                  </div>
                  <br><br><br><br>
                  
                  <div class="col-xs-8">
                  <label for="track" id="lblTrack">Track:</label>
-                 <text type="text" class="form-control" placeholder="Ingrese Track" name="track" id="track"><br>
+                 <input type="text" class="form-control" placeholder="Ingrese Track" name="track" id="track"><br>
+                 </div>
+                 <br><br><br><br>
+                 
+                 <div class="col-xs-8">
+                 <label for="nombre" id="lblTrack">Nombre:</label>
+                 <input type="text" class="form-control" placeholder="Ingrese Nombre" name="nombre" id="nombre"><br>
                  </div>
                  <br><br><br><br>
                  
                  <div class="col-xs-8">
                  <label for="duracion" id="lblDuracion">Duración</label>
-                 <text type="text" class="form-control" placeholder="Ingrese Duración" name="duracion" id="duracion"><br>
+                 <input type="text" class="form-control" placeholder="Ingrese Duración" name="duracion" id="duracion"><br>
                  </div>
                  <br><br><br><br>
                  
                  <div class="col-xs-8">
                  <label for="precio" id="lblPrecio">Precio:</label>
-                 <text type="text" class="form-control" placeholder="Ingrese Precio" name="precio" id="precio"><br>
+                 <input type="text" class="form-control" placeholder="Ingrese Precio" name="precio" id="precio2"><br>
                  </div>
                  <br><br><br><br>
                  
