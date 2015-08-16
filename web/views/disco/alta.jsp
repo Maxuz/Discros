@@ -24,7 +24,7 @@
             
             if(s.equals("admin"))
             {%>
-                <form role="form" class="form-horizontal" id="dAlta" method="post"  onsubmit="validaAlta(event)" action="dAlta.do">
+                <form role="form" class="form-horizontal" id="dAlta" method="post" action="dAlta.do">
                 <h2 style="text-align: center;">Registro de nuevo disco</h2>
                 <hr>
                 <h4>Datos del disco</h4>
@@ -139,9 +139,7 @@
                  </table>
                  </div>
                  <br><br>
-                 
-                 <div id="prueba" hidden> holahola </div>
-                 
+                               
                  <button type="submit" class="btn btn-default" style="width: 220px; margin-left: 15px;">Registrar</button>
                  <br><br>
 
