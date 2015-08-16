@@ -5,6 +5,7 @@ import Model.Disco;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class DiscosFunciones {
     
@@ -192,7 +193,8 @@ public class DiscosFunciones {
         
           try { // <editor-fold desc="QUERY Y RESULTADO">
               //ESCRIBIR LA CONSULTA CORRECTA
-            pst = con.prepareStatement("select * from discos where upc='"+UPC+"'");  
+            pst = con.prepareStatement("select * from discos where upc=?");  
+            pst.setInt(1, UPC);
             rs = pst.executeQuery();  
             
            
@@ -242,6 +244,74 @@ public class DiscosFunciones {
          // </editor-fold>
         
          return disco; 
+    }
+    
+      public ArrayList<Disco>  getAll () throws Exception
+    {
+        // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
+         Connection con = Conexion.getConexion();
+         PreparedStatement pst = null;  
+         ResultSet rs = null;  
+         Disco disco = new Disco();
+         ArrayList<Disco> lista = new ArrayList<>();
+         
+        // </editor-fold>
+         
+        
+          try { // <editor-fold desc="QUERY Y RESULTADO">
+              //ESCRIBIR LA CONSULTA CORRECTA
+            pst = con.prepareStatement("select * from discos");  
+            
+            rs = pst.executeQuery();  
+            
+            
+            
+            while(rs.next())
+            { disco.setDatos(rs.getString("artista"), rs.getString("album"),rs.getString("genero"),
+                                    rs.getString("descripcion"), rs.getString("imagen"),rs.getInt("upc"),
+                                    rs.getInt("stock"),rs.getString("fecha_salida"));
+              lista.add(disco);
+            }
+             
+            
+        // </editor-fold>
+            
+              } 
+          catch (Exception e) {  
+                throw e;  
+              } 
+          finally {  
+               // <editor-fold desc="CIERRA: CON, PST, RS">
+            if (con != null) {  
+                try {  
+                    Actions.Conexion.cerrarConexion();
+                   
+                 } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (rs != null) {  
+                try {  
+                    rs.close();  
+                } catch (Exception e) {  
+                    System.out.println(e);
+                    //e.printStackTrace();  
+                }  
+                
+            }
+          
+            
+          }
+         // </editor-fold>
+        
+         return lista; 
     }
      // </editor-fold>
     

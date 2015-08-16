@@ -89,11 +89,7 @@ public class ProductosFunciones {
     {
         
     }
-    
-    public void getAll(String tipo)
-    {
-        
-    }
+
     // </editor-fold >
     
     // <editor-fold desc="OTRAS CONSULTAS">
