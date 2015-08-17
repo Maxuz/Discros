@@ -60,6 +60,11 @@ public class Usuario {
     // </editor-fold>
     
     // <editor-fold desc="SET DE DATOS PERSONALES USADO EN EL ALTA DEL USUARIO">
+    public void setEstado(boolean estado)
+    {
+        this.estado = estado;
+    }
+    
     public void setDatospersonales(String nombre, String apellido, String direccion, String ciudad, String provincia, Integer dni)
     {   
         this.nombre=nombre;

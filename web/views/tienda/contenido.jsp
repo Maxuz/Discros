@@ -26,12 +26,16 @@
                                  <img src="img/thumb.jpg" alt="Preview image" class="img-responsive" style=" float: left;" >
                                  <div class="texto-tienda" style="text-align: left;">
                                      
-                                     <strong>Artista:</strong><%out.print(dis.getArtista());%> <br>
+                                     <strong>Artista:</strong><%out.print(dis.getArtista());%><br>
                                      <strong>Album:</strong><%out.print(dis.getAlbum());%> <br>
                                      <strong>Precio:</strong>  $<%out.print(precio);%> <br>
                                      <strong>Stock:</strong><%out.print(dis.getStock());%> <br>
+                                     <a href="#">Ver canciones..</a><br><br>
+                                     <button id="<% out.print(dis.getUpc());%>">Agregar a carrito</button>
+                                     
                                  </div>
                                 </li>
+                                
                        <% } %>
                        
 

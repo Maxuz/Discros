@@ -5,11 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Alta Disco - Discros INC</title>
+    <title>Detalle Disco - Discros INC</title>
 
-    <%session.setAttribute("paginaActual", "d_alta");%>
+    <%session.setAttribute("paginaActual", "d_detalle");%>
     
     <jsp:include page="views/gral/referencias.jsp"/>
+    <jsp:include page="views/gral/d_referencias.jsp"/>
     
   </head>
   <body>
@@ -17,7 +18,7 @@
     <div class="container-fluid">
         
         <jsp:include page="views/gral/header.jsp"/>
-        <jsp:include page="views/productos/administrador.jsp"/>
+        <jsp:include page="views/disco/detalle.jsp"/>
         <jsp:include page="views/gral/pie.jsp" />
         
    </div>

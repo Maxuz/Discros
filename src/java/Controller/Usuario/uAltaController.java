@@ -36,9 +36,9 @@ public class uAltaController extends HttpServlet {
                                         {
                                         if(funciones.buscar(email))
                                             { 
-                                             sesion.setAttribute("mensajeExito", "El email ya se encuentra registrado. Por favor elija otro.");
-                                             rd=request.getRequestDispatcher("u_alta.jsp");
-                                             rd.forward(request,response);
+                                            sesion.setAttribute("mensajeExito", "El email ya se encuentra registrado. Por favor elija otro.");
+                                                
+                                            response.sendRedirect("u_alta.jsp");
 
                                             }else{
 
@@ -60,23 +60,23 @@ public class uAltaController extends HttpServlet {
                                                 sesion.setAttribute("nombre", user.getNombre());
                                                 
                                                 sesion.setAttribute("mensajeExito", "Usuario logueado correctamene.");
-                                                
-
-                                                rd=request.getRequestDispatcher("u_alta.jsp");
-                                                rd.forward(request,response);
+                                                response.sendRedirect("u_alta.jsp");
                                                 }
                                           }
                                     } 
                                     //terminar    
-                                   }else {}
+                                   }else {
+                                        sesion.setAttribute("mensajeExito", "Ya se encuentra un usuario logueado.");
+                                                                          
+                                        response.sendRedirect("u_alta.jsp");
+                                                                     
+                                          }
         }
                             
                                 catch (Exception e)
                                     {
                                         sesion.setAttribute("errorCatch", e.toString());
-                                                                          
-                                        rd=request.getRequestDispatcher("error.jsp");
-                                        rd.forward(request,response);
+                                        response.sendRedirect("error.jsp");
                                         
                                     }     
     }
