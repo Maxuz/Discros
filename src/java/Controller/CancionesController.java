@@ -2,7 +2,7 @@
 package Controller;
 
 import Actions.Discos.DiscosFunciones;
-import Actions.Validacion;
+import Actions.Util;
 import Model.Cancion;
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ public class CancionesController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-         Validacion validar = new Validacion();
+         Util validar = new Util();
          String funcion = request.getParameter("funcion");
         
         Actions.Canciones.CancionesFunciones funciones = new Actions.Canciones.CancionesFunciones();

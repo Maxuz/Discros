@@ -59,7 +59,7 @@
                             <% 
                             String tipo = (String)session.getAttribute("tipoUsuario");
                             
-                            if(tipo!=null)
+                            if(tipo!=null && tipo.equals("admin"))
                             {%>  
                             <%-- INICIAR SESIÓN --%>
                             
@@ -135,8 +135,11 @@
                             
                             </a>
                                         
-                            <ul class="dropdown-menu">
+                                <ul class="dropdown-menu" style="text-align: center;">
+                                <li style="background-color:#2a6496; color: #ffffff;"><strong>COMPRAS</strong></li>
+                                <li><a id="btnModificardatos" href="u_pedidos.jsp" role="button" class="btn" >Historial</a></li>
                                 
+                                <li style="background-color:#2a6496; color: #ffffff;"><strong>CUENTA</strong></li>
                                 <li><a id="btnModificardatos" href="u_modificar.jsp" role="button" class="btn" >Modificar mis datos.</a></li>
                                 <li class="divider"></li>
                                 <li><a href="uLogout.do">Cerrar Sesión</a></li>
