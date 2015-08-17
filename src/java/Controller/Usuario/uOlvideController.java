@@ -26,8 +26,7 @@ public class uOlvideController extends HttpServlet {
                                         sesion.setAttribute("errorCatch", e.toString());
                                         RequestDispatcher rd =null;
                                                                                
-                                        rd=request.getRequestDispatcher("error.jsp");
-                                        rd.forward(request,response);
+                                        response.sendRedirect("error.jsp");
        }
        
        

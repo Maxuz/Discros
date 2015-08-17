@@ -4,7 +4,7 @@ import Actions.Canciones.CancionesFunciones;
 import Model.Cancion;
 import Model.Disco;
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +21,9 @@ public class dAltaController extends HttpServlet {
         try{
                         
                                     if(funciones.buscar(Integer.parseInt(request.getParameter("upc"))))
-                                    {
-                                        response.getWriter().print("EL DISCO YA SE ENCUENTRA REGISTRADO");
+                                    {   sesion.setAttribute("mensajeError", "El disco ya se encuentra registrado, por favor ingrese otro UPC.");
+                                        response.sendRedirect("d_alta.jsp");
+                                       
                                         
                                     } else{
                                         
@@ -44,24 +45,15 @@ public class dAltaController extends HttpServlet {
                                         funciones.alta(disco);
                                         funcionesCanciones.alta(cancion);
                                     
-                                        
                                         sesion.setAttribute("mensajeExito", "Disco agregado correctamente.");
-                                        RequestDispatcher rd =null;
-                                                                               
-                                        rd=request.getRequestDispatcher("d_alta.jsp");
-                                        rd.forward(request,response);
+                                        response.sendRedirect("d_alta.jsp");
                                         
                                         }
-                                    
-                                  
                                     }
                                 catch (Exception e)
                                     {
                                         sesion.setAttribute("errorCatch", e.toString());
-                                        RequestDispatcher rd =null;
-                                                                               
-                                        rd=request.getRequestDispatcher("error.jsp");
-                                        rd.forward(request,response);
+                                        response.sendRedirect("error.jsp");
                                     }
     }
 

@@ -69,9 +69,15 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"  ><strong>Menu Administrador </strong><strong class="caret"></strong></a>
                                         
                             <ul class="dropdown-menu" style="width: 100%;">
+                                
+                                <li style="background-color:#2a6496; color: #ffffff; text-align: center;"><strong>USUARIOS</strong></li>
+                                <li><a id="btnModificardatos" href="u_admin.jsp" role="button" class="btn">Administrar Cliente</a></li>
+                                <li class="divider"></li>
+                                
                                 <li style="background-color:#2a6496; color: #ffffff; text-align: center;"><strong>PRODUCTOS</strong></li>
                                 <li><a id="btnModificardatos" href="p_admin.jsp" role="button" class="btn">Administrar Productos</a></li>
                                 <li class="divider"></li>
+                                
                                 <li style="background-color:#2a6496; color: #ffffff; text-align: center;"><strong>REPORTES</strong></li>
                                 <li><a id="btnModificardatos" href="#" role="button" class="btn">Usuarios</a></li>
                                 <li><a id="btnModificardatos" href="#" role="button" class="btn">Pedidos</a></li>

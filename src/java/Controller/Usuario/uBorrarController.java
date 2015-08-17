@@ -22,17 +22,26 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         try{
                                     String email = request.getParameter("email");
                                     String pass  = request.getParameter("pass");
-
+                                        
                                     Usuario user = new Usuario(email, pass);
                                     
 
                                     if(funciones.login(user))
-                                    {
-                                        funciones.baja(user);
-                                        response.getWriter().print("Usuario eliminado.");
-                                        
+                                    {   
+                                        user=funciones.getOne(email);
+                                        if(user.getTipo().equals("cliente"))
+                                        {
+                                        funciones.setEstado(email, false);
+                                        sesion.setAttribute("mensajeExiste", "");
+                                        response.sendRedirect("u_borrar.jsp");
+                                        }
+                                        else{
+                                              sesion.setAttribute("mensajeExiste", "No se puede deshabilitar a un administrador.");
+                                              response.sendRedirect("u_borrar.jsp");
+                                            }
                                     }else{
-                                            response.getWriter().print("Usuario no encontrado.");
+                                              sesion.setAttribute("mensajeExiste", "Cliente dado de baja correctamente.");
+                                              response.sendRedirect("u_baja.jsp");
                                     }
 
                                     
@@ -43,9 +52,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
                                     {
                                         sesion.setAttribute("errorCatch", e.toString());
                                         RequestDispatcher rd =null;
-                                                                               
-                                        rd=request.getRequestDispatcher("error.jsp");
-                                        rd.forward(request,response);
+                                           response.sendRedirect("error.jsp");
                                     } 
                     
     }

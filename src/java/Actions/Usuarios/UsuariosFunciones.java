@@ -332,6 +332,58 @@ public ArrayList<Usuario>  getAll () throws Exception
  // </editor-fold>
 
 // <editor-fold desc="FUNCIONES: OTRAS">
+public void setEstado(String email, boolean estado) throws Exception
+{
+    // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
+         Connection con = Conexion.getConexion();
+         PreparedStatement pst = null;  
+         ResultSet rs = null;  
+         
+        // </editor-fold>
+        
+          try { // <editor-fold desc="QUERY Y RESULTADO">
+                pst = con.prepareStatement("UPDATE `usuarios` SET estado=? WHERE email=? ");  
+                pst.setString(2, email); 
+                pst.setBoolean(1, estado); 
+                rs = pst.executeQuery();  
+                                 
+                         
+        // </editor-fold>
+            } 
+          catch (Exception e) {  
+                throw e;  
+              } 
+          finally {  
+               // <editor-fold desc="CIERRA: CON, PST, RS">
+            if (con != null) {  
+                try {  
+                    Actions.Conexion.cerrarConexion();
+                   
+                 } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (rs != null) {  
+                try {  
+                    rs.close();  
+                } catch (Exception e) {  
+                    System.out.println(e);
+                    //e.printStackTrace();  
+                }  
+            }
+            // </editor-fold>
+        
+        }
+
+}
+
 public boolean buscar(String email) throws Exception
 {        boolean status = false;  
     

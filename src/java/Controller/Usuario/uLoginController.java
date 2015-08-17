@@ -40,17 +40,14 @@ public class uLoginController extends HttpServlet {
                                             sesion.setAttribute("provincia", user.getProvincia());
                                             sesion.setAttribute("tipoUsuario", user.getTipo()); 
                                            
-                                            rd=request.getRequestDispatcher("index.jsp");
-                                            rd.forward(request, response);
+                                            response.sendRedirect("index.jsp");
                                             } else {
                                                         sesion.setAttribute("mensajeExito", "Usuario no habilitado");
-                                                        rd=request.getRequestDispatcher("u_login.jsp");
-                                                        rd.forward(request, response);
+                                                        response.sendRedirect("u_login.jsp");
                                                     }
                                         }else{  
                                                 sesion.setAttribute("mensajeExito", "Usuario o contraseña incorrecta.");
-                                                rd=request.getRequestDispatcher("u_login.jsp");
-                                                rd.forward(request, response);
+                                                response.sendRedirect("u_login.jsp");
                                                 
                                         }
                                     
@@ -59,8 +56,7 @@ public class uLoginController extends HttpServlet {
                                 catch (Exception e)
                                     {   sesion.setAttribute("errorCatch", e.toString());
                                                                                
-                                        rd=request.getRequestDispatcher("error.jsp");
-                                        rd.forward(request,response);
+                                             response.sendRedirect("error.jsp");
                                     }
     }
 

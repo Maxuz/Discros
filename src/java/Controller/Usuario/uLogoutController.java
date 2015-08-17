@@ -1,7 +1,6 @@
 package Controller.Usuario;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,8 +25,7 @@ public class uLogoutController extends HttpServlet {
                                             sesion.invalidate();
                                         
                                             RequestDispatcher rd =null;
-                                            rd=request.getRequestDispatcher("index.jsp");
-                                            rd.forward(request, response);
+                                            response.sendRedirect("index.jsp");
                                             }
                               
                                     }
@@ -35,9 +33,7 @@ public class uLogoutController extends HttpServlet {
                                     {
                                         sesion.setAttribute("errorCatch", e.toString());
                                         RequestDispatcher rd =null;
-                                                                               
-                                        rd=request.getRequestDispatcher("error.jsp");
-                                        rd.forward(request,response);
+                                        response.sendRedirect("error.jsp");
                                     } 
     }
 

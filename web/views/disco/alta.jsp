@@ -1,4 +1,5 @@
 
+
 <div style="background-color: #ffffff; margin-top:75px; margin-bottom: 15px">
   
 
@@ -7,23 +8,39 @@
     <br>
     <%  String s = (String)session.getAttribute("tipoUsuario");
         
+        //VERIFICA QUE HAYA USUARIO LOGUEADO     
         if(s!=null){%>
-      
+                
+                <!--VERIFICA QUE NO HAYA MENSAJES CARGADOS EN LA VARIABLE DE SESIÓN COMO RESPUESTA DEL SERVIDOR-->
                 <% if(session.getAttribute("mensajeExito")!= null)
                 {%>
+                        <!--SERVIDOR DEVUELVE MENSAJE DE ÉXITO-->
                        <br><br>    
-                       <div class="alert alert-danger">
+                       <div class="alert alert-success">
                        <% out.print((String)session.getAttribute("mensajeExito"));
                        session.setAttribute("mensajeExito", null);
-                       
-
                        %>
                        </div>     
 
-             <%}else{   if(s.equals("admin"))
-                        {%> <!--FORMULARIO DE ALTA-->
-                            <form role="form" class="form-horizontal" id="dAlta" method="post" action="dAlta.do" >
-                            <h2 style="text-align: center;">Registro de nuevo disco</h2>
+                       <%}
+                              
+                
+                else{   if(s.equals("admin"))
+                        { %><h2 style="text-align: center;">Registro de nuevo disco</h2> <%
+                            if (session.getAttribute("mensajeError")!=null)
+                                { %>
+                                
+                                    <!--SERVIDOR DEVUELVE MENSAJE DE ERROR-->
+                                    <br><br>    
+                                    <div class="alert alert-warning" style="text-align: center;">
+                                    <% out.print((String)session.getAttribute("mensajeError"));
+                                    session.setAttribute("mensajeError", null);
+                                    %>
+                                    </div>  
+                              <%    };%>  
+                                    <!--FORMULARIO DE ALTA-->
+                                    <form role="form" class="form-horizontal" id="dAlta" method="post" action="dAlta.do" >
+                            
                             <hr>
                             <h4>Datos del disco</h4>
                             <hr>
@@ -143,15 +160,17 @@
 
                          </form>
 
-                      <%}else{%>
+                          
+                      <% }else{%>
                                     <!--RESTRICCIÓN PARA LOS NO ADMINISTRADORES -->
                                     <h3 style="text-align: center; font-style: italic;">
                                     Lo sentimos, página sólo habilitada para administradores.
                                     </h3>
                                     <hr> 
-                           <%}%>
-                  <%}%>
-          
+                           <%}
+                    
+                  }%>
+            
         <%}else{%>     <!--RESTRICCIÓN PARA USUARIO NO LOGUEADO-->
                         <h3 style="text-align: center; font-style: italic;">
                         Lo sentimos, debe iniciar sesión como administrador.
