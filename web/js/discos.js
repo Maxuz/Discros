@@ -72,7 +72,7 @@ var funciones = {
     }
 },
 
-    agregarCancion: function(e){
+    agregarCancion: function(){
         
         var isrc = $("#isrc").val();            //vacio y longitud 12
         var track = $("#track").val();          //vacio solo numero
@@ -146,7 +146,6 @@ var funciones = {
             return true;
         }else{
             console.log(mensaje);
-            e.preventDefault();
             return false;
         }
     }
@@ -158,8 +157,10 @@ $(document).ready(function(){
     $("#dAlta").submit(function(e){
         funciones.validaAlta(e);
     });
+    
     $("#add").click(function(e){
-        funciones.agregarCancion(e);
+        e.preventDefault();
+        funciones.agregarCancion();
     });
 });
 
