@@ -1,6 +1,6 @@
 //hacer foco en el primer campo del formulario de usuarios
 $(document).ready(function(){
-$('#email').focus();
+    $('#email').focus();
 });
 
 
@@ -41,20 +41,20 @@ var validaAlta = function(event){
     //Validacion Contraseña  
     if(!estaVacio(pass)){
       mensaje = mensaje + "contraseña\n";
-      $('#lblPass').addClass('lblError').text("(*)Contraseña - Debe ingresar una contraseña.");
+      $('#lblPass').addClass('lblError').text("(*)Contraseña - Debe ingresar una contrase\u00f1a.");
     }  else{
-                 $('#lblPass').removeClass('lblError').text("Contraseña:");};
+                 $('#lblPass').removeClass('lblError').text("Contrase\u00f1a:");};
     
     
     //Validacion reescribir Contraseña 
     if(!estaVacio(pass2)){
         mensaje = mensaje + "contraseña2\n";
-        $('#lblPass2').addClass('lblError').text("(*)Reescribe tu Contraseña - Debe verificar la contraseña.");
+        $('#lblPass2').addClass('lblError').text("(*)Reescribe tu Contrase\u00f1a - Debe verificar la contrase\u00f1a.");
     }else if(pass != pass2){
            mensaje = mensaje + "contraseñas distintas\n";
-           $('#lblPass2').addClass('lblError').text("(*)Reescribe tu Contraseña - Las contraseñas no coinciden.");
+           $('#lblPass2').addClass('lblError').text("(*)Reescribe tu Contrase\u00f1a - Las contrase\u00f1as no coinciden.");
             }else{
-                 $('#lblPass2').removeClass('lblError').text("Reescribe tu Contraseña:");};
+                 $('#lblPass2').removeClass('lblError').text("Reescribe tu Contrase\u00f1a:");};
     
     
     //Validacion Nombre
@@ -74,7 +74,7 @@ var validaAlta = function(event){
         $('#lblApellido').addClass('lblError').text("(*)Ingrese su Apellido - Debe ingresar un apellido.");
     } else if(!soloTexto(apellido)){
         mensaje = mensaje + "solo letras apellido\n"
-        $('#lblApellido').addClass('lblError').text("(*)Ingrese su Apellido - El apellido solo debe contener letras.");
+        $('#lblApellido').addClass('lblError').text("(*)Ingrese su Apellido - El apellido s\u00f3lo debe contener letras.");
     }else{ 
             $('#lblApellido').removeClass('lblError').text("Apellido:");};
     
@@ -109,9 +109,9 @@ var validaAlta = function(event){
     //Validacion Direccion
     if(!estaVacio(direccion)){
         mensaje = mensaje +"direccion\n";
-        $('#lblDireccion').addClass('lblError').text("(*)Ingrese su Dirección - Debe ingresar una Direccion.");
+        $('#lblDireccion').addClass('lblError').text("(*)Ingrese su Direcci\u00f3n - Debe ingresar una Direcci\u00f3n.");
     } else{
-                 $('#lblDireccion').removeClass('lblError').text("Ingrese su Dirección");};  
+                 $('#lblDireccion').removeClass('lblError').text("Ingrese su Direcci\u00f3n");};  
     
     
     if(mensaje === ""){
@@ -138,10 +138,10 @@ var validaLogin = function(event){
         
     if(!estaVacio(pass)){
         mensaje = mensaje + "pass\n";
-        $('#lblPass').addClass('lblError').text("(*)Contraseña - Debe ingresar una contraseña.");
+        $('#lblPass').addClass('lblError').text("(*)Contrase\u00f1a - Debe ingresar una contrase\u00f1a.");
         $('#divErrorServlet').addClass('hidden');
     }else{ 
-            $('#lblPass').removeClass('lblError').text("Contraseña");};
+            $('#lblPass').removeClass('lblError').text("Contrase\u00f1a");};
     
     
     if(mensaje===""){
