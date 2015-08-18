@@ -37,7 +37,6 @@
                                      <td><strong>Album</strong></td>
                                      <td><strong>Genero</strong></td>
                                      <td><strong>Fecha</strong></td>
-                                     <td><strong>Stock</strong></td>
                                      <td><strong>Descripción</strong></td>
                                      <td><strong>Imagen</strong></td>
                                      <td><strong>Precio</strong></td>
@@ -56,7 +55,6 @@
                                              <td><%out.print(dis.getAlbum()); %></td>
                                              <td><%out.print(dis.getGenero()); %></td>
                                              <td><%out.print(dis.getFecha()); %></td>
-                                             <td><%out.print(dis.getStock()); %></td>
                                              <td><%out.print(dis.getDescripcion()); %></td>
                                              <td><%out.print(dis.getImagen()); %></td>
                                              <td>$ <%out.print(precio); %></td>
@@ -66,10 +64,11 @@
                                         };%>
                                         </table>
                                         </div>
+                                        <a class="btn btn-primary btn-large" style="float: right;" href="pAlta.do">Confirmar/a>
                                      
           <%}else{ %>
             <br><h3 style="text-align: center; font-style: italic;">El carrito esta vacio, para realizar su compra ingrese a la tienda</h3><hr>
-            <h3 style="text-align: center;"><a href="t_index.jsp" >Ingresar a la Tienda</a></h3><br>
+            <h3 style="text-align: center;"><a href="t_index.jsp">Ingresar a la Tienda</a> </h3><br>
                     <%};
                         } %>
 </div>                
