@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import seguridad.StringMD;
 
 public class uAltaController extends HttpServlet {
 
@@ -26,9 +27,9 @@ public class uAltaController extends HttpServlet {
                             if(sesion.getAttribute("nombre")==null)
                             {
                                     String email = request.getParameter("email");
-                                    String pass  = request.getParameter("pass");
+                                    String pass  = StringMD.getStringMessageDigest(request.getParameter("pass"), StringMD.SHA1);
                                     String email2 = request.getParameter("email2");
-                                    String pass2 = request.getParameter("pass2");
+                                    String pass2 = StringMD.getStringMessageDigest(request.getParameter("pass2"), StringMD.SHA1);
                                     
                                      // REALIZAR MÉTODO PARA ENCRIPTAR
                                     //  String pass  = MÉTODOENCRIPTAR(request.getParameter("pass"));
