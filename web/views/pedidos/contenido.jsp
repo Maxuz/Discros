@@ -32,11 +32,10 @@
                                  <table class="table" id="tablaCanciones">
                                  <!-- CODIGO PARA EL ENCABEZADO-->
                                  <tr>
-                                     <td><strong>UPC</strong></td>
                                      <td><strong>Artista</strong></td>
                                      <td><strong>Album</strong></td>
                                      <td><strong>Genero</strong></td>
-                                     <td><strong>Fecha_salida</strong></td>
+                                     <td><strong>Fecha</strong></td>
                                      <td><strong>Stock</strong></td>
                                      <td><strong>Descripción</strong></td>
                                      <td><strong>Imagen</strong></td>
@@ -52,14 +51,13 @@
                                             
                                             %>
                                              <tr>
-                                             <td><%out.print(dis.getUpc()); %></td>
                                              <td><%out.print(dis.getArtista()); %></td>
                                              <td><%out.print(dis.getAlbum()); %></td>
-                                             <td>$ <%out.print(dis.getGenero()); %></td>
-                                             <td>$ <%out.print(dis.getFecha()); %></td>
-                                             <td>$ <%out.print(dis.getStock()); %></td>
-                                             <td>$ <%out.print(dis.getDescripcion()); %></td>
-                                             <td>$ <%out.print(dis.getImagen()); %></td>
+                                             <td><%out.print(dis.getGenero()); %></td>
+                                             <td><%out.print(dis.getFecha()); %></td>
+                                             <td><%out.print(dis.getStock()); %></td>
+                                             <td><%out.print(dis.getDescripcion()); %></td>
+                                             <td><%out.print(dis.getImagen()); %></td>
                                              <td>$ <%out.print(precio); %></td>
                                              </tr>
                                             <%
@@ -70,7 +68,7 @@
                                      
           <%}else{ %>
             <br><h3 style="text-align: center; font-style: italic;">El carrito esta vacio, para realizar su compra ingrese a la tienda</h3><hr><br>
-            <h3><a href="t_index.jsp">Ingresar a la Tienda</a></h3>
+            <h3><a href="t_index.jsp" style="text-align: center;">Ingresar a la Tienda</a></h3>
                     <%};
                         } %>
 </div>                
