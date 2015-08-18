@@ -1,12 +1,13 @@
 package Actions;
 
 import java.sql.Date;
-
 import java.text.SimpleDateFormat;
 
 
 public class Util {
  
+   
+    
     public boolean estaVacio (String var)
     {   return (var==null && var.length()==0);
     }

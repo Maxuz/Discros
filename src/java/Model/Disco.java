@@ -19,6 +19,7 @@ public class Disco {
     private String descripcion;
     private String imagen;
     private int stock;
+    private float precioAux;
     // </editor-fold>
     
     // <editor-fold desc="CONSTRUCTORES">
@@ -100,7 +101,10 @@ public class Disco {
         
     }
     
-    
+    public void setPrecioAux(float precio)
+    {
+        this.precioAux=precio;
+    }
     // </editor-fold>
     
     

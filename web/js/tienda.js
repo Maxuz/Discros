@@ -1,14 +1,20 @@
-function agregar3(artista, album, precio, upc)
-{ 
-   
-}
-
-function agregar(artista, album, precio, upc)
-{ 
-    var cant = localStorage['nombre'];
-   
-    
-    $("#carrito11").load(this);
-     window.alert(cant+'               UPC: '+upc+ ' - ARTISTA: '+artista+' - ALBUM: '+album+' - PRECIO: '+precio);
-}
-
+function agregar(upc){
+       $.ajax("cAdd.do", {
+             
+             type: "POST",
+             dataType: null,
+             
+             data: { "upc": upc},
+             
+             error: function (a, b, c)
+                     {
+                        window.alert("ERROR A: "+a+"  | ERROR B: "+b+"  | ERROR C: "+c);
+                 
+             },
+             success: function (data)
+                     {
+                         location.reload();
+                     }
+            
+            });
+ };

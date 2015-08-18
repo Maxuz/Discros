@@ -83,7 +83,7 @@
 
                              <div class="col-xs-8">
                              <label for="descripcion" id="lblDescripcion">Descripción:</label>
-                             <textarea rows="3" type="text" class="form-control" placeholder="Ingrese descripcion" name="descripcion" id="descripcion"></textarea>
+                             <textarea rows="3" class="form-control" placeholder="Ingrese descripcion" name="descripcion" id="descripcion"></textarea>
                              </div>    
                              <br><br><br><br><br><br>
 

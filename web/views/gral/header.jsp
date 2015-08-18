@@ -1,5 +1,8 @@
+<%@page import="Model.Disco"%>
+<%@page import="Actions.Discos.DiscosFunciones"%>
+<%@page import="Actions.Canciones.CancionesFunciones"%>
 
-            <%--BARRA DE MENÚ--%>
+<%--BARRA DE MENÚ--%>
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">MENU</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
@@ -158,19 +161,12 @@
                         
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/carrito.png" alt="Usuario" WIDTH=20 HEIGHT=20> <strong>
                                 Carrito 
-                                <div id="carrito11">
+                              
                                 <% 
-                                    String cantidad = (String)session.getAttribute("itemsTotal");
-                                    if(cantidad==null)
-                                    {
-                                        out.print("(0)");
-                                        
-                                    } else {
-                                            out.print("("+cantidad+")");
-                                            }
-                                
+                                    int cantidad = Integer.parseInt(session.getAttribute("itemsTotal").toString());
+                                    out.print("("+cantidad+")");
                                 %>
-                                </div>  
+                             
                                 </strong><strong class="caret"></strong>
                             </a>
                           
@@ -178,16 +174,35 @@
                             
                                 <ul class="dropdown-menu" >                             
                                  <% 
-                                    if(cantidad==null)
+                                    if(cantidad==0)
                                     {
                                         %> 
                                         <li><p style="margin: 2px; text-align: center;"> UPS!<br> Carrito vacío</p></li>
                                         <li><p style="margin: 2px; text-align: center;"> <br><br><a href="t_index.jsp">Agregue su primer producto</a> </p></li>
                                         <%
                                      } else{
-                                 %>
+                                        CancionesFunciones funcionesCanciones = new CancionesFunciones();
+                                        int i;
+                                        double total=0;
+                                        for(i=1; i<=cantidad;i++)
+                                        {   String item = "item"+i;
+                                            Disco dis = (Disco)session.getAttribute(item);
+                                            double precio = funcionesCanciones.getOne(dis.getUpc(), 0).getPrecio();
+                                            total = total+precio;
+                                        %> 
+                                        <li>
+                                        <strong>Nombre: </strong><% out.print(dis.getArtista()); %><br>
+                                        <strong>Album:</strong><% out.print(dis.getAlbum()); %><br>
+                                        <strong>Precio Unitario: $</strong><% out.print(precio); %></li>
+                                        <li class="divider"></li>    
                                         
-                                            <li><a href="#">Cerrar Sesión</a></li>
+                                        
+                                      <%}%>
+                                        
+                                   
+                                    <li><br><br><strong>TOTAL: $</strong><% out.print(total); %></li>
+                                    <li style="background-color:#2a6496; color: #ffffff;"><strong>MI PEDIDO</strong></li>    
+                                    
                                  <% }%>
                                 
                             </ul>

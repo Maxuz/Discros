@@ -9,3 +9,7 @@
     <script src="js/validaciones.js"></script>
     <script src="js/scripts.js"></script>
     
+    <% if(session.getAttribute("itemsTotal")==null)
+    {
+            session.setAttribute("itemsTotal", "0");
+    }%>

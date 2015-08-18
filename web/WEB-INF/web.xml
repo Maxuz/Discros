@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file> 
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-    
     <context-param>
         <param-name>upload.location</param-name>
         <param-value>/uploads</param-value>
     </context-param>
-   
-    
     <servlet>
         <servlet-name>UsuarioController</servlet-name>
         <servlet-class>Controller.UsuarioController</servlet-class>
     </servlet>
+   
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/usuario.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>PersonaController</servlet-name>
         <servlet-class>Controller.PersonaController</servlet-class>
@@ -27,7 +24,6 @@
         <servlet-name>PersonaController</servlet-name>
         <url-pattern>/persona.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>Header</servlet-name>
         <jsp-file>/views/gral/header.jsp</jsp-file>
@@ -36,7 +32,6 @@
         <servlet-name>Header</servlet-name>
         <url-pattern>/header</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>Pie</servlet-name>
         <jsp-file>/views/gral/piedepagina.jsp</jsp-file>
@@ -45,7 +40,6 @@
         <servlet-name>Pie</servlet-name>
         <url-pattern>/pie</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>PedidoController</servlet-name>
         <servlet-class>Controller.PedidoController</servlet-class>
@@ -54,7 +48,6 @@
         <servlet-name>PedidoController</servlet-name>
         <url-pattern>/pedidos.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>DiscosController</servlet-name>
         <servlet-class>Controller.DiscosController</servlet-class>
@@ -63,7 +56,6 @@
         <servlet-name>DiscosController</servlet-name>
         <url-pattern>/discos.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>CancionesController</servlet-name>
         <servlet-class>Controller.CancionesController</servlet-class>
@@ -72,7 +64,6 @@
         <servlet-name>CancionesController</servlet-name>
         <url-pattern>/canciones.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>PedidosCancionesController</servlet-name>
         <servlet-class>Controller.PedidosCancionesController</servlet-class>
@@ -81,7 +72,6 @@
         <servlet-name>PedidosCancionesController</servlet-name>
         <url-pattern>/pedidoscanciones.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>uAltaController</servlet-name>
         <servlet-class>Controller.Usuario.uAltaController</servlet-class>
@@ -90,16 +80,14 @@
         <servlet-name>uAltaController</servlet-name>
         <url-pattern>/uAlta.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>uLoginController</servlet-name>
         <servlet-class>Controller.Usuario.uLoginController</servlet-class>
     </servlet>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>uLoginController</servlet-name>
         <url-pattern>/uLogin.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>uModificarController</servlet-name>
         <servlet-class>Controller.Usuario.uModificarController</servlet-class>
@@ -108,7 +96,6 @@
         <servlet-name>uModificarController</servlet-name>
         <url-pattern>/uModificar.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>uLogoutController</servlet-name>
         <servlet-class>Controller.Usuario.uLogoutController</servlet-class>
@@ -117,7 +104,6 @@
         <servlet-name>uLogoutController</servlet-name>
         <url-pattern>/uLogout.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>cpAltaController</servlet-name>
         <servlet-class>Controller.PedidosCanciones.cpAltaController</servlet-class>
@@ -126,7 +112,6 @@
         <servlet-name>cpAltaController</servlet-name>
         <url-pattern>/cpAlta.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>cpBajaController</servlet-name>
         <servlet-class>Controller.PedidosCanciones.cpBajaController</servlet-class>
@@ -135,7 +120,6 @@
         <servlet-name>cpBajaController</servlet-name>
         <url-pattern>/cpBaja.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>cpModificarController</servlet-name>
         <servlet-class>Controller.PedidosCanciones.cpModificarController</servlet-class>
@@ -144,7 +128,6 @@
         <servlet-name>cpModificarController</servlet-name>
         <url-pattern>/cpModificar.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>pAltaController</servlet-name>
         <servlet-class>Controller.Pedidos.pAltaController</servlet-class>
@@ -153,7 +136,6 @@
         <servlet-name>pAltaController</servlet-name>
         <url-pattern>/pAlta.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>pBajaController</servlet-name>
         <servlet-class>Controller.Pedidos.pBajaController</servlet-class>
@@ -162,7 +144,6 @@
         <servlet-name>pBajaController</servlet-name>
         <url-pattern>/pBaja.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>pModificarController</servlet-name>
         <servlet-class>Controller.Pedidos.pModificarController</servlet-class>
@@ -171,7 +152,6 @@
         <servlet-name>pModificarController</servlet-name>
         <url-pattern>/pModificar.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>dAltaController</servlet-name>
         <servlet-class>Controller.Discos.dAltaController</servlet-class>
@@ -180,7 +160,6 @@
         <servlet-name>dAltaController</servlet-name>
         <url-pattern>/dAlta.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>dBajaController</servlet-name>
         <servlet-class>Controller.Discos.dBajaController</servlet-class>
@@ -189,7 +168,6 @@
         <servlet-name>dBajaController</servlet-name>
         <url-pattern>/dBaja.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>dModificarController</servlet-name>
         <servlet-class>Controller.Discos.dModificarController</servlet-class>
@@ -198,7 +176,6 @@
         <servlet-name>dModificarController</servlet-name>
         <url-pattern>/dModificar.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>cAltaController</servlet-name>
         <servlet-class>Controller.Canciones.cAltaController</servlet-class>
@@ -207,7 +184,6 @@
         <servlet-name>cAltaController</servlet-name>
         <url-pattern>/cAlta.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>cBajaController</servlet-name>
         <servlet-class>Controller.Canciones.cBajaController</servlet-class>
@@ -216,7 +192,6 @@
         <servlet-name>cBajaController</servlet-name>
         <url-pattern>/cBaja.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>cModificarController</servlet-name>
         <servlet-class>Controller.Canciones.cModificarController</servlet-class>
@@ -225,7 +200,6 @@
         <servlet-name>cModificarController</servlet-name>
         <url-pattern>/cModificar.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>uOlvideController</servlet-name>
         <servlet-class>Controller.Usuario.uOlvideController</servlet-class>
@@ -234,6 +208,15 @@
         <servlet-name>uOlvideController</servlet-name>
         <url-pattern>/uOlvide.do</url-pattern>
     </servlet-mapping>
+     <servlet>
+        <servlet-name>cAddController</servlet-name>
+        <servlet-class>Controller.Carrito.cAddController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cAddController</servlet-name>
+        <url-pattern>/cAdd.do</url-pattern>
+    </servlet-mapping>
+    
     <!--
     <servlet>
         <servlet-name>Home</servlet-name>
@@ -244,10 +227,10 @@
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
     -->
+   
     <session-config>
         <session-timeout>
             30
         </session-timeout>
-    </session-config>   
- 
+    </session-config>
 </web-app>
