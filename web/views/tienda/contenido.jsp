@@ -35,16 +35,8 @@
                                             data-number-stepfactor="100" 
                                             class="form-control currency" id="cantidad" name="precio" />
                                             <a href="#">Ver canciones..</a><br><br>
-                                     
-                                     <!--<button id="agregarItem" onclick="agregar(
-                                                         '<% out.print(dis.getArtista());%>',
-                                                         '<% out.print(dis.getAlbum());%>',
-                                                         '<% out.print(precio);%>',
-                                                         '<% out.print(dis.getUpc());%>' )">
-                                     Agregar a carrito
-                                     </button>-->
-                                     
-                                     <button id="agregarItem" onclick="agregar( '<% out.print(dis.getUpc());%>' )">
+                                    
+                                     <button id="agregarItem" onclick="agregar('<% out.print(dis.getUpc());%>' )">
                                      Agregar a carrito
                                      </button>
                                      

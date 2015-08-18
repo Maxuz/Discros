@@ -184,6 +184,14 @@
                                         CancionesFunciones funcionesCanciones = new CancionesFunciones();
                                         int i;
                                         double total=0;
+                                        
+                                        %>
+                                        <li style="background-color:#2a6496; color: #ffffff; text-align: center;">
+                                            <strong>Items del Pedido</strong>
+                                        </li>
+                                        <%
+                                        
+                                        //CARGA DE ITEMS AL CARRITO
                                         for(i=1; i<=cantidad;i++)
                                         {   String item = "item"+i;
                                             Disco dis = (Disco)session.getAttribute(item);
@@ -194,17 +202,19 @@
                                         <strong>Nombre: </strong><% out.print(dis.getArtista()); %><br>
                                         <strong>Album:</strong><% out.print(dis.getAlbum()); %><br>
                                         <strong>Precio Unitario: $</strong><% out.print(precio); %></li>
+                                        
                                         <li class="divider"></li>    
                                         
                                         
                                       <%}%>
                                         
                                    
-                                    <li><br><br><strong>TOTAL: $</strong><% out.print(total); %><br><br></li>
+                                      <li style="text-align: right; margin-right: 5px;"><strong>VALOR TOTAL: $</strong><% out.print(total); %><br><br></li>
                                     <li style="background-color:#2a6496; color: #ffffff; text-align: center;"><strong>MI PEDIDO</strong></li>    
-                                    <li><a href="#">Ver detalles</a></li>
-                                    <li><a href="#">Finalizar</a></li>
-                                    <li><a href="#">Resetear </a></li>
+                                    <li style="text-align: center;"><a href="#"><strong>REALIZAR COMPRA</strong></a></li>
+                                    <li class="divider"></li>  
+                                    <li style="text-align: center;"><a href="#">Ver detalles del pedido</a></li>
+                                    <li style="text-align: center;"><a href="#">Resetear pedido</a></li>
                                    
                                  <% }%>
                                 
