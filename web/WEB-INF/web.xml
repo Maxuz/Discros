@@ -4,6 +4,12 @@
         <welcome-file>index.jsp</welcome-file> 
     </welcome-file-list>
     
+    <context-param>
+        <param-name>upload.location</param-name>
+        <param-value>/uploads</param-value>
+    </context-param>
+   
+    
     <servlet>
         <servlet-name>UsuarioController</servlet-name>
         <servlet-class>Controller.UsuarioController</servlet-class>
