@@ -223,7 +223,9 @@
                                         <li class="divider"></li>    
                                         
                                       <%}
-                                        }%>
+                                        }
+                                      session.setAttribute("valorTotalCarrito", total);
+                                      %>
                                         
                                    
                                     <li style="text-align: right; margin-right: 5px;"><strong>VALOR TOTAL: $</strong><% out.print(total); %><br><br></li>
