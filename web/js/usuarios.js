@@ -1,3 +1,5 @@
+/* global Console */
+
 //hacer foco en el primer campo del formulario de usuarios
 $(document).ready(function(){
     $('#email').focus();
@@ -5,7 +7,7 @@ $(document).ready(function(){
 
 
 var validaAlta = function(event){
-
+    
     var mensaje = "";
     var mail = $('#email').val();
     var mail2= $('#email2').val();
@@ -18,7 +20,7 @@ var validaAlta = function(event){
     var ciudad= $('#ciudad').val();
     var direccion = $('#direccion').val();
 
-
+    
     //Validación email
     if(!estaVacio(mail)){
      $('#lblemail1').addClass('lblError').text("(*)Email - Debe ingresar un email.");
