@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-@MultipartConfig(location="/upload", fileSizeThreshold=1024*1024, 
+@MultipartConfig(location="tmp", fileSizeThreshold=1024*1024, 
     maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
 
 public class dAltaController extends HttpServlet {

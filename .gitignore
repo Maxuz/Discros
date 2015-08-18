@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /nbproject/private/
 
 /nbproject/project.properties/
@@ -7,3 +8,15 @@
 /build/
 
 /dist/
+=======
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/nbproject/project.properties
+/nbproject/
+/nbactions.xml
+/nb-configuration.xml
+/src/java/Actions/Conexion.java
+>>>>>>> 018e1bd290a309f5a3b882d6ff2258ad3c147afd

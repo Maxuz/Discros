@@ -8,11 +8,11 @@
         <servlet-name>UsuarioController</servlet-name>
         <servlet-class>Controller.UsuarioController</servlet-class>
     </servlet>
-   
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/usuario.do</url-pattern>
     </servlet-mapping>
+    
     <servlet>
         <servlet-name>PersonaController</servlet-name>
         <servlet-class>Controller.PersonaController</servlet-class>
