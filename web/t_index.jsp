@@ -10,7 +10,8 @@
     <%session.setAttribute("paginaActual", "t_index");%>
     
     <jsp:include page="views/gral/referencias.jsp"/>
-    
+    <jsp:include page="views/gral/t_referencias.jsp"/>
+   
   </head>
   <body>
 

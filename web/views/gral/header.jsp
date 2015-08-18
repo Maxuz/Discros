@@ -153,11 +153,12 @@
                                                
                                                               
                      <%--CARRITO DE COMPRAS--%>                            
-                    <li class="dropdown">
+                    <li class="dropdown" >
                        
-                            
+                        
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/carrito.png" alt="Usuario" WIDTH=20 HEIGHT=20> <strong>
                                 Carrito 
+                                <div id="carrito11">
                                 <% 
                                     String cantidad = (String)session.getAttribute("itemsTotal");
                                     if(cantidad==null)
@@ -169,10 +170,10 @@
                                             }
                                 
                                 %>
-                                
+                                </div>  
                                 </strong><strong class="caret"></strong>
                             </a>
-                            
+                          
                                 
                             
                                 <ul class="dropdown-menu" >                             
