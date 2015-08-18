@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import seguridad.StringMD;
 
 public class uLoginController extends HttpServlet {
 
@@ -21,9 +22,10 @@ public class uLoginController extends HttpServlet {
         RequestDispatcher rd =null;
         try{                        sesion.setAttribute("mensajeExito", null);
                                     String email = request.getParameter("email");
-                                    String pass  = request.getParameter("pass");
+                                    String pass  = StringMD.getStringMessageDigest(request.getParameter("pass"), StringMD.SHA1);
                                     
                                     // REALIZAR MÉTODO PARA ENCRIPTAR
+                                    
                                     //  String pass  = MÉTODOENCRIPTAR(request.getParameter("pass"));
                                     
                                     Usuario user = new Usuario(email, pass);
