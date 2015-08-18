@@ -228,7 +228,7 @@
                                    
                                     <li style="text-align: right; margin-right: 5px;"><strong>VALOR TOTAL: $</strong><% out.print(total); %><br><br></li>
                                     <li style="background-color:#2a6496; color: #ffffff; text-align: center;"><strong>MI PEDIDO</strong></li>    
-                                    <li style="text-align: center;"><a href="#"><strong>REALIZAR COMPRA</strong></a></li>
+                                    <li style="text-align: center;"><a href="p_confirmar.jsp"><strong>REALIZAR COMPRA</strong></a></li>
                                     <li class="divider"></li>  
                                     <li style="text-align: center;"><a href="#">Ver detalles del pedido</a></li>
                                     <li style="text-align: center;"><a href="#">Resetear pedido</a></li>
