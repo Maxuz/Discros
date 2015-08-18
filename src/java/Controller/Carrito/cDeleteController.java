@@ -27,7 +27,7 @@ public class cDeleteController extends HttpServlet {
             
             //SETEO DE LA CANTIDAD DE ITEMS EN EL CARRITO VERIFICANDO LA CANTIDAD ACTUAL
             int cant = Integer.parseInt(sesion.getAttribute("itemsTotal").toString());
-            cant = cant+1;
+            cant = cant-1;
             sesion.setAttribute("itemsTotal", cant);
             
             //SETEO EL DISCO EN LA SESION PARA MOSTRAR LUEGO EN EL CARRITO
@@ -45,9 +45,13 @@ public class cDeleteController extends HttpServlet {
             }else {
                     int i = util.getIndice(listaAux, dis);
                     listaAux.remove(i);
+                    if(listaAux.size()!=0)
+                    {
                     sesion.setAttribute("listaCarrito", listaAux); 
-                    
-                  }
+                    } else {
+                            sesion.setAttribute("listaCarrito", null); 
+                           } 
+                    }
            
             
             
