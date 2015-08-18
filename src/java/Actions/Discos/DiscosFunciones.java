@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+
 public class DiscosFunciones {
     
     // <editor-fold desc="FUNCIONES: ALTA BAJA MODIFICAR">
@@ -246,7 +247,7 @@ public class DiscosFunciones {
          return disco; 
     }
     
-      public ArrayList<Disco>  getAll () throws Exception
+    public ArrayList<Disco>  getAll () throws Exception
     {
         // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
          Connection con = Conexion.getConexion();
@@ -320,6 +321,7 @@ public class DiscosFunciones {
      // </editor-fold>
     
     // <editor-fold desc="FUNCIONES: OTRAS">
+ 
     public boolean buscar(int UPC) throws Exception
     {     boolean status = false;  
         
