@@ -3,16 +3,24 @@ package Controller.Discos;
 import Actions.Canciones.CancionesFunciones;
 import Model.Cancion;
 import Model.Disco;
+import java.io.File;
 import java.io.IOException;
-
-
+import java.io.InputStream;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+
+@SuppressWarnings("serial")
+
 public class dAltaController extends HttpServlet {
 
+ 
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Actions.Discos.DiscosFunciones funciones = new Actions.Discos.DiscosFunciones();
@@ -32,7 +40,12 @@ public class dAltaController extends HttpServlet {
                                         String album = request.getParameter("album");
                                         String genero = request.getParameter("genero");
                                         String descripcion = request.getParameter("descripcion");
+                                        
+                                        //aca
                                         String imagen = request.getParameter("imagen");
+                                        
+                                    
+                                        
                                         int upc= Integer.parseInt(request.getParameter("upc"));
                                         int stock = Integer.parseInt(request.getParameter("stock"));
                                         String fechafecha = request.getParameter("fecha");
