@@ -31,13 +31,14 @@
                                      <strong>Precio:</strong>  $<%out.print(precio);%> <br>
                                      <strong>Stock:</strong><%out.print(dis.getStock());%> <br>
                                      <a href="#">Ver canciones..</a><br><br>
-                                     <button id="<% out.print(dis.getUpc());%>"  
+                                     <button id="agregarItem"  
                                              onclick="agregar(
                                                          '<% out.print(dis.getArtista());%>',
                                                          '<% out.print(dis.getAlbum());%>',
                                                          '<% out.print(precio);%>',
-                                                         this.id)
-                                                                                                      ">
+                                                         '<% out.print(precio);%>') ">
+                                         
+                                         
                                      Agregar a carrito
                                      </button>
                                      
