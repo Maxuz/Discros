@@ -172,7 +172,7 @@
                           
                                 
                             
-                                <ul class="dropdown-menu" >                             
+                                <ul class="dropdown-menu"  style="width: 333px;" >                             
                                  <% 
                                     if(cantidad==0)
                                     {
@@ -200,9 +200,12 @@
                                       <%}%>
                                         
                                    
-                                    <li><br><br><strong>TOTAL: $</strong><% out.print(total); %></li>
-                                    <li style="background-color:#2a6496; color: #ffffff;"><strong>MI PEDIDO</strong></li>    
-                                    
+                                    <li><br><br><strong>TOTAL: $</strong><% out.print(total); %><br><br></li>
+                                    <li style="background-color:#2a6496; color: #ffffff; text-align: center;"><strong>MI PEDIDO</strong></li>    
+                                    <li><a href="#">Ver detalles</a></li>
+                                    <li><a href="#">Finalizar</a></li>
+                                    <li><a href="#">Resetear </a></li>
+                                   
                                  <% }%>
                                 
                             </ul>
