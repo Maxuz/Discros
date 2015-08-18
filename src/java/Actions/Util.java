@@ -1,7 +1,9 @@
 package Actions;
 
+import Model.Disco;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 
 public class Util {
@@ -20,8 +22,27 @@ public class Util {
             {return false;}
     }
     
-    //MÉTODO PARA CODIFICAR LA CONTRASEÑA 
-    
+    //METODO PARA OBTENER INDICE DE UN OBJETO POR PARÁMETRO
+    public int getIndice(ArrayList<Disco> lista, Disco dis)
+    {
+        int upc= dis.getUpc();
+        int indice=0;
+        int i;
+        
+        //for(Disco disc : lista)
+        int cant = lista.size();
+        for(i=0; i<cant; i++)
+        {
+            
+            if(upc == lista.get(i).getUpc())
+            {
+                indice = i;
+                break;
+            }
+        }
+        
+        return indice;
+    }
     
     //MÉTODO CREADO PARA CONVERTIR JAVA.UTIL.DATE EN JAVA.SQL.DATE Y PODER GUARDAR EN LA BASE DE DATOS
     public static Date convertUtilDateToSqlDate(java.util.Date date){
