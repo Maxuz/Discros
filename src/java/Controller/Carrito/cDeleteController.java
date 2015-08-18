@@ -1,25 +1,26 @@
 package Controller.Carrito;
 
+import Actions.Discos.DiscosFunciones;
+import Model.Disco;
 import java.io.IOException;
-
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Model.Disco;
-import Actions.Discos.DiscosFunciones;
-import java.util.ArrayList;
+import Actions.Util;
 
-public class cAddController extends HttpServlet {
+public class cDeleteController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         try
-        {
-            HttpSession sesion = request.getSession(true);
+        {   HttpSession sesion = request.getSession(true);
+            
+            Util util = new Util();
             
             String UPC = request.getParameter("upc");
             int upc = Integer.parseInt(UPC);
@@ -38,11 +39,12 @@ public class cAddController extends HttpServlet {
             
             
             if(listaAux==null)
-            {    lista.add(dis);
+            {    lista.remove(dis);
                  sesion.setAttribute("listaCarrito", lista);
                  
             }else {
-                    listaAux.add(dis);
+                    int i = util.getIndice(listaAux, dis);
+                    listaAux.remove(i);
                     sesion.setAttribute("listaCarrito", listaAux); 
                     
                   }
@@ -53,6 +55,7 @@ public class cAddController extends HttpServlet {
             String nombreVariable = "item"+cant;
             
            
+        
         
         }
         catch(Exception e)

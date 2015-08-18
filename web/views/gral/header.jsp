@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="Model.Disco"%>
 <%@page import="Actions.Discos.DiscosFunciones"%>
 <%@page import="Actions.Canciones.CancionesFunciones"%>
@@ -174,42 +175,58 @@
                             
                                 <ul class="dropdown-menu"  style="width: 333px;" >                             
                                  <% 
-                                    if(cantidad==0)
-                                    {
+                                    //if(cantidad==0)
+                                    ArrayList<Disco> lista = (ArrayList<Disco>)session.getAttribute("listaCarrito");
+                                    if(lista == null)
+                                    { 
+                                        //CARRITO VACÍO
                                         %> 
                                         <li><p style="margin: 2px; text-align: center;"> UPS!<br> Carrito vacío</p></li>
                                         <li><p style="margin: 2px; text-align: center;"> <br><br><a href="t_index.jsp">Agregue su primer producto</a> </p></li>
                                         <%
+                                        
                                      } else{
+                                        
+                                        //CARRITO CON ITEMS
                                         CancionesFunciones funcionesCanciones = new CancionesFunciones();
                                         int i;
                                         double total=0;
                                         
+                                        //INSERTA TÍTULO HTML PARA LISTAR ITEMS
                                         %>
                                         <li style="background-color:#2a6496; color: #ffffff; text-align: center;">
-                                            <strong>Items del Pedido</strong>
+                                            <strong>Items del Pedido</strong><br>
                                         </li>
                                         <%
                                         
                                         //CARGA DE ITEMS AL CARRITO
-                                        for(i=1; i<=cantidad;i++)
-                                        {   String item = "item"+i;
-                                            Disco dis = (Disco)session.getAttribute(item);
-                                            double precio = funcionesCanciones.getOne(dis.getUpc(), 0).getPrecio();
-                                            total = total+precio;
+                                       
+                                        
+                                        for( Disco dis : lista)
+                                        {//Disco dis = lista.get(i);
+                                            
+                                        if(dis!=null)
+                                        {
+                                        double precio = funcionesCanciones.getOne(dis.getUpc(), 0).getPrecio();
+                                        total = total+precio;
                                         %> 
+                                        
                                         <li>
+                                            <button style="float: right;" onclick="borrar('<%out.print(dis.getUpc()); %>')"> 
+                                            <img src="img/delete.png" alt="deleteItem" >
+                                            </button> 
+                                            
                                         <strong>Nombre: </strong><% out.print(dis.getArtista()); %><br>
                                         <strong>Album:</strong><% out.print(dis.getAlbum()); %><br>
-                                        <strong>Precio Unitario: $</strong><% out.print(precio); %></li>
-                                        
+                                        <strong>Precio Unitario: $</strong><% out.print(precio); %>
+                                        </li>
                                         <li class="divider"></li>    
                                         
-                                        
-                                      <%}%>
+                                      <%}
+                                        }%>
                                         
                                    
-                                      <li style="text-align: right; margin-right: 5px;"><strong>VALOR TOTAL: $</strong><% out.print(total); %><br><br></li>
+                                    <li style="text-align: right; margin-right: 5px;"><strong>VALOR TOTAL: $</strong><% out.print(total); %><br><br></li>
                                     <li style="background-color:#2a6496; color: #ffffff; text-align: center;"><strong>MI PEDIDO</strong></li>    
                                     <li style="text-align: center;"><a href="#"><strong>REALIZAR COMPRA</strong></a></li>
                                     <li class="divider"></li>  

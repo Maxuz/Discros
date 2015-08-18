@@ -3,16 +3,18 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-
     <servlet>
         <servlet-name>UsuarioController</servlet-name>
         <servlet-class>Controller.UsuarioController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cDeleteController</servlet-name>
+        <servlet-class>Controller.Carrito.cDeleteController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/usuario.do</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>PersonaController</servlet-name>
         <servlet-class>Controller.PersonaController</servlet-class>
@@ -205,7 +207,7 @@
         <servlet-name>uOlvideController</servlet-name>
         <url-pattern>/uOlvide.do</url-pattern>
     </servlet-mapping>
-     <servlet>
+    <servlet>
         <servlet-name>cAddController</servlet-name>
         <servlet-class>Controller.Carrito.cAddController</servlet-class>
     </servlet>
@@ -213,7 +215,6 @@
         <servlet-name>cAddController</servlet-name>
         <url-pattern>/cAdd.do</url-pattern>
     </servlet-mapping>
-    
     <!--
     <servlet>
         <servlet-name>Home</servlet-name>
@@ -224,7 +225,10 @@
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
     -->
-   
+    <servlet-mapping>
+        <servlet-name>cDeleteController</servlet-name>
+        <url-pattern>/cDelete.do</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
