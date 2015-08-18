@@ -8,7 +8,8 @@
    
      <!-- CONTROLA SI HAY UN USUARIO LOGUEADO-->
     <% if(session.getAttribute("nombre")==null){%>
-        <br><h3 style="text-align: center; font-style: italic;">Lo sentimos, acceso sólo para usuarios logueados.</h3><hr><br>
+        <br><h3 style="text-align: center; font-style: italic;">Lo sentimos, acceso sólo para usuarios logueados.</h3>
+        <h4 style="text-align: center;"><a href="u_login.jsp" >Inicie sesión</a></h4><hr><br>
      
         <%   response.sendRedirect("u_login.jsp"); }  
     else {%>
@@ -67,8 +68,8 @@
                                         </div>
                                      
           <%}else{ %>
-            <br><h3 style="text-align: center; font-style: italic;">El carrito esta vacio, para realizar su compra ingrese a la tienda</h3><hr><br>
-            <h3><a href="t_index.jsp" style="text-align: center;">Ingresar a la Tienda</a></h3>
+            <br><h3 style="text-align: center; font-style: italic;">El carrito esta vacio, para realizar su compra ingrese a la tienda</h3><hr>
+            <h3 style="text-align: center;"><a href="t_index.jsp" >Ingresar a la Tienda</a></h3><br>
                     <%};
                         } %>
 </div>                
