@@ -28,6 +28,9 @@ public class uModificarController extends HttpServlet {
                                         {   
                                             String email = temp;
                                             String pass = request.getParameter("pass");
+                                             // REALIZAR MÉTODO PARA ENCRIPTAR
+                                             //  String pass  = MÉTODOENCRIPTAR(request.getParameter("pass"));
+                                            
                                             String nombre = request.getParameter("nombre");
                                             String apellido = request.getParameter("apellido");
                                             String direccion = request.getParameter("direccion");

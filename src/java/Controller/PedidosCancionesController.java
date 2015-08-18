@@ -3,7 +3,7 @@ package Controller;
 import Actions.Pedidos.PedidosFunciones;
 import Actions.Canciones.CancionesFunciones;
 import Actions.PedidosCanciones.PedidosCancionesFunciones;
-import Actions.Validacion;
+import Actions.Util;
 import Model.PedidosCanciones;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -16,7 +16,7 @@ public class PedidosCancionesController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Validacion validar = new Validacion();
+        Util validar = new Util();
         String funcion = request.getParameter("funcion");
         
         PedidosCancionesFunciones funciones = new PedidosCancionesFunciones();

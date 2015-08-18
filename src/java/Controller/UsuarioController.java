@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import Model.Usuario;
-import Actions.Validacion;
+import Actions.Util;
 import javax.servlet.RequestDispatcher;
 
 import Json.*;
@@ -22,7 +22,7 @@ public class UsuarioController extends HttpServlet {
         throws ServletException, IOException {
         
                 
-        Validacion validar = new Validacion();
+        Util validar = new Util();
         String funcion = request.getParameter("funcion");
         HttpSession sesion = request.getSession(true); 
         Actions.Usuarios.UsuariosFunciones funciones = new Actions.Usuarios.UsuariosFunciones();

@@ -10,7 +10,7 @@ public class Pedido {
     // <editor-fold desc="DEFINICIÓN DE VARIABLES">
     private int id_pedido;
     private float valor;
-    private String fecha_caduca;//VERIFICAR CÓMO SE USA LA VARIABLE DATE
+    private Date fecha;//VERIFICAR CÓMO SE USA LA VARIABLE DATE
     private String estado;
     
     //CLAVE FORÁNEA
@@ -24,11 +24,11 @@ public class Pedido {
     public Pedido()
     {}
     
-    public Pedido(int id, float valor, String fecha_c, String estado, String email)
+    public Pedido(int id, float valor, Date fecha_c, String estado, String email)
     {
         this.id_pedido=id;
         this.valor=valor;
-        this.fecha_caduca=fecha_c;
+        this.fecha=fecha_c;
         this.estado=estado;
         this.email=email;
         
@@ -38,15 +38,16 @@ public class Pedido {
     
     // <editor-fold desc="SET DE DATOS ">
     
-    public void setDatos(int id, float valor, String fecha_c, String estado, String email)
+    public void setDatos(int id, float valor, Date fecha_c, String estado, String email)
     {
         this.id_pedido=id;
         this.valor=valor;
-        this.fecha_caduca=fecha_c;
-        this.estado=estado;
+        this.fecha=fecha_c;
         this.email=email;
-        
+        this.estado=estado;
     }
+    
+   
     
     // </editor-fold>
     
@@ -61,9 +62,9 @@ public class Pedido {
         return this.valor;
     }
     
-    public String getFecha()
+    public Date getFecha()
     {
-        return this.fecha_caduca;
+        return this.fecha;
     }
     
     public String getEstado()

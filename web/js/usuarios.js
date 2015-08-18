@@ -41,7 +41,7 @@ var validaAlta = function(event){
     //Validacion Contraseña  
     if(!estaVacio(pass)){
       mensaje = mensaje + "contraseña\n";
-      $('#lblPass').addClass('lblError').text("(*)Contraseña - Debe ingresar una contrase\u00f1a.");
+      $('#lblPass').addClass('lblError').text("(*)Contrase\u00f1a - Debe ingresar una contrase\u00f1a.");
     }  else{
                  $('#lblPass').removeClass('lblError').text("Contrase\u00f1a:");};
     

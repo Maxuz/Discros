@@ -5,8 +5,11 @@ import Model.Pedido;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class PedidosFunciones {
+
+    
 // <editor-fold desc="FUNCIONES: ALTA BAJA MODIFICAR">
           
     public boolean alta(Pedido pedido) throws Exception
@@ -129,11 +132,11 @@ public class PedidosFunciones {
         // </editor-fold>
         
           try { // <editor-fold desc="QUERY Y RESULTADO">
-            pst = con.prepareStatement("UPDATE `pedidos` SET valor=?, estado=?, fecha_caduca=? WHERE id_pedido='"+ pedido.getID()+"' ");
+            pst = con.prepareStatement("UPDATE `pedidos` SET valor=?, estado=?, fecha=? WHERE id_pedido=? ");
                
             pst.setFloat(1, pedido.getValor());
             pst.setString(2, pedido.getEstado());
-            pst.setString(3, pedido.getFecha());
+            pst.setDate(3, Actions.Util.convertUtilDateToSqlDate(pedido.getFecha()));
             
             pst.executeUpdate();  
           
@@ -190,13 +193,14 @@ public class PedidosFunciones {
         
           try { // <editor-fold desc="QUERY Y RESULTADO">
               //ESCRIBIR LA CONSULTA CORRECTA
-            pst = con.prepareStatement("select * from pedidos where id_pedido='"+id+"'");  
+            pst = con.prepareStatement("select * from pedidos where id_pedido=? ");
+            pst.setInt(1, id);
             rs = pst.executeQuery();  
             
            
             if(rs.next())
             {
-              pedido.setDatos(rs.getInt("id_pedido"), rs.getFloat("valor"),rs.getString("fecha_caduca"),
+              pedido.setDatos(rs.getInt("id_pedido"), rs.getFloat("valor"),rs.getDate("fecha"),
                                     rs.getString("estado"), rs.getString("email"));
             }
             
@@ -241,6 +245,74 @@ public class PedidosFunciones {
         
          return pedido; 
     }
+    
+    public ArrayList<Pedido>  getAll (String email) throws Exception
+    {
+        // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
+         Connection con = Conexion.getConexion();
+         PreparedStatement pst = null;  
+         ResultSet rs = null;  
+       
+         ArrayList<Pedido> lista = new ArrayList<>();
+         
+        // </editor-fold>
+         
+        
+          try { // <editor-fold desc="QUERY Y RESULTADO">
+              //ESCRIBIR LA CONSULTA CORRECTA
+            pst = con.prepareStatement("select * from pedidos where email=? ORDER BY fecha DESC");  
+            pst.setString(1, email);
+            rs = pst.executeQuery();  
+             
+            while(rs.next())
+            {  Pedido pedido = new Pedido();
+                
+               pedido.setDatos(rs.getInt("id_pedido"), rs.getFloat("valor"),rs.getDate("fecha"), rs.getString("estado"), email);
+               lista.add(pedido);
+            }
+             
+            
+        // </editor-fold>
+            
+              } 
+          catch (Exception e) {  
+                throw e;  
+              } 
+          finally {  
+               // <editor-fold desc="CIERRA: CON, PST, RS">
+            if (con != null) {  
+                try {  
+                    Actions.Conexion.cerrarConexion();
+                   
+                 } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (rs != null) {  
+                try {  
+                    rs.close();  
+                } catch (Exception e) {  
+                    System.out.println(e);
+                    //e.printStackTrace();  
+                }  
+                
+            }
+          
+            
+          }
+         // </editor-fold>
+         
+         return lista; 
+    }
+    
+    
 // </editor-fold>
     
 // <editor-fold desc="FUNCIONES: OTRAS">

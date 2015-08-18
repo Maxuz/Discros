@@ -2,9 +2,10 @@ package Controller;
 
 import Actions.Usuarios.UsuariosFunciones;
 import Actions.Pedidos.PedidosFunciones;
-import Actions.Validacion;
+import Actions.Util;
 import Model.Pedido;
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +19,7 @@ public class PedidoController extends HttpServlet {
             throws ServletException, IOException {
       
        
-        Validacion validar = new Validacion();
+        Util validar = new Util();
         String funcion = request.getParameter("funcion");
         
         PedidosFunciones funciones = new PedidosFunciones();
@@ -41,12 +42,11 @@ public class PedidoController extends HttpServlet {
                                                 
                                                 String email = request.getParameter("email");
                                                 String estado = request.getParameter("estado");
-                                                String fecha = request.getParameter("fecha");
+                                                long fecha = Date.parse(request.getParameter("fecha"));
                                                 
                                                 float valor = Float.parseFloat(request.getParameter("valor"));
-                                                
-
-                                                Pedido pedido = new Pedido(id, valor, fecha, estado, email);
+                                                Date fecha2 = null;
+                                                Pedido pedido = new Pedido(id, valor, fecha2, estado, email);
                                                 funciones.alta(pedido);
 
                                                 response.getWriter().print("EL PEDIDO SE REGISTRÓ CORRECTAMENTE");
@@ -95,8 +95,8 @@ public class PedidoController extends HttpServlet {
                                                 
                                                 float valor = Float.parseFloat(request.getParameter("valor"));
                                                 
-
-                                                Pedido pedido = new Pedido(id, valor, fecha, estado, email);
+                                                Date fecha2 = null;
+                                                Pedido pedido = new Pedido(id, valor, fecha2, estado, email);
                                                 funciones.modificar(pedido);
 
                                                 response.getWriter().print("EL PEDIDO SE ACTUALIZÓ CORRECTAMENTE");

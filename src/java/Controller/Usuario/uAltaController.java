@@ -1,6 +1,6 @@
 package Controller.Usuario;
 
-import Actions.Validacion;
+import Actions.Util;
 import Model.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,7 +16,7 @@ public class uAltaController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Validacion validar = new Validacion();
+        Util validar = new Util();
         HttpSession sesion = request.getSession(true); 
         RequestDispatcher rd =null;
         Actions.Usuarios.UsuariosFunciones funciones = new Actions.Usuarios.UsuariosFunciones();
@@ -29,6 +29,10 @@ public class uAltaController extends HttpServlet {
                                     String pass  = request.getParameter("pass");
                                     String email2 = request.getParameter("email2");
                                     String pass2 = request.getParameter("pass2");
+                                    
+                                     // REALIZAR MÉTODO PARA ENCRIPTAR
+                                    //  String pass  = MÉTODOENCRIPTAR(request.getParameter("pass"));
+                                    //  String pass  = MÉTODOENCRIPTAR(request.getParameter("pass"));
                                     
                                     if(validar.esIgual(email, email2) && !validar.estaVacio(email) && !validar.estaVacio(email2))
                                     {

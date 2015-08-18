@@ -5,6 +5,7 @@ import Actions.Usuarios.UsuariosFunciones;
 import Model.Pedido;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +32,7 @@ public class pAltaController extends HttpServlet {
                                                 
                                                 String email = request.getParameter("email");
                                                 String estado = request.getParameter("estado");
-                                                String fecha = request.getParameter("fecha");
+                                                Date fecha = new Date();
                                                 
                                                 float valor = Float.parseFloat(request.getParameter("valor"));
                                                 

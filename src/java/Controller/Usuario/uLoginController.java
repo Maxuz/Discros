@@ -22,6 +22,10 @@ public class uLoginController extends HttpServlet {
         try{                        sesion.setAttribute("mensajeExito", null);
                                     String email = request.getParameter("email");
                                     String pass  = request.getParameter("pass");
+                                    
+                                    // REALIZAR MÉTODO PARA ENCRIPTAR
+                                    //  String pass  = MÉTODOENCRIPTAR(request.getParameter("pass"));
+                                    
                                     Usuario user = new Usuario(email, pass);
                                   
                                     if(funciones.login(user))
