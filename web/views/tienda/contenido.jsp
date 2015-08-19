@@ -1,10 +1,33 @@
 <div style="margin-top: 60px; background-color: floralwhite; margin-bottom: 10px">
     <br><h2 style="text-align: center;">Tienda virtual</h2>
     <div class="row" style="margin-left: 15%; margin-right: 15%; margin-bottom: 2%" >
-    <h3>VER TODOS..</h3>
-    <hr>  
-    <a href="t_busqueda.jsp">#DISCOS</a>
-    <br> <br>
+    
+        <div class="row">
+            
+        <!-- TODOS  --> 
+        <div class="col-md-4">
+            <a href="t_busqueda.jsp?tipolista=todos"><img class="img-responsive img-tienda"  src="img/cds.jpg" alt="todos"/>
+        <h4 style="text-align: center;">Ver todos los discos.</h4></a>   
+        </div>
+        
+        <!-- ARTISTAS -->
+    	<div class="col-md-4">
+            <a href="t_listas.jsp?tipolista=artista"> <img class="img-responsive img-tienda" src="img/artista.jpg" alt="artistas"/>
+            <h4 style="text-align: center;">Ver lista de artistas.</h4></a>   
+        </div>
+        
+        <!-- GENEROS --> 
+        <div class="col-md-4">   
+         <a href="t_listas.jsp?tipolista=genero"><img class="img-responsive img-tienda" src="img/album.jpg" alt="generos" />
+             <h4 style="text-align: center;">Ver lista de géneros musicales.</h4></a>   
+        </div>
+        
+        </div>
+    
+    
+    
+    
+    
     
     <h3>Realizar una búsqueda específica</h3>
     <hr>

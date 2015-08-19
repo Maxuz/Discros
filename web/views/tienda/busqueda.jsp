@@ -5,6 +5,7 @@
 
 <div style="margin-top: 60px; background-color: #FFF; margin-bottom: 10px">
     <br><h2 style="text-align: center;">Resultados de la búsqueda</h2>
+    <div style="margin-left:  15px;"><a href="javascript:window.history.back();"><h4>&laquo; Volver atrás</h4></a></div> <hr>
     <ul id="cd-gallery-items" class="cd-container" style="padding-top: 20px">
 			
                    <%  
@@ -12,8 +13,12 @@
                         CancionesFunciones funcionesCanciones = new CancionesFunciones();
                         Disco dis = new Disco();
                         ArrayList<Model.Disco> lista = new ArrayList<Model.Disco>();
+                        String tipo = request.getParameter("tipolista");
                         
-                        lista = funciones.getAll();
+                        
+                        if(tipo.equals("todos"))
+                        {lista = funciones.getAll();
+                        }
                         
                         int i;
                         int f = lista.size();

@@ -532,14 +532,14 @@ public class DiscosFunciones {
     }
     
     
-    public ArrayList<String>  getListaArtista (String artista) throws Exception
+    public ArrayList<String>  getListaArtistas () throws Exception
     {
         // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
          Connection con = Conexion.getConexion();
          PreparedStatement pst = null;  
          ResultSet rs = null;  
        
-         ArrayList<Disco> lista = new ArrayList<>();
+         ArrayList<String> lista = new ArrayList<>();
          
         // </editor-fold>
          
@@ -547,19 +547,80 @@ public class DiscosFunciones {
           try { // <editor-fold desc="QUERY Y RESULTADO">
               //ESCRIBIR LA CONSULTA CORRECTA
             pst = con.prepareStatement("select artista from discos GROUP BY artista ");  
-            pst.setString(1, artista);
+           
             rs = pst.executeQuery();  
                        
             
             while(rs.next())
-            { 
+            {   String st = null;
+                st=rs.getString("artista");
+                lista.add(st);
+            }
+             
+            
+        // </editor-fold>
+            
+              } 
+          catch (Exception e) {  
+                throw e;  
+              } 
+          finally {  
+               // <editor-fold desc="CIERRA: CON, PST, RS">
+            if (con != null) {  
+                try {  
+                    Actions.Conexion.cerrarConexion();
+                   
+                 } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (rs != null) {  
+                try {  
+                    rs.close();  
+                } catch (Exception e) {  
+                    System.out.println(e);
+                    //e.printStackTrace();  
+                }  
                 
-                Disco disco = new Disco();
-                
-                disco.setDatos(rs.getString("artista"), rs.getString("album"),rs.getString("genero"),
-                                    rs.getString("descripcion"), rs.getString("imagen"),rs.getInt("upc"),
-                                    rs.getInt("stock"),rs.getString("fecha_salida"));
-              lista.add(disco);
+            }
+          
+            
+          }
+         // </editor-fold>
+         
+         return lista; 
+    }
+    
+     public ArrayList<String>  getListaGeneros () throws Exception
+    {
+        // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
+         Connection con = Conexion.getConexion();
+         PreparedStatement pst = null;  
+         ResultSet rs = null;  
+       
+         ArrayList<String> lista = new ArrayList<>();
+         
+        // </editor-fold>
+         
+        
+          try { // <editor-fold desc="QUERY Y RESULTADO">
+              //ESCRIBIR LA CONSULTA CORRECTA
+            pst = con.prepareStatement("select genero from discos GROUP BY genero ");  
+           
+            rs = pst.executeQuery();  
+                       
+            
+            while(rs.next())
+            {   String st = null;
+                st=rs.getString("genero");
+                lista.add(st);
             }
              
             

@@ -30,3 +30,17 @@
     color: red;
     font-weight: bold;
 }
+
+.img-tienda
+{
+    
+    
+}
+
+.img-tienda:hover
+{
+    opacity: 0.75;
+    filter: alpha(opacity=75);
+  
+    
+}
