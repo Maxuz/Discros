@@ -61,13 +61,25 @@
                                              </tr>
                                             <%
                                         }
+                                        
                                         };%>
+                                        <tr>
+                                            <td><strong>Total</strong></td>
+                                             <td></td>
+                                             <td></td>
+                                             <td></td>
+                                             <td></td>
+                                             <td></td>
+                                             <td><strong>$ <% out.print(session.getAttribute("valorTotalCarrito")); %></strong></td>
+                                             
+                                             </tr>
                                         </table>
+                                        <a class="btn btn-primary btn-large" style="float: right;" href="pAlta.do">Confirmar</a> <br><br>
                                         </div>
-                                        <a class="btn btn-primary btn-large" style="float: right;" href="pAlta.do">Confirmar/a>
+                                       
                                      
           <%}else{ %>
-            <br><h3 style="text-align: center; font-style: italic;">El carrito esta vacio, para realizar su compra ingrese a la tienda</h3><hr>
+            <br><h3 style="text-align: center; ">El carrito esta vacio, para realizar su compra ingrese a la tienda</h3><hr>
             <h3 style="text-align: center;"><a href="t_index.jsp">Ingresar a la Tienda</a> </h3><br>
                     <%};
                         } %>
