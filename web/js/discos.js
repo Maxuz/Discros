@@ -2,6 +2,7 @@
 
 //FUNCION PARA VALIDAR EL FORMULARIO ALTA
 
+ 
 var funciones = {
 
     validaAlta: function(e){
