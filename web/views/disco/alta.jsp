@@ -95,7 +95,7 @@
 
                              <div class="col-xs-8">
                              <label for="imagen" id="lblImagen">Imágen de la tapa del disco</label>
-                             <input type="file" id="imagen">
+                             <input type="file" id="file" name="file">
                              <p class="help-block">Seleccione un archivo con extensión .jpg y no menor a: 200x200px.</p>
                              </div>
                              <br><br><br><br><br><br>

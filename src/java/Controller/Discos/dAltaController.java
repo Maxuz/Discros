@@ -20,16 +20,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-@MultipartConfig(location="tmp", fileSizeThreshold=1024*1024, 
-    maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
+@MultipartConfig(location="C:/img", fileSizeThreshold=1024*1024, maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
 
 public class dAltaController extends HttpServlet {
     private final static Logger LOGGER =  Logger.getLogger(dAltaController.class.getCanonicalName());
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        final String path = request.getParameter("http://localhost:8080/upload/");
-        final Part filePart = request.getPart("imagen");
+        final String path = "C:/img";
+        final Part filePart = request.getPart("file");
         final String fileName = getFileName(filePart);
         OutputStream out = null;
         InputStream filecontent = null;
