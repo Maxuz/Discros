@@ -13,7 +13,7 @@ var funciones = {
     var stock = $("#stock").val();
     var descri = $("#descripcion").val();
     var precio = $("#precio").val();
-    var img = $("#imagen").val();
+    var img = $("#file").val();
     var mensaje ="";
 
     if(!estaVacio(upc)){
