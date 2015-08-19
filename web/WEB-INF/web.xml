@@ -10,7 +10,7 @@
     <servlet>
         <servlet-name>cDeleteController</servlet-name>
         <servlet-class>Controller.Carrito.cDeleteController</servlet-class>
-    </servlet>
+    </servlet>    
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/usuario.do</url-pattern>
@@ -38,14 +38,6 @@
     <servlet-mapping>
         <servlet-name>Pie</servlet-name>
         <url-pattern>/pie</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>PedidoController</servlet-name>
-        <servlet-class>Controller.PedidoController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>PedidoController</servlet-name>
-        <url-pattern>/pedidos.do</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>DiscosController</servlet-name>
@@ -224,11 +216,20 @@
         <servlet-name>Home</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
+     <servlet>
+        <servlet-name>PedidoController</servlet-name>
+        <servlet-class>Controller.PedidoController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PedidoController</servlet-name>
+        <url-pattern>/pedidos.do</url-pattern>
+    </servlet-mapping>
     -->
     <servlet-mapping>
         <servlet-name>cDeleteController</servlet-name>
         <url-pattern>/cDelete.do</url-pattern>
     </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30
