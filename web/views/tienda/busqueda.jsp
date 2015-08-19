@@ -1,27 +1,84 @@
 <%@page import="Actions.Canciones.CancionesFunciones"%>
 <%@page import="java.util.*"%>
+<%@page import="Actions.Util"%>
 <%@page import="Model.Disco"%>
 <%@page import="Actions.Discos.DiscosFunciones"%>
 
 <div style="margin-top: 60px; background-color: #FFF; margin-bottom: 10px">
     <br><h2 style="text-align: center;">Resultados de la búsqueda</h2>
     <div style="margin-left:  15px;"><a href="javascript:window.history.back();"><h4>&laquo; Volver atrás</h4></a></div> <hr>
-    <ul id="cd-gallery-items" class="cd-container" style="padding-top: 20px">
+    
+    
+    <!-- CÓDIGO PARA CARGAR EL ARRAY DE LOS DISCOS -->
+    <%  
+     
+    //VARIABLES PARA LAS SOLICITUDES A LA BASE DE DATOS
+    DiscosFunciones funciones = new DiscosFunciones();
+    CancionesFunciones funcionesCanciones = new CancionesFunciones();
+
+    //VARIABLES DE DISCOS
+    Disco dis = new Disco();
+    ArrayList<Model.Disco> lista = new ArrayList<Model.Disco>();
+
+    //VARIABLES AUXILIARES
+    boolean ctrlTipo = false;
+
+    //RECUPERA PARÁMETRO DE LA URL
+    String tipo = (String)request.getParameter("tipo");
+    
+    
+    
+    //SEGÚN EL TIPO RECIBIDO REALIZA LA CONSULTA PERTINENTE
+        Util util = new Util();
+        int tipoInt = util.getInt(tipo);
+        
+        switch(tipoInt) {
+            case 0:
+                lista=funciones.getAll();
+                break;
+            case 1:
+                lista=funciones.getAll();
+                break;
+            case 2:
+                out.println("It\'s Tuesday.");
+                break;
+            case 3:
+                out.println("It\'s Wednesday.");
+                break;
+            case 4:
+                out.println("It\'s Thursday.");
+                break;
+            case 5:
+                out.println("It\'s Friday.");
+                break;
+            
+        }
+    
+    
+    %>
+    
+    <!-- CÓDIGO QUE REALIZA EL CONTROL DE LA CARGA DE LA LISTA DE DISCOS-->
+    <% 
+       
+    int i;
+    int f = lista.size();
+
+
+    if(ctrlTipo)
+    {%> <!-- HTML PARA UN TIPO DE BÚSQUEDA INCORRECTO -->
+        ENTRA EN IF
+        
+    <%}else{
+            if(f==0)
+            {%><!-- HTML PARA UN RESULTADO DE BÚSQUEDA VACÍO -->
+            ENTRA EN ELSE/IF
+            
+            <%}else{%>
+                
+            <h4 style="font-style: italic; margin-left:  20px">Cantidad de resultados: <%out.print(f);;%></h4>
+                <ul id="cd-gallery-items" class="cd-container" style="padding-top: 20px;">
 			
                    <%  
-                        DiscosFunciones funciones = new DiscosFunciones();
-                        CancionesFunciones funcionesCanciones = new CancionesFunciones();
-                        Disco dis = new Disco();
-                        ArrayList<Model.Disco> lista = new ArrayList<Model.Disco>();
-                        String tipo = request.getParameter("tipolista");
-                        
-                        
-                        if(tipo.equals("todos"))
-                        {lista = funciones.getAll();
-                        }
-                        
-                        int i;
-                        int f = lista.size();
                         for(i=0;i<f;i++) 
                         { dis = lista.get(i); 
                           double precio = funcionesCanciones.getOne(dis.getUpc(), 0).getPrecio();
@@ -51,5 +108,11 @@
                       
 
 		</ul> <!-- cd-gallery-items -->
+                 
+            <%}    
+    }                 
+    %>
+    
+   
               
 </div>                

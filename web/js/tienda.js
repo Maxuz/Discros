@@ -19,7 +19,7 @@ function agregar(upc){
             });
  };
  
- function borrar(upc){
+function borrar(upc){
        $.ajax("cDelete.do", {
              
              type: "POST",
@@ -39,3 +39,34 @@ function agregar(upc){
             
             });
  };
+ 
+function validaBusqueda()
+{
+    var ok =0;
+    
+    var texto = $('#texto').val();
+    var tipo = $('#tipo').val();;
+    
+    if(!estaVacio(texto))
+    {   
+        $("#formText").addClass('has-error');
+    
+    }else   {
+             $("#formText").removeClass('has-error');
+             ok=ok+1;
+        
+            }
+            
+    if(!estaVacio(tipo))
+    {    $("#formTipo").addClass('has-error');
+    
+    }else   {
+             $("#formTipo").removeClass('has-error');
+             ok=ok+1;   
+        
+            }
+    
+    if(ok===2){
+    window.location.href= "t_busqueda.jsp?texto="+texto+"&tipo="+tipo;
+    }
+}; 

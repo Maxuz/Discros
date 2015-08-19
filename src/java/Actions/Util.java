@@ -61,4 +61,32 @@ public class Util {
         String currentDate = ft.format(dNow);
     }
     
+    //METODO PARA OBTENER ENTERO SEGÚN EL STRING - SE USA EN T_BUSQUEDA.JSP
+    
+    public int getInt(String tipo)
+    {
+        int id;
+        
+        switch(tipo){
+        case "todos":       id = 1 ;
+                             break;
+                            
+
+        case "artista":     id = 2;
+                            break;
+                            
+
+        case "album":      id = 3;
+
+                            break;
+                            
+
+        case "genero":      id = 4; 
+                            break;
+                            
+        default: id = 0;
+                 
+        }
+        return  id;
+    }
 }
