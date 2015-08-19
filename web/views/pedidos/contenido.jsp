@@ -70,7 +70,7 @@
                                              <td></td>
                                              <td></td>
                                              <td></td>
-                                             <td><strong>$ <% out.print(session.getAttribute("totalValorCarrito")); %></strong></td>
+                                             <td><strong>$ <% out.print(session.getAttribute("valorTotalCarrito")); %></strong></td>
                                              
                                              </tr>
                                         </table>
