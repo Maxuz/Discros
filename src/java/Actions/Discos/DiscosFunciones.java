@@ -318,6 +318,291 @@ public class DiscosFunciones {
          
          return lista; 
     }
+    
+    
+    public ArrayList<Disco>  getAllArtista (String artista) throws Exception
+    {
+        // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
+         Connection con = Conexion.getConexion();
+         PreparedStatement pst = null;  
+         ResultSet rs = null;  
+       
+         ArrayList<Disco> lista = new ArrayList<>();
+         
+        // </editor-fold>
+         
+        
+          try { // <editor-fold desc="QUERY Y RESULTADO">
+              //ESCRIBIR LA CONSULTA CORRECTA
+            pst = con.prepareStatement("select * from discos where artista=?");  
+            pst.setString(1, artista);
+            rs = pst.executeQuery();  
+                       
+            
+            while(rs.next())
+            { 
+                
+                Disco disco = new Disco();
+                
+                disco.setDatos(rs.getString("artista"), rs.getString("album"),rs.getString("genero"),
+                                    rs.getString("descripcion"), rs.getString("imagen"),rs.getInt("upc"),
+                                    rs.getInt("stock"),rs.getString("fecha_salida"));
+              lista.add(disco);
+            }
+             
+            
+        // </editor-fold>
+            
+              } 
+          catch (Exception e) {  
+                throw e;  
+              } 
+          finally {  
+               // <editor-fold desc="CIERRA: CON, PST, RS">
+            if (con != null) {  
+                try {  
+                    Actions.Conexion.cerrarConexion();
+                   
+                 } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (rs != null) {  
+                try {  
+                    rs.close();  
+                } catch (Exception e) {  
+                    System.out.println(e);
+                    //e.printStackTrace();  
+                }  
+                
+            }
+          
+            
+          }
+         // </editor-fold>
+         
+         return lista; 
+    }
+    
+    public ArrayList<Disco>  getAllGenero (String genero) throws Exception
+    {
+        // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
+         Connection con = Conexion.getConexion();
+         PreparedStatement pst = null;  
+         ResultSet rs = null;  
+       
+         ArrayList<Disco> lista = new ArrayList<>();
+         
+        // </editor-fold>
+         
+        
+          try { // <editor-fold desc="QUERY Y RESULTADO">
+              //ESCRIBIR LA CONSULTA CORRECTA
+            pst = con.prepareStatement("select * from discos where genero=?");  
+            pst.setString(1, genero);
+            rs = pst.executeQuery();  
+             
+            while(rs.next())
+            { 
+                
+                Disco disco = new Disco();
+                
+                disco.setDatos(rs.getString("artista"), rs.getString("album"),rs.getString("genero"),
+                                    rs.getString("descripcion"), rs.getString("imagen"),rs.getInt("upc"),
+                                    rs.getInt("stock"),rs.getString("fecha_salida"));
+              lista.add(disco);
+            }
+             
+            
+        // </editor-fold>
+            
+              } 
+          catch (Exception e) {  
+                throw e;  
+              } 
+          finally {  
+               // <editor-fold desc="CIERRA: CON, PST, RS">
+            if (con != null) {  
+                try {  
+                    Actions.Conexion.cerrarConexion();
+                   
+                 } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (rs != null) {  
+                try {  
+                    rs.close();  
+                } catch (Exception e) {  
+                    System.out.println(e);
+                    //e.printStackTrace();  
+                }  
+                
+            }
+          
+            
+          }
+         // </editor-fold>
+         
+         return lista; 
+    }
+    
+    public ArrayList<Disco>  getAllAlbum (String album) throws Exception
+    {
+        // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
+         Connection con = Conexion.getConexion();
+         PreparedStatement pst = null;  
+         ResultSet rs = null;  
+       
+         ArrayList<Disco> lista = new ArrayList<>();
+         
+        // </editor-fold>
+         
+        
+          try { // <editor-fold desc="QUERY Y RESULTADO">
+              //ESCRIBIR LA CONSULTA CORRECTA
+            pst = con.prepareStatement("select * from discos where album=?");  
+            pst.setString(1, album);
+            rs = pst.executeQuery();  
+             
+            while(rs.next())
+            { 
+                
+                Disco disco = new Disco();
+                
+                disco.setDatos(rs.getString("artista"), rs.getString("album"),rs.getString("genero"),
+                                    rs.getString("descripcion"), rs.getString("imagen"),rs.getInt("upc"),
+                                    rs.getInt("stock"),rs.getString("fecha_salida"));
+              lista.add(disco);
+            }
+             
+            
+        // </editor-fold>
+            
+              } 
+          catch (Exception e) {  
+                throw e;  
+              } 
+          finally {  
+               // <editor-fold desc="CIERRA: CON, PST, RS">
+            if (con != null) {  
+                try {  
+                    Actions.Conexion.cerrarConexion();
+                   
+                 } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (rs != null) {  
+                try {  
+                    rs.close();  
+                } catch (Exception e) {  
+                    System.out.println(e);
+                    //e.printStackTrace();  
+                }  
+                
+            }
+          
+            
+          }
+         // </editor-fold>
+         
+         return lista; 
+    }
+    
+    
+    public ArrayList<String>  getListaArtista (String artista) throws Exception
+    {
+        // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
+         Connection con = Conexion.getConexion();
+         PreparedStatement pst = null;  
+         ResultSet rs = null;  
+       
+         ArrayList<Disco> lista = new ArrayList<>();
+         
+        // </editor-fold>
+         
+        
+          try { // <editor-fold desc="QUERY Y RESULTADO">
+              //ESCRIBIR LA CONSULTA CORRECTA
+            pst = con.prepareStatement("select artista from discos GROUP BY artista ");  
+            pst.setString(1, artista);
+            rs = pst.executeQuery();  
+                       
+            
+            while(rs.next())
+            { 
+                
+                Disco disco = new Disco();
+                
+                disco.setDatos(rs.getString("artista"), rs.getString("album"),rs.getString("genero"),
+                                    rs.getString("descripcion"), rs.getString("imagen"),rs.getInt("upc"),
+                                    rs.getInt("stock"),rs.getString("fecha_salida"));
+              lista.add(disco);
+            }
+             
+            
+        // </editor-fold>
+            
+              } 
+          catch (Exception e) {  
+                throw e;  
+              } 
+          finally {  
+               // <editor-fold desc="CIERRA: CON, PST, RS">
+            if (con != null) {  
+                try {  
+                    Actions.Conexion.cerrarConexion();
+                   
+                 } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (rs != null) {  
+                try {  
+                    rs.close();  
+                } catch (Exception e) {  
+                    System.out.println(e);
+                    //e.printStackTrace();  
+                }  
+                
+            }
+          
+            
+          }
+         // </editor-fold>
+         
+         return lista; 
+    }
+    
      // </editor-fold>
     
     // <editor-fold desc="FUNCIONES: OTRAS">

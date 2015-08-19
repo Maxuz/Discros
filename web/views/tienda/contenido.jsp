@@ -1,51 +1,45 @@
-<%@page import="Actions.Canciones.CancionesFunciones"%>
-<%@page import="java.util.*"%>
-<%@page import="Model.Disco"%>
-<%@page import="Actions.Discos.DiscosFunciones"%>
-
 <div style="margin-top: 60px; background-color: floralwhite; margin-bottom: 10px">
     <br><h2 style="text-align: center;">Tienda virtual</h2>
-    <ul id="cd-gallery-items" class="cd-container" style="padding-top: 20px">
-			
-                   <% 
-                       
-                        DiscosFunciones funciones = new DiscosFunciones();
-                        CancionesFunciones funcionesCanciones = new CancionesFunciones();
-                        Disco dis = new Disco();
-                        ArrayList<Model.Disco> lista = new ArrayList<Model.Disco>();
-                        
-                        lista = funciones.getAll();
-                        
-                        int i;
-                        int f = lista.size();
-                        for(i=0;i<f;i++) 
-                        { dis = lista.get(i); 
-                          double precio = funcionesCanciones.getOne(dis.getUpc(), 0).getPrecio();
-                            %>
-                             <li>
-                                 <img src="img/thumb.jpg" alt="Preview image" class="img-responsive" style=" float: left;" >
-                                 <div class="texto-tienda" style="text-align: left;" id="disco">
-                                     
-                                     <strong>Artista:</strong><%out.print(dis.getArtista());%><br>
-                                     <strong>Album:</strong><%out.print(dis.getAlbum());%> <br>
-                                     <strong>Precio:</strong>  $<%out.print(precio);%> <br>
-                                     <strong>Stock:</strong><%out.print(dis.getStock());%> <br>
-                                     <strong>CANTIDAD:</strong>
-                                     <input type="number" value="0" min="0" step="5.0" data-number-to-fixed="2" 
-                                            data-number-stepfactor="100" 
-                                            class="form-control currency" id="cantidad" name="precio" />
-                                            <a href="#">Ver canciones..</a><br><br>
-                                    
-                                     <button id="agregarItem" onclick="agregar('<% out.print(dis.getUpc());%>' )">
-                                     Agregar a carrito
-                                     </button>
-                                     
-                                 </div>
-                                </li>
-                                
-                       <% } %>
-                      
+    <div class="row" style="margin-left: 15%; margin-right: 15%; margin-bottom: 2%" >
+    <h3>VER TODOS..</h3>
+    <hr>  
+    <a href="t_busqueda.jsp">#DISCOS</a>
+    <br> <br>
+    
+    <h3>Realizar una búsqueda específica</h3>
+    <hr>
+    <form role="form" id="login" method="post" onsubmit="" action="">
 
-		</ul> <!-- cd-gallery-items -->
+            <div class="col-xs-8">
+            <label id="lblEmail" for="lEmail">Ingrese Texto</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="Introduce texto">
+            </div>
+            <br><br><br><br>
+
+            <div class="col-xs-8">
+            <label id="lblProvincia" for="Provincia">Elegir tipo de búsqueda:</label>
+            <select class="form-control" name="provincia" id="provincia" >
+
+            <option> Elegir opción.. </option>  
+            <option value="Santa Crúz">Artista</option>
+            <option value="Tierra del Fuego">Album</option>
+            <option value="Santa Fe">Género</option>
+            
+            </select><br>
+            </div>
+            <br><br><br><br>
+
+            <button type="submit" class="btn btn-default">Buscar</button>
+            <br><br><br><br>
+           
+           <div>
+           <!--DIV PARA MOSTRAR ERRORES-->
+           <div id="divError" class="alert alert-danger hidden"></div>
+
+
+           </div>
+           </form>
+
               
+</div>               
 </div>                
