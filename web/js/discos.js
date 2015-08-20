@@ -72,7 +72,6 @@ var funciones = {
         console.log(mensaje+"imagen: "+img);
     }
 },
-
     agregarCancion: function(){
         var upc = $("#upc").val();
         var isrc = $("#isrc").val();            //vacio y longitud 12
@@ -150,6 +149,8 @@ var funciones = {
             var nombre = $("#nombre").val();        //vacio 
             var duracion = $("#duracion").val();    //vacio y solo numero
             var precio = $("#precio2").val();
+            agregar(upc,isrc,track,nombre,duracion,precio);
+            
             return true;
             
         }else{
@@ -158,13 +159,32 @@ var funciones = {
         }
     }
 };
+function agregar(upc,isrc,track,nombre,duracion,precio){
+       $.ajax("cAlta.do", {
+             
+             type: "POST",
+             dataType: null,
+             
+             data: { "upc":upc,"isrc": isrc,"track":track,"nombre":nombre,"duracion":duracion,"precio":precio},
+             
+             error: function (a, b, c)
+                     {
+                        window.alert("ERROR A: "+a+"  | ERROR B: "+b+"  | ERROR C: "+c);
+                 
+             },
+             success: function (data)
+                     {
+                         alert("upc:"+upc);
+                     }
+            
+            });
+ };
     
 function setCookie(upc,isrc,track,nombre,duracion,precio,expiredays){
   var exdate = new Date();
   exdate.setDate(exdate.getDate()+expiredays);
   document.cookie = "upc="+escape(upc)+"isrc="+escape(isrc)+"track="+escape(track)+"nombre="+escape(nombre)+"duracion="+escape(duracion)+"precio="+escape(precio)+"track="+escape(track)+((expiredays==null)? "" : ";expires="+exdate.toGMTString());
 };
-
 function getCookie(upc,isrc,track,nombre,duracion,precio){
     if(document.cookie.length >0){
       upc_start = document.cookie.indexOf(upc+"=");
@@ -183,6 +203,7 @@ function getCookie(upc,isrc,track,nombre,duracion,precio){
     }
     return "";
 };
+
 
 $(document).ready(function(){
    

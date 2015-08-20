@@ -42,7 +42,7 @@ public class cAltaController extends HttpServlet {
                     ArrayList<Model.Cancion> lista = new ArrayList<>();
                     ArrayList<Model.Cancion> listaAux = (ArrayList<Model.Cancion>)sesion.getAttribute("cancionesDisco");
                     
-                     if ( upc == (Integer)sesion.getAttribute("upc")){
+                     if ( listaAux == null){
                         lista.add(cancion);
                         sesion.setAttribute("cancionesDisco", lista);
                        }
