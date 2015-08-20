@@ -6,7 +6,7 @@
   <title>Confirmar Pedido - Discros INC</title>
 
     <%session.setAttribute("paginaActual", "p_confirmar");%>
-    
+    <script src="js/pedidos.js"></script>
     <jsp:include page="views/gral/referencias.jsp"/>
     
   </head>

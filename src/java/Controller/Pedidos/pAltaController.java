@@ -10,17 +10,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class pAltaController extends HttpServlet {
 
    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         
+         HttpSession sesion = request.getSession(true); 
         PedidosFunciones funciones = new PedidosFunciones();
         UsuariosFunciones funcionesUsuario = new UsuariosFunciones();
         
        try{
-                                    if(funcionesUsuario.buscar(request.getParameter("email")))
+                                    if(funcionesUsuario.buscar(sesion.getAttribute("email").toString()))
                                     {
                                         if(funciones.buscar(Integer.parseInt(request.getParameter("id"))))
                                         {

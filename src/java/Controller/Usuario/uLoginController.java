@@ -37,13 +37,7 @@ public class uLoginController extends HttpServlet {
                                             if(user.getEstado())
                                             {
                                             sesion.setAttribute("email", email);
-                                            sesion.setAttribute("pass", user.getPass());
                                             sesion.setAttribute("nombre", user.getNombre());
-                                            sesion.setAttribute("apellido", user.getApellido());
-                                            sesion.setAttribute("direccion", user.getDireccion());
-                                            sesion.setAttribute("ciudad", user.getCiudad());
-                                            sesion.setAttribute("dni", user.getdni());
-                                            sesion.setAttribute("provincia", user.getProvincia());
                                             sesion.setAttribute("tipoUsuario", user.getTipo()); 
                                            
                                             response.sendRedirect("index.jsp");
