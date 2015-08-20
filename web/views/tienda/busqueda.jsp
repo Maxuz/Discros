@@ -102,16 +102,20 @@
                                      
                                      <strong>Artista:</strong><%out.print(dis.getArtista());%><br>
                                      <strong>Album:</strong><%out.print(dis.getAlbum());%> <br>
+                                     <strong>Género:</strong><%out.print(dis.getGenero());%> <br>
                                      <strong>Precio:</strong>  $<%out.print(precio);%> <br>
-                                     <strong>Stock:</strong><%out.print(dis.getStock());%> <br>
-                                     <strong>CANTIDAD:</strong>
-                                     <input type="number" value="0" min="0" step="5.0" data-number-to-fixed="2" 
-                                            data-number-stepfactor="100" 
-                                            class="form-control currency" id="cantidad" name="precio" />
-                                            <a href="#">Ver canciones..</a><br><br>
+                                     
+                                     <%
+                                        int cant = dis.getStock();
+                                        if(cant>0){
+                                        out.print("<strong>En stock</strong>");
+                                        }else{}
+                                     %> <br>
+                                     
                                     
                                      <button id="agregarItem" onclick="agregar('<% out.print(dis.getUpc());%>' )">
-                                     Agregar a carrito
+                                     
+                                         <img src="img/addCarrito.png" style="width: 50px; height: 50px; float: right;"alt=""/>
                                      </button>
                                      
                                  </div>

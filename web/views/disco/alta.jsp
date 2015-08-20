@@ -6,6 +6,8 @@
 <!-- FORMULARIO DE REGISTRO DE NUEVO DISCO-->
 <div class="row" style="margin-left: 15%; margin-right: 15%; margin-bottom: 2%" >
     <br>
+    <h2 style="text-align: center;">Registro de nuevo disco</h2><hr>
+    
     <%  String s = (String)session.getAttribute("tipoUsuario");
         
         //VERIFICA QUE HAYA USUARIO LOGUEADO     
@@ -15,18 +17,21 @@
                 <% if(session.getAttribute("mensajeExito")!= null)
                 {%>
                         <!--SERVIDOR DEVUELVE MENSAJE DE ÉXITO-->
-                       <br><br>    
-                       <div class="alert alert-success">
+                      
+                        <div class="alert alert-success" style="text-align: center;">
+                           
                        <% out.print((String)session.getAttribute("mensajeExito"));
                        session.setAttribute("mensajeExito", null);
                        %>
-                       </div>     
-
+                       </div>
+                       <hr><div style="margin-left:  15px;"><a href="p_admin.jsp"><h4>&laquo; Volver al menú principal..</h4></a></div> <br><br>
+                            
+                       
                        <%}
                               
                 
                 else{   if(s.equals("admin"))
-                        { %><h2 style="text-align: center;">Registro de nuevo disco</h2> <%
+                        { 
                             if (session.getAttribute("mensajeError")!=null)
                                 { %>
                                 
@@ -41,7 +46,7 @@
                                     <!--FORMULARIO DE ALTA-->
                                     <form role="form" class="form-horizontal" enctype="multipart/form-data" id="dAlta" method="post" action="dAlta.do" >
                             
-                            <hr>
+                            
                             <h4>Datos del disco</h4>
                             <hr>
 

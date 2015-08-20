@@ -18,7 +18,18 @@
     <div class="container-fluid">
         
         <jsp:include page="views/gral/header.jsp"/>
-        <jsp:include page="views/usuarios/administrador.jsp"/>
+                
+         <%try{%>
+          <jsp:include page="views/usuarios/administrador.jsp"/>
+        <%}catch (Exception e)
+                       {
+                                        session.setAttribute("errorCatch", e.toString());
+                                        RequestDispatcher rd =null;
+                                                                               
+                                        rd=request.getRequestDispatcher("error.jsp");
+                                        rd.forward(request,response);
+                       }%>
+                       
         <jsp:include page="views/gral/pie.jsp" />
         
 </div>

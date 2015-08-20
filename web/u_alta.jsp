@@ -17,7 +17,19 @@
     <div class="container-fluid">
         
         <jsp:include page="views/gral/header.jsp"/>
-        <jsp:include page="views/usuarios/alta.jsp"/>
+       
+        <%try{%>
+         <jsp:include page="views/usuarios/alta.jsp"/>
+        <%}catch (Exception e)
+                       {
+                                        session.setAttribute("errorCatch", e.toString());
+                                        RequestDispatcher rd =null;
+                                                                               
+                                        rd=request.getRequestDispatcher("error.jsp");
+                                        rd.forward(request,response);
+                       }%>
+                       
+        <jsp:include page="views/gral/pie.jsp" />
         <jsp:include page="views/gral/pie.jsp" />
         
 </div>
