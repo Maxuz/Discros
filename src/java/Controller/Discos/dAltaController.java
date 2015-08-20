@@ -69,7 +69,7 @@ public class dAltaController extends HttpServlet {
                                         int upc= Integer.parseInt(request.getParameter("upc"));
                                         int stock = Integer.parseInt(request.getParameter("stock"));
                                         String fechafecha = request.getParameter("fecha");
-                                        Double precio = Double.parseDouble(request.getParameter("precio"));
+                                        float precio = Float.parseFloat(request.getParameter("precio"));
                                         ArrayList<Model.Cancion> canciones = (ArrayList<Model.Cancion>)sesion.getAttribute("cancionesDisco");
                                         Disco disco = new Disco(artista, album, genero, descripcion, imagen, upc, stock, fechafecha);
                                         

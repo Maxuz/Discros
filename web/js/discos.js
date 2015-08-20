@@ -87,6 +87,9 @@ var funciones = {
         }else if(isrc.length !== 12){
             $('#lblIsrc').addClass('lblError').text("(*)ISRC: - La longitud del ISRC debe ser 12.");
             mensaje = mensaje + " ISRC\n";
+        }else if(!soloNumero(isrc.length)) {
+            $('#lblIsrc').addClass('lblError').text("(*)ISRC: - Sólo número.");
+            mensaje = mensaje + " ISRC número\n";
         } else{
             $('#lblIsrc').removeClass('lblError').text("ISRC:");
         }
@@ -128,6 +131,7 @@ var funciones = {
         }
         
         if (mensaje ===""){
+            agregar(upc,isrc,track,nombre,duracion,precio);
             var tds = '<tr>';
             tds += '<td>'+isrc+'</td>';
             tds += '<td>'+track+'</td>';
@@ -143,14 +147,6 @@ var funciones = {
             $("#nombre").val("");         
             $("#duracion").val("");    
             $("#precio2").val("");       
-            var upc = $("#upc").val();
-            var isrc = $("#isrc").val();            //vacio y longitud 12
-            var track = $("#track").val();          //vacio solo numero
-            var nombre = $("#nombre").val();        //vacio 
-            var duracion = $("#duracion").val();    //vacio y solo numero
-            var precio = $("#precio2").val();
-            agregar(upc,isrc,track,nombre,duracion,precio);
-            
             return true;
             
         }else{
@@ -165,7 +161,7 @@ function agregar(upc,isrc,track,nombre,duracion,precio){
              type: "POST",
              dataType: null,
              
-             data: { "upc":upc,"isrc": isrc,"track":track,"nombre":nombre,"duracion":duracion,"precio":precio},
+             data: { "upc":upc, "isrc":isrc, "track":track, "nombre":nombre, "duracion":duracion, "precio":precio},
              
              error: function (a, b, c)
                      {
@@ -174,36 +170,12 @@ function agregar(upc,isrc,track,nombre,duracion,precio){
              },
              success: function (data)
                      {
-                         alert("upc:"+upc);
+                         alert("upc:"+upc+"isrc:"+isrc);
                      }
             
             });
  };
     
-function setCookie(upc,isrc,track,nombre,duracion,precio,expiredays){
-  var exdate = new Date();
-  exdate.setDate(exdate.getDate()+expiredays);
-  document.cookie = "upc="+escape(upc)+"isrc="+escape(isrc)+"track="+escape(track)+"nombre="+escape(nombre)+"duracion="+escape(duracion)+"precio="+escape(precio)+"track="+escape(track)+((expiredays==null)? "" : ";expires="+exdate.toGMTString());
-};
-function getCookie(upc,isrc,track,nombre,duracion,precio){
-    if(document.cookie.length >0){
-      upc_start = document.cookie.indexOf(upc+"=");
-      isrc_start = document.cookie.indexOf(isrc+"=");
-      track_start = document.cookie.indexOf(track+"=");
-      nombre_start = document.cookie.indexOf(nombre+"=");
-      duracion_start = document.cookie.indexOf(duracion+"=");
-      precio_start = document.cookie.indexOf(precio+"=");
-        if (upc_start != -1){
-            upc_start = upc_start + upc.length + 1;
-            c_end = document.cookie.indexOf(";",upc_start);
-            if(c_end == -1)
-                c_end = document.cookie.length;
-            return unescape(document.cookie.substring(upc_start,upc_end));
-        }
-    }
-    return "";
-};
-
 
 $(document).ready(function(){
    
