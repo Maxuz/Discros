@@ -5,13 +5,22 @@
 <div style="margin-top: 60px; background-color: #FFF; margin-bottom: 10px">
     
    
-                   <%  
+    
+                   <% 
+                       
+                        String tipo = request.getParameter("tipo");
+                        if(!tipo.equals("artista") && !tipo.equals("genero"))
+                        {%><br>
+                         
+                         <h1 style=" margin-left:20px; text-align: center;"> Resultado de listado</h1>  <hr>
+                         <div style="margin-left:  15px;"><a href="t_index.jsp"><h4>&laquo; Volver atrás</h4></a></div> 
+                         <h4 style=" margin-left:20px; text-align: center; font-style: italic;"> Parámetro de tipo desconocido.</h4>
+                         
+                      <%}else{
                         DiscosFunciones funciones = new DiscosFunciones();
                          
                         
                         ArrayList<String> lista = new ArrayList<String>();
-                        String tipo = request.getParameter("tipolista");
-                        
                         
                         if(tipo.equals("artista"))
                         {lista = funciones.getListaArtistas();
@@ -19,7 +28,7 @@
                         %>
                      
                         <br><h2 style="text-align: center;">Listado de Artistas</h2>  
-                        <div style="margin-left:  15px;"><a href="javascript:window.history.back();"><h4>&laquo; Volver atrás</h4></a></div> 
+                        <div style="margin-left:  15px;"><a href="t_index.jsp"><h4>&laquo; Volver atrás</h4></a></div> 
                         <hr>
                         <%
                         }else{ if(tipo.equals("genero"))
@@ -27,7 +36,8 @@
                         %>
                        
                         <br> <h2 style="text-align: center;margin-top: 3px;">Listado de Géneros</h2> 
-                        <div style="margin-left:  15px;"><a href="javascript:window.history.back();"><h4>&laquo; Volver atrás</h4></a></div> <hr>
+                        <% %>
+                        <div style="margin-left:  15px;"><a href="t_index.jsp"><h4>&laquo; Volver atrás</h4></a></div> <hr>
                         <%
                                 }
                             }
@@ -41,10 +51,14 @@
                             %>
                              
                             <div style="margin-left: 50px; ">
-                                <a href="#"><strong># <%out.print( lista.get(i).toString() );%></strong></a><br>
+                                <a href="
+                                   t_busqueda.jsp?texto=<%out.print(lista.get(i).toString());%>&tipo=<%out.print(tipo);%>&lista=true                                    
+                                   "><strong># <%out.print( lista.get(i).toString() );%></strong></a><br>
                            </div>                                    
                                 
-                       <% } %> <br><br>
+                       <% } %> 
+                        
+                  <% } %> <br><br>
                       
 
 
