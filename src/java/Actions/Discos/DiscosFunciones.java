@@ -39,7 +39,8 @@ public class DiscosFunciones {
                   pst2 = con.prepareStatement("INSERT INTO `canciones`values('"+get.getIsrc()+"','"+get.getNombre()+"','"+get.getDuracion()+"','"+get.getPrecio()+"','"+disco.getUpc()+"','"+get.getTrack()+"')");
                   pst2.executeUpdate();
               }
-       
+              
+                
                 // </editor-fold>
             } 
           catch (Exception e) {  
