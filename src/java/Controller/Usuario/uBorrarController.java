@@ -5,13 +5,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+ 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "uBorrarController", urlPatterns = {"/uBorrar.do"})
+ 
 public class uBorrarController extends HttpServlet {
 protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,6 +34,9 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
                                         user=funciones.getOne(email);
                                         if(user.getTipo().equals("cliente"))
                                         {
+                                        
+                                        
+                                            
                                         funciones.setEstado(email, false);
                                         sesion.setAttribute("mensajeExiste", "");
                                         response.sendRedirect("u_borrar.jsp");

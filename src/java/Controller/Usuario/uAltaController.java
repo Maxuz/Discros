@@ -54,15 +54,13 @@ public class uAltaController extends HttpServlet {
                                                 String provincia = request.getParameter("provincia");
                                                 Integer dni = Integer.parseInt(request.getParameter("dni"));
 
-                                                //Usuario user = new Usuario(email, pass);
-                                                
-                                                //user.setDatospersonales(nombre, apellido, direccion, ciudad, provincia, dni);
-                                                  
+                                               
                                                 Usuario user = new Usuario(email, pass, nombre, apellido, direccion, ciudad, provincia, dni);
                                                 
                                                 funciones.alta(user);
                                                 
                                                 sesion.setAttribute("nombre", user.getNombre());
+                                                sesion.setAttribute("tipoUsuario", user.getTipo());
                                                 
                                                 sesion.setAttribute("mensajeExito", "Usuario logueado correctamene.");
                                                 response.sendRedirect("u_alta.jsp");

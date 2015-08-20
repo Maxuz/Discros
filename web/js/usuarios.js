@@ -155,3 +155,8 @@ var validaLogin = function(event){
    
 };
 
+function deshabilitar()
+{
+    
+    
+};

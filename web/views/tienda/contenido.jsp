@@ -9,7 +9,7 @@
         <label class="control-label">Ingrese Texto</label>
         <div class="input-group" >   
         <span class="input-group-addon"><span class="glyphicon glyphicon-text-color"></span></span>
-        <input type="email" class="form-control" name="texto" id="texto" placeholder="Introduce texto">
+        <input type="text" class="form-control" name="texto" id="texto" placeholder="Introduce texto">
         </div>    
         </div>
         </div>    

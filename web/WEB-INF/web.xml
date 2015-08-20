@@ -87,6 +87,14 @@
         <servlet-name>uModificarController</servlet-name>
         <url-pattern>/uModificar.do</url-pattern>
     </servlet-mapping>
+     <servlet>
+        <servlet-name>uBorrarController</servlet-name>
+        <servlet-class>Controller.Usuario.uBorrarController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>uBorrarController</servlet-name>
+        <url-pattern>/uBorrar.do</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>uLogoutController</servlet-name>
         <servlet-class>Controller.Usuario.uLogoutController</servlet-class>
