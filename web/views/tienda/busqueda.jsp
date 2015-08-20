@@ -33,26 +33,28 @@
         int tipoInt = util.getInt(tipo);
         
         switch(tipoInt) {
-            case 0:
-                lista=funciones.getAll();
-                break;
+            //TODOS           
             case 1:
                 lista=funciones.getAll();
                 break;
+            //ARTISTA    
             case 2:
-                out.println("It\'s Tuesday.");
+                lista=funciones.getAll();
                 break;
+            //ALBUM    
             case 3:
-                out.println("It\'s Wednesday.");
+                 
                 break;
+            //GENERO
             case 4:
-                out.println("It\'s Thursday.");
+                 
                 break;
-            case 5:
-                out.println("It\'s Friday.");
+            //TIPO INCORRECTO
+            case 0:
+              
                 break;
-            
-        }
+           
+       }
     
     
     %>
