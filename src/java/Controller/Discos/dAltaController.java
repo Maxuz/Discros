@@ -44,7 +44,10 @@ public class dAltaController extends HttpServlet {
                                         response.sendRedirect("d_alta.jsp");
                                        
                                         
-                                    } else{
+                                    } else if((ArrayList<Model.Cancion>)sesion.getAttribute("cancionesDisco") == null){
+                                        sesion.setAttribute("mensajeError", "No puede registrar un disco sin canciones, por favor ingrese al menos una canción");
+                                        response.sendRedirect("d_alta.jsp");
+                                    }else{
                                          
                                         //SE INSTANCIA UN DISCO Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
                                         String artista = request.getParameter("artista");
