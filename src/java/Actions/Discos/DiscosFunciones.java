@@ -380,19 +380,16 @@ public class DiscosFunciones {
             switch(columna){
                 case "artista":{
                                 pst = con.prepareStatement("select * from discos where artista like '%"+texto+"%'");  
-                                //pst.setString(1, texto);
                                 cond = true;
                                 break;
                                 }
                 case "album":   {
-                                pst = con.prepareStatement("select * from discos where album=?");  
-                                pst.setString(1, texto);
+                                pst = con.prepareStatement("select * from discos where album like '%"+texto+"%'");  
                                 cond=true;
                                 break;
                                 }
                 case "genero":  {
-                                pst = con.prepareStatement("select * from discos where genero=?");  
-                                pst.setString(1, texto);
+                                pst = con.prepareStatement("select * from discos where genero like '%"+texto+"%'");  
                                 cond=true;
                                 break;
                                 }

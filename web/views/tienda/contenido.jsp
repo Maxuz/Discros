@@ -23,7 +23,7 @@
 
         <option value="">Elegir opción..</option>  
         <option value="artista">Artista</option>
-        <option value="algum">Album</option>
+        <option value="album">Album</option>
         <option value="genero">Género</option>
 
         </select>
@@ -56,7 +56,7 @@
         
         <!-- GENEROS --> 
         <div class="col-md-4">   
-         <a href="t_listas.jsp?tipolista=genero"><img class="img-responsive img-tienda" src="img/album.jpg" alt="generos" />
+         <a href="t_listas.jsp?tipo=genero"><img class="img-responsive img-tienda" src="img/album.jpg" alt="generos" />
              <h4 style="text-align: center;">Ver lista de géneros musicales.</h4></a>   
         </div>
         

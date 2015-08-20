@@ -6,8 +6,18 @@
 
 <div style="margin-top: 60px; background-color: #FFF; margin-bottom: 10px">
     <br><h2 style="text-align: center;">Resultados de la búsqueda</h2>
-    <div style="margin-left:  15px;"><a href="javascript:window.history.back();"><h4>&laquo; Volver atrás</h4></a></div> <hr>
     
+    
+    
+     <% String list = request.getParameter("lista");
+       if(list==null)
+       {%>
+            <div style="margin-left:  15px;"><a href="t_index.jsp"><h4>&laquo; Volver atrás</h4></a></div> <hr>
+       <%}
+       else
+       {%>
+       <div style="margin-left:  15px;"><a href="t_listas.jsp?tipo=<%out.print(request.getParameter("tipo"));%>"><h4>&laquo; Volver atrás</h4></a></div> <hr>
+     <%}%>     
     
     <!-- CÓDIGO PARA CARGAR EL ARRAY DE LOS DISCOS -->
     <%  
@@ -25,12 +35,11 @@
 
     //RECUPERA PARÁMETRO DE LA URL
     String tipo = (String)request.getParameter("tipo");
-    
-    
-    
+       
     //SEGÚN EL TIPO RECIBIDO REALIZA LA CONSULTA PERTINENTE
         Util util = new Util();
         int tipoInt = util.getInt(tipo);
+        String texto = (String)request.getParameter("texto");
         
         switch(tipoInt) {
             //TODOS           
@@ -39,19 +48,19 @@
                 break;
             //ARTISTA    
             case 2:
-                lista=funciones.getAll();
+                lista=funciones.getAll(tipo, texto);
                 break;
             //ALBUM    
             case 3:
-                 
+                lista=funciones.getAll(tipo, texto);
                 break;
             //GENERO
             case 4:
-                 
+                lista=funciones.getAll(tipo, texto);
                 break;
             //TIPO INCORRECTO
             case 0:
-              
+                ctrlTipo=true;
                 break;
            
        }
@@ -68,12 +77,14 @@
 
     if(ctrlTipo)
     {%> <!-- HTML PARA UN TIPO DE BÚSQUEDA INCORRECTO -->
-        ENTRA EN IF
+            <h4 style="font-style: italic; margin-left:20px; text-align: center;"> NO SE RECONOCE EL TIPO DE BÚSQUEDA QUE DESEA REALIZAR.<br>
+            Por favor, intente nuevamente.</h4>  <br><br><br>
         
     <%}else{
             if(f==0)
             {%><!-- HTML PARA UN RESULTADO DE BÚSQUEDA VACÍO -->
-            ENTRA EN ELSE/IF
+            <h4 style="font-style: italic; margin-left:20px; text-align: center;">Cantidad de resultados: <%out.print(f);;%> <br>
+            No se han encontrado resultados para su búsqueda.</h4>  <br><br><br>
             
             <%}else{%>
                 
