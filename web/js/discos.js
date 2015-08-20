@@ -170,7 +170,7 @@ function agregar(upc,isrc,track,nombre,duracion,precio){
              },
              success: function (data)
                      {
-                         alert("upc:"+upc+"isrc:"+isrc);
+                        // alert("upc:"+upc+"isrc:"+isrc);
                      }
             
             });
