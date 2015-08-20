@@ -126,11 +126,11 @@
                                         <p>Entrega a domicilio: <%out.print(user.getDireccion());%> - <%out.print(user.getCiudad());%> - <%out.print(user.getProvincia());%></p>
                                          
                                         <div class="radio">
-                                            <label><input type="radio" name="optradio" onclick="ocultarTarjeta()" >Pago contra entrega de producto.</label>
+                                            <label><input type="radio" name="optradio" onclick="ocultarTarjeta()" value="puerta" >Pago contra entrega de producto.</label>
                                          </div>
                                              
                                          <div class="radio">
-                                             <label><input type="radio" name="optradio" onclick="mostrarTarjeta()">Pago con tarjeta de crédito.</label>
+                                             <label><input type="radio" name="optradio" onclick="mostrarTarjeta()"  value="tarjeta">Pago con tarjeta de crédito.</label>
                                          </div>
                                              
                                         <div id="datosTarjetas" class="hidden" style="margin-left: 10%">

@@ -28,19 +28,28 @@ public class pAltaController extends HttpServlet {
                                          //SE INSTANCIA UN PEDIDO Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
                                                 
                                                 //DEFINIR ID AUTOINCREMENTADO
-                                                int id = Integer.parseInt(request.getParameter("id"));
+                                     
                                                 
                                                 //SETEO VARIABLES DEL PEDIDO
                                                 String email = sesion.getAttribute("email").toString();
                                                 float valor = Float.parseFloat(sesion.getAttribute("valorTotalCarrito").toString());
                                                 Date fecha = new Date();
                                                 
+                                                String opt = request.getParameter("optradio");
+                                                
+                                                if(opt.equals("puerta"))
+                                                {
+                                                    
+                                                }else{
+                                                         
+                                                     }
+                                                
                                                 
                                                 //RECUPERO LISTA DEL CARRITO
                                                 ArrayList<Disco> lista = (ArrayList<Disco>)sesion.getAttribute("listaCarrito");
                                                 
-                                                Pedido pedido = new Pedido(id, valor, fecha, "d", email);
-                                                funciones.alta(pedido);
+                                         //       Pedido pedido = new Pedido(id, valor, fecha, "d", email);
+                                         //       funciones.alta(pedido);
 
                                                 response.getWriter().print("EL PEDIDO SE REGISTRÓ CORRECTAMENTE");
                                                  
@@ -52,7 +61,8 @@ public class pAltaController extends HttpServlet {
                                     }
                                 catch (Exception e)
                                     {
-                                    response.getWriter().print("ERROR OCURRIDO:  "+e);
+                                        sesion.setAttribute("errorCatch", e.toString());
+                                        response.sendRedirect("error.jsp");
                                     }
     }
 
