@@ -1,6 +1,7 @@
 package Actions.Discos;
 
 import Actions.Conexion;
+import Model.Cancion;
 import Model.Disco;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,34 +12,49 @@ import java.util.ArrayList;
 public class DiscosFunciones {
     
     // <editor-fold desc="FUNCIONES: ALTA BAJA MODIFICAR">
-    public boolean alta(Disco disco) throws Exception
+    public boolean alta(Disco disco, ArrayList<Model.Cancion> canciones,double precio) throws Exception
      {     boolean status = false;  
         
          // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
          Connection con = Conexion.getConexion();
-         PreparedStatement pst = null;  
+         PreparedStatement pst = null;
+         PreparedStatement pst2 = null;
          ResultSet rs = null;  
+         
+         con.setAutoCommit(false);
         
         // </editor-fold>
         
           try { // <editor-fold desc="QUERY Y RESULTADO">
                 
                 pst = con.prepareStatement("INSERT INTO `discos` values('"+disco.getUpc()+"','"+disco.getArtista()+"','"+disco.getAlbum()+"','"+disco.getGenero()+"','"+disco.getFecha()+"','"+disco.getStock()+"'"
-                        + ",'"+disco.getDescripcion()+"','"+disco.getImagen()+"')");
-                
+                        + ",'"+disco.getDescripcion()+"','"+disco.getImagen()+"')");               
                 pst.executeUpdate();  
-        
-                          
+                
+                pst2 = con.prepareStatement("INSERT INTO `canciones`values('"+0+"','"+""+"','"+0+"','"+precio+"','"+disco.getUpc()+"','"+0+"')");
+                pst2.executeUpdate();
+                
+                for (int i = 0; i < canciones.size(); i++) {
+                  Cancion get = canciones.get(i);
+                  pst2 = con.prepareStatement("INSERT INTO `canciones`values('"+get.getIsrc()+"','"+get.getNombre()+"','"+get.getDuracion()+"','"+get.getPrecio()+"','"+disco.getUpc()+"','"+get.getTrack()+"')");
+                  pst2.executeUpdate();
+              }
+              
+                
                 // </editor-fold>
             } 
           catch (Exception e) {  
-                throw e;  
+              con.rollback();
+              throw e;  
+
               } 
           finally {  
                // <editor-fold desc="CIERRA: CON, PST, RS">
             if (con != null) {  
-                try {  
+                try {
+                    con.commit();
                     Actions.Conexion.cerrarConexion();
+                    con.setAutoCommit(true);
                    
                  } catch (Exception e) {  
                    System.out.println(e);  
