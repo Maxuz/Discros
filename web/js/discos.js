@@ -15,7 +15,6 @@ var funciones = {
     var descri = $("#descripcion").val();
     var precio = $("#precio").val();
     var img = $("#file").val();
-    //var extension = (img.substring(img.lasIndexOf("."))).toLowerCase();
     var mensaje ="";
 
     if(!estaVacio(upc)){
@@ -67,14 +66,15 @@ var funciones = {
         $('#lblPrecio').removeClass('lblError').text("Precio:");
     }
     if (!estaVacio(img)){
-        $('#lblImagen').addClass('lblError').text("(*)Imágen de la tapa del disco: - Debe seleccionar una imagen.");
+        $('#lblImagen').addClass('lblError').text("(*)Imagen de la tapa del disco: - Debe seleccionar una imagen.");
         mensaje = mensaje + "img\n";
-    /*}else if(extension != ".jpg"){
-        $('#lblImagen').addClass('lblError').text("(*)Imágen de la tapa del disco: - La extensión de la imagen debe ser jpg.");
-        mensaje = mensaje + "img jpg\n";*/
-    }else{
-        $('#lblImagen').addClass('lblError').text("(*)Imágen de la tapa del disco:");
-        mensaje = mensaje + "img\n";
+    }else if(!isJpg(img)){
+        $('#lblImagen').addClass('lblError').text("(*)Imagen de la tapa del disco: - La extensión de la imagen debe ser jpg.");
+        mensaje = mensaje + "img jpg\n";
+    }
+    else{
+        $('#lblImagen').removeClass('lblError').text("Imagen de la tapa del disco:");
+      
     }
         
     if (mensaje === ""){
