@@ -3,11 +3,13 @@ package Controller.Canciones;
 import Actions.Discos.DiscosFunciones;
 import Model.Cancion;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class cAltaController extends HttpServlet {
 
@@ -16,41 +18,55 @@ public class cAltaController extends HttpServlet {
        
         Actions.Canciones.CancionesFunciones funciones = new Actions.Canciones.CancionesFunciones();
         Actions.Discos.DiscosFunciones funcionesDisco = new DiscosFunciones();
-        try{
-                                    if(funcionesDisco.buscar(Integer.parseInt(request.getParameter("upc"))))
-                                    {
-                                        if(funciones.buscar(Integer.parseInt(request.getParameter("upc")),Integer.parseInt(request.getParameter("isrc"))))
-                                        {
-                                            response.getWriter().print("LA CANCIÓN YA SE ENCUENTRA REGISTRADA");
-                                        
-                                        }
-                                        else { //SE INSTANCIA UNA CANCIÓN Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
-                                                String nombre = request.getParameter("nombre");
-                                                int upc = Integer.parseInt(request.getParameter("upc"));
-                                                int isrc  = Integer.parseInt(request.getParameter("isrc"));
-                                                int track  = Integer.parseInt(request.getParameter("track"));
+        
+    try{                        
+        HttpSession sesion = request.getSession(true);
 
-                                                float precio = Float.parseFloat(request.getParameter("precio"));
-                                                float duracion = Float.parseFloat(request.getParameter("duracion"));
+        if(funcionesDisco.buscar(Integer.parseInt(request.getParameter("upc"))))
+        {
+            if(funciones.buscar(Integer.parseInt(request.getParameter("upc")),Integer.parseInt(request.getParameter("isrc"))))
+            {
+                response.getWriter().print("LA CANCIÓN YA SE ENCUENTRA REGISTRADA");
 
-                                                Cancion cancion = new Cancion(nombre, precio, isrc, upc, duracion, track);
-                                                funciones.alta(cancion);
+            }
+            else { //SE INSTANCIA UNA CANCIÓN Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
+                    String nombre = request.getParameter("nombre");
+                    int upc = Integer.parseInt(request.getParameter("upc"));
+                    int isrc  = Integer.parseInt(request.getParameter("isrc"));
+                    int track  = Integer.parseInt(request.getParameter("track"));
+                    float precio = Float.parseFloat(request.getParameter("precio"));
+                    float duracion = Float.parseFloat(request.getParameter("duracion"));
 
-                                                response.getWriter().print("LA CANCIÓN SE REGISTRÓ CORRECTAMENTE");
-                                                
-                                                }
-                                        
-                                        
-                                    } else{
-                                        response.getWriter().print("EL DISCO NO SE ENCUENTRA REGISTRADO");
-                                           } 
-                                    
-                                    
-                                    }
-                                catch (Exception e)
-                                    {
-                                    response.getWriter().print("ERROR OCURRIDO:  "+e);
-                                    }
+                    Cancion cancion = new Cancion(nombre, precio, isrc, upc, duracion, track);
+                    //funciones.alta(cancion);
+                    ArrayList<Model.Cancion> lista = new ArrayList<>();
+                    ArrayList<Model.Cancion> listaAux = (ArrayList<Model.Cancion>)sesion.getAttribute("cancionesDisco");
+                    
+                     if ( upc == (Integer)sesion.getAttribute("upc")){
+                        lista.add(cancion);
+                        sesion.setAttribute("cancionesDisco", lista);
+                       }
+                     else{
+                         listaAux.add(cancion);
+                         sesion.setAttribute("cancionesDisco", listaAux); 
+                         sesion.setAttribute("UltimoUpc",upc);
+                     }
+                    
+                    //response.getWriter().print("LA CANCIÓN SE REGISTRÓ CORRECTAMENTE");
+
+                    }
+
+
+        } else{
+            response.getWriter().print("EL DISCO NO SE ENCUENTRA REGISTRADO");
+               } 
+
+
+        }
+    catch (Exception e)
+        {
+        response.getWriter().print("ERROR OCURRIDO:  "+e);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

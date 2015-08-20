@@ -2,6 +2,7 @@
 
 //FUNCION PARA VALIDAR EL FORMULARIO ALTA
 
+ 
 var funciones = {
 
     validaAlta: function(e){
@@ -73,7 +74,7 @@ var funciones = {
 },
 
     agregarCancion: function(){
-        
+        var upc = $("#upc").val();
         var isrc = $("#isrc").val();            //vacio y longitud 12
         var track = $("#track").val();          //vacio solo numero
         var nombre = $("#nombre").val();        //vacio 
@@ -143,16 +144,36 @@ var funciones = {
             $("#nombre").val("");         
             $("#duracion").val("");    
             $("#precio2").val("");       
+            agregar(upc,isrc,track,nombre,duracion,precio);
             return true;
+            
         }else{
             console.log(mensaje);
             return false;
         }
     }
-
 };
     
-
+function agregar(upc,isrc,track,nombre,duracion,precio){
+       $.ajax("cAlta.do", {
+             
+             type: "POST",
+             dataType: null,
+             
+             data: { "upc":upc,"isrc": isrc,"track":track,"nombre":nombre,"duracion":duracion,"precio":precio},
+             
+             error: function (a, b, c)
+                     {
+                        window.alert("ERROR A: "+a+"  | ERROR B: "+b+"  | ERROR C: "+c);
+                 
+             },
+             success: function (data)
+                     {
+                     }
+            
+            });
+ };
+ 
 $(document).ready(function(){
     $("#dAlta").submit(function(e){
         funciones.validaAlta(e);
