@@ -2,9 +2,11 @@ package Controller.Pedidos;
 
 import Actions.Pedidos.PedidosFunciones;
 import Actions.Usuarios.UsuariosFunciones;
+import Model.Disco;
 import Model.Pedido;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,28 +25,25 @@ public class pAltaController extends HttpServlet {
        try{
                                     if(funcionesUsuario.buscar(sesion.getAttribute("email").toString()))
                                     {
-                                        if(funciones.buscar(Integer.parseInt(request.getParameter("id"))))
-                                        {
-                                            response.getWriter().print("EL PEDIDO YA SE ENCUENTRA REGISTRADO");
-                                        
-                                        }
-                                        else { //SE INSTANCIA UN PEDIDO Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
+                                         //SE INSTANCIA UN PEDIDO Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
+                                                
+                                                //DEFINIR ID AUTOINCREMENTADO
                                                 int id = Integer.parseInt(request.getParameter("id"));
                                                 
-                                                String email = request.getParameter("email");
-                                                String estado = request.getParameter("estado");
+                                                //SETEO VARIABLES DEL PEDIDO
+                                                String email = sesion.getAttribute("email").toString();
+                                                float valor = Float.parseFloat(sesion.getAttribute("valorTotalCarrito").toString());
                                                 Date fecha = new Date();
                                                 
-                                                float valor = Float.parseFloat(request.getParameter("valor"));
                                                 
-
-                                                Pedido pedido = new Pedido(id, valor, fecha, estado, email);
+                                                //RECUPERO LISTA DEL CARRITO
+                                                ArrayList<Disco> lista = (ArrayList<Disco>)sesion.getAttribute("listaCarrito");
+                                                
+                                                Pedido pedido = new Pedido(id, valor, fecha, "d", email);
                                                 funciones.alta(pedido);
 
                                                 response.getWriter().print("EL PEDIDO SE REGISTRÓ CORRECTAMENTE");
-                                                
-                                                }
-                                        
+                                                 
                                     } else{
                                         response.getWriter().print("EL USUARIO NO SE ENCUENTRA REGISTRADO");
                                            } 
