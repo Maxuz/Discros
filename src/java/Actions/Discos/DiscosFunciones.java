@@ -353,7 +353,7 @@ public class DiscosFunciones {
             
             switch(columna){
                 case "artista":{
-                                pst = con.prepareStatement("select * from discos where artista=?");  
+                                pst = con.prepareStatement("select * from discos where artista like %{"+texto+"}%");  
                                 pst.setString(1, texto);
                                 cond = true;
                                 break;
