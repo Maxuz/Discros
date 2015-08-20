@@ -73,15 +73,16 @@ public class dAltaController extends HttpServlet {
                                         
                                         float precio = Float.parseFloat(request.getParameter("precio"));
                                         
+                                        Disco disco = new Disco(artista, album, genero, descripcion, imagen, upc, stock, fechafecha);
+                                        funciones.alta(disco);
                                         Cancion cancion = new Cancion(null, precio, 0, upc, 0, 0);
                                         funcionesCanciones.alta(cancion);
                                         
-                                        Disco disco = new Disco(artista, album, genero, descripcion, imagen, upc, stock, fechafecha);
-                                        funciones.alta(disco);
-                                        
+ 
                                         ArrayList<Model.Cancion> lista = (ArrayList<Model.Cancion>)sesion.getAttribute("cancionesDisco");
                                         for (int i = 0; i < lista.size(); i++) {
                                             cancion = lista.get(i);
+                                            
                                             funcionesCanciones.alta(cancion);
                                         }
                  
