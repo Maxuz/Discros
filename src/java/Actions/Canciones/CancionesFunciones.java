@@ -247,7 +247,7 @@ public class CancionesFunciones {
 // </editor-fold>
     
 // <editor-fold desc="FUNCIONES: OTRAS">
-    public boolean buscar(int UPC, int ISRC) throws Exception
+    public boolean buscar(int UPC, long ISRC) throws Exception
     {     boolean status = false;  
         
          // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
@@ -260,7 +260,7 @@ public class CancionesFunciones {
           try { // <editor-fold desc="QUERY Y RESULTADO">
                 pst = con.prepareStatement("select * from canciones where upc=? and isrc=? ");  
                 pst.setInt(1, UPC);
-                pst.setInt(2, ISRC);
+                pst.setLong(2, ISRC);
                 rs = pst.executeQuery();  
                 status = rs.next();
                           

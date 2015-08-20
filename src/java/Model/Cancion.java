@@ -7,7 +7,7 @@ public class Cancion {
    // <editor-fold desc="DEFINICIÓN DE VARIABLES">
     private String nombre;
     private float precio;
-    private int isrc;
+    private long isrc;
     private int track;
     private float duracion;
     
@@ -21,7 +21,7 @@ public class Cancion {
      public Cancion()
      { }
     
-     public Cancion(String nombre, float precio, int isrc, int upc, float duracion, int track)
+     public Cancion(String nombre, float precio, long isrc, int upc, float duracion, int track)
      {
      this.nombre=nombre;
      this.precio=precio;
@@ -33,7 +33,7 @@ public class Cancion {
     // </editor-fold>
     
     // <editor-fold desc="SET DE DATOS ">
-     public void setDatos(String nombre, float precio, int isrc, int upc, float duracion, int track)
+     public void setDatos(String nombre, float precio,long isrc, int upc, float duracion, int track)
      {
      this.nombre=nombre;
      this.precio=precio;
@@ -57,7 +57,7 @@ public class Cancion {
     {
         return this.precio;
     }
-    public int getIsrc()
+    public long getIsrc()
     {
         return this.isrc;
     }

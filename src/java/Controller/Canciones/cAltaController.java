@@ -22,23 +22,16 @@ public class cAltaController extends HttpServlet {
     try{                        
         HttpSession sesion = request.getSession(true);
 
-        if(funcionesDisco.buscar(Integer.parseInt(request.getParameter("upc"))))
-        {
-            if(funciones.buscar(Integer.parseInt(request.getParameter("upc")),Integer.parseInt(request.getParameter("isrc"))))
-            {
-                response.getWriter().print("LA CANCIÓN YA SE ENCUENTRA REGISTRADA");
-
-            }
-            else { //SE INSTANCIA UNA CANCIÓN Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
+         //SE INSTANCIA UNA CANCIÓN Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
+        
                     String nombre = request.getParameter("nombre");
                     int upc = Integer.parseInt(request.getParameter("upc"));
-                    int isrc  = Integer.parseInt(request.getParameter("isrc"));
+                    long isrc  = Long.parseLong(request.getParameter("isrc"));
                     int track  = Integer.parseInt(request.getParameter("track"));
                     float precio = Float.parseFloat(request.getParameter("precio"));
                     float duracion = Float.parseFloat(request.getParameter("duracion"));
 
                     Cancion cancion = new Cancion(nombre, precio, isrc, upc, duracion, track);
-                    //funciones.alta(cancion);
                     ArrayList<Model.Cancion> lista = new ArrayList<>();
                     ArrayList<Model.Cancion> listaAux = (ArrayList<Model.Cancion>)sesion.getAttribute("cancionesDisco");
                     
@@ -53,16 +46,7 @@ public class cAltaController extends HttpServlet {
                      }
                     
                     //response.getWriter().print("LA CANCIÓN SE REGISTRÓ CORRECTAMENTE");
-
-                    }
-
-
-        } else{
-            response.getWriter().print("EL DISCO NO SE ENCUENTRA REGISTRADO");
-               } 
-
-
-        }
+    }
     catch (Exception e)
         {
         response.getWriter().print("ERROR OCURRIDO:  "+e);

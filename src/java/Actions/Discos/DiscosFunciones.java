@@ -12,13 +12,12 @@ import java.util.ArrayList;
 public class DiscosFunciones {
     
     // <editor-fold desc="FUNCIONES: ALTA BAJA MODIFICAR">
-    public boolean alta(Disco disco, ArrayList<Model.Cancion> canciones,double precio) throws Exception
+    public boolean alta(Disco disco, ArrayList<Model.Cancion> canciones,float precio) throws Exception
      {     boolean status = false;  
         
          // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
          Connection con = Conexion.getConexion();
          PreparedStatement pst = null;
-         PreparedStatement pst2 = null;
          ResultSet rs = null;  
          
          con.setAutoCommit(false);
@@ -26,23 +25,50 @@ public class DiscosFunciones {
         // </editor-fold>
         
           try { // <editor-fold desc="QUERY Y RESULTADO">
-                
-                pst = con.prepareStatement("INSERT INTO `discos` values('"+disco.getUpc()+"','"+disco.getArtista()+"','"+disco.getAlbum()+"','"+disco.getGenero()+"','"+disco.getFecha()+"','"+disco.getStock()+"'"
-                        + ",'"+disco.getDescripcion()+"','"+disco.getImagen()+"')");               
+                /*pst = con.prepareStatement("INSERT INTO `usuarios` (email, password, tipo, nombre, apellido, direccion, ciudad, dni, provincia, estado)"+"values(?,?,?,?,?,?,?,?,?,?) ");
+                pst.setString(1, user.getEmail());
+                pst.setString(2, user.getPass());
+                pst.setString(3, user.getTipo());
+                pst.setString(4, user.getNombre());
+                pst.setString(5, user.getApellido());
+                pst.setString(6, user.getDireccion());
+                pst.setString(7, user.getCiudad());
+                pst.setInt(8, user.getdni());
+                pst.setString(9, user.getProvincia());
+                pst.setBoolean(10,  user.getEstado());*/
+                pst = con.prepareStatement("INSERT INTO `discos` (upc, artista, album, genero, fecha_salida, stock, descripcion, imagen)"+" values(?,?,?,?,?,?,?,?)");
+                pst.setInt(1, disco.getUpc());
+                pst.setString(2, disco.getArtista());
+                pst.setString(3, disco.getAlbum());
+                pst.setString(4, disco.getGenero());
+                pst.setString(5, disco.getFecha());
+                pst.setInt(6, disco.getStock());
+                pst.setString(7, disco.getDescripcion());
+                pst.setString(8, disco.getImagen());
                 pst.executeUpdate();  
                 
-                pst2 = con.prepareStatement("INSERT INTO `canciones`values('"+0+"','"+""+"','"+0+"','"+precio+"','"+disco.getUpc()+"','"+0+"')");
-                pst2.executeUpdate();
+                pst = con.prepareStatement("INSERT INTO `canciones` (isrc, nombre, duracion, precio, upc, track)"+" values(?,?,?,?,?,?)" );
+                pst.setLong(1, 0);
+                pst.setString(2, "");
+                pst.setFloat(3, 0);
+                pst.setFloat(4, precio);
+                pst.setInt(5, disco.getUpc());
+                pst.setInt(6, 0);
+                pst.executeUpdate();
                 
-                for (int i = 0; i < canciones.size(); i++) {
-                  Cancion get = canciones.get(i);
-                  pst2 = con.prepareStatement("INSERT INTO `canciones`values('"+get.getIsrc()+"','"+get.getNombre()+"','"+get.getDuracion()+"','"+get.getPrecio()+"','"+disco.getUpc()+"','"+get.getTrack()+"')");
-                  pst2.executeUpdate();
-              }
-              
-                
-                // </editor-fold>
-            } 
+            
+             for (int i = 0; i < canciones.size(); i++) {
+             Cancion get = canciones.get(i);
+              pst = con.prepareStatement("INSERT INTO `canciones`(isrc, nombre, duracion, precio, upc, track)"+" values(?,?,?,?,?,?)" );
+               pst.setLong(1, get.getIsrc());
+               pst.setString(2, get.getNombre());
+               pst.setFloat(3, get.getDuracion());
+               pst.setFloat(4, get.getPrecio());
+               pst.setInt(5, disco.getUpc());
+               pst.setInt(6, get.getTrack());
+               pst.executeUpdate();
+           } // </editor-fold>
+        } 
           catch (Exception e) {  
               con.rollback();
               throw e;  
