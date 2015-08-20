@@ -54,25 +54,27 @@ public class dAltaController extends HttpServlet {
                                         String album = request.getParameter("album");
                                         String genero = request.getParameter("genero");
                                         String descripcion = request.getParameter("descripcion");
+                                        int upc= Integer.parseInt(request.getParameter("upc"));
+                                        int stock = Integer.parseInt(request.getParameter("stock"));
+                                        String fechafecha = request.getParameter("fecha");
+                                        float precio = Float.parseFloat(request.getParameter("precio"));
                                         
                                         //aca se comienza con guardar la img
                                         out = new FileOutputStream(new File(path + File.separator + fileName));
                                         filecontent = filePart.getInputStream();
-                                        String imagen = path+fileName;
+                                        String imagen = path+"/"+upc+".jpg";
                                         int read = 0;
                                         final byte[] bytes = new byte[1024];
                                         
                                         while ((read= filecontent.read(bytes)) != -1) {
                                             out.write(bytes,0,read);   
                                         }
-                                        writer.println("New file " + fileName + " created at " + path);
-                                        LOGGER.log(Level.INFO, "File{0}being uploaded to {1}",new Object[]{fileName, path});
+                                        //fue modificado fileName por upc
+                                        writer.println("New file " + upc + " created at " + path);
+                                        LOGGER.log(Level.INFO, "File{0}being uploaded to {1}",new Object[]{upc, path});
                                         // aca termina
                                         
-                                        int upc= Integer.parseInt(request.getParameter("upc"));
-                                        int stock = Integer.parseInt(request.getParameter("stock"));
-                                        String fechafecha = request.getParameter("fecha");
-                                        float precio = Float.parseFloat(request.getParameter("precio"));
+                                        
                                         ArrayList<Model.Cancion> canciones = (ArrayList<Model.Cancion>)sesion.getAttribute("cancionesDisco");
                                         Disco disco = new Disco(artista, album, genero, descripcion, imagen, upc, stock, fechafecha);
                                         

@@ -68,12 +68,13 @@ var funciones = {
     if (!estaVacio(img)){
         $('#lblImagen').addClass('lblError').text("(*)Imagen de la tapa del disco: - Debe seleccionar una imagen.");
         mensaje = mensaje + "img\n";
-    /*}else if(extension != ".jpg"){
-        $('#lblImagen').addClass('lblError').text("(*)Imágen de la tapa del disco: - La extensión de la imagen debe ser jpg.");
-        mensaje = mensaje + "img jpg\n";*/
-    }else{
-        $('#lblImagen').addClass('lblError').text("(*)Imagen de la tapa del disco:");
-        mensaje = mensaje + "img\n";
+    }else if(!isJpg(img)){
+        $('#lblImagen').addClass('lblError').text("(*)Imagen de la tapa del disco: - La extensión de la imagen debe ser jpg.");
+        mensaje = mensaje + "img jpg\n";
+    }
+    else{
+        $('#lblImagen').removeClass('lblError').text("Imagen de la tapa del disco:");
+      
     }
         
     if (mensaje === ""){

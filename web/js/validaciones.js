@@ -29,7 +29,15 @@ var soloTexto = function(campo){
         return false;
     }
 };
-
+var isJpg = function(campo){
+    expr = /\.jpg$/i;
+    
+    if (expr.test(campo)){
+        return true;
+    }else {
+        return false;
+    }        
+};
 /*
 \u00e1 -> á 
 \u00e9 -> é 
