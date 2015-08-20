@@ -336,13 +336,13 @@ public class DiscosFunciones {
     }
     
     
-    public ArrayList<Disco>  getAllArtista (String artista) throws Exception
+    public ArrayList<Disco>  getAll (String columna, String texto) throws Exception
     {
         // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
          Connection con = Conexion.getConexion();
          PreparedStatement pst = null;  
          ResultSet rs = null;  
-       
+         boolean cond;
          ArrayList<Disco> lista = new ArrayList<>();
          
         // </editor-fold>
@@ -350,11 +350,31 @@ public class DiscosFunciones {
         
           try { // <editor-fold desc="QUERY Y RESULTADO">
               //ESCRIBIR LA CONSULTA CORRECTA
-            pst = con.prepareStatement("select * from discos where artista=?");  
-            pst.setString(1, artista);
-            rs = pst.executeQuery();  
-                       
             
+            switch(columna){
+                case "artista":{
+                                pst = con.prepareStatement("select * from discos where artista=?");  
+                                pst.setString(1, texto);
+                                cond = true;
+                                break;
+                                }
+                case "album":   {
+                                pst = con.prepareStatement("select * from discos where album=?");  
+                                pst.setString(1, texto);
+                                cond=true;
+                                break;
+                                }
+                case "genero":  {
+                                pst = con.prepareStatement("select * from discos where genero=?");  
+                                pst.setString(1, texto);
+                                cond=true;
+                                break;
+                                }
+                default : cond=false;break;
+            }  
+            
+            if(cond){
+            rs = pst.executeQuery();  
             while(rs.next())
             { 
                 
@@ -364,6 +384,7 @@ public class DiscosFunciones {
                                     rs.getString("descripcion"), rs.getString("imagen"),rs.getInt("upc"),
                                     rs.getInt("stock"),rs.getString("fecha_salida"));
               lista.add(disco);
+            }
             }
              
             
