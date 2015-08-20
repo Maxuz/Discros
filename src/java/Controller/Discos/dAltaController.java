@@ -36,7 +36,6 @@ public class dAltaController extends HttpServlet {
         final PrintWriter writer = response.getWriter();
         
         Actions.Discos.DiscosFunciones funciones = new Actions.Discos.DiscosFunciones();
-        Actions.Canciones.CancionesFunciones funcionesCanciones = new CancionesFunciones();
         HttpSession sesion = request.getSession(true); 
         try{
                         
@@ -70,22 +69,12 @@ public class dAltaController extends HttpServlet {
                                         int upc= Integer.parseInt(request.getParameter("upc"));
                                         int stock = Integer.parseInt(request.getParameter("stock"));
                                         String fechafecha = request.getParameter("fecha");
-                                        
-                                        float precio = Float.parseFloat(request.getParameter("precio"));
-                                        
+                                        Double precio = Double.parseDouble(request.getParameter("precio"));
+                                        ArrayList<Model.Cancion> canciones = (ArrayList<Model.Cancion>)sesion.getAttribute("cancionesDisco");
                                         Disco disco = new Disco(artista, album, genero, descripcion, imagen, upc, stock, fechafecha);
-                                        funciones.alta(disco);
-                                        Cancion cancion = new Cancion(null, precio, 0, upc, 0, 0);
-                                        funcionesCanciones.alta(cancion);
                                         
- 
-                                        ArrayList<Model.Cancion> lista = (ArrayList<Model.Cancion>)sesion.getAttribute("cancionesDisco");
-                                        for (int i = 0; i < lista.size(); i++) {
-                                            cancion = lista.get(i);
-                                            
-                                            funcionesCanciones.alta(cancion);
-                                        }
-                 
+                                        funciones.alta(disco,canciones,precio);
+                                           
                                         sesion.setAttribute("mensajeExito", "Disco agregado correctamente.");
                                         response.sendRedirect("d_alta.jsp");
                                         

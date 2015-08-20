@@ -144,7 +144,12 @@ var funciones = {
             $("#nombre").val("");         
             $("#duracion").val("");    
             $("#precio2").val("");       
-            agregar(upc,isrc,track,nombre,duracion,precio);
+            var upc = $("#upc").val();
+            var isrc = $("#isrc").val();            //vacio y longitud 12
+            var track = $("#track").val();          //vacio solo numero
+            var nombre = $("#nombre").val();        //vacio 
+            var duracion = $("#duracion").val();    //vacio y solo numero
+            var precio = $("#precio2").val();
             return true;
             
         }else{
@@ -154,27 +159,33 @@ var funciones = {
     }
 };
     
-function agregar(upc,isrc,track,nombre,duracion,precio){
-       $.ajax("cAlta.do", {
-             
-             type: "POST",
-             dataType: null,
-             
-             data: { "upc":upc,"isrc": isrc,"track":track,"nombre":nombre,"duracion":duracion,"precio":precio},
-             
-             error: function (a, b, c)
-                     {
-                        window.alert("ERROR A: "+a+"  | ERROR B: "+b+"  | ERROR C: "+c);
-                 
-             },
-             success: function (data)
-                     {
-                     }
-            
-            });
- };
- 
+function setCookie(upc,isrc,track,nombre,duracion,precio,expiredays){
+  var exdate = new Date();
+  exdate.setDate(exdate.getDate()+expiredays);
+  document.cookie = "upc="+escape(upc)+"isrc="+escape(isrc)+"track="+escape(track)+"nombre="+escape(nombre)+"duracion="+escape(duracion)+"precio="+escape(precio)+"track="+escape(track)+((expiredays==null)? "" : ";expires="+exdate.toGMTString());
+};
+
+function getCookie(upc,isrc,track,nombre,duracion,precio){
+    if(document.cookie.length >0){
+      upc_start = document.cookie.indexOf(upc+"=");
+      isrc_start = document.cookie.indexOf(isrc+"=");
+      track_start = document.cookie.indexOf(track+"=");
+      nombre_start = document.cookie.indexOf(nombre+"=");
+      duracion_start = document.cookie.indexOf(duracion+"=");
+      precio_start = document.cookie.indexOf(precio+"=");
+        if (upc_start != -1){
+            upc_start = upc_start + upc.length + 1;
+            c_end = document.cookie.indexOf(";",upc_start);
+            if(c_end == -1)
+                c_end = document.cookie.length;
+            return unescape(document.cookie.substring(upc_start,upc_end));
+        }
+    }
+    return "";
+};
+
 $(document).ready(function(){
+   
     $("#dAlta").submit(function(e){
         funciones.validaAlta(e);
     });
