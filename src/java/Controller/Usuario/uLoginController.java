@@ -1,9 +1,7 @@
 package Controller.Usuario;
 
-import Json.JSONObject;
 import Model.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import Actions.StringMD;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 
 public class uLoginController extends HttpServlet {
 
@@ -18,6 +20,13 @@ public class uLoginController extends HttpServlet {
             throws ServletException, IOException {
         
          HttpSession sesion = request.getSession(true); 
+        /*URL resource = getClass().getResource("/");
+        String path = resource.getPath();
+        String path3 = System.getProperty("user.home");
+        Path currentRelativePath = Paths.get("");
+        String s = currentRelativePath.toAbsolutePath().toString();
+        String prefix =  getServletContext().getRealPath("/");*/
+         
         Actions.Usuarios.UsuariosFunciones funciones = new Actions.Usuarios.UsuariosFunciones();
         RequestDispatcher rd =null;
         try{                        sesion.setAttribute("mensajeExito", null);
