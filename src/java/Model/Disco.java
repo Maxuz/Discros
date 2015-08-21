@@ -25,7 +25,7 @@ public class Disco {
     
     //NO SE GUARDA EN LA TABLA CANCION, SIRVE PARA LA TABLA PEDIDOS_CANCIONES
     private Date hora;
-   
+    private int cantidad;
     
     // </editor-fold>
     
@@ -51,6 +51,12 @@ public class Disco {
     // </editor-fold>
     
     // <editor-fold desc="GETS DATOS">
+    
+    public int getCantidad()
+    {
+    return this.cantidad;
+    }
+    
     public String getDescripcion()
     {
         return this.descripcion;
@@ -100,6 +106,10 @@ public class Disco {
     // </editor-fold>
     
     // <editor-fold desc="SETS DE DATOS">
+       public void setCantidad(int cant)
+     {
+         this.cantidad=cant;
+     }
      public void setHora(Date hora)
      {
          this.hora=hora;

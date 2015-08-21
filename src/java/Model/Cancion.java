@@ -1,9 +1,9 @@
 
 package Model;
 
-import java.util.Calendar;
+ 
 import java.util.Date;
-import javax.print.attribute.standard.DateTimeAtCompleted;
+ 
 
 
 public class Cancion {
@@ -19,7 +19,7 @@ public class Cancion {
     private long upc;
     
     //NO SE GUARDA EN LA TABLA CANCION, SIRVE PARA LA TABLA PEDIDOS_CANCIONES
-    
+    private int cantidad;
     
     private Date hora;
    
@@ -52,10 +52,11 @@ public class Cancion {
      this.track=track;
      }
      
-     public void setHora(Date hora)
+     public void setCantidad(int cant)
      {
-         this.hora=hora;
+         this.cantidad = cant;
      }
+   
      
     // </editor-fold>
     
@@ -90,6 +91,12 @@ public class Cancion {
     public Date getHora()
     {
         return this.hora;
+    }
+    
+    
+    public int getCantidad()
+    {
+    return this.cantidad;
     }
        
     // </editor-fold>

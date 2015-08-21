@@ -57,11 +57,33 @@ public class pAltaController extends HttpServlet {
                         ArrayList<Cancion> listaCancion = new ArrayList<>();
                         ArrayList<Disco> lista = (ArrayList<Disco>)sesion.getAttribute("listaCarrito");
                         
-                        for(Disco dis:lista)
-                        {   cancion = funcionesCanciones.getOne(dis.getUpc(), 0);
-                            cancion.setHora(dis.getHora());
-                            listaCancion.add(cancion);
-                        } 
+                        //CONTROL DE LOS DISCOS DE LOS CARRITOS Y ACTUALIZACIÓN DE CANTIDAD PARA GUARDAR EN PEDIDOS_CANCIONES
+                        
+                        int i, f;
+                        
+                        for(i=0; i<lista.size(); i++)
+                        //for(Disco dis:lista)
+                        {   Disco dis = lista.get(i);
+                            cancion = funcionesCanciones.getOne(dis.getUpc(), 0);
+                            boolean cond = true;
+                            if(listaCancion.isEmpty())
+                            {
+                                listaCancion.add(cancion);}
+                            else{
+                                    for(f=0; f<listaCancion.size(); f++)
+                                    //for(Cancion can:listaCancion)
+                                    {   
+                                        Cancion can = listaCancion.get(f);
+                                         if(can.getUpc()==dis.getUpc())
+                                         {   
+                                             listaCancion.get(f).setCantidad(can.getCantidad()+1);
+                                              cond = false;
+                                         }
+                                    }
+                                    if(cond)
+                                    {listaCancion.add(cancion);}
+                                }   
+                        }
                         
                         Pedido pedido = new Pedido(id, valor, fecha, entrega, pago, formapago, email);
                         funciones.alta(pedido, listaCancion);

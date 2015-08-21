@@ -33,9 +33,9 @@ public class cAddController extends HttpServlet {
             //SETEO EL DISCO EN LA SESION PARA MOSTRAR LUEGO EN EL CARRITO
             DiscosFunciones funciones = new DiscosFunciones();
             Disco dis = funciones.getOne(upc);
+            dis.setCantidad(1);
+             
             
-            Date hora = new Date();
-            dis.setHora(hora);
             ArrayList<Disco> lista = new ArrayList<>();
             ArrayList<Disco> listaAux = (ArrayList<Disco>)sesion.getAttribute("listaCarrito");
             

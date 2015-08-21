@@ -42,11 +42,11 @@ public class PedidosFunciones {
                 
                 for(Cancion can:lista)
                 {
-                  pst = con.prepareStatement("INSERT INTO `pedidos_canciones` (id_pedido, isrc, upc,hora)"+" values(?,?,?,?)"); 
+                  pst = con.prepareStatement("INSERT INTO `pedidos_canciones` (id_pedido, isrc, upc,cantidad)"+" values(?,?,?,?)"); 
                   pst.setInt(1, pedido.getID());
                   pst.setLong(2, can.getIsrc());
                   pst.setLong(3, can.getUpc());
-                  pst.setDate(4, Util.convertUtilDateToSqlDate(can.getHora()));
+                  pst.setInt(4, 2);
                   pst.executeUpdate();
                   
                   int stock = funcionesDisco.getStock(can.getUpc());

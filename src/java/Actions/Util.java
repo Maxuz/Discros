@@ -61,6 +61,12 @@ public class Util {
         String currentDate = ft.format(dNow);
     }
     
+    public java.util.Date hora()
+    {
+    java.util.Date dNow = new java.util.Date();
+    return dNow;
+    }
+    
     //METODO PARA OBTENER ENTERO SEGÚN EL STRING - SE USA EN T_BUSQUEDA.JSP
     
     public int getInt(String tipo)
