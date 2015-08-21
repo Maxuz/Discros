@@ -5,13 +5,15 @@
  */
 package Model;
 
+import java.util.Date;
+
 
 
 
 public class Disco {
   
     // <editor-fold desc="DECLARACIÓN DE VARIABLES">
-    private int upc;
+    private long upc;
     private String artista;
     private String album;
     private String genero;
@@ -20,6 +22,11 @@ public class Disco {
     private String imagen;
     private int stock;
     private float precioAux;
+    
+    //NO SE GUARDA EN LA TABLA CANCION, SIRVE PARA LA TABLA PEDIDOS_CANCIONES
+    private Date hora;
+   
+    
     // </editor-fold>
     
     // <editor-fold desc="CONSTRUCTORES">
@@ -27,7 +34,7 @@ public class Disco {
     {
     }
     
-    public Disco( String artista, String album, String genero, String descripcion, String imagen, int upc, int stock, String fecha)
+    public Disco( String artista, String album, String genero, String descripcion, String imagen, long upc, int stock, String fecha)
     {
         this.upc=upc;
         this.artista=artista;
@@ -74,7 +81,7 @@ public class Disco {
         return this.genero;
     }
     
-    public int getUpc()
+    public long getUpc()
     {
         return this.upc;
     }
@@ -83,11 +90,22 @@ public class Disco {
     {
         return this.stock;
     }
+    
+     public Date getHora()
+    {
+        return this.hora;
+    }
+       
      
     // </editor-fold>
     
     // <editor-fold desc="SETS DE DATOS">
-    public void setDatos( String artista, String album, String genero, String descripcion, String imagen, int upc, int stock, String fecha)
+     public void setHora(Date hora)
+     {
+         this.hora=hora;
+     }
+     
+    public void setDatos( String artista, String album, String genero, String descripcion, String imagen, long upc, int stock, String fecha)
     {
         this.upc=upc;
         this.artista=artista;

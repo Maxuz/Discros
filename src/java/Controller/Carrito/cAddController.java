@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import Model.Disco;
 import Actions.Discos.DiscosFunciones;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class cAddController extends HttpServlet {
 
@@ -33,6 +34,8 @@ public class cAddController extends HttpServlet {
             DiscosFunciones funciones = new DiscosFunciones();
             Disco dis = funciones.getOne(upc);
             
+            Date hora = new Date();
+            dis.setHora(hora);
             ArrayList<Disco> lista = new ArrayList<>();
             ArrayList<Disco> listaAux = (ArrayList<Disco>)sesion.getAttribute("listaCarrito");
             

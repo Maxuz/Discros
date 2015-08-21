@@ -1,6 +1,10 @@
 
 package Model;
 
+import java.util.Calendar;
+import java.util.Date;
+import javax.print.attribute.standard.DateTimeAtCompleted;
+
 
 public class Cancion {
      
@@ -12,8 +16,13 @@ public class Cancion {
     private float duracion;
     
     //CLAVE FORÁNEA
-    private int upc;
+    private long upc;
     
+    //NO SE GUARDA EN LA TABLA CANCION, SIRVE PARA LA TABLA PEDIDOS_CANCIONES
+    
+    
+    private Date hora;
+   
     
     // </editor-fold>  
 
@@ -33,7 +42,7 @@ public class Cancion {
     // </editor-fold>
     
     // <editor-fold desc="SET DE DATOS ">
-     public void setDatos(String nombre, float precio,long isrc, int upc, float duracion, int track)
+     public void setDatos(String nombre, float precio,long isrc, long upc, float duracion, int track)
      {
      this.nombre=nombre;
      this.precio=precio;
@@ -43,6 +52,10 @@ public class Cancion {
      this.track=track;
      }
      
+     public void setHora(Date hora)
+     {
+         this.hora=hora;
+     }
      
     // </editor-fold>
     
@@ -61,7 +74,7 @@ public class Cancion {
     {
         return this.isrc;
     }
-    public int getUpc()
+    public long getUpc()
     {
         return this.upc;
     }
@@ -72,6 +85,11 @@ public class Cancion {
     public int getTrack()
     {
         return this.track;
+    }
+    
+    public Date getHora()
+    {
+        return this.hora;
     }
        
     // </editor-fold>

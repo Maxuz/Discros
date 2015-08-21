@@ -25,7 +25,7 @@ public class Util {
     //METODO PARA OBTENER INDICE DE UN OBJETO POR PARÁMETRO
     public int getIndice(ArrayList<Disco> lista, Disco dis)
     {
-        int upc= dis.getUpc();
+        long upc= dis.getUpc();
         int indice=0;
         int i;
         

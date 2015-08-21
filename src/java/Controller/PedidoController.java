@@ -46,8 +46,8 @@ public class PedidoController extends HttpServlet {
                                                 
                                                 float valor = Float.parseFloat(request.getParameter("valor"));
                                                 Date fecha2 = null;
-                                                Pedido pedido = new Pedido(id, valor, fecha2, estado, email);
-                                                funciones.alta(pedido);
+                                           //     Pedido pedido = new Pedido(id, valor, fecha2, estado, email);
+                                             //   funciones.alta(pedido);
 
                                                 response.getWriter().print("EL PEDIDO SE REGISTRÓ CORRECTAMENTE");
                                                 
@@ -96,8 +96,8 @@ public class PedidoController extends HttpServlet {
                                                 float valor = Float.parseFloat(request.getParameter("valor"));
                                                 
                                                 Date fecha2 = null;
-                                                Pedido pedido = new Pedido(id, valor, fecha2, estado, email);
-                                                funciones.modificar(pedido);
+                                             //   Pedido pedido = new Pedido(id, valor, fecha2, estado, email);
+                                            //    funciones.modificar(pedido);
 
                                                 response.getWriter().print("EL PEDIDO SE ACTUALIZÓ CORRECTAMENTE");
                                         }

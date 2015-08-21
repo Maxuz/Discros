@@ -15,7 +15,14 @@
      
         <%   response.sendRedirect("u_login.jsp"); }  
     else {%>
-                <!-- MÓDULO PARA USUARIOS LOGUEADOS -->
+                <%  
+                if(session.getAttribute("mensajeExito")!=null)
+                {%>
+                <h1 style="font-style: italic; text-align: center;"><% out.print(session.getAttribute("mensajeExito").toString());%></h1>
+               <%}
+                else{    
+                 %>
+                 <!-- MÓDULO PARA USUARIOS LOGUEADOS -->
                  <br><h2 style="text-align: center;">Confirmar pedido</h2><hr>
                  
                 
@@ -71,18 +78,23 @@
                                        </div>
                                         
                                 <!-- TABLA DE CANCIONES: RECORDAR QUE EL PRECIO DE UN DISCO ES LA CANCION DEL DISCO CON CÓDIGO = 0-->
-                                <br><hr>   
+                                 <br><hr>   
                                  <h3 style="color: #23527c;"> Datos del pedido</h3>
+                                 <h4><strong> VALOR TOTAL DEL PEDIDO:  $ <% out.print(session.getAttribute("valorTotalCarrito")); %></strong></h4>
                                  <h4 style="font-style: italic;">Cantidad de items en el carrito: <%out.print(session.getAttribute("itemsTotal").toString());%></h4>
-                                 <div class="table-responsive">
+                                 
+                                 <button type="button" class="btn btn-info" id="verDetalles"   onclick="verDetalles()">Ver detalles</button>
+                                 <button type="button" class="btn btn-info hidden" id="ocultarDetalles"  onclick="ocultarDetalles()" >Ocultar detalles</button>
+                                 <br>
+                                 <div class="table-responsive" hidden id="itemsPedido">
                                  <table class="table" id="tablaCanciones">
                                  <!-- CODIGO PARA EL ENCABEZADO-->
+                                 <br>
                                  <tr>
                                      <td><strong>Artista</strong></td>
                                      <td><strong>Album</strong></td>
                                      <td><strong>Genero</strong></td>
                                      <td><strong>Año</strong></td>
-                                     <!--<td><strong>Descripción</strong></td>-->
                                      <td><strong>Precio</strong></td>
                                  </tr>
                                  
@@ -100,33 +112,29 @@
                                              <td><%out.print(dis.getAlbum()); %></td>
                                              <td><%out.print(dis.getGenero()); %></td>
                                              <td><%out.print(dis.getFecha()); %></td>
-                                         <!--<td><%//out.print(dis.getDescripcion()); %></td>
-                                             <td><%//out.print(dis.getImagen()); %></td>-->
                                              <td>$ <%out.print(precio); %></td>
                                              </tr>
-                                            <%
-                                        }
-                                        
-                                        };%>
+                                     <%}
+                                 };%>
                                         <tr>
                                             <td><strong>Total</strong></td>
                                              <td></td>
                                              <td></td>
                                              <td></td>
-                                        <!-- <td></td>
-                                             <td></td>-->
                                              <td><strong>$ <% out.print(session.getAttribute("valorTotalCarrito")); %></strong></td>
                                              
                                              </tr>
                                         </table>
                                          </div>   
-                                         <br><hr>                                         
-                                         <h3 style="color: #23527c;">Datos de Pago</h3>
+                                         <br><hr> 
+                                         
+                                        <!--DATOS DEL PAGO --> 
+                                        <h3 style="color: #23527c;">Datos de Pago</h3>
                                         <form action="pAlta.do" role="form" id="login" method="post"  >
                                         <p>Entrega a domicilio: <%out.print(user.getDireccion());%> - <%out.print(user.getCiudad());%> - <%out.print(user.getProvincia());%></p>
                                          
                                         <div class="radio">
-                                            <label><input type="radio" name="optradio" onclick="ocultarTarjeta()" value="puerta" >Pago contra entrega de producto.</label>
+                                            <label><input type="radio" checked="checked"  name="optradio" onclick="ocultarTarjeta()" value="puerta" >Pago contra entrega de producto.</label>
                                          </div>
                                              
                                          <div class="radio">
@@ -191,7 +199,7 @@
             <br><h3 style="text-align: center; ">El carrito esta vacio, para realizar su compra ingrese a la tienda</h3><hr>
             <h3 style="text-align: center;"><a href="t_index.jsp">Ingresar a la Tienda</a> </h3><br>
                     <%};
-                        } %>
+                        }} %>
 </div>                
 </div>                
     

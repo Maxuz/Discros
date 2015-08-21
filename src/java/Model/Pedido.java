@@ -10,8 +10,13 @@ public class Pedido {
     // <editor-fold desc="DEFINICIÓN DE VARIABLES">
     private int id_pedido;
     private float valor;
-    private Date fecha;//VERIFICAR CÓMO SE USA LA VARIABLE DATE
-    private String estado;
+    private Date fecha;
+    private Date fecha_entrega;
+    
+    //VARIABLES DE ESTADO
+    private String entrega;
+    private String pago;
+    private String forma;
     
     //CLAVE FORÁNEA
     private String email;
@@ -24,12 +29,14 @@ public class Pedido {
     public Pedido()
     {}
     
-    public Pedido(int id, float valor, Date fecha_c, String estado, String email)
+    public Pedido(int id, float valor, Date fecha_c, String entrega, String pago, String forma, String email)
     {
         this.id_pedido=id;
         this.valor=valor;
         this.fecha=fecha_c;
-        this.estado=estado;
+        this.entrega=entrega;
+        this.pago=pago;
+        this.forma=forma;
         this.email=email;
         
     }
@@ -44,7 +51,7 @@ public class Pedido {
         this.valor=valor;
         this.fecha=fecha_c;
         this.email=email;
-        this.estado=estado;
+        this.entrega=estado;
     }
     
    
@@ -69,7 +76,17 @@ public class Pedido {
     
     public String getEstado()
     {
-        return this.estado;
+        return this.entrega;
+    }
+    
+    public String getPago()
+    {
+        return this.pago;
+    }
+    
+    public String getFormaPago()
+    {
+        return this.forma;
     }
     
     public String getEmail()

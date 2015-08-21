@@ -29,8 +29,8 @@ public class pModificarController extends HttpServlet {
                                                 float valor = Float.parseFloat(request.getParameter("valor"));
                                                 
 
-                                                Pedido pedido = new Pedido(id, valor, fecha, estado, email);
-                                                funciones.modificar(pedido);
+                           //                     Pedido pedido = new Pedido(id, valor, fecha, estado, email);
+                             //                   funciones.modificar(pedido);
 
                                                 response.getWriter().print("EL PEDIDO SE ACTUALIZÓ CORRECTAMENTE");
                                         }

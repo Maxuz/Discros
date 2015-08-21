@@ -37,7 +37,7 @@ public class DiscosFunciones {
                 pst.setString(9, user.getProvincia());
                 pst.setBoolean(10,  user.getEstado());*/
                 pst = con.prepareStatement("INSERT INTO `discos` (upc, artista, album, genero, fecha_salida, stock, descripcion, imagen)"+" values(?,?,?,?,?,?,?,?)");
-                pst.setInt(1, disco.getUpc());
+                pst.setLong(1, disco.getUpc());
                 pst.setString(2, disco.getArtista());
                 pst.setString(3, disco.getAlbum());
                 pst.setString(4, disco.getGenero());
@@ -52,7 +52,7 @@ public class DiscosFunciones {
                 pst.setString(2, "");
                 pst.setFloat(3, 0);
                 pst.setFloat(4, precio);
-                pst.setInt(5, disco.getUpc());
+                pst.setLong(5, disco.getUpc());
                 pst.setInt(6, 0);
                 pst.executeUpdate();
                 
@@ -64,7 +64,7 @@ public class DiscosFunciones {
                pst.setString(2, get.getNombre());
                pst.setFloat(3, get.getDuracion());
                pst.setFloat(4, get.getPrecio());
-               pst.setInt(5, disco.getUpc());
+               pst.setLong(5, disco.getUpc());
                pst.setInt(6, get.getTrack());
                pst.executeUpdate();
            } // </editor-fold>
@@ -315,7 +315,7 @@ public class DiscosFunciones {
                 Disco disco = new Disco();
                 
                 disco.setDatos(rs.getString("artista"), rs.getString("album"),rs.getString("genero"),
-                                    rs.getString("descripcion"), rs.getString("imagen"),rs.getInt("upc"),
+                                    rs.getString("descripcion"), rs.getString("imagen"),rs.getLong("upc"),
                                     rs.getInt("stock"),rs.getString("fecha_salida"));
               lista.add(disco);
             }
@@ -361,7 +361,7 @@ public class DiscosFunciones {
          return lista; 
     }
     
-    
+    //SOLUCIÓN AL PROBLEMA.
     public ArrayList<Disco>  getAll (String columna, String texto) throws Exception
     {
         // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
@@ -451,6 +451,7 @@ public class DiscosFunciones {
          return lista; 
     }
     
+    //NO SE USA
     public ArrayList<Disco>  getAllGenero (String genero) throws Exception
     {
         // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
@@ -520,7 +521,7 @@ public class DiscosFunciones {
          
          return lista; 
     }
-    
+    //NO SE USA
     public ArrayList<Disco>  getAllAlbum (String album) throws Exception
     {
         // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
@@ -590,8 +591,7 @@ public class DiscosFunciones {
          
          return lista; 
     }
-    
-    
+
     public ArrayList<String>  getListaArtistas () throws Exception
     {
         // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
@@ -728,7 +728,7 @@ public class DiscosFunciones {
     
     // <editor-fold desc="FUNCIONES: OTRAS">
  
-    public boolean buscar(int UPC) throws Exception
+    public boolean buscar(long UPC) throws Exception
     {     boolean status = false;  
         
          // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
@@ -740,7 +740,7 @@ public class DiscosFunciones {
         
           try { // <editor-fold desc="QUERY Y RESULTADO">
                 pst = con.prepareStatement("select * from discos where upc=?");  
-                pst.setInt(1, UPC);
+                pst.setLong(1, UPC);
                 rs = pst.executeQuery();  
                 status = rs.next();
                           
@@ -781,5 +781,115 @@ public class DiscosFunciones {
     
         
     }
+    
+    public int getStock(long UPC)throws Exception
+    {
+         //<editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
+         Connection con = Conexion.getConexion();
+         PreparedStatement pst = null;  
+         ResultSet rs = null;  
+         int stock;
+        
+        // </editor-fold>
+        
+          try { // <editor-fold desc="QUERY Y RESULTADO">
+                pst = con.prepareStatement("select stock from discos where upc=?");  
+                pst.setLong(1, UPC);
+                rs = pst.executeQuery();  
+                rs.next();
+                stock = rs.getInt("stock");
+                          
+                // </editor-fold>
+            } 
+          catch (Exception e) {  
+                throw e;  
+              } 
+          finally {  
+               // <editor-fold desc="CIERRA: CON, PST, RS">
+            if (con != null) {  
+                try {  
+                    Actions.Conexion.cerrarConexion();
+                   
+                 } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (rs != null) {  
+                try {  
+                    rs.close();  
+                } catch (Exception e) {  
+                    System.out.println(e);
+                    //e.printStackTrace();  
+                }  
+            }
+            // </editor-fold>
+        
+        } 
+          return stock;
+    }
+    
+       public void setStock (int stock, long upc) throws Exception
+    {
+        // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
+         Connection con = Conexion.getConexion();
+         PreparedStatement pst = null;  
+         ResultSet rs = null;  
+         
+         
+        // </editor-fold>
+        
+          try { // <editor-fold desc="QUERY Y RESULTADO">
+            pst = con.prepareStatement("UPDATE `discos` SET stock=? WHERE upc=? ");
+               
+            pst.setInt(1, stock);
+            pst.setLong(2, upc);
+            
+            pst.executeUpdate();  
+          
+         // </editor-fold>
+            
+              } 
+          catch (Exception e) {  
+                throw e;  
+              } 
+          finally {  
+               // <editor-fold desc="CIERRA: CON, PST, RS">
+            if (con != null) {  
+                try {  
+                    Actions.Conexion.cerrarConexion();
+                   
+                 } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (rs != null) {  
+                try {  
+                    rs.close();  
+                } catch (Exception e) {  
+                    System.out.println(e);
+                    //e.printStackTrace();  
+                }  
+            }
+            // </editor-fold>
+        
+        } 
+    }
+    
+    
+    
      // </editor-fold>
 }

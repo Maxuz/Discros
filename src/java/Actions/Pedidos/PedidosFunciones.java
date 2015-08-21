@@ -1,45 +1,78 @@
 package Actions.Pedidos;
 
 import Actions.Conexion;
+import Model.Cancion;
 import Model.Pedido;
+import Actions.Util;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import Actions.Discos.DiscosFunciones;
 
 public class PedidosFunciones {
 
-    
+ 
 // <editor-fold desc="FUNCIONES: ALTA BAJA MODIFICAR">
           
-    public boolean alta(Pedido pedido) throws Exception
+    public boolean alta(Pedido pedido, ArrayList<Cancion> lista) throws Exception
      {     boolean status = false;  
         
          // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
          Connection con = Conexion.getConexion();
          PreparedStatement pst = null;  
          ResultSet rs = null;  
-        
+         DiscosFunciones funcionesDisco = new DiscosFunciones();
+         
+         con.setAutoCommit(false);
         // </editor-fold>
         
           try { // <editor-fold desc="QUERY Y RESULTADO">
+                pst = con.prepareStatement("INSERT INTO `pedidos` (id_pedido, email, valor, estado, fecha, pago, formapago)"+" values(?,?,?,?,?,?,?)");  
+                pst.setInt(1, pedido.getID());
+                pst.setString(2, pedido.getEmail());
+                pst.setFloat(3, pedido.getValor());
+                pst.setString(4, pedido.getEstado());
+                pst.setDate(5, Util.convertUtilDateToSqlDate(pedido.getFecha()));  
+                pst.setString(6, pedido.getPago());
+                pst.setString(7,pedido.getFormaPago());
+                pst.executeUpdate();
                 
-                pst = con.prepareStatement("INSERT INTO `pedidos` values( '"+pedido.getID()+"','"+pedido.getEmail()+"','"+pedido.getValor()+"','"+pedido.getEstado()+"'"
-                        + ",'"+pedido.getFecha()+"')");
                 
-                pst.executeUpdate();  
-        
-                          
+                
+                for(Cancion can:lista)
+                {
+                  pst = con.prepareStatement("INSERT INTO `pedidos_canciones` (id_pedido, isrc, upc,hora)"+" values(?,?,?,?)"); 
+                  pst.setInt(1, pedido.getID());
+                  pst.setLong(2, can.getIsrc());
+                  pst.setLong(3, can.getUpc());
+                  pst.setDate(4, Util.convertUtilDateToSqlDate(can.getHora()));
+                  pst.executeUpdate();
+                  
+                  int stock = funcionesDisco.getStock(can.getUpc());
+                  stock = stock-1;
+                  pst = con.prepareStatement("UPDATE `discos` SET stock=? WHERE upc=? ");
+                  
+                  pst.setInt(1, stock);
+                  pst.setLong(2, can.getUpc());
+
+                  pst.executeUpdate(); 
+                }
+                
                 // </editor-fold>
             } 
           catch (Exception e) {  
+                con.rollback();
                 throw e;  
               } 
           finally {  
                // <editor-fold desc="CIERRA: CON, PST, RS">
             if (con != null) {  
                 try {  
+                    con.commit();
                     Actions.Conexion.cerrarConexion();
+                    con.setAutoCommit(true);
+                  
                    
                  } catch (Exception e) {  
                    System.out.println(e);  
