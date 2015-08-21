@@ -26,7 +26,7 @@
         %>
         
         <hr> 
-        <form role="form" class="form-horizontal"  method="post"  onsubmit="validaModificar(event)" action="uModificar.du" >
+        <form role="form" class="form-horizontal"  method="post" onsubmit="validaModificar(event)" action="uModificar.do" >
             <% //if(session.getAttribute("nombre")==null){%>
       
             <h4>Datos del usuario</h4>
@@ -92,30 +92,31 @@
             <div class="col-xs-8">
                 <label id="lblProvincia" for="Provincia">Elija su Provincia:</label>
                 <select class="form-control" name="provincia" id="provincia" value="<%= usu.getProvincia()%>">
-                    <option value="Buenos Aires">Buenos Aires</option>
-                    <option value="Catamarca">Catamarca</option>
-                    <option value="Capital Federal">Capital Federal</option>
-                    <option value="Chaco">Chaco</option>
-                    <option value="Chubut">Chubut</option>
-                    <option value="Córdoba">Córdoba</option>
-                    <option value="Corrientes">Corrientes</option>
-                    <option value="Entre Ríos">Entre Ríos</option>
-                    <option value="Formosa">Formosa</option>
-                    <option value="Jujuy">Jujuy</option>
-                    <option value="La Pampa">La Pampa</option>
-                    <option value="La Rioja">La Rioja</option>
-                    <option value="Mendoza">Mendoza</option>
-                    <option value="Misiones">Misiones</option>
-                    <option value="Nequén">Nequén</option>
-                    <option value="Río Negro">Río Negro</option>
-                    <option value="Salta">Salta</option>
-                    <option value="San Juan">San Juan</option>
-                    <option value="San Luis">San Luis</option>
-                    <option value="Santa Crúz">Santa Crúz</option>
-                    <option value="Santa Fe">Santa Fe</option>
-                    <option value="Santiago del Estero">Santiago del Estero</option>
-                    <option value="Tierra del Fuego">Tierra del Fuego</option>
-                    <option value="Tucumán">Tucumán</option>
+                    <option value="" <% if(usu.getProvincia().equals("")){ %>selected="selected"<% } %>>Seleccione opci&oacute;n</option>
+                    <option value="Buenos Aires" <% if(usu.getProvincia().equals("Catamarca")){ %>selected="selected"<% } %>>Buenos Aires</option>
+                    <option value="Catamarca" <% if(usu.getProvincia().equals("Catamarca")){ %>selected="selected"<% } %>>Catamarca</option>
+                    <option value="Capital Federal" <% if(usu.getProvincia().equals("Capital Federal")){ %>selected="selected"<% } %>>Capital Federal</option>
+                    <option value="Chaco" <% if(usu.getProvincia().equals("Chaco")){ %>selected="selected"<% } %>>Chaco</option>
+                    <option value="Chubut" <% if(usu.getProvincia().equals("Chubut")){ %>selected="selected"<% } %>>Chubut</option>
+                    <option value="Córdoba" <% if(usu.getProvincia().equals("Córdoba")){ %>selected="selected"<% } %>>Córdoba</option>
+                    <option value="Corrientes" <% if(usu.getProvincia().equals("Corrientes")){ %>selected="selected"<% } %>>Corrientes</option>
+                    <option value="Entre Ríos" <% if(usu.getProvincia().equals("Entre Ríos")){ %>selected="selected"<% } %>>Entre Ríos</option>
+                    <option value="Formosa" <% if(usu.getProvincia().equals("Formosa")){ %>selected="selected"<% } %>>Formosa</option>
+                    <option value="Jujuy" <% if(usu.getProvincia().equals("Jujuy")){ %>selected="selected"<% } %>>Jujuy</option>
+                    <option value="La Pampa" <% if(usu.getProvincia().equals("La Pampa")){ %>selected="selected"<% } %>>La Pampa</option>
+                    <option value="La Rioja" <% if(usu.getProvincia().equals("La Rioja")){ %>selected="selected"<% } %>>La Rioja</option>
+                    <option value="Mendoza" <% if(usu.getProvincia().equals("Mendoza")){ %>selected="selected"<% } %>>Mendoza</option>
+                    <option value="Misiones" <% if(usu.getProvincia().equals("Misiones")){ %>selected="selected"<% } %>>Misiones</option>
+                    <option value="Nequén" <% if(usu.getProvincia().equals("Nequén")){ %>selected="selected"<% } %>>Nequén</option>
+                    <option value="Río Negro" <% if(usu.getProvincia().equals("Río Negro")){ %>selected="selected"<% } %>>Río Negro</option>
+                    <option value="Salta" <% if(usu.getProvincia().equals("Salta")){ %>selected="selected"<% } %>>Salta</option>
+                    <option value="San Juan" <% if(usu.getProvincia().equals("San Juan")){ %>selected="selected"<% } %>>San Juan</option>
+                    <option value="San Luis" <% if(usu.getProvincia().equals("San Luis")){ %>selected="selected"<% } %>>San Luis</option>
+                    <option value="Santa Crúz" <% if(usu.getProvincia().equals("Santa Crúz")){ %>selected="selected"<% } %>>Santa Crúz</option>
+                    <option value="Santa Fe" <% if(usu.getProvincia().equals("Santa Fe")){ %>selected="selected"<% } %>>Santa Fe</option>
+                    <option value="Santiago del Estero" <% if(usu.getProvincia().equals("Santiago del Estero")){ %>selected="selected"<% } %>>Santiago del Estero</option>
+                    <option value="Tierra del Fuego" <% if(usu.getProvincia().equals("Tierra del Fuego")){ %>selected="selected"<% } %>>Tierra del Fuego</option>
+                    <option value="Tucumán" <% if(usu.getProvincia().equals("Tucumán")){ %>selected="selected"<% } %>>Tucumán</option>
                 </select><br>
             </div>
             <br><br><br><br>
