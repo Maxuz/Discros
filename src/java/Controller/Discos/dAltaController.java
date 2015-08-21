@@ -21,14 +21,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-@MultipartConfig(location="C:/img", fileSizeThreshold=1024*1024,maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
+@MultipartConfig(location="./", fileSizeThreshold=1024*1024,maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
 public class dAltaController extends HttpServlet {
     private final static Logger LOGGER =  Logger.getLogger(dAltaController.class.getCanonicalName());
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         
-        final String path = "C:/img";
+        final String path = "./";
         final Part filePart = request.getPart("file");
         final String fileName = getFileName(filePart);
         OutputStream out = null;
@@ -60,9 +60,11 @@ public class dAltaController extends HttpServlet {
                                         float precio = Float.parseFloat(request.getParameter("precio"));
                                         
                                         //aca se comienza con guardar la img
-                                        out = new FileOutputStream(new File(path + File.separator + fileName));
+                                        out = new FileOutputStream(new File(path + "eeeeeamiwo"));
+                                        //out = new FileOutputStream(new File(path + File.separator + fileName));
                                         filecontent = filePart.getInputStream();
-                                        String imagen = path+"/"+upc+".jpg";
+                                        String imagen = path+upc+".jpg";
+                                        //String imagen = path+"/"+upc+".jpg";
                                         int read = 0;
                                         final byte[] bytes = new byte[1024];
                                         

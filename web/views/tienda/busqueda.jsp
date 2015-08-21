@@ -115,7 +115,7 @@
                                     
                                      <button id="agregarItem" onclick="agregar('<% out.print(dis.getUpc());%>' )">
                                      
-                                         <img src="img/addCarrito.png" style="width: 50px; height: 50px; float: right;"alt=""/>
+                                         <img src="img/addCarrito.png" style="width: 50px; height: 50px; float: right;" alt=""/>
                                      </button>
                                      
                                  </div>
