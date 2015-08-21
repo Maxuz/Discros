@@ -20,12 +20,9 @@ public class uLoginController extends HttpServlet {
             throws ServletException, IOException {
         
          HttpSession sesion = request.getSession(true); 
-        /*URL resource = getClass().getResource("/");
-        String path = resource.getPath();
-        String path3 = System.getProperty("user.home");
-        Path currentRelativePath = Paths.get("");
-        String s = currentRelativePath.toAbsolutePath().toString();
-        String prefix =  getServletContext().getRealPath("/");*/
+         
+        
+         String direc = getServletContext().getRealPath("/");
          
         Actions.Usuarios.UsuariosFunciones funciones = new Actions.Usuarios.UsuariosFunciones();
         RequestDispatcher rd =null;

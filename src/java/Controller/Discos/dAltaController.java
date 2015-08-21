@@ -28,9 +28,10 @@ public class dAltaController extends HttpServlet {
             throws ServletException, IOException {
         
         
-        String prePath = new File(".").getCanonicalPath();
-        String prefix =  getServletContext().getRealPath("././");
-        final String path = prefix + "uploads";
+        //String prePath = new File(".").getCanonicalPath();
+        
+        //final String path = getServletContext().getRealPath("/uploads");
+        final String path = "C:\\Users\\MaximilianoDaniel\\Documents\\Discros\\web\\uploads";
         final Part filePart = request.getPart("file");
         final String fileName = getFileName(filePart);
         
@@ -66,7 +67,7 @@ public class dAltaController extends HttpServlet {
                                         out = new FileOutputStream(new File(path+File.separator+upc+".jpg"));
                                         //out = new FileOutputStream(new File(path + File.separator + fileName));
                                         filecontent = filePart.getInputStream();
-                                        String imagen = path+"/"+upc+".jpg";
+                                        String imagen = "uploads/"+upc+".jpg";
                                         //String imagen = path+"/"+upc+".jpg";
                                         int read = 0;
                                         final byte[] bytes = new byte[1024];
