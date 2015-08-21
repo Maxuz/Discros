@@ -2,7 +2,7 @@
 
 //hacer foco en el primer campo del formulario de usuarios
 $(document).ready(function(){
-    $('#email').focus();
+    $('#email').focus();    
 });
 
 
