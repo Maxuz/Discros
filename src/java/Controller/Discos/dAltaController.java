@@ -21,16 +21,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-@MultipartConfig(location="./", fileSizeThreshold=1024*1024,maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
+@MultipartConfig(location="./img", fileSizeThreshold=1024*1024,maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
 public class dAltaController extends HttpServlet {
     private final static Logger LOGGER =  Logger.getLogger(dAltaController.class.getCanonicalName());
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         
-        final String path = "./";
+        //String prePath = new File(".").getCanonicalPath();
+        
+        //final String path = getServletContext().getRealPath("/uploads");
+        String p1 = System.getProperty("user.home");
+        final String path = p1+"\\Documents\\Discros\\web\\uploads";
         final Part filePart = request.getPart("file");
         final String fileName = getFileName(filePart);
+        
         OutputStream out = null;
         InputStream filecontent = null;
         final PrintWriter writer = response.getWriter();
@@ -60,10 +65,10 @@ public class dAltaController extends HttpServlet {
                                         float precio = Float.parseFloat(request.getParameter("precio"));
                                         
                                         //aca se comienza con guardar la img
-                                        out = new FileOutputStream(new File(path + "eeeeeamiwo"));
+                                        out = new FileOutputStream(new File(path+File.separator+upc+".jpg"));
                                         //out = new FileOutputStream(new File(path + File.separator + fileName));
                                         filecontent = filePart.getInputStream();
-                                        String imagen = path+upc+".jpg";
+                                        String imagen = "uploads/"+upc+".jpg";
                                         //String imagen = path+"/"+upc+".jpg";
                                         int read = 0;
                                         final byte[] bytes = new byte[1024];
@@ -72,8 +77,8 @@ public class dAltaController extends HttpServlet {
                                             out.write(bytes,0,read);   
                                         }
                                         //fue modificado fileName por upc
-                                        writer.println("New file " + upc + " created at " + path);
-                                        LOGGER.log(Level.INFO, "File{0}being uploaded to {1}",new Object[]{upc, path});
+                                        writer.println("New file " + fileName + " created at " + path);
+                                        LOGGER.log(Level.INFO, "File{0}being uploaded to {1}",new Object[]{fileName, path});
                                         // aca termina
                                         
                                         
