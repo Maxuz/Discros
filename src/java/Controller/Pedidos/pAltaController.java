@@ -65,23 +65,27 @@ public class pAltaController extends HttpServlet {
                         //for(Disco dis:lista)
                         {   Disco dis = lista.get(i);
                             cancion = funcionesCanciones.getOne(dis.getUpc(), 0);
-                            boolean cond = true;
+                            boolean discoenLista = false;
                             if(listaCancion.isEmpty())
-                            {
-                                listaCancion.add(cancion);}
+                            {   cancion.setCantidad(1);
+                                listaCancion.add(cancion);
+                            }
                             else{
                                     for(f=0; f<listaCancion.size(); f++)
                                     //for(Cancion can:listaCancion)
                                     {   
-                                        Cancion can = listaCancion.get(f);
+                                         Cancion can = listaCancion.get(f);
                                          if(can.getUpc()==dis.getUpc())
                                          {   
-                                             listaCancion.get(f).setCantidad(can.getCantidad()+1);
-                                              cond = false;
+                                              listaCancion.get(f).setCantidad(can.getCantidad()+1);
+                                              discoenLista = true;
+                                              break;
                                          }
                                     }
-                                    if(cond)
-                                    {listaCancion.add(cancion);}
+                                    if(!discoenLista){ 
+                                                        cancion.setCantidad(1); 
+                                                        listaCancion.add(cancion);} 
+                                    
                                 }   
                         }
                         

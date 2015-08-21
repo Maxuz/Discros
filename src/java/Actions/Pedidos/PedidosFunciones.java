@@ -46,7 +46,7 @@ public class PedidosFunciones {
                   pst.setInt(1, pedido.getID());
                   pst.setLong(2, can.getIsrc());
                   pst.setLong(3, can.getUpc());
-                  pst.setInt(4, 2);
+                  pst.setInt(4, can.getCantidad());
                   pst.executeUpdate();
                   
                   int stock = funcionesDisco.getStock(can.getUpc());
