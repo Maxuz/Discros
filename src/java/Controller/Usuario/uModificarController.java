@@ -1,8 +1,9 @@
 package Controller.Usuario;
 
+import Actions.StringMD;
+import Actions.Usuarios.UsuariosFunciones;
 import Model.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,52 +18,62 @@ public class uModificarController extends HttpServlet {
             throws ServletException, IOException {
                 
          HttpSession sesion = request.getSession(true); 
-        Actions.Usuarios.UsuariosFunciones funciones = new Actions.Usuarios.UsuariosFunciones();
-        
-                                try{
-                                    String passAnterior = request.getParameter("passAnterior");
-                                    String temp = (String)sesion.getAttribute("email"); 
-                                    
-                                    if( temp != null)        
-                                    {   if(passAnterior.equals((String)sesion.getAttribute("pass")))
-                                        {   
-                                            String email = temp;
-                                            String pass = request.getParameter("pass");
-                                             // REALIZAR MÉTODO PARA ENCRIPTAR
-                                             //  String pass  = MÉTODOENCRIPTAR(request.getParameter("pass"));
-                                            
-                                            String nombre = request.getParameter("nombre");
-                                            String apellido = request.getParameter("apellido");
-                                            String direccion = request.getParameter("direccion");
-                                            String ciudad = request.getParameter("ciudad");
-                                            String provincia = request.getParameter("provincia");
-                                            Integer dni = Integer.parseInt(request.getParameter("dni"));
+         UsuariosFunciones funciones = new UsuariosFunciones();
+         try{
+            //String passAnterior = request.getParameter("passAnterior");
+            String temp = (String)sesion.getAttribute("email"); // Si esta logueado el usuario
 
-                                            Usuario user = new Usuario (email, pass, nombre, apellido, direccion, ciudad, provincia, dni);
+            if( temp != null)
+            {
+                Usuario usuActual = funciones.getOne(temp);
+                
+                String passAnterior = request.getParameter("passVieja");
+                String passNueva = request.getParameter("pass");
+                String passRepetida = request.getParameter("pass2");
+                
+                // Si modifico contraseña...
+                if(!passAnterior.trim().isEmpty() && !passNueva.trim().isEmpty() && !passRepetida.trim().isEmpty()){
+                    passAnterior = StringMD.getStringMessageDigest(request.getParameter("passVieja"), StringMD.SHA1);
+                    if(passAnterior.equals(usuActual.getPass()) && passNueva.equals(passRepetida)){
+                        usuActual.setPass(StringMD.getStringMessageDigest(passNueva, StringMD.SHA1));
+                    }
+                    else
+                    {
+                        response.getWriter().print("La contraseña anterior no es correcta.");
+                    }
+                }
+                
+                // REALIZAR MÉTODO PARA ENCRIPTAR
+                //  String pass  = MÉTODOENCRIPTAR(request.getParameter("pass"));
 
-                                            funciones.modificar(user);
-                                            
-                                            response.getWriter().print("USUARIO SE ACTUALIZÓ DE MANERA EXITOSA");
-                                            
-                                        }
-                                        else{
-                                                 response.getWriter().print("La contraseña anterior no es correcta.");
-                                            }
-                                     } else { 
-                                             response.getWriter().print("No hay ningún usuario logueado.");
-                                            }
-                                    
-                                           
-                                    }
-                                catch (Exception e)
-                                    {
-                                        sesion.setAttribute("errorCatch", e.toString());
-                                        RequestDispatcher rd =null;
-                                                                               
-                                        rd=request.getRequestDispatcher("error.jsp");
-                                        rd.forward(request,response);
-                                    }
+                String nombre = request.getParameter("nombre");
+                String apellido = request.getParameter("apellido");
+                String direccion = request.getParameter("direccion");
+                String ciudad = request.getParameter("ciudad");
+                String provincia = request.getParameter("provincia");
+                Integer dni = Integer.parseInt(request.getParameter("dni"));
+
+                usuActual.setDatosPersonales(temp, nombre, apellido, direccion, ciudad, provincia, dni);
+
+                funciones.modificar(usuActual);
+
+                //response.getWriter().print("USUARIO SE ACTUALIZÓ DE MANERA EXITOSA");
+                sesion.setAttribute("mensajeExito", "Datos modificados correctamente.");
+                response.sendRedirect("u_modificar.jsp");
+            }
+            else { 
+                response.getWriter().print("No hay ningún usuario logueado.");
+            }
+        }catch (Exception e)
+        {
+            sesion.setAttribute("errorCatch", e.toString());
+            RequestDispatcher rd =null;
+
+            rd=request.getRequestDispatcher("error.jsp");
+            rd.forward(request,response);
+        }
     }
+                               
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

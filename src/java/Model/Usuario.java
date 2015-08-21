@@ -1,6 +1,5 @@
 package Model;
 
-
 public class Usuario {
     
     // <editor-fold desc="DEFINICIÓN DE VARIABLES">
@@ -20,10 +19,22 @@ public class Usuario {
 
     // <editor-fold desc="CONSTRUCTORES">
     
-    
     public Usuario(){}
 
-    public Usuario(String email, String pass,String nombre, String apellido, String direccion, String ciudad, String provincia, Integer dni) {
+    public Usuario(String email, String nombre, String apellido, String direccion, String ciudad, String provincia, Integer dni) {
+        this.email = email;
+        this.nombre=nombre;
+        this.apellido=apellido;
+        this.direccion=direccion;
+        this.ciudad=ciudad;
+        this.provincia=provincia;
+        this.dni=dni;
+       
+        this.tipo = "cliente";
+        this.estado = true;
+    }
+    
+    public Usuario(String email, String pass, String nombre, String apellido, String direccion, String ciudad, String provincia, Integer dni) {
         this.email = email;
         this.pass = pass;
         
@@ -45,9 +56,21 @@ public class Usuario {
     // </editor-fold>
     
     // <editor-fold desc="SET DE DATOS PERSONALES USADO EN EL ALTA DEL USUARIO">
+    public void setDatos(String email, String nombre, String apellido, String direccion, String ciudad, String provincia, Integer dni, String tipo, boolean estado)
+    {   this.email=email;
+        this.nombre=nombre;
+        this.apellido=apellido;
+        this.direccion=direccion;
+        this.ciudad=ciudad;
+        this.provincia=provincia;
+        this.dni=dni;
+        this.tipo = tipo;
+        this.estado = estado;
+    }
+    
     public void setDatos(String email, String pass, String nombre, String apellido, String direccion, String ciudad, String provincia, Integer dni, String tipo, boolean estado)
     {   this.email=email;
-        this.pass=pass;
+        this.setPass(pass);
         this.nombre=nombre;
         this.apellido=apellido;
         this.direccion=direccion;
@@ -65,6 +88,10 @@ public class Usuario {
         this.estado = estado;
     }
     
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+    
     public void setDatospersonales(String nombre, String apellido, String direccion, String ciudad, String provincia, Integer dni)
     {   
         this.nombre=nombre;
@@ -74,7 +101,19 @@ public class Usuario {
         this.provincia=provincia;
         this.dni=dni;
         this.tipo = "cliente";
-    }    
+    }
+    
+    public void setDatosPersonales(String email, String nombre, String apellido, String direccion, String ciudad, String provincia, Integer dni)
+    {
+        this.email=email;
+        this.nombre=nombre;
+        this.apellido=apellido;
+        this.direccion=direccion;
+        this.ciudad=ciudad;
+        this.provincia=provincia;
+        this.dni=dni;
+        this.tipo = "cliente";
+    }  
     // </editor-fold>
     
     // <editor-fold desc="GETS DATOS DE SESION">
@@ -124,7 +163,4 @@ public class Usuario {
         return this.tipo;
     }
     // </editor-fold>
-    
-   
-   
 }
