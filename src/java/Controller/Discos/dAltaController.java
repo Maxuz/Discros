@@ -31,7 +31,8 @@ public class dAltaController extends HttpServlet {
         //String prePath = new File(".").getCanonicalPath();
         
         //final String path = getServletContext().getRealPath("/uploads");
-        final String path = "C:\\Users\\MaximilianoDaniel\\Documents\\Discros\\web\\uploads";
+        String p1 = System.getProperty("user.home");
+        final String path = p1+"\\Documents\\Discros\\web\\uploads";
         final Part filePart = request.getPart("file");
         final String fileName = getFileName(filePart);
         

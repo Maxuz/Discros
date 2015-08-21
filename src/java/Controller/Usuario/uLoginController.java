@@ -21,8 +21,27 @@ public class uLoginController extends HttpServlet {
         
          HttpSession sesion = request.getSession(true); 
          
-        
+        /*
          String direc = getServletContext().getRealPath("/");
+         String p = System.getProperty("user.dir");
+         String p1 = System.getProperty("user.home");
+         String p2 = System.getProperty("java.home");
+         String p3 = System.getProperty("user.name");
+         Key	Meaning
+        "file.separator"	Character that separates components of a file path. This is "/" on UNIX and "\" on Windows.
+        "java.class.path"	Path used to find directories and JAR archives containing class files. Elements of the class path are separated by a platform-specific character specified in the path.separator property.
+        "java.home"	Installation directory for Java Runtime Environment (JRE)
+        "java.vendor"	JRE vendor name
+        "java.vendor.url"	JRE vendor URL
+        "java.version"	JRE version number
+        "line.separator"	Sequence used by operating system to separate lines in text files
+        "os.arch"	Operating system architecture
+        "os.name"	Operating system name
+        "os.version"	Operating system version
+        "path.separator"	Path separator character used in java.class.path
+        "user.dir"	User working directory
+        "user.home"	User home directory
+        "user.name"	User account name*/
          
         Actions.Usuarios.UsuariosFunciones funciones = new Actions.Usuarios.UsuariosFunciones();
         RequestDispatcher rd =null;
