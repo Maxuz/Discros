@@ -19,7 +19,9 @@
                 if(session.getAttribute("mensajeExito")!=null)
                 {%>
                 <h1 style="font-style: italic; text-align: center;"><% out.print(session.getAttribute("mensajeExito").toString());%></h1>
-               <%}
+               <% 
+                    session.setAttribute("mensajeExito", null);
+                }
                 else{    
                  %>
                  <!-- MÓDULO PARA USUARIOS LOGUEADOS -->
