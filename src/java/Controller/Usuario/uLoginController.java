@@ -20,6 +20,8 @@ public class uLoginController extends HttpServlet {
             throws ServletException, IOException {
         
          HttpSession sesion = request.getSession(true); 
+         //final String pathServlet = getServletContext().getRealPath("/uploads");
+         //final String pathServletR = getServletContext().getContextPath();
          
         /*
          String direc = getServletContext().getRealPath("/");

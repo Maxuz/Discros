@@ -95,6 +95,8 @@
                         for(i=0;i<f;i++) 
                         { dis = lista.get(i); 
                           double precio = funcionesCanciones.getOne(dis.getUpc(), 0).getPrecio();
+                          //String path = "/1.jpg" ;//+ dis.getImagen();
+                          
                             %>
                              <li>
                                  <img src="<%out.print(dis.getImagen());%>" alt="Preview image" class="img-responsive" style=" float: left;" >
