@@ -52,6 +52,7 @@ public class cAddController extends HttpServlet {
            
             
             
+            
             //DETERMINA EL NOMBRE DEL CAMPO DE LA VARIABLE DE SESION: invento para establecer un índice
             String nombreVariable = "item"+cant;
             

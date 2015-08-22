@@ -4,7 +4,6 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-    
     <servlet>
         <servlet-name>UsuarioController</servlet-name>
         <servlet-class>Controller.UsuarioController</servlet-class>
@@ -12,7 +11,11 @@
     <servlet>
         <servlet-name>cDeleteController</servlet-name>
         <servlet-class>Controller.Carrito.cDeleteController</servlet-class>
-    </servlet>    
+    </servlet>
+    <servlet>
+        <servlet-name>pstockAltaController</servlet-name>
+        <servlet-class>Controller.Pedidos.pstockAltaController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/usuario.do</url-pattern>
@@ -89,7 +92,7 @@
         <servlet-name>uModificarController</servlet-name>
         <url-pattern>/uModificar.do</url-pattern>
     </servlet-mapping>
-     <servlet>
+    <servlet>
         <servlet-name>uBorrarController</servlet-name>
         <servlet-class>Controller.Usuario.uBorrarController</servlet-class>
     </servlet>
@@ -239,7 +242,10 @@
         <servlet-name>cDeleteController</servlet-name>
         <url-pattern>/cDelete.do</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>pstockAltaController</servlet-name>
+        <url-pattern>/psAlta.do</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>

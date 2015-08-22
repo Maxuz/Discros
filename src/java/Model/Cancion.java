@@ -20,8 +20,7 @@ public class Cancion {
     
     //NO SE GUARDA EN LA TABLA CANCION, SIRVE PARA LA TABLA PEDIDOS_CANCIONES
     private int cantidad;
-    
-    private Date hora;
+    private int excede;
    
     
     // </editor-fold>  
@@ -57,11 +56,17 @@ public class Cancion {
          this.cantidad = cant;
      }
    
-     
+     public void setExcede(int excede)
+     {
+         this.excede=excede;
+     }
     // </editor-fold>
     
     // <editor-fold desc="GET DE DATOS">
-   
+    public int getExcede()
+    {
+        return this.excede;
+    }
     
     public String getNombre()
     {
@@ -88,10 +93,7 @@ public class Cancion {
         return this.track;
     }
     
-    public Date getHora()
-    {
-        return this.hora;
-    }
+     
     
     
     public int getCantidad()

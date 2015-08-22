@@ -7,6 +7,7 @@ import Model.Disco;
 import Model.Pedido;
 import java.io.IOException;
 import Actions.Canciones.CancionesFunciones;
+import Actions.Discos.DiscosFunciones;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.servlet.ServletException;
@@ -22,19 +23,25 @@ public class pAltaController extends HttpServlet {
      
        HttpSession sesion = request.getSession(true);  
        try{ UsuariosFunciones funcionesUsuario = new UsuariosFunciones();
-            if(funcionesUsuario.buscar(sesion.getAttribute("email").toString()))
+            if(sesion.getAttribute("email")!=null)
             {
+                        
+                        
+                   if(sesion.getAttribute("listaCarrito")!=null)
+                   {
                         //INSTANCIACIÓN DE OBJETOS PARA REALIZAR LA CARGA
                         PedidosFunciones funciones = new PedidosFunciones();
                         CancionesFunciones funcionesCanciones = new CancionesFunciones();
+                        DiscosFunciones funcionesDiscos=new DiscosFunciones();
                         Cancion cancion = new Cancion();
-                            
-                        //SE INSTANCIA UN PEDIDO Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
+                        int i, f;    
+                        boolean hayExcedente=false;
+                        
 
                         //DEFINIR ID AUTOINCREMENTADO
                         int id = 1;    
 
-                        //SETEO VARIABLES DEL PEDIDO
+                        //SE INSTANCIA UN PEDIDO Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
                         String email = sesion.getAttribute("email").toString();
                         float valor = Float.parseFloat(sesion.getAttribute("valorTotalCarrito").toString());
                         Date fecha = new Date();
@@ -58,11 +65,7 @@ public class pAltaController extends HttpServlet {
                         ArrayList<Disco> lista = (ArrayList<Disco>)sesion.getAttribute("listaCarrito");
                         
                         //CONTROL DE LOS DISCOS DE LOS CARRITOS Y ACTUALIZACIÓN DE CANTIDAD PARA GUARDAR EN PEDIDOS_CANCIONES
-                        
-                        int i, f;
-                        
-                        for(i=0; i<lista.size(); i++)
-                        //for(Disco dis:lista)
+                       for(i=0; i<lista.size(); i++)
                         {   Disco dis = lista.get(i);
                             cancion = funcionesCanciones.getOne(dis.getUpc(), 0);
                             boolean discoenLista = false;
@@ -72,7 +75,6 @@ public class pAltaController extends HttpServlet {
                             }
                             else{
                                     for(f=0; f<listaCancion.size(); f++)
-                                    //for(Cancion can:listaCancion)
                                     {   
                                          Cancion can = listaCancion.get(f);
                                          if(can.getUpc()==dis.getUpc())
@@ -89,14 +91,38 @@ public class pAltaController extends HttpServlet {
                                 }   
                         }
                         
-                        Pedido pedido = new Pedido(id, valor, fecha, entrega, pago, formapago, email);
-                        funciones.alta(pedido, listaCancion);
+                        //CONTROL DE LAS CANTIDADES DE DISCOS POR COMPRAR Y LA CANTIDAD ACTUAL EN STOCK.
+                        for(f=0; f<listaCancion.size(); f++)
+                        {   Cancion can = listaCancion.get(f);
+                            int stock = funcionesDiscos.getStock(can.getUpc());
+                            if(stock>can.getCantidad())
+                            {
+                                listaCancion.get(f).setExcede(stock-can.getCantidad());
+                                hayExcedente=true;
+                                
+                            }else{listaCancion.get(f).setExcede(0);}
+                        }
+                        
+                        if(hayExcedente)
+                        {
+                            sesion.setAttribute("listaCanciones", listaCancion);
+                                
+                        }else{
+                        
+                                Pedido pedido = new Pedido(id, valor, fecha, entrega, pago, formapago, email);
+                                funciones.alta(pedido, listaCancion);
 
-                        sesion.setAttribute("mensajeExito", "La compra se realizó correctamente. <br> Muchas gracias por elegirnos!");
-                        response.sendRedirect("p_confirmar.jsp");
-
+                                sesion.setAttribute("mensajeExito", "La compra se realizó correctamente. <br> Muchas gracias por elegirnos!");
+                                response.sendRedirect("p_confirmar.jsp");
+                                }
+                        
+                   }else{
+                            sesion.setAttribute("errorCatch", "El carrito está vacío.");
+                            response.sendRedirect("error.jsp");
+                        }
             } else{
-                response.getWriter().print("EL USUARIO NO SE ENCUENTRA REGISTRADO");
+                            sesion.setAttribute("errorCatch", "No hay usuario logueado en el sistema.");
+                            response.sendRedirect("error.jsp");
                    } 
 
 
