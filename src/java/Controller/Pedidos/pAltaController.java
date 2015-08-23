@@ -95,7 +95,7 @@ public class pAltaController extends HttpServlet {
                         for(f=0; f<listaCancion.size(); f++)
                         {   Cancion can = listaCancion.get(f);
                             int stock = funcionesDiscos.getStock(can.getUpc());
-                            if(stock>can.getCantidad())
+                            if(stock<can.getCantidad())
                             {
                                 listaCancion.get(f).setExcede(stock-can.getCantidad());
                                 hayExcedente=true;
@@ -106,7 +106,8 @@ public class pAltaController extends HttpServlet {
                         if(hayExcedente)
                         {
                             sesion.setAttribute("listaCanciones", listaCancion);
-                                
+                            response.sendRedirect("p_excedeConfirmar.jsp");
+                            
                         }else{
                         
                                 Pedido pedido = new Pedido(id, valor, fecha, entrega, pago, formapago, email);
@@ -117,12 +118,11 @@ public class pAltaController extends HttpServlet {
                                 }
                         
                    }else{
-                            sesion.setAttribute("errorCatch", "El carrito está vacío.");
-                            response.sendRedirect("error.jsp");
+                                response.sendRedirect("p_confirmar.jsp");
                         }
             } else{
-                            sesion.setAttribute("errorCatch", "No hay usuario logueado en el sistema.");
-                            response.sendRedirect("error.jsp");
+                           
+                            response.sendRedirect("p_confirmar.jsp");
                    } 
 
 

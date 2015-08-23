@@ -18,7 +18,7 @@
         
         
         <%try{%>
-        <jsp:include page="views/pedidos/contenido.jsp"/>
+        <jsp:include page="views/pedidos/excedeConfirmar.jsp"/>
         <%}catch (Exception e)
                        {
                                         session.setAttribute("errorCatch", e.toString());
