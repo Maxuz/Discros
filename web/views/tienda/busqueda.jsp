@@ -98,7 +98,7 @@
                           double precio = funcionesCanciones.getOne(dis.getUpc(), 0).getPrecio();
                             %>
                              <li>
-                                 <img src="img/thumb.jpg" alt="Preview image" class="img-responsive" style=" float: left;" >
+                                 <img src="<%out.print(dis.getImagen());%>" alt="Preview image" class="img-responsive" style=" float: left;" >
                                  <div class="texto-tienda" style="text-align: left;" id="disco">
                                      
                                      <strong>Artista:</strong><%out.print(dis.getArtista());%><br>
@@ -125,7 +125,7 @@
                                         {
                                      %>
                                     <a onclick="show('layer<%= dis.getUpc() %>')" style="cursor: pointer">Mostrar canciones..</a></br></br>
-                                    <div id="layer<%= dis.getUpc() %>" style="display:none;">
+                                    <div id="layer=<% out.print(dis.getUpc()); %>" style="display:none;">
                                         <div style="border: ridge #0f0fef 1px;">
                                             <%
                                             Cancion can = new Cancion();

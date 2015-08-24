@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-@MultipartConfig(location="./img", fileSizeThreshold=1024*1024,maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
+@MultipartConfig(location="/", fileSizeThreshold=1024*1024,maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
 public class dAltaController extends HttpServlet {
     private final static Logger LOGGER =  Logger.getLogger(dAltaController.class.getCanonicalName());
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -69,7 +69,8 @@ public class dAltaController extends HttpServlet {
                                         
                          
                                         //out = new FileOutputStream(new File(path+File.separator+upc+".jpg"));
-                                        out = new FileOutputStream(new File("../../../../../../../../Documents/Discros/web/uploads/"+upc+".jpg"));
+                                        out = new FileOutputStream(new File("../"+upc+"acatoy.jpg"));
+                                        //out = new FileOutputStream(new File("../../../../../../../../Documents/Discros/web/uploads/"+upc+".jpg"));
                                         //out = new FileOutputStream(new File(path + File.separator + fileName));
                                         filecontent = filePart.getInputStream();
                                         String imagen = "uploads/"+upc+".jpg";
