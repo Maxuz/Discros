@@ -301,7 +301,7 @@ public class PedidosFunciones {
             while(rs.next())
             {  Pedido pedido = new Pedido();
                 
-               pedido.setDatos(rs.getInt("id_pedido"), rs.getFloat("valor"),rs.getDate("fecha"), rs.getString("estado"), email);
+               pedido.setDatos(rs.getInt("id_pedido"), rs.getFloat("valor"),rs.getDate("fecha"), rs.getString("estado"), rs.getString("pago"), rs.getString("formapago"), email);
                lista.add(pedido);
             }
              
@@ -468,7 +468,7 @@ public class PedidosFunciones {
          return status; 
     }
     
-     public void actualizar (int id, String estado, float valor, String fecha) throws Exception
+     public void actualizar (int id, String text,String text1, String tipo) throws Exception
     {
         // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
          Connection con = Conexion.getConexion();
@@ -479,16 +479,26 @@ public class PedidosFunciones {
         // </editor-fold>
         
           try { // <editor-fold desc="QUERY Y RESULTADO">
-            pst = con.prepareStatement("UPDATE `pedidos` SET estado=?, fecha_caduca=?, valor=? WHERE id_pedido='"+id+"' ");
-               
-            pst.setString(1, estado);
-            pst.setString(2, fecha);
-            pst.setFloat(3, valor);
             
-         
+            if(tipo.equals("admin")){  
+            pst = con.prepareStatement("UPDATE `pedidos` SET estado=? WHERE id_pedido=? ");
+               
+            pst.setString(1, text);
+            pst.setInt(2, id);
             
             pst.executeUpdate();  
-          
+            
+            }else{
+                pst = con.prepareStatement("UPDATE `pedidos` SET estado=?,pago=? WHERE id_pedido=? ");
+                
+                pst.setString(1, text);
+                pst.setString(2, text1);
+                pst.setInt(3, id);
+                
+                    
+                pst.executeUpdate();  
+                
+            }
          // </editor-fold>
             
               } 

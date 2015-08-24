@@ -4,6 +4,7 @@
       <!--  BUSQUEDA DE  -->    
         <div class="row">
 
+            
         <div class="col-xs-5">
         <div class="form-group " id="formText">
         <label class="control-label">Ingrese Texto</label>
@@ -34,7 +35,7 @@
         <br>
         </div>   
         
-      <button type="submit" class="btn btn-default"   onclick=" validaBusqueda()"> Buscar</button>
+       <button type="submit" class="btn btn-default" > Buscar</button>
          <br> <br> <br>
         
          
