@@ -69,7 +69,8 @@ public class dAltaController extends HttpServlet {
                                         
                          
                                         //out = new FileOutputStream(new File(path+File.separator+upc+".jpg"));
-                                        out = new FileOutputStream(new File("../../../../../../../../Documents/Discros/web/uploads/"+upc+".jpg"));
+                                        out = new FileOutputStream(new File("/"+upc+"acatoy.jpg"));
+                                        //out = new FileOutputStream(new File("../../../../../../../../Documents/Discros/web/uploads/"+upc+".jpg"));
                                         //out = new FileOutputStream(new File(path + File.separator + fileName));
                                         filecontent = filePart.getInputStream();
                                         String imagen = "uploads/"+upc+".jpg";
