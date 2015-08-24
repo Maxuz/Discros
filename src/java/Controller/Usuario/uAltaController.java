@@ -59,8 +59,9 @@ public class uAltaController extends HttpServlet {
                                                 
                                                 funciones.alta(user);
                                                 
+                                                sesion.setAttribute("email", email);
                                                 sesion.setAttribute("nombre", user.getNombre());
-                                                sesion.setAttribute("tipoUsuario", user.getTipo());
+                                                sesion.setAttribute("tipoUsuario", user.getTipo()); 
                                                 
                                                 sesion.setAttribute("mensajeExito", "Usuario logueado correctamene.");
                                                 response.sendRedirect("u_alta.jsp");

@@ -80,7 +80,7 @@
                             {
                                //VERIFICA QUE EL PEDIDO NO ESTÉ ENTREGADO PARA PODER REALIZAR LA INFORMACIÓN 
                                Pedido ped = funcionesPedidos.getOne(id);
-                               if(!ped.getEstado().equals("Entregado"))
+                               if(!ped.getEstado().equals("Entregado") && !ped.getEstado().equals("Pendiente"))
                                {    
                                %>
                                     <div class="row">
@@ -124,7 +124,7 @@
                                }else{
                                    %>
                                     <div style="text-align: center;">
-                                    <h3 style="font-style: italic;"> El pedido ya está entregado. </h3>
+                                    <h3 style="font-style: italic;"> El pedido está <%out.print(ped.getEstado());%> </h3>
                                     <br><br>     
                                     <a href="u_pedidos.jsp"><strong>&laquo; Volver al historial..</strong></a>
                                     </div>

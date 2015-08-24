@@ -140,7 +140,7 @@
                                          </div>
                                              
                                          <div class="radio">
-                                             <label><input type="radio" name="optradio" onclick="mostrarTarjeta()"  value="tarjeta">Pago con tarjeta de crédito.</label>
+                                             <label><input disabled="true" type="radio" name="optradio" onclick="mostrarTarjeta()"  value="tarjeta">Pago con tarjeta de crédito.</label>
                                          </div>
                                              
                                         <div id="datosTarjetas" class="hidden" style="margin-left: 10%">
