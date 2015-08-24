@@ -2,9 +2,11 @@ package Actions.PedidosCanciones;
 
 import Actions.Conexion;
 import Model.PedidosCanciones;
+import Model.Cancion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class PedidosCancionesFunciones {
     
@@ -239,6 +241,87 @@ public class PedidosCancionesFunciones {
          // </editor-fold>
         
          return pedido_cancion; 
+    }
+    
+    public ArrayList<Cancion> getAll(int id) throws Exception
+    {
+        // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
+         Connection con = Conexion.getConexion();
+         PreparedStatement pst = null;  
+         ResultSet rs = null;  
+         PedidosCanciones pedido_cancion = new PedidosCanciones();
+         ArrayList<Cancion> lista = new ArrayList<>();
+         
+        // </editor-fold>
+         
+        
+          try { // <editor-fold desc="QUERY Y RESULTADO">
+              //ESCRIBIR LA CONSULTA CORRECTA
+            pst = con.prepareStatement
+            (   "DROP TEMPORARY TABLE IF EXISTS temp;\n" +
+                "CREATE TEMPORARY TABLE temp (\n" +
+                "SELECT pedidos.`id_pedido`, discos.`artista`, discos.`upc`, discos.`album`,`pedidos_canciones`.`cantidad`\n" +
+                "FROM `pedidos`\n" +
+                "INNER JOIN `pedidos_canciones`\n" +
+                "ON pedidos.`id_pedido`=`pedidos_canciones`.`id_pedido`\n" +
+                "INNER JOIN `discos`\n" +
+                "ON `pedidos_canciones`.`upc`=discos.`upc`);\n" +
+                "select discos.upc, temp.artista, temp.album, temp.cantidad\n" +
+                "from temp\n" +
+                "where id_pedido=?;"); 
+            
+            pst.setInt(1, id);
+            rs = pst.executeQuery();  
+            
+            while(rs.next())
+            { Cancion can = new Cancion();
+              can.setUPC(rs.getLong("upc"));
+              can.setArtista(rs.getString("artista"));
+              can.setAlbum(rs.getString("album"));
+              can.setCantidad(rs.getInt("cantidad"));
+              lista.add(can);
+            }
+            
+             
+            
+        // </editor-fold>
+            
+              } 
+          catch (Exception e) {  
+                throw e;  
+              } 
+          finally {  
+               // <editor-fold desc="CIERRA: CON, PST, RS">
+            if (con != null) {  
+                try {  
+                    Actions.Conexion.cerrarConexion();
+                   
+                 } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (rs != null) {  
+                try {  
+                    rs.close();  
+                } catch (Exception e) {  
+                    System.out.println(e);
+                    //e.printStackTrace();  
+                }  
+                
+            }
+          
+            
+          }
+         // </editor-fold>
+        
+         return lista; 
     }
 // </editor-fold>
     

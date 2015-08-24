@@ -1,9 +1,10 @@
 
+<%@page import="Model.Cancion"%>
 <%@page import="Model.Usuario"%>
 <%@page import="Model.Disco"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Actions.Canciones.CancionesFunciones"%>
-<%@page import="Actions.Usuarios.UsuariosFunciones"%>
+<%@page import="Actions.Pedidos.PedidosFunciones"%>
+<%@page import="Actions.PedidosCanciones.PedidosCancionesFunciones"%>
 <%@page import="Model.Pedido"%>
 
 <div style="margin-top: 60px; background-color: #FFF; margin-bottom: 10px">
@@ -16,15 +17,55 @@
         <h4 style="text-align: center;"><a href="u_login.jsp" >Inicie sesión</a></h4><hr><br>
      
       <%}  
-    else{
-            if(request.getParameter("id")==null)
-           {%>
-            <h1 style="text-align: center;"> Detalles del pedido</h1>
+    else{%>
+          <h1 style="text-align: center;"> Detalles del pedido.</h1>
+         <%if(request.getParameter("id")==null)
+          {%>
+            <h3 style="text-align: center;"> Debe ingresar un ID de pedido.</h3>
         
-         <%}else{
-               
-               }
-        }%>
+            <%}else{PedidosFunciones funcionesPedido = new PedidosFunciones();
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    String email = session.getAttribute("email").toString();
+            
+                    if(!funcionesPedido.buscar(id, email))
+                    {%>
+                    <h3 style="text-align: center;">El pedido con el ID proporcionado no se encuentra para este cliente.</h3>  
+                    
+                  <%}else{
+                            Pedido ped = funcionesPedido.getOne(id);
+                            
+                      %>
+                         <div class="table-responsive" hidden id="itemsPedido">
+                                 <table class="table" id="tablaCanciones">
+                                 <!-- CODIGO PARA EL ENCABEZADO-->
+                                 <br>
+                                 <tr>
+                                     <td><strong>UPC</strong></td>  
+                                     <td><strong>Artista</strong></td>
+                                     <td><strong>Album</strong></td>
+                                     <td><strong>Cantidad</strong></td>
+                                     
+                                 </tr>
+                                 <% 
+                                 PedidosCancionesFunciones funcionesPC = new PedidosCancionesFunciones();
+                                 ArrayList<Cancion> lista = funcionesPC.getAll(id);
+                                 for(Cancion can:lista)
+                                 {%>    
+                                 <tr>
+                                     <td><%out.print(can.getUpc()); %></td>  
+                                     <td><%out.print(can.getArtista()); %></td>  
+                                     <td><%out.print(can.getAlbum()); %></td>  
+                                     <td><%out.print(can.getCantidad()); %></td>  
+                                 </tr>
+                                 <%}%>            
+                                 </table>
+                         </div>
+                         
+                      <%}
+                    }
+                 
+                }
+        %>
 </div>                
 </div>                
     

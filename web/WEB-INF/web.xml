@@ -13,10 +13,6 @@
         <servlet-class>Controller.Carrito.cDeleteController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>pstockAltaController</servlet-name>
-        <servlet-class>Controller.Pedidos.pstockAltaController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>pCancelarController</servlet-name>
         <servlet-class>Controller.Pedidos.pCancelarController</servlet-class>
     </servlet>
@@ -249,10 +245,6 @@
     <servlet-mapping>
         <servlet-name>cDeleteController</servlet-name>
         <url-pattern>/cDelete.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>pstockAltaController</servlet-name>
-        <url-pattern>/psAlta.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>pCancelarController</servlet-name>
