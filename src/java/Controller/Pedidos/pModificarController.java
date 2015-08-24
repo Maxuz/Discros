@@ -18,13 +18,51 @@ public class pModificarController extends HttpServlet {
         PedidosFunciones funciones = new PedidosFunciones();
         HttpSession sesion = request.getSession(true); 
          try{
-           String email = sesion.getAttribute("email").toString();
-            if(email!=null)
-           {
+           
+            if(sesion.getAttribute("email")!=null)
+           {   
                //VERIFICA QUE LA URL SEA CORRECTA
                if(request.getParameter("id")!=null && !request.getParameter("id").equals("") && request.getParameter("estado")!=null && !request.getParameter("estado").equals(""))
                {    
+                   String estado = request.getParameter("estado");
                    
+                   
+                   if(estado.equals("Entregado") || estado.equals("Reclamado"))
+                   {   int id = Integer.parseInt(request.getParameter("id"));
+                       if(estado.equals("Entregado")){
+                       funciones.actualizar(id, estado, "Pagado", "cliente");
+                       sesion.setAttribute("mensajeExito", "Pedido modificado correctamente");
+                       response.sendRedirect("exito.jsp");
+                       }else{
+                             funciones.actualizar(id, estado, "Pendiente", "cliente");
+                             sesion.setAttribute("mensajeExito", "Pedido modificado correctamente");
+                             response.sendRedirect("exito.jsp");
+                            }
+                   }
+                   else{
+                        if(estado.equals("Enviado"))
+                        {    int id = Integer.parseInt(request.getParameter("id"));
+                             Pedido ped = funciones.getOne(id);
+                             
+                             if(ped.getEmail() != null)
+                             {
+                                 if(!ped.getEstado().equals("Enviado") && !ped.getEstado().equals("Entregado") )
+                                 {
+                                    funciones.actualizar(id, estado, "", "admin");
+                                    sesion.setAttribute("mensajeExito", "Pedido modificado correctamente");
+                                    response.sendRedirect("exito.jsp");
+                                    
+                                 }
+                                 else{
+                                    sesion.setAttribute("mensajeError", "El pedido con ID:"+ id +" ya se encuentra enviado.");
+                                    response.sendRedirect("p_informar.jsp?tipo=admin");
+                                 }
+                             }else{
+                             sesion.setAttribute("mensajeError", "El pedido con ID:"+ id +" no ha sido encontrado.");
+                             response.sendRedirect("p_informar.jsp?tipo=admin");
+                             }
+                        }
+                   }
                 
                 //MENSAJE PARA LA URL INCORRECTA   
                }else{

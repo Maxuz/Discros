@@ -26,26 +26,47 @@ function ocultarDetalles()
     
 };
 
-function validaBusqueda(e)
+var funciones = {
+ validarr: function(e)
 { 
-    var tipo = $('#tipo').val();;
-              
-    if(!estaVacio(tipo))
+    var msj = "";
+    
+    var tipo = $('#tipo').val();
+    var texto = $('#texto').val();          
+    window.alert("holaaa");
+    window.alert('holaaa');
+    
+     if(!estaVacio(tipo))
     {    $("#formTipo").addClass('has-error');
-         e.preventDefault();
-         return false;
+         msj="error";
     }else   {
              $("#formTipo").removeClass('has-error');
-            
-            return true;
             }
+            
+    if(!estaVacio(texto))
+    {    $("#formText").addClass('has-error');
+         msj="error";
+    }else   {
+             $("#formText").removeClass('has-error');
+            }
+       
+    
+    if(msj==="")
+    {
+     return false;   
+        
+    }else{
+        
+     return false;   
+    }
          
   
+}
 }; 
 
 $(document).ready(function(){
-    $("#actualizar").submit(function(e){
-    validaBusqueda(e);
+    $("#actualizarAdmin").submit(function(e){
+    funciones.validarr(e);
     });   
     
 });

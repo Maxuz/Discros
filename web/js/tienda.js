@@ -46,33 +46,51 @@ function borrar(upc){
             });
  };
  
-function validaBusqueda()
-{
-    var ok =0;
+var funciones = {
+ validarr: function(e)
+{ 
+    var msj = "";
     
-    var texto = $('#texto').val();
-    var tipo = $('#tipo').val();;
-    
-    if(!estaVacio(texto))
-    {   
-        $("#formText").addClass('has-error');
-    
-    }else   {
-             $("#formText").removeClass('has-error');
-             ok=ok+1;
-        
-            }
-            
+    var tipo = $('#tipo').val();
+    var texto = $('#texto').val();          
+     
     if(!estaVacio(tipo))
     {    $("#formTipo").addClass('has-error');
-         e.preventDefault();
+         msj="error";
     }else   {
              $("#formTipo").removeClass('has-error');
-             ok=ok+1;   
-        
             }
+            
+    if(!estaVacio(texto))
+    {    $("#formText").addClass('has-error');
+         msj="error";
+    }else if(!soloNumero(texto)){
+             $("#formText").addClass('has-error');
+            }
+            else{ $("#formText").removeClass('has-error');}
+       
     
-    if(ok===2){
-    window.location.href= "t_busqueda.jsp?texto="+texto+"&tipo="+tipo;
+    if(msj==="")
+    {
+      
+        
+    }else{
+        
+     e.preventDefault();  
     }
+         
+  
+}
 }; 
+
+$(document).ready(function(){
+
+    $("#actualizarAdmin").submit(function(e){
+    funciones.validarr(e);
+    });   
+
+
+    $("#actualizarCliente").submit(function(e){
+    funciones.validarr(e);
+    }); 
+});
