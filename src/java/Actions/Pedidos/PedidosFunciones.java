@@ -279,9 +279,7 @@ public class PedidosFunciones {
         
          return pedido; 
     }
-    
-    
-    
+   
     public ArrayList<Pedido>  getAll (String email) throws Exception
     {
         // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
@@ -347,6 +345,8 @@ public class PedidosFunciones {
          
          return lista; 
     }
+    
+    
     
     
 // </editor-fold>

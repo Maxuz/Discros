@@ -19,7 +19,7 @@
       <%}  
     else{%>
           <h1 style="text-align: center;"> Detalles del pedido.</h1>
-         <%if(request.getParameter("id")==null)
+          <%if(request.getParameter("id")==null || request.getParameter("id").toString().equals("") )
           {%>
             <h3 style="text-align: center;"> Debe ingresar un ID de pedido.</h3>
         
@@ -35,7 +35,7 @@
                             Pedido ped = funcionesPedido.getOne(id);
                             
                       %>
-                         <div class="table-responsive" hidden id="itemsPedido">
+                         <div class="table-responsive"  id="itemsPedido">
                                  <table class="table" id="tablaCanciones">
                                  <!-- CODIGO PARA EL ENCABEZADO-->
                                  <br>
@@ -60,7 +60,9 @@
                                  <%}%>            
                                  </table>
                          </div>
-                         
+                                 
+                          <input type="button" class="btn btn-success" value="Volver al historial.." name="volver atrás2" onclick="window.location.href='u_pedidos.jsp'" />
+                          <br><br>
                       <%}
                     }
                  

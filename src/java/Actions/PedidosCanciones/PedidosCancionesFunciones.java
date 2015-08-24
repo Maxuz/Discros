@@ -251,25 +251,25 @@ public class PedidosCancionesFunciones {
          ResultSet rs = null;  
          PedidosCanciones pedido_cancion = new PedidosCanciones();
          ArrayList<Cancion> lista = new ArrayList<>();
-         
+        // con.setAutoCommit(false);
         // </editor-fold>
          
         
           try { // <editor-fold desc="QUERY Y RESULTADO">
               //ESCRIBIR LA CONSULTA CORRECTA
             pst = con.prepareStatement
-            (   "DROP TEMPORARY TABLE IF EXISTS temp;\n" +
-                "CREATE TEMPORARY TABLE temp (\n" +
-                "SELECT pedidos.`id_pedido`, discos.`artista`, discos.`upc`, discos.`album`,`pedidos_canciones`.`cantidad`\n" +
+            (   "select tablat.upc, tablat.artista, tablat.album, tablat.cantidad\n" +
+                "from (\n" +
+                "SELECT discos.upc, pedidos.`id_pedido`, discos.`artista`, discos.`album`,`pedidos_canciones`.`cantidad`\n" +
                 "FROM `pedidos`\n" +
                 "INNER JOIN `pedidos_canciones`\n" +
                 "ON pedidos.`id_pedido`=`pedidos_canciones`.`id_pedido`\n" +
                 "INNER JOIN `discos`\n" +
-                "ON `pedidos_canciones`.`upc`=discos.`upc`);\n" +
-                "select discos.upc, temp.artista, temp.album, temp.cantidad\n" +
-                "from temp\n" +
-                "where id_pedido=?;"); 
-            
+                "ON `pedidos_canciones`.`upc`=discos.`upc`) as tablat\n" +
+                "\n" +
+                "where id_pedido=?;"
+            );
+                        
             pst.setInt(1, id);
             rs = pst.executeQuery();  
             
