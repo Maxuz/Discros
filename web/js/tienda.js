@@ -18,6 +18,12 @@ function agregar(upc){
             
             });
  };
+                            
+function show(id) {
+    var obj = document.getElementById(id);
+    obj.style.display = (obj.style.display === 'none') ? 'block' : 'none';
+}
+                               
  
 function borrar(upc){
        $.ajax("cDelete.do", {

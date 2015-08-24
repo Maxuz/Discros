@@ -171,10 +171,20 @@
                                 </strong><strong class="caret"></strong>
                             </a>
                           
-                                
+                            <!--VALIDA QUE NO ESTÉ POR CONFIRMAR EL PEDIDO, DE SER ASÍ SE INHABILITA EL CARRITO PARA QUE NO SUFRA MODIFICACIONES EL MISMO-->    
+                            <ul class="dropdown-menu scrollable-menu"   style="width: 333px;" > 
+                            <% if(session.getAttribute("paginaActual").toString().equals("p_excedeConfirmar") || session.getAttribute("paginaActual").toString().equals("p_confirmar") )
+                            {%>
+                            <li><h4 style="margin: 2px; text-align: center;"> No puede modificar el carrito<br> durante el proceso de confirmación.</h4></li>
+                                <li><p style="margin: 2px; text-align: center;"> <br><br><a href="t_index.jsp">Ir a tienda</a> </p></li>
                             
-                                <ul class="dropdown-menu"  style="width: 333px;" >                             
+                            <%}else{%>
+                                  
+
+                                        
+                                         
                                  <% 
+                                    
                                     //if(cantidad==0)
                                     ArrayList<Disco> lista = (ArrayList<Disco>)session.getAttribute("listaCarrito");
                                     if(lista == null)
@@ -226,18 +236,19 @@
                                         }
                                       session.setAttribute("valorTotalCarrito", total);
                                       %>
-                                        
-                                   
+                                  
+                                
                                     <li style="text-align: right; margin-right: 5px;"><strong>VALOR TOTAL: $</strong><% out.print(total); %><br><br></li>
                                     <li style="background-color:#2a6496; color: #ffffff; text-align: center;"><strong>MI PEDIDO</strong></li>    
                                     <li style="text-align: center;"><a href="p_confirmar.jsp"><strong>REALIZAR COMPRA</strong></a></li>
                                     <li class="divider"></li>  
                                   
-                                    <li style="text-align: center;"><a href="#">Resetear pedido</a></li>
+                                    <li style="text-align: center;"><a href="cReset.do">Resetear pedido</a></li>
                                    
                                  <% }%>
                                 
-                            </ul>
+                                </ul>
+                                 <%}%> 
                        </li>
                         
                    

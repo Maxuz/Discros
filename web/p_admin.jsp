@@ -7,7 +7,7 @@
 
     <title>Alta Disco - Discros INC</title>
 
-    <%session.setAttribute("paginaActual", "d_alta");%>
+    <%session.setAttribute("paginaActual", "p_admin");%>
     
     <jsp:include page="views/gral/referencias.jsp"/>
     

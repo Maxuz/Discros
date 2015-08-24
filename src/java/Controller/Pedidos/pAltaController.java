@@ -25,9 +25,9 @@ public class pAltaController extends HttpServlet {
        try{ UsuariosFunciones funcionesUsuario = new UsuariosFunciones();
             if(sesion.getAttribute("email")!=null)
             {
-                        
-                        
-                   if(sesion.getAttribute("listaCarrito")!=null)
+                if(sesion.getAttribute("listaCanciones")==null)
+                {    
+                 if(sesion.getAttribute("listaCarrito")!=null)
                    {
                         //INSTANCIACIÓN DE OBJETOS PARA REALIZAR LA CARGA
                         PedidosFunciones funciones = new PedidosFunciones();
@@ -39,7 +39,7 @@ public class pAltaController extends HttpServlet {
                         
 
                         //DEFINIR ID AUTOINCREMENTADO
-                        int id = 1;    
+                        int id =2;    
 
                         //SE INSTANCIA UN PEDIDO Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
                         String email = sesion.getAttribute("email").toString();
@@ -96,8 +96,8 @@ public class pAltaController extends HttpServlet {
                         {   Cancion can = listaCancion.get(f);
                             int stock = funcionesDiscos.getStock(can.getUpc());
                             if(stock<can.getCantidad())
-                            {
-                                listaCancion.get(f).setExcede(stock-can.getCantidad());
+                            {   int a = can.getCantidad()-stock;
+                                listaCancion.get(f).setExcede(can.getCantidad()-stock);
                                 hayExcedente=true;
                                 
                             }else{listaCancion.get(f).setExcede(0);}
@@ -112,17 +112,43 @@ public class pAltaController extends HttpServlet {
                         
                                 Pedido pedido = new Pedido(id, valor, fecha, entrega, pago, formapago, email);
                                 funciones.alta(pedido, listaCancion);
-
+                                sesion.setAttribute("listaCarrito", null);
+                                sesion.setAttribute("listaCanciones", null);
+                                sesion.setAttribute("itemsTotal", null);
+                                
                                 sesion.setAttribute("mensajeExito", "La compra se realizó correctamente. <br> Muchas gracias por elegirnos!");
-                                response.sendRedirect("p_confirmar.jsp");
+                                response.sendRedirect("exito.jsp");
                                 }
                         
-                   }else{
-                                response.sendRedirect("p_confirmar.jsp");
+                   }else{  response.sendRedirect("p_confirmar.jsp");    
+                           
+                        }
+                }else{
+                    //SE INSTANCIA UN PEDIDO Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
+                           String email = sesion.getAttribute("email").toString();
+                           float valor = Float.parseFloat(sesion.getAttribute("valorTotalCarrito").toString());
+                           Date fecha = new Date();
+                           String pago="Pendiente";
+                           String entrega="Pendiente";
+                           String formapago="Puerta";
+                           int id=2;
+                           
+                           //INSTANCIACIÓN DE OBJETOS PARA REALIZAR LA CARGA
+                           PedidosFunciones funciones = new PedidosFunciones();
+                           ArrayList<Cancion> listaCancion = (ArrayList<Cancion>)sesion.getAttribute("listaCanciones");
+                                                           
+                            Pedido pedido = new Pedido(id, valor, fecha, entrega, pago, formapago, email);
+                            funciones.alta(pedido, listaCancion);
+                            sesion.setAttribute("listaCarrito", null);
+                            sesion.setAttribute("listaCanciones", null);
+                            sesion.setAttribute("itemsTotal", null);
+                            
+                            sesion.setAttribute("mensajeExito", "La compra se realizó correctamente. <br> Muchas gracias por elegirnos!");
+                            response.sendRedirect("exito.jsp");
+                                
                         }
             } else{
-                           
-                            response.sendRedirect("p_confirmar.jsp");
+                    response.sendRedirect("p_confirmar.jsp");
                    } 
 
 

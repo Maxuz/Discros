@@ -47,7 +47,7 @@
                                              <td><%out.print(ped.getEstado()); %></td>
                                              <td><%out.print(ped.getFecha()); %></td>
                                              <td>$ <%out.print(ped.getValor()); %></td>
-                                             <td><a href="#">Ver detalles del pedido..</a></td>
+                                             <td><a href="u_pedidosDetalle.jsp?id=<%out.print(ped.getID());%>">Ver detalles del pedido..</a></td>
                                              </tr>
                                             <%
                                         }

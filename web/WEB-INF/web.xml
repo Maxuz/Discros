@@ -16,6 +16,14 @@
         <servlet-name>pstockAltaController</servlet-name>
         <servlet-class>Controller.Pedidos.pstockAltaController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>pCancelarController</servlet-name>
+        <servlet-class>Controller.Pedidos.pCancelarController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cResetController</servlet-name>
+        <servlet-class>Controller.Carrito.cResetController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/usuario.do</url-pattern>
@@ -245,6 +253,14 @@
     <servlet-mapping>
         <servlet-name>pstockAltaController</servlet-name>
         <url-pattern>/psAlta.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>pCancelarController</servlet-name>
+        <url-pattern>/pCancelar.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cResetController</servlet-name>
+        <url-pattern>/cReset.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

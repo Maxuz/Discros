@@ -28,26 +28,27 @@ public class PedidosFunciones {
         // </editor-fold>
         
           try { // <editor-fold desc="QUERY Y RESULTADO">
-                pst = con.prepareStatement("INSERT INTO `pedidos` (id_pedido, email, valor, estado, fecha, pago, formapago)"+" values(?,?,?,?,?,?,?)");  
-                pst.setInt(1, pedido.getID());
-                pst.setString(2, pedido.getEmail());
-                pst.setFloat(3, pedido.getValor());
-                pst.setString(4, pedido.getEstado());
-                pst.setDate(5, Util.convertUtilDateToSqlDate(pedido.getFecha()));  
-                pst.setString(6, pedido.getPago());
-                pst.setString(7,pedido.getFormaPago());
+                pst = con.prepareStatement("INSERT INTO `pedidos` (email, valor, estado, fecha, pago, formapago)"+" values(?,?,?,?,?,?)");  
+                //pst.setInt(1, pedido.getID());
+                pst.setString(1, pedido.getEmail());
+                pst.setFloat(2, pedido.getValor());
+                pst.setString(3, pedido.getEstado());
+                pst.setDate(4, Util.convertUtilDateToSqlDate(pedido.getFecha()));  
+                pst.setString(5, pedido.getPago());
+                pst.setString(6,pedido.getFormaPago());
                 pst.executeUpdate();
-                
-                
+                 
                 
                 for(Cancion can:lista)
                 {
-                  pst = con.prepareStatement("INSERT INTO `pedidos_canciones` (id_pedido, isrc, upc,cantidad)"+" values(?,?,?,?)"); 
-                  pst.setInt(1, pedido.getID());
-                  pst.setLong(2, can.getIsrc());
-                  pst.setLong(3, can.getUpc());
-                  pst.setInt(4, can.getCantidad());
+                  pst = con.prepareStatement("INSERT INTO `pedidos_canciones` (id_pedido, isrc, upc,cantidad)"+" values(last_insert_id(),?,?,?)"); 
+                 // pst.setInt(1, pedido.getID());
+                  pst.setLong(1, can.getIsrc());
+                  pst.setLong(2, can.getUpc());
+                  pst.setInt(3, can.getCantidad());
                   pst.executeUpdate();
+                  
+                  
                   
                   int stock = funcionesDisco.getStock(can.getUpc());
                   stock = stock-1;

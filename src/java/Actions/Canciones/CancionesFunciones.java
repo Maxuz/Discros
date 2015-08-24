@@ -5,6 +5,7 @@ import Model.Cancion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class CancionesFunciones {
    
@@ -248,7 +249,54 @@ public class CancionesFunciones {
         
          return cancion; 
     }
-// </editor-fold>
+    
+     public ArrayList<Cancion>  getAll (long UPC) throws Exception
+    {
+        Connection con = Conexion.getConexion();
+        PreparedStatement pst = null;  
+        ResultSet rs = null;  
+        ArrayList<Cancion> lista = new ArrayList<Cancion>();
+         
+        try { // <editor-fold desc="QUERY Y RESULTADO">
+            pst = con.prepareStatement("SELECT * FROM canciones WHERE upc = ? AND isrc <> 0 ORDER BY track");  
+            pst.setLong(1, UPC);
+            rs = pst.executeQuery();
+            
+            while(rs.next())
+            {
+                Cancion can = new Cancion();
+                can.setDatos(rs.getString("nombre"), rs.getFloat("precio"),rs.getLong("isrc"),
+                    rs.getLong("upc"), rs.getFloat("duracion"),rs.getInt("track"));
+                lista.add(can);
+            }
+
+            
+              } 
+          catch (Exception e) {  
+                throw e;  
+              } 
+          finally {  
+            if (con != null) {  
+                try {  
+                    Actions.Conexion.cerrarConexion();
+                   
+                 } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+        
+        }  
+          return lista;
+       // </editor-fold>   
+    }  
+
     
 // <editor-fold desc="FUNCIONES: OTRAS">
     public boolean buscar(long UPC, long ISRC) throws Exception

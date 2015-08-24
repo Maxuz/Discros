@@ -18,8 +18,15 @@
       
   border-bottom:  4px solid #25549a;
  
+ 
  }
  
+ .scrollable-menu {
+    height: auto;
+    max-height: 1000%;
+    overflow-x: hidden;
+ }
+
  
  
  
