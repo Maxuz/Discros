@@ -54,6 +54,18 @@ public class Pedido {
         this.entrega=estado;
     }
     
+    //SET QUE SE USA EN EL GETALL DE PEDIDOSFUNCIONES
+     public void setDatos(int id, float valor, Date fecha_c, String entrega, String pago, String forma,  String email)
+    {
+        this.id_pedido=id;
+        this.valor=valor;
+        this.fecha=fecha_c;
+        this.entrega=entrega;
+        this.pago=pago;
+        this.forma=forma;
+        this.email=email;
+        
+    }
    
     
     // </editor-fold>

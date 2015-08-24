@@ -65,7 +65,7 @@ function validaBusqueda()
             
     if(!estaVacio(tipo))
     {    $("#formTipo").addClass('has-error');
-    
+         e.preventDefault();
     }else   {
              $("#formTipo").removeClass('has-error');
              ok=ok+1;   

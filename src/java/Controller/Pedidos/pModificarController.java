@@ -4,11 +4,11 @@ import Actions.Pedidos.PedidosFunciones;
 
 import Model.Pedido;
 import java.io.IOException;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class pModificarController extends HttpServlet {
 
@@ -16,33 +16,32 @@ public class pModificarController extends HttpServlet {
             throws ServletException, IOException {
          
         PedidosFunciones funciones = new PedidosFunciones();
-       
+        HttpSession sesion = request.getSession(true); 
          try{
-                                        if(funciones.buscar(Integer.parseInt(request.getParameter("id"))))
-                                        {
-                                                int id = Integer.parseInt(request.getParameter("id"));
-                                                
-                                                String email = request.getParameter("email");
-                                                String estado = request.getParameter("estado");
-                                                Date fecha = new Date();
-                                                
-                                                float valor = Float.parseFloat(request.getParameter("valor"));
-                                                
+           String email = sesion.getAttribute("email").toString();
+            if(email!=null)
+           {
+               //VERIFICA QUE LA URL SEA CORRECTA
+               if(request.getParameter("id")!=null && !request.getParameter("id").equals("") && request.getParameter("estado")!=null && !request.getParameter("estado").equals(""))
+               {    
+                   
+                
+                //MENSAJE PARA LA URL INCORRECTA   
+               }else{
+                    response.sendRedirect("p_informar.jsp");
+               }  
+           //MENSAJE PARA USUARIOS NO LOGUEADOS
+           }else{
+                response.sendRedirect("p_informar.jsp");
+                }
 
-                           //                     Pedido pedido = new Pedido(id, valor, fecha, estado, email);
-                             //                   funciones.modificar(pedido);
-
-                                                response.getWriter().print("EL PEDIDO SE ACTUALIZÓ CORRECTAMENTE");
-                                        }
-                                        else {
-                                                response.getWriter().print("Pedido no encontrado.");
-                                             }
-                                  
-                                    }
-                                catch (Exception e)
-                                    {
-                                    response.getWriter().print("EL ERROR OCURRIDO ES:"+e); 
-                                    } 
+        
+         }
+        catch (Exception e)
+            {
+                sesion.setAttribute("errorCatch", e.toString());
+                response.sendRedirect("error.jsp");
+            } 
                     
                     
     }

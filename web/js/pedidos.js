@@ -26,3 +26,27 @@ function ocultarDetalles()
     
 };
 
+function validaBusqueda(e)
+{ 
+    var tipo = $('#tipo').val();;
+              
+    if(!estaVacio(tipo))
+    {    $("#formTipo").addClass('has-error');
+         e.preventDefault();
+         return false;
+    }else   {
+             $("#formTipo").removeClass('has-error');
+            
+            return true;
+            }
+         
+  
+}; 
+
+$(document).ready(function(){
+    $("#actualizar").submit(function(e){
+    validaBusqueda(e);
+    });   
+    
+});
+

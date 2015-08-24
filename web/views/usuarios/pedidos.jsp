@@ -29,10 +29,13 @@
                                  <!-- CODIGO PARA EL ENCABEZADO-->
                                  <tr>
                                      <td><strong>ID</strong></td>
-                                     <td><strong>Estado</strong></td>
+                                     <td><strong>Entrega</strong></td>
+                                     <td><strong>Forma</strong></td>
+                                     <td><strong>Pago</strong></td>
                                      <td><strong>Fecha</strong></td>
                                      <td><strong>Total</strong></td>
-                                     <td><strong>Links</strong></td>
+                                     <td><strong>Detalles</strong></td>
+                                     <td><strong>Informar</strong></td>
                                  </tr>
                                   
                                  <!-- VERIFICA SI HAY OBJETOS EN LA LISTA PARA MOSTRALOS-->
@@ -45,9 +48,12 @@
                                              <tr>
                                              <td><%out.print(ped.getID()); %></td>
                                              <td><%out.print(ped.getEstado()); %></td>
+                                             <td><%out.print(ped.getFormaPago()); %></td>
+                                             <td><%out.print(ped.getPago()); %></td>
                                              <td><%out.print(ped.getFecha()); %></td>
                                              <td>$ <%out.print(ped.getValor()); %></td>
-                                             <td><a href="u_pedidosDetalle.jsp?id=<%out.print(ped.getID());%>">Ver detalles del pedido..</a></td>
+                                             <td><a href="u_pedidosDetalle.jsp?id=<%out.print(ped.getID());%>">Ver detalles</a></td>
+                                             <td><a href="p_informar.jsp?tipo=cliente&id=<%out.print(ped.getID());%>">Informar</a></td>
                                              </tr>
                                             <%
                                         }
