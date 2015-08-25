@@ -33,21 +33,29 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
- 
-@MultipartConfig(location="/", fileSizeThreshold=1024*1024,maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
+
 public class dAltaController extends HttpServlet {
     
-    private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
+     
     // location to store file uploaded
     private static final String UPLOAD_DIRECTORY = "upload";
+ 
     // upload settings
     private static final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
     private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
     private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
-
+ 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-             
+        
+         if (!ServletFileUpload.isMultipartContent(request)) {
+            // if not, we stop here
+            PrintWriter writer = response.getWriter();
+            writer.println("Error: Form must has enctype=multipart/form-data.");
+            writer.flush();
+            return;
+        }     
         
        // configures upload settings
         DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -78,15 +86,10 @@ public class dAltaController extends HttpServlet {
         Actions.Discos.DiscosFunciones funciones = new Actions.Discos.DiscosFunciones();
         HttpSession sesion = request.getSession(true); 
         try{
-                         if (!ServletFileUpload.isMultipartContent(request)) {
-                        // if not, we stop here
-                            sesion.setAttribute("errorCatch", "no es multipart");
-                            response.sendRedirect("error.jsp");
                         
-                        }
-                        Long temp = Long.parseLong(request.getParameter("upc"));
-                        String hola = "hola";
-                                    if(funciones.buscar(Long.parseLong(request.getParameter("upc"))))
+                        String temp = request.getParameter("upc");
+                        long upc = Long.parseLong(temp);
+                                    if(funciones.buscar(upc))
                                     {   sesion.setAttribute("mensajeError", "El disco ya se encuentra registrado, por favor ingrese otro UPC.");
                                         response.sendRedirect("d_alta.jsp");
                                        
@@ -105,8 +108,9 @@ public class dAltaController extends HttpServlet {
                                         String fechafecha = request.getParameter("fecha");
                                         float precio = Float.parseFloat(request.getParameter("precio"));
                                         
+                                        @SuppressWarnings("unchecked")
                                         List<FileItem> formItems = upload.parseRequest(request);
- 
+
                                         if (formItems != null && formItems.size() > 0) {
                                             // iterates over form's fields
                                             for (FileItem item : formItems) {
@@ -114,7 +118,7 @@ public class dAltaController extends HttpServlet {
                                                 if (!item.isFormField()) {
                                                     String fileName = new File(item.getName()).getName();
                                                     //Modificar el fileName 
-                                                    String filePath = uploadPath + File.separator + temp+".jpg";
+                                                    String filePath = uploadPath + File.separator + upc +".jpg";
                                                     File storeFile = new File(filePath);
 
                                                     // saves the file on disk
@@ -124,12 +128,12 @@ public class dAltaController extends HttpServlet {
                                             }
                                         }
                          
-                                        String imagen = "upload/"+temp+".jpg";
+                                        String imagen = "upload/"+upc+".jpg";
                                        
                                        
                                         
                                         ArrayList<Model.Cancion> canciones = (ArrayList<Model.Cancion>)sesion.getAttribute("cancionesDisco");
-                                        Disco disco = new Disco(artista, album, genero, descripcion, imagen, temp, stock, fechafecha);
+                                        Disco disco = new Disco(artista, album, genero, descripcion, imagen, upc, stock, fechafecha);
                                         
                                         funciones.alta(disco,canciones,precio);
                                            
