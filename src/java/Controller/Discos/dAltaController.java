@@ -34,6 +34,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
  
+@MultipartConfig(location="/", fileSizeThreshold=1024*1024,maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
 public class dAltaController extends HttpServlet {
     
     private static final long serialVersionUID = 1L;
@@ -83,9 +84,9 @@ public class dAltaController extends HttpServlet {
                             response.sendRedirect("error.jsp");
                         
                         }
-                        String temp = request.getParameter("upc");
-                        long upc = Long.parseLong(temp);
-                                    if(funciones.buscar(upc))
+                        Long temp = Long.parseLong(request.getParameter("upc"));
+                        String hola = "hola";
+                                    if(funciones.buscar(Long.parseLong(request.getParameter("upc"))))
                                     {   sesion.setAttribute("mensajeError", "El disco ya se encuentra registrado, por favor ingrese otro UPC.");
                                         response.sendRedirect("d_alta.jsp");
                                        
@@ -111,9 +112,9 @@ public class dAltaController extends HttpServlet {
                                             for (FileItem item : formItems) {
                                                 // processes only fields that are not form fields
                                                 if (!item.isFormField()) {
-                                                    //String fileName = new File(item.getName()).getName();
+                                                    String fileName = new File(item.getName()).getName();
                                                     //Modificar el fileName 
-                                                    String filePath = uploadPath + File.separator + upc+".jpg";
+                                                    String filePath = uploadPath + File.separator + temp+".jpg";
                                                     File storeFile = new File(filePath);
 
                                                     // saves the file on disk
@@ -123,12 +124,12 @@ public class dAltaController extends HttpServlet {
                                             }
                                         }
                          
-                                        String imagen = "upload\\"+upc+".jpg";
+                                        String imagen = "upload/"+temp+".jpg";
                                        
                                        
                                         
                                         ArrayList<Model.Cancion> canciones = (ArrayList<Model.Cancion>)sesion.getAttribute("cancionesDisco");
-                                        Disco disco = new Disco(artista, album, genero, descripcion, imagen, upc, stock, fechafecha);
+                                        Disco disco = new Disco(artista, album, genero, descripcion, imagen, temp, stock, fechafecha);
                                         
                                         funciones.alta(disco,canciones,precio);
                                            

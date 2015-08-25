@@ -100,7 +100,7 @@
                       double precio = funcionesCanciones.getOne(dis.getUpc(), 0).getPrecio();
                     %>
                          <li>
-                            <img src="img/thumb.jpg" alt="Preview image" class="img-responsive" style=" float: left;" >
+                            <img src="<%out.print(dis.getImagen());%>>" alt="Preview image" class="img-responsive" style=" float: left;" >
                             <div class="texto-tienda" style="text-align: left;" id="disco">         
                                 <div>
                                     <strong>Artista: </strong><%out.print(dis.getArtista());%><br>
