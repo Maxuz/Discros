@@ -35,7 +35,7 @@
         <br>
         </div>   
         
-       <button type="submit" class="btn btn-default" > Buscar</button>
+      <button type="submit" class="btn btn-default" onclick="validaBusqueda()"> Buscar</button>
          <br> <br> <br>
         
          
