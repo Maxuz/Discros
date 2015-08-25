@@ -1,9 +1,8 @@
-//hacer foco en el primer campo del formulario de usuarios
 $(document).ready(function(){
     $('#email').focus();    
 });
 
-
+//VALIDA ALTA DE USUARIO
 var validaAlta = function(event){
     
     var mensaje = "";
@@ -19,7 +18,7 @@ var validaAlta = function(event){
     var direccion = $('#direccion').val();
 
     
-    //Validación email
+    //VALIDA EMAIL
     if(!estaVacio(mail)){
      $('#lblemail1').addClass('lblError').text("(*)Email - Debe ingresar un email.");
       mensaje = mensaje + " email\n";
@@ -27,7 +26,7 @@ var validaAlta = function(event){
             $('#lblemail1').removeClass('lblError').text("Email:");};
         
         
-    //Validacion reescribir email    
+    //VALIDA REESCRIBIR MAIL   
     if(!estaVacio(mail2)){
       $('#lblemail2').addClass('lblError').text("(*)Reescribe tu Email - Debe verificar el email.");
        mensaje = mensaje + "email2\n";
@@ -38,7 +37,7 @@ var validaAlta = function(event){
                  $('#lblemail2').removeClass('lblError').text("Reescribe tu email.");};
     
     
-    //Validacion Contraseña  
+    //VALIDA CONTRASEÑA
     if(!estaVacio(pass)){
       mensaje = mensaje + "contraseña\n";
       $('#lblPass').addClass('lblError').text("(*)Contrase\u00f1a - Debe ingresar una contrase\u00f1a.");
@@ -46,7 +45,7 @@ var validaAlta = function(event){
                  $('#lblPass').removeClass('lblError').text("Contrase\u00f1a:");};
     
     
-    //Validacion reescribir Contraseña 
+    //VALIDA REESCRIBIR CONTRASEÑA
     if(!estaVacio(pass2)){
         mensaje = mensaje + "contraseña2\n";
         $('#lblPass2').addClass('lblError').text("(*)Reescribe tu Contrase\u00f1a - Debe verificar la contrase\u00f1a.");
@@ -57,7 +56,7 @@ var validaAlta = function(event){
                  $('#lblPass2').removeClass('lblError').text("Reescribe tu Contrase\u00f1a:");};
     
     
-    //Validacion Nombre
+    //VALIDA NOMBRE
     if(!estaVacio(nombre)){
         mensaje = mensaje + "nombre\n";
         $('#lblNombre').addClass('lblError').text("(*)Ingrese su nombre - Debe ingresar un nombre.");
@@ -79,7 +78,7 @@ var validaAlta = function(event){
             $('#lblApellido').removeClass('lblError').text("Apellido:");};
     
     
-    //Validacion DNI
+    //VALIDA DNI
     if (!estaVacio(dni)){
         mensaje = mensaje + "dni\n";
        $('#lblDni').addClass('lblError').text("(*)Ingrese su DNI - Debe ingresar un DNI.");
@@ -90,7 +89,7 @@ var validaAlta = function(event){
                  $('#lblDni').removeClass('lblError').text("DNI:");};
     
     
-    //Validacion Provincia
+    //VALIDA PROVINCIA
     if(provincia == "Elegir provincia.."){
         mensaje = mensaje +"provincia\n";
         $('#lblProvincia').addClass('lblError').text("(*)Elija su Provincia - Debe seleccionar una provincia.");
@@ -98,7 +97,7 @@ var validaAlta = function(event){
                  $('#lblProvincia').removeClass('lblError').text("Elija su Provincia:");};
     
     
-    //Validacion DNI
+    //VALIDA CIUDAD
     if(!estaVacio(ciudad)){
         mensaje = mensaje +"ciudad\n";
         $('#lblCiudad').addClass('lblError').text("(*)Ingrese su Ciudad - Debe ingresar una ciudad.");
@@ -106,7 +105,7 @@ var validaAlta = function(event){
                  $('#lblCiudad').removeClass('lblError').text("Ingrese su Ciudad:");};
     
     
-    //Validacion Direccion
+    //VALIDA DIRECCIÓN
     if(!estaVacio(direccion)){
         mensaje = mensaje +"direccion\n";
         $('#lblDireccion').addClass('lblError').text("(*)Ingrese su Direcci\u00f3n - Debe ingresar una Direcci\u00f3n.");
@@ -121,6 +120,49 @@ var validaAlta = function(event){
         event.preventDefault();
     }
 };
+
+//VALIDA LOGUEO
+var validaLogin = function(event){
+    
+   var email = $('#email').val();
+   var pass = $('#pass').val();
+   var mensaje ="";
+
+    if (!estaVacio(email)){
+        mensaje = mensaje + "email\n";
+        $('#lblEmail').addClass('lblError').text("(*)Email - Debe ingresar un email.");
+         $('#divErrorServlet').addClass('hidden');
+    }else{ 
+            $('#lblEmail').removeClass('lblError').text("Email");};
+        
+    if(!estaVacio(pass)){
+        mensaje = mensaje + "pass\n";
+        $('#lblPass').addClass('lblError').text("(*)Contrase\u00f1a - Debe ingresar una contrase\u00f1a.");
+        $('#divErrorServlet').addClass('hidden');
+    }else{ 
+            $('#lblPass').removeClass('lblError').text("Contrase\u00f1a");};
+    
+    if(mensaje===""){
+        return true;
+    }else{
+        console.log(mensaje);
+        event.preventDefault();
+    }
+};
+
+//VALIDA EMAIL: USADO EN ADMINISTRACIÓN CLIENTES
+var validaEmail = function(event)
+{
+    var email = $('#texto').val(); 
+    if (!estaVacio(email)){
+     $('#email').addClass('has-error');         
+      event.preventDefault();  
+    }else{ 
+        $('#email').removeClass('has-error');    
+        return true;
+    }    
+ };
+
 //solo valida qeu la contraseña vieja sea igual a la que esta registrada porque todo lo otro lo valida con el validaAlta(event)
 var validaModificar = function(event)
 {
@@ -135,7 +177,6 @@ var validaModificar = function(event)
     var provincia = $('#provincia').val();
     var ciudad= $('#ciudad').val();
     var direccion = $('#direccion').val();
-    //var changePass = $('#direccion').;
     
     //Validación email
     if(!estaVacio(mail)){
@@ -166,7 +207,6 @@ var validaModificar = function(event)
                $('#lblPass2').addClass('lblError').text("(*)Reescribe tu Contrase\u00f1a - Las contrase\u00f1as no coinciden.");
                 }else{
                      $('#lblPass2').removeClass('lblError').text("Reescribe tu Contrase\u00f1a:");};
-
 
 
         if(!estaVacio(passVieja)){
@@ -252,53 +292,4 @@ var validaModificar = function(event)
         event.preventDefault();
     }
 };
-
-var validaLogin = function(event){
-    
-   var email = $('#email').val();
-   var pass = $('#pass').val();
-   var mensaje ="";
-   window.alert("hadf");
-   
-    if (!estaVacio(email)){
-        mensaje = mensaje + "email\n";
-        $('#lblEmail').addClass('lblError').text("(*)Email - Debe ingresar un email.");
-         $('#divErrorServlet').addClass('hidden');
-    }else{ 
-            $('#lblEmail').removeClass('lblError').text("Email");};
-        
-        
-    if(!estaVacio(pass)){
-        mensaje = mensaje + "pass\n";
-        $('#lblPass').addClass('lblError').text("(*)Contrase\u00f1a - Debe ingresar una contrase\u00f1a.");
-        $('#divErrorServlet').addClass('hidden');
-    }else{ 
-            $('#lblPass').removeClass('lblError').text("Contrase\u00f1a");};
-    
-    
-    if(mensaje===""){
-        return true;
-    }else{
-        console.log(mensaje);
-        event.preventDefault();
-    }
-   
-};
-
-var validaEmail = function(event)
-{
-    var email = $('#texto').val(); 
-    if (!estaVacio(email)){
-               
-     $('#email').addClass('has-error');         
-      event.preventDefault();  
-    }else{ 
-        
-        $('#email').removeClass('has-error');    
-        return true;
-    }    
-       
-   
-};
-
 

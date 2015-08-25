@@ -19,7 +19,7 @@
         <jsp:include page="views/gral/header.jsp"/>
        
         <%try{%>
-         <jsp:include page="views/usuarios/alta.jsp"/>
+        <jsp:include page="views/usuarios/alta.jsp"/>
         <%}catch (Exception e)
                        {
                                         session.setAttribute("errorCatch", e.toString());
@@ -30,11 +30,7 @@
                        }%>
                        
         <jsp:include page="views/gral/pie.jsp" />
-       
-        
-</div>
-
-      
-    
+   
+</div> 
   </body>
 </html>

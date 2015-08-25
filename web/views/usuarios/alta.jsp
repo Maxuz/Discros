@@ -1,9 +1,7 @@
-
 <div style="background-color: #ffffff; margin-top:75px; margin-bottom: 15px">
-
 <div class="row" style="margin-left: 15%; margin-right: 15%; margin-bottom: 2%" >
     
-    
+    <!--TÍTULO DE LA PÁGINA-->
     <h2 style="text-align: center;">Registro de nuevo cliente</h2>
     <hr> 
    
@@ -13,17 +11,17 @@
             //VERIFICA SI HAY MENSAJE DE ERROR QUE DEVUELVE EL CONTROLADOR Y EN TAL CASO LO MUESTRA
             if(session.getAttribute("mensajeError")!=null)
             {%>
-                       <br>        
-                       <div class="alert alert-danger" style="text-align: center;">
-                       <% 
-                           out.print((String)session.getAttribute("mensajeError"));
-                           session.setAttribute("mensajeError", null);
-                        %>
-                       </div>
-                
+               <br>        
+               <div class="alert alert-danger" style="text-align: center;">
+               <% 
+                   out.print((String)session.getAttribute("mensajeError"));
+                   session.setAttribute("mensajeError", null);
+                %>
+               </div>
             <%}%>
-               <!-- FORMULARIO DE REGISTRO DE NUEVO CLIENTE-->
-            <form role="form" class="form-horizontal"  method="post"  onsubmit="validaAlta(event)" action="uAlta.do" >
+            
+                <!-- FORMULARIO DE REGISTRO DE NUEVO CLIENTE-->
+                <form role="form" class="form-horizontal"  method="post"  onsubmit="validaAlta(event)" action="uAlta.do" >
                 <h4>Datos de inicio de sesión</h4>
                 <hr>
 
@@ -149,7 +147,6 @@
                         </div>
                     <%}
               }%>
-   
 </div>  
 </div>
 
