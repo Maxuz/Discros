@@ -20,34 +20,73 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+ 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+ 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+ 
 @MultipartConfig(location="/", fileSizeThreshold=1024*1024,maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
 public class dAltaController extends HttpServlet {
-    private final static Logger LOGGER =  Logger.getLogger(dAltaController.class.getCanonicalName());
+    
+    private static final long serialVersionUID = 1L;
+    // location to store file uploaded
+    private static final String UPLOAD_DIRECTORY = "upload";
+    // upload settings
+    private static final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
+    private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
+    private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+             
         
-        
-        //String prePath = new File(".").getCanonicalPath();
-        //final String pathServlet = getServletContext().getRealPath("/uploads");
-        //final String pathServletR = getServletContext().getContextPath();
-        //String p1 = System.getProperty("user.home");
-        //final String path = p1+"\\Documents\\Discros\\web\\uploads";
-        //final String path = "..//..//"+pathServletR + "//web//uploads";
-        //final String path ="http://localhost:8080/Discros/uploads";
-        //final String fileName = getFileName(filePart);
-        final Part filePart = request.getPart("file");
-        
-        
-        OutputStream out = null;
-        InputStream filecontent = null;
-        final PrintWriter writer = response.getWriter();
+       // configures upload settings
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        // sets memory threshold - beyond which files are stored in disk
+        factory.setSizeThreshold(MEMORY_THRESHOLD);
+        // sets temporary location to store files
+        factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+ 
+        ServletFileUpload upload = new ServletFileUpload(factory);
+         
+        // sets maximum size of upload file
+        upload.setFileSizeMax(MAX_FILE_SIZE);
+         
+        // sets maximum size of request (include file + form data)
+        upload.setSizeMax(MAX_REQUEST_SIZE);
+ 
+        // constructs the directory path to store upload file
+        // this path is relative to application's directory
+        String uploadPath = getServletContext().getRealPath("")
+                + File.separator + UPLOAD_DIRECTORY;
+         
+        // creates the directory if it does not exist
+        File uploadDir = new File(uploadPath);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdir();
+        }
         
         Actions.Discos.DiscosFunciones funciones = new Actions.Discos.DiscosFunciones();
         HttpSession sesion = request.getSession(true); 
         try{
+                         if (!ServletFileUpload.isMultipartContent(request)) {
+                        // if not, we stop here
+                            sesion.setAttribute("errorCatch", "no es multipart");
+                            response.sendRedirect("error.jsp");
                         
-                                    if(funciones.buscar(Integer.parseInt(request.getParameter("upc"))))
+                        }
+                        Long temp = Long.parseLong(request.getParameter("upc"));
+                        String hola = "hola";
+                                    if(funciones.buscar(Long.parseLong(request.getParameter("upc"))))
                                     {   sesion.setAttribute("mensajeError", "El disco ya se encuentra registrado, por favor ingrese otro UPC.");
                                         response.sendRedirect("d_alta.jsp");
                                        
@@ -62,33 +101,35 @@ public class dAltaController extends HttpServlet {
                                         String album = request.getParameter("album");
                                         String genero = request.getParameter("genero");
                                         String descripcion = request.getParameter("descripcion");
-                                        int upc= Integer.parseInt(request.getParameter("upc"));
                                         int stock = Integer.parseInt(request.getParameter("stock"));
                                         String fechafecha = request.getParameter("fecha");
                                         float precio = Float.parseFloat(request.getParameter("precio"));
                                         
-                         
-                                        //out = new FileOutputStream(new File(path+File.separator+upc+".jpg"));
-                                        out = new FileOutputStream(new File("../"+upc+"acatoy.jpg"));
-                                        //out = new FileOutputStream(new File("../../../../../../../../Documents/Discros/web/uploads/"+upc+".jpg"));
-                                        //out = new FileOutputStream(new File(path + File.separator + fileName));
-                                        filecontent = filePart.getInputStream();
-                                        String imagen = "uploads/"+upc+".jpg";
-                                        //String imagen = path+"/"+upc+".jpg";
-                                        int read = 0;
-                                        final byte[] bytes = new byte[1024];
-                                        
-                                        while ((read= filecontent.read(bytes)) != -1) {
-                                            out.write(bytes,0,read);   
+                                        List<FileItem> formItems = upload.parseRequest(request);
+ 
+                                        if (formItems != null && formItems.size() > 0) {
+                                            // iterates over form's fields
+                                            for (FileItem item : formItems) {
+                                                // processes only fields that are not form fields
+                                                if (!item.isFormField()) {
+                                                    //String fileName = new File(item.getName()).getName();
+                                                    //Modificar el fileName 
+                                                    String filePath = uploadPath + File.separator + temp+".jpg";
+                                                    File storeFile = new File(filePath);
+
+                                                    // saves the file on disk
+                                                    item.write(storeFile);
+                                                    request.setAttribute("message","Upload has been done successfully!");
+                                                }
+                                            }
                                         }
-                                        //fue modificado fileName por upc
-                                        writer.println("New file " + upc+".jpg" + " created at " + imagen);
-                                        LOGGER.log(Level.INFO, "File{0}being uploaded to {1}",new Object[]{upc, imagen});
-                                        // aca termina
-                                        
+                         
+                                        String imagen = "upload/"+temp+".jpg";
+                                       
+                                       
                                         
                                         ArrayList<Model.Cancion> canciones = (ArrayList<Model.Cancion>)sesion.getAttribute("cancionesDisco");
-                                        Disco disco = new Disco(artista, album, genero, descripcion, imagen, upc, stock, fechafecha);
+                                        Disco disco = new Disco(artista, album, genero, descripcion, imagen, temp, stock, fechafecha);
                                         
                                         funciones.alta(disco,canciones,precio);
                                            
@@ -97,44 +138,17 @@ public class dAltaController extends HttpServlet {
                                         
                                         }
                                     }
-                                    catch (FileNotFoundException fne) {
-                                    writer.println("You either did not specify a file to upload or are "
-                                            + "trying to upload a file to a protected or nonexistent "
-                                            + "location.");
-                                    writer.println("<br/> ERROR: " + fne.getMessage());
-
-                                    LOGGER.log(Level.SEVERE, "Problems during file upload. Error: {0}", 
-                                            new Object[]{fne.getMessage()});
-                                    sesion.setAttribute("errorCatch", fne.toString());}
                                 catch (Exception e)
                                     {
                                         sesion.setAttribute("errorCatch", e.toString());
                                         response.sendRedirect("error.jsp");
                                     }
                                 finally{
-                                    if (out != null) {
-                                        out.close();
-                                    }
-                                    if (filecontent != null) {
-                                        filecontent.close();              
-                                    }
-                                    if (writer != null){
-                                        writer.close();                                
-                                    }
+                                    
                                 }
     }
 
-    private String getFileName(final Part part) {
-    final String partHeader = part.getHeader("content-disposition");
-    LOGGER.log(Level.INFO, "Part Header = {0}", partHeader);
-    for (String content : part.getHeader("content-disposition").split(";")) {
-        if (content.trim().startsWith("filename")) {
-            return content.substring(
-                    content.indexOf('=') + 1).trim().replace("\"", "");
-        }
-    }
-    return null;
-}
+   
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
