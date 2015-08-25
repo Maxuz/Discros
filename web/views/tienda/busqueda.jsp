@@ -98,9 +98,10 @@
                     for(i=0;i<f;i++) 
                     { dis = lista.get(i); 
                       double precio = funcionesCanciones.getOne(dis.getUpc(), 0).getPrecio();
+                      String aux = dis.getImagen();
                     %>
                          <li>
-                            <img src="<%out.print(dis.getImagen());%>>" alt="Preview image" class="img-responsive" style=" float: left;" >
+                            <img src="<%out.print(aux);%>" alt="Preview image" class="img-responsive" style=" float: left;" >
                             <div class="texto-tienda" style="text-align: left;" id="disco">         
                                 <div>
                                     <strong>Artista: </strong><%out.print(dis.getArtista());%><br>

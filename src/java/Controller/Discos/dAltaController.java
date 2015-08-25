@@ -23,6 +23,8 @@ import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
  
 import javax.servlet.ServletException;
@@ -33,21 +35,29 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
- 
-@MultipartConfig(location="/", fileSizeThreshold=1024*1024,maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
+
 public class dAltaController extends HttpServlet {
     
-    private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
+     
     // location to store file uploaded
     private static final String UPLOAD_DIRECTORY = "upload";
+ 
     // upload settings
     private static final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
     private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
     private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
-
+ 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-             
+        
+         if (!ServletFileUpload.isMultipartContent(request)) {
+            // if not, we stop here
+            PrintWriter writer = response.getWriter();
+            writer.println("Error: Form must has enctype=multipart/form-data.");
+            writer.flush();
+            return;
+        }     
         
        // configures upload settings
         DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -78,15 +88,9 @@ public class dAltaController extends HttpServlet {
         Actions.Discos.DiscosFunciones funciones = new Actions.Discos.DiscosFunciones();
         HttpSession sesion = request.getSession(true); 
         try{
-                         if (!ServletFileUpload.isMultipartContent(request)) {
-                        // if not, we stop here
-                            sesion.setAttribute("errorCatch", "no es multipart");
-                            response.sendRedirect("error.jsp");
                         
-                        }
-                        Long temp = Long.parseLong(request.getParameter("upc"));
-                        String hola = "hola";
-                                    if(funciones.buscar(Long.parseLong(request.getParameter("upc"))))
+                      
+                                   /* if(funciones.buscar(upc))
                                     {   sesion.setAttribute("mensajeError", "El disco ya se encuentra registrado, por favor ingrese otro UPC.");
                                         response.sendRedirect("d_alta.jsp");
                                        
@@ -95,18 +99,27 @@ public class dAltaController extends HttpServlet {
                                         sesion.setAttribute("mensajeError", "No puede registrar un disco sin canciones, por favor ingrese al menos una canción");
                                         response.sendRedirect("d_alta.jsp");
                                     }else{
-                                         
+                                         */
                                         //SE INSTANCIA UN DISCO Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
-                                        String artista = request.getParameter("artista");
-                                        String album = request.getParameter("album");
-                                        String genero = request.getParameter("genero");
-                                        String descripcion = request.getParameter("descripcion");
-                                        int stock = Integer.parseInt(request.getParameter("stock"));
-                                        String fechafecha = request.getParameter("fecha");
-                                        float precio = Float.parseFloat(request.getParameter("precio"));
+                                        String artista = "";
+                                        String album = "";
+                                        String genero = "";
+                                        String descripcion = "";
+                                        String stock = "";
+                                        String fecha = "";
+                                        String precio = "";
+                                        String upc = "";
                                         
+                                        String isrc = "";
+                                        String track="";
+                                        String nombre="";
+                                        String duracion="";
+                                        String precio2="";
+                                        ArrayList<Model.Cancion> canciones = new ArrayList<Model.Cancion>();
+                                        
+                                        @SuppressWarnings("unchecked")
                                         List<FileItem> formItems = upload.parseRequest(request);
- 
+                                        String auxIMG= "";
                                         if (formItems != null && formItems.size() > 0) {
                                             // iterates over form's fields
                                             for (FileItem item : formItems) {
@@ -114,24 +127,53 @@ public class dAltaController extends HttpServlet {
                                                 if (!item.isFormField()) {
                                                     String fileName = new File(item.getName()).getName();
                                                     //Modificar el fileName 
-                                                    String filePath = uploadPath + File.separator + temp+".jpg";
+                                                    String filePath = uploadPath + File.separator + upc +".jpg";
                                                     File storeFile = new File(filePath);
-
+                                                    auxIMG = fileName;      
                                                     // saves the file on disk
                                                     item.write(storeFile);
                                                     request.setAttribute("message","Upload has been done successfully!");
+                                                }else {
+                                                    String fieldname = item.getFieldName();
+                                                    String fieldvalue = item.getString();
+                                                    if (fieldname.equals("upc")) {
+                                                        upc = fieldvalue;
+                                                    } else if (fieldname.equals("artista")) {
+                                                        artista = fieldvalue;
+                                                    }else if(fieldname.equals("album")){
+                                                        album = fieldvalue;
+                                                    }
+                                                    else if (fieldname.equals("genero")){
+                                                        genero = fieldvalue;
+                                                    }else if(fieldname.equals("stock")){
+                                                        stock = fieldvalue;
+                                                    }else if(fieldname.equals("descripcion")){
+                                                        descripcion = fieldvalue;
+                                                    }else if(fieldname.equals("precio")){
+                                                        precio = fieldvalue;
+                                                    }else if(fieldname.equals("isrc")){
+                                                       break;// isrc = fieldvalue;
+                                                    }/*else if(fieldname.equals("track")){
+                                                        track = fieldvalue;
+                                                    }else if(fieldname.equals("nombre")){
+                                                        nombre = fieldvalue;
+                                                    }else if(fieldname.equals("duracion")){
+                                                        duracion = fieldvalue;
+                                                    }else if(fieldname.equals("precio2")){
+                                                        precio2 = fieldvalue;
+                                                        Model.Cancion cancion = new Model.Cancion(nombre,Float.parseFloat(precio2),Long.parseLong(isrc),Long.parseLong(upc),Integer.parseInt(duracion),Integer.parseInt(track));
+                                                        canciones.add(cancion);
+                                                    }*/
+                                                    
                                                 }
                                             }
-                                        }
-                         
-                                        String imagen = "upload/"+temp+".jpg";
-                                       
-                                       
+                                        String imagen = "upload/"+upc+".jpg";
+                                        canciones = (ArrayList<Model.Cancion>) sesion.getAttribute("cancionesDisco");
+                                        String aux = "prueba";
                                         
-                                        ArrayList<Model.Cancion> canciones = (ArrayList<Model.Cancion>)sesion.getAttribute("cancionesDisco");
-                                        Disco disco = new Disco(artista, album, genero, descripcion, imagen, temp, stock, fechafecha);
+                                        Disco disco = new Disco(artista, album, genero, descripcion, imagen, Long.parseLong(upc), Integer.parseInt(stock), String.valueOf(Date.from(Instant.EPOCH)));
                                         
-                                        funciones.alta(disco,canciones,precio);
+                                        funciones.alta(disco,canciones,Float.parseFloat(precio));
                                            
                                         sesion.setAttribute("mensajeExito", "Disco agregado correctamente.");
                                         response.sendRedirect("d_alta.jsp");

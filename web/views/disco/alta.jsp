@@ -137,7 +137,7 @@
 
                              <div class="col-xs-8">
                              <label for="precio" id="lblPrecio2">Precio:</label>
-                             <input type="text" class="form-control" placeholder="Ingrese Precio" name="precio" id="precio2"><br>
+                             <input type="text" class="form-control" placeholder="Ingrese Precio" name="precio2" id="precio2"><br>
                              </div>
                              <br><br><br><br>
 
