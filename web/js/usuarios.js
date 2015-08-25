@@ -1,5 +1,3 @@
-/* global Console */
-
 //hacer foco en el primer campo del formulario de usuarios
 $(document).ready(function(){
     $('#email').focus();    
@@ -260,7 +258,7 @@ var validaLogin = function(event){
    var email = $('#email').val();
    var pass = $('#pass').val();
    var mensaje ="";
-   
+   window.alert("hadf");
    
     if (!estaVacio(email)){
         mensaje = mensaje + "email\n";
@@ -287,8 +285,20 @@ var validaLogin = function(event){
    
 };
 
-function deshabilitar()
+var validaEmail = function(event)
 {
-    
-    
+    var email = $('#texto').val(); 
+    if (!estaVacio(email)){
+               
+     $('#email').addClass('has-error');         
+      event.preventDefault();  
+    }else{ 
+        
+        $('#email').removeClass('has-error');    
+        return true;
+    }    
+       
+   
 };
+
+

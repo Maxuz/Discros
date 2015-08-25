@@ -43,8 +43,8 @@
                                     %>
                                     </div>  
                               <%    };%>  
-                                    <!--FORMULARIO DE ALTA-->
-                                    <form role="form" class="form-horizontal" enctype="multipart/form-data" id="dAlta" method="post" action="dAlta.do" >
+                            <!--FORMULARIO DE ALTA-->
+                            <form role="form" class="form-horizontal" enctype="multipart/form-data" id="dAlta" method="post" action="dAlta.do" >
                             
                             
                             <h4>Datos del disco</h4>

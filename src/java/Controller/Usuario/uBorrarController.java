@@ -21,15 +21,11 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         
         try{
                                     String email = request.getParameter("email");
-                                    String pass  = request.getParameter("pass");
                                     
-                                    // REALIZAR MÉTODO PARA ENCRIPTAR
-                                    //  String pass  = MÉTODOENCRIPTAR(request.getParameter("pass"));
-                                    
-                                    Usuario user = new Usuario(email, pass);
-                                    
+                                    Usuario user = new Usuario();
+                                    user = funciones.getOne(email);
 
-                                    if(funciones.login(user))
+                                    if(user!=null)
                                     {   
                                         user=funciones.getOne(email);
                                         if(user.getTipo().equals("cliente"))

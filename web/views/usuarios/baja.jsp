@@ -34,7 +34,7 @@
                             <h2 style="text-align: center;">Inhabilitar un usuario</h2><hr>
                             
                                 
-                            <form role="form" id="login" method="post" onsubmit="validaLogin(event)" action="uBaja.do">
+                            <form role="form" id="login" method="post" onsubmit="validaEmail(event)" action="uBorrar.do">
                              
                             
                             <div class="form-group " id="email">
