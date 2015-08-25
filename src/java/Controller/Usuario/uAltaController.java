@@ -41,9 +41,8 @@ public class uAltaController extends HttpServlet {
                                         {
                                         if(funciones.buscar(email))
                                             { 
-                                            sesion.setAttribute("mensajeExito", "El email ya se encuentra registrado. Por favor elija otro.");
-                                                
-                                            response.sendRedirect("u_alta.jsp");
+                                                sesion.setAttribute("mensajeError", "El email ya se encuentra registrado. Por favor elija otro.");
+                                                response.sendRedirect("u_alta.jsp");
 
                                             }else{
 
