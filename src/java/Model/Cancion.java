@@ -28,7 +28,7 @@ public class Cancion {
      public Cancion()
      { }
     
-     public Cancion(String nombre, float precio, long isrc, int upc, float duracion, int track)
+     public Cancion(String nombre, float precio, long isrc, long upc, float duracion, int track)
      {
      this.nombre=nombre;
      this.precio=precio;

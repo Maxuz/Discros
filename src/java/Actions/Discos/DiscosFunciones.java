@@ -56,10 +56,10 @@ public class DiscosFunciones {
                 pst.setInt(6, 0);
                 pst.executeUpdate();
                 
-            
-             for (int i = 0; i < canciones.size(); i++) {
-             Cancion get = canciones.get(i);
-              pst = con.prepareStatement("INSERT INTO `canciones`(isrc, nombre, duracion, precio, upc, track)"+" values(?,?,?,?,?,?)" );
+              if (canciones.size() != 0) {
+               for (int i = 0; i < canciones.size(); i++) {
+                Cancion get = canciones.get(i);
+                pst = con.prepareStatement("INSERT INTO `canciones`(isrc, nombre, duracion, precio, upc, track)"+" values(?,?,?,?,?,?)" );
                pst.setLong(1, get.getIsrc());
                pst.setString(2, get.getNombre());
                pst.setFloat(3, get.getDuracion());
@@ -67,6 +67,8 @@ public class DiscosFunciones {
                pst.setLong(5, disco.getUpc());
                pst.setInt(6, get.getTrack());
                pst.executeUpdate();
+              }
+             
            } // </editor-fold>
         } 
           catch (Exception e) {  
