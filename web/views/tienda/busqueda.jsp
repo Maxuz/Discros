@@ -41,32 +41,35 @@
         Util util = new Util();
         int tipoInt = util.getInt(tipo);
         String texto = (String)request.getParameter("texto");
+        String sPagActual = (String)request.getParameter("pagina");
+        if(sPagActual == null || sPagActual.equals("")){
+            sPagActual = "1";
+        }
+        int pagActual = Integer.parseInt(sPagActual);
+        int cantPagina = 6;
         
         switch(tipoInt) {
             //TODOS           
             case 1:
-                lista=funciones.getAll();
+                lista=funciones.getAll(pagActual, cantPagina);
                 break;
             //ARTISTA    
             case 2:
-                lista=funciones.getAll(tipo, texto);
+                lista=funciones.getAll(tipo, texto, pagActual, cantPagina);
                 break;
             //ALBUM    
             case 3:
-                lista=funciones.getAll(tipo, texto);
+                lista=funciones.getAll(tipo, texto, pagActual, cantPagina);
                 break;
             //GENERO
             case 4:
-                lista=funciones.getAll(tipo, texto);
+                lista=funciones.getAll(tipo, texto, pagActual, cantPagina);
                 break;
             //TIPO INCORRECTO
             case 0:
                 ctrlTipo=true;
                 break;
-           
        }
-    
-    
     %>
     
     <!-- CÓDIGO QUE REALIZA EL CONTROL DE LA CARGA DE LA LISTA DE DISCOS-->
@@ -90,94 +93,113 @@
             <%}else{%>
                 
             <h4 style="font-style: italic; margin-left:  20px">Cantidad de resultados: <%out.print(f);;%></h4>
-                <ul id="cd-gallery-items" class="cd-container" style="padding-top: 20px;">
-			
-                   <%  
-                        for(i=0;i<f;i++) 
-                        { dis = lista.get(i); 
-                          double precio = funcionesCanciones.getOne(dis.getUpc(), 0).getPrecio();
-                            %>
-                             <li>
-                                 <img src="<%out.print(dis.getImagen());%>" alt="Preview image" class="img-responsive" style=" float: left;" >
-                                 <div class="texto-tienda" style="text-align: left;" id="disco">
-                                     
-                                     <strong>Artista:</strong><%out.print(dis.getArtista());%><br>
-                                     <strong>Album:</strong><%out.print(dis.getAlbum());%> <br>
-                                     <strong>Género:</strong><%out.print(dis.getGenero());%> <br>
-                                     <strong>Precio:</strong>  $<%out.print(precio);%> <br>
-                                     
-                                     <% boolean stock = false;
-                                        int cant = dis.getStock();
-                                        if(cant>0){
-                                        out.print("<strong>En stock: "+cant+" disponibles.</strong>");
-                                        stock=true;
-                                        }else{
-                                        %><strong style="color: red;">Sin stock</strong>
-                                        <%}
-                                     %> <br>
-                                     
+                <ul id="cd-gallery-items" class="cd-container" style="padding-top: 20px;">	
+                    <%  
+                    for(i=0;i<f;i++) 
+                    { dis = lista.get(i); 
+                      double precio = funcionesCanciones.getOne(dis.getUpc(), 0).getPrecio();
+                    %>
+                         <li>
+                            <img src="img/thumb.jpg" alt="Preview image" class="img-responsive" style=" float: left;" >
+                            <div class="texto-tienda" style="text-align: left;" id="disco">         
+                                <div>
+                                    <strong>Artista: </strong><%out.print(dis.getArtista());%><br>
+                                    <strong>Album: </strong><%out.print(dis.getAlbum());%> <br>
                                     
-                                     <% ArrayList<Model.Cancion> listaCancion;
-                                        listaCancion = funcionesCanciones.getAll(dis.getUpc());
-                                        int s = listaCancion.size();
-                                        
-                                        if(s>1)
-                                        {
-                                     %>
-                                    <a onclick="show('layer<%= dis.getUpc() %>')" style="cursor: pointer">Mostrar canciones..</a></br></br>
-                                    <div id="layer=<% out.print(dis.getUpc()); %>" style="display:none;">
-                                        <div style="border: ridge #0f0fef 1px;">
-                                            <%
-                                            Cancion can = new Cancion();
-                                            
+                                    <%
+                                       int cant = dis.getStock();
+                                       if(cant != 0){
+                                         %>
+                                        <button id="agregarItem" onclick="agregar('<% out.print(dis.getUpc());%>' )" style="float: left; margin-left: 20px; margin-top: 10px;">
+                                        <img src="img/addCarrito.png" style="width: 50px; height: 50px; float: right;" alt="Agregar al carrito" title="Agregar al carrito"/>
+                                        </button> 
+                                     <%}
+                                       else{%> <strong style="color: red;">Sin stock</strong><%}%>
+                                    
+                                   
+                                    <a class="btn btn-info" data-toggle="modal" data-target="#layer<%= dis.getUpc() %>" style="margin-left: 30px; margin-top: 20px;">Mostrar m&aacute;s..</a></br></br>
+                                </div>
+                                <!-- Modal -->
+                                <div id="layer<%= dis.getUpc() %>" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Informaci&oacute;n del disco</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <strong>Artista: </strong><%out.print(dis.getArtista());%><br>
+                                                <strong>Album: </strong><%out.print(dis.getAlbum());%> <br>
+                                                <strong>Género: </strong><%out.print(dis.getGenero());%> <br>
+                                                <strong>Precio: </strong>$<%out.print(precio);%> <br>
+                                                <%
+                                                   if(cant > 0){
+                                                      out.print("<strong>En stock</strong>");
+                                                   }
+                                                %> <br><br>
+                                                <%
+                                                Cancion can = new Cancion();
+                                                ArrayList<Model.Cancion> listaCancion;
 
-                                            
-                                            %>
-                                            <div>
-                                                <table>
-                                                    <tr>
-                                                        <th>Track</th>
-                                                        <th>Nombre</th>
-                                                        <th>Duraci&oacute;n</th>
-                                                        <th>Precio</th>
-                                                        <th></th>
-                                                    </tr>
-                                                    <% for(int j = 0; j < s; j++) 
-                                                    {
-                                                        can = listaCancion.get(j);%>
+                                                listaCancion = funcionesCanciones.getAll(dis.getUpc());
+
+                                                int s = listaCancion.size();
+                                                %>
+                                                <div>
+                                                    <table class="table" style="font-size: 14px;">
                                                         <tr>
-                                                            <td><%= can.getTrack() %></td>
-                                                            <td><%= can.getNombre() %></td>
-                                                            <td><%= can.getDuracion() %></td>
-                                                            <td><%= can.getPrecio() %></td>
+                                                            <th style="width: 15%">Track</th>
+                                                            <th style="width: 60%">Nombre</th>
+                                                            <th style="width: 25%">Duraci&oacute;n</th>
                                                         </tr>
-                                                    <%
-                                                    }
-                                                    %>
-                                                </table>
+                                                        <% for(int j = 0; j < s; j++) 
+                                                        {
+                                                            can = listaCancion.get(j);%>
+                                                            <tr>
+                                                                <td style="width: 15%"><%= can.getTrack() %></td>
+                                                                <td style="width: 60%"><%= can.getNombre() %></td>
+                                                                <td style="width: 25%"><%= can.getDuracion() %></td>
+                                                            </tr>
+                                                        <%
+                                                        }
+                                                        %>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                         </div>
-                                     </div>
-                                    <%}%>
-                                     
+                                    </div>
                                 </div>
-                                 <%if(stock){%>               
-                                <button id="agregarItem" onclick="agregar('<% out.print(dis.getUpc());%>' )">
-
-                                    <img src="img/addCarrito.png" style="width: 50px; height: 50px; float: right;" alt=""/>
-                                </button>
-                                 <%}%>
-                           </li>
-                                
-                       <% } %>
-                      
-
+                            </div>
+                        </li>
+                    <% } %>
 		</ul> <!-- cd-gallery-items -->
                  
             <%}    
     }                 
     %>
-    
-   
-              
+    <div style="text-align: center; font-size: 18px;">
+        <%
+        int cant = 0;
+        if(tipoInt == 1) {
+            cant = funciones.cantDiscos();
+        }
+        else{
+            cant = funciones.cantDiscos(tipo, texto);
+        }
+        int totalPag = (int)Math.ceil((double)cant / (double)cantPagina);
+        for(int c = 1; c <= totalPag; c++)
+        {
+            if(tipoInt == 1){
+                %><a href="t_busqueda.jsp?tipo=<%= tipo %>&pagina=<%= c %>"> <%= c %> </a><%
+            }
+            else{
+                %><a href="t_busqueda.jsp?texto=<%= texto %>&tipo=<%= tipo %>&pagina=<%= c %>"><%= c %></a><%
+            }
+        }
+        %>
+    </div>
 </div>                

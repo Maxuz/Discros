@@ -361,7 +361,6 @@ public class DiscosFunciones {
          return lista; 
     }
     
-    //SOLUCIÓN AL PROBLEMA.
     public ArrayList<Disco>  getAll (String columna, String texto) throws Exception
     {
         // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
@@ -451,10 +450,73 @@ public class DiscosFunciones {
          return lista; 
     }
     
-    //NO SE USA
-    public ArrayList<Disco>  getAllGenero (String genero) throws Exception
+     public ArrayList<Disco>  getAll(String columna, String texto, int pagina, int cantPagina) throws Exception
     {
-        // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
+        // <editor-fold desc="CONEXIÃ“N A LA BD - DECLARACIÃ“N Y ASIGNACIÃ“N DE VARIABLES">
+        Connection con = Conexion.getConexion();
+        PreparedStatement pst = null;  
+        ResultSet rs = null;
+        ArrayList<Disco> lista = new ArrayList<>();
+        // </editor-fold>
+        
+        try{
+            // <editor-fold desc="QUERY Y RESULTADO">
+            String sql = String.format("SELECT * FROM discos WHERE %s like ? LIMIT ?, ?", columna);
+            pst = con.prepareStatement(sql);
+            
+            pst.setString(1, "%" + texto + "%");
+            pst.setInt(2, (pagina - 1) * cantPagina);
+            pst.setInt(3, cantPagina);
+            
+            rs = pst.executeQuery();  
+            while(rs.next())
+            {
+                Disco disco = new Disco();
+                disco.setDatos(rs.getString("artista"), rs.getString("album"),rs.getString("genero"),
+                                    rs.getString("descripcion"), rs.getString("imagen"),rs.getInt("upc"),
+                                    rs.getInt("stock"),rs.getString("fecha_salida"));
+                lista.add(disco);
+            }
+            // </editor-fold>
+        }
+        catch (Exception e) {  
+            throw e; 
+        } 
+        finally {  
+            // <editor-fold desc="CIERRA: CON, PST, RS">
+            if (con != null) {  
+                try {  
+                   Actions.Conexion.cerrarConexion();
+                }
+                catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if(pst != null) {  
+                try {  
+                    pst.close();  
+                }
+                catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }
+            if (rs != null) {  
+                try {  
+                    rs.close();  
+                }
+                catch (Exception e) {  
+                    System.out.println(e);
+                    //e.printStackTrace();  
+                }
+            }
+        }
+        // </editor-fold> 
+        return lista; 
+    }
+    
+    public ArrayList<Disco>  getAll (int pagina, int cantPagina) throws Exception
+    {
+        // <editor-fold desc="CONEXIÃ“N A LA BD - DECLARACIÃ“N Y ASIGNACIÃ“N DE VARIABLES">
          Connection con = Conexion.getConexion();
          PreparedStatement pst = null;  
          ResultSet rs = null;  
@@ -466,13 +528,14 @@ public class DiscosFunciones {
         
           try { // <editor-fold desc="QUERY Y RESULTADO">
               //ESCRIBIR LA CONSULTA CORRECTA
-            pst = con.prepareStatement("select * from discos where genero=?");  
-            pst.setString(1, genero);
+            pst = con.prepareStatement("select * from discos limit ?, ?");
+            pst.setInt(1, (pagina - 1) * cantPagina);
+            pst.setInt(2, cantPagina);
+            
             rs = pst.executeQuery();  
-             
+            
             while(rs.next())
-            { 
-                
+            {
                 Disco disco = new Disco();
                 
                 disco.setDatos(rs.getString("artista"), rs.getString("album"),rs.getString("genero"),
@@ -521,77 +584,7 @@ public class DiscosFunciones {
          
          return lista; 
     }
-    //NO SE USA
-    public ArrayList<Disco>  getAllAlbum (String album) throws Exception
-    {
-        // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
-         Connection con = Conexion.getConexion();
-         PreparedStatement pst = null;  
-         ResultSet rs = null;  
-       
-         ArrayList<Disco> lista = new ArrayList<>();
-         
-        // </editor-fold>
-         
-        
-          try { // <editor-fold desc="QUERY Y RESULTADO">
-              //ESCRIBIR LA CONSULTA CORRECTA
-            pst = con.prepareStatement("select * from discos where album=?");  
-            pst.setString(1, album);
-            rs = pst.executeQuery();  
-             
-            while(rs.next())
-            { 
-                
-                Disco disco = new Disco();
-                
-                disco.setDatos(rs.getString("artista"), rs.getString("album"),rs.getString("genero"),
-                                    rs.getString("descripcion"), rs.getString("imagen"),rs.getInt("upc"),
-                                    rs.getInt("stock"),rs.getString("fecha_salida"));
-              lista.add(disco);
-            }
-             
-            
-        // </editor-fold>
-            
-              } 
-          catch (Exception e) {  
-                throw e;  
-              } 
-          finally {  
-               // <editor-fold desc="CIERRA: CON, PST, RS">
-            if (con != null) {  
-                try {  
-                    Actions.Conexion.cerrarConexion();
-                   
-                 } catch (Exception e) {  
-                   System.out.println(e);  
-                }  
-            }  
-            if (pst != null) {  
-                try {  
-                    pst.close();  
-                } catch (Exception e) {  
-                   System.out.println(e);  
-                }  
-            }  
-            if (rs != null) {  
-                try {  
-                    rs.close();  
-                } catch (Exception e) {  
-                    System.out.println(e);
-                    //e.printStackTrace();  
-                }  
-                
-            }
-          
-            
-          }
-         // </editor-fold>
-         
-         return lista; 
-    }
-
+    
     public ArrayList<String>  getListaArtistas () throws Exception
     {
         // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
@@ -835,7 +828,7 @@ public class DiscosFunciones {
           return stock;
     }
     
-       public void setStock (int stock, long upc) throws Exception
+    public void setStock (int stock, long upc) throws Exception
     {
         // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
          Connection con = Conexion.getConexion();
@@ -889,7 +882,118 @@ public class DiscosFunciones {
         } 
     }
     
+     public int cantDiscos() throws Exception
+    {    
+        // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
+         int cant = 0;  
+        
+         Connection con = Conexion.getConexion();
+         PreparedStatement pst = null;  
+         ResultSet rs = null;  
+        
+        // </editor-fold>
+        
+          try { // <editor-fold desc="QUERY Y RESULTADO">
+              
+                pst = con.prepareStatement("SELECT COUNT(*) FROM discos");  
+                rs = pst.executeQuery();  
+                if(rs.next())
+                {
+                    cant = rs.getInt(1);
+                }
+                
+                // </editor-fold>
+            } 
+          catch (Exception e) {  
+                throw e;  
+              } 
+          finally {  
+               // <editor-fold desc="CIERRA: CON, PST, RS">
+            if (con != null) {  
+                try {  
+                    Actions.Conexion.cerrarConexion();
+                   
+                 } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (rs != null) {  
+                try {  
+                    rs.close();  
+                } catch (Exception e) {  
+                    System.out.println(e);
+                    //e.printStackTrace();  
+                }  
+            }
+            // </editor-fold>
+        
+        }  
+        return cant; 
     
+        
+    }
+    
+    public int cantDiscos(String columna, String texto) throws Exception
+    { 
+        // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
+        int cant = 0;
+        Connection con = Conexion.getConexion();
+        PreparedStatement pst = null;  
+        ResultSet rs = null;
+        
+        // </editor-fold>
+        try {
+            // <editor-fold desc="QUERY Y RESULTADO">
+            String sql = String.format("SELECT count(*) FROM discos WHERE %s like ?", columna);
+            pst = con.prepareStatement(sql);
+            
+            pst.setString(1, "%" + texto + "%");
+            rs = pst.executeQuery();  
+            if(rs.next())
+            {
+                cant = rs.getInt(1);
+            }
+            // </editor-fold>
+        }
+        catch (Exception e) {  
+            throw e;
+        } 
+          finally {  
+               // <editor-fold desc="CIERRA: CON, PST, RS">
+            if (con != null) {  
+                try {  
+                    Actions.Conexion.cerrarConexion();
+                   
+                 } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (rs != null) {  
+                try {  
+                    rs.close();  
+                } catch (Exception e) {  
+                    System.out.println(e);
+                    //e.printStackTrace();  
+                }  
+            }
+            // </editor-fold>
+        }  
+        return cant;
+    }
     
      // </editor-fold>
 }
