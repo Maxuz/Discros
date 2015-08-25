@@ -105,9 +105,18 @@
                                 <div>
                                     <strong>Artista: </strong><%out.print(dis.getArtista());%><br>
                                     <strong>Album: </strong><%out.print(dis.getAlbum());%> <br>
-                                    <button id="agregarItem" onclick="agregar('<% out.print(dis.getUpc());%>' )" style="float: left; margin-left: 20px; margin-top: 10px;">
+                                    
+                                    <%
+                                       int cant = dis.getStock();
+                                       if(cant != 0){
+                                         %>
+                                        <button id="agregarItem" onclick="agregar('<% out.print(dis.getUpc());%>' )" style="float: left; margin-left: 20px; margin-top: 10px;">
                                         <img src="img/addCarrito.png" style="width: 50px; height: 50px; float: right;" alt="Agregar al carrito" title="Agregar al carrito"/>
-                                    </button>
+                                        </button> 
+                                     <%}
+                                       else{%> <strong style="color: red;">Sin stock</strong><%}%>
+                                    
+                                   
                                     <a class="btn btn-info" data-toggle="modal" data-target="#layer<%= dis.getUpc() %>" style="margin-left: 30px; margin-top: 20px;">Mostrar m&aacute;s..</a></br></br>
                                 </div>
                                 <!-- Modal -->
@@ -125,7 +134,6 @@
                                                 <strong>Género: </strong><%out.print(dis.getGenero());%> <br>
                                                 <strong>Precio: </strong>$<%out.print(precio);%> <br>
                                                 <%
-                                                   int cant = dis.getStock();
                                                    if(cant > 0){
                                                       out.print("<strong>En stock</strong>");
                                                    }
