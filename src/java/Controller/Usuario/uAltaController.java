@@ -3,8 +3,6 @@ package Controller.Usuario;
 import Actions.Util;
 import Model.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
-import static java.lang.System.out;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,14 +29,14 @@ public class uAltaController extends HttpServlet {
                                     String email2 = request.getParameter("email2");
                                     String pass2 = StringMD.getStringMessageDigest(request.getParameter("pass2"), StringMD.SHA1);
                                     
-                                     // REALIZAR MÉTODO PARA ENCRIPTAR
-                                    //  String pass  = MÉTODOENCRIPTAR(request.getParameter("pass"));
-                                    //  String pass  = MÉTODOENCRIPTAR(request.getParameter("pass"));
-                                    
+                                    //VALIDA QUE LOS EMAILS SEAN IGUALES Y NO VACÍOS
                                     if(validar.esIgual(email, email2) && !validar.estaVacio(email) && !validar.estaVacio(email2))
                                     {
+                                      //VALIDA QUE LOS PASS SEAN IGUALES Y NO VACÍOS   
                                       if(validar.esIgual(pass, pass2)&& !validar.estaVacio(pass) && !validar.estaVacio(pass2))
                                         {
+                                            
+                                        //VERIFICA SI EL USUARIO QUE SE QUIERE REGISTRAR YA ESTÁ REGISTRADO
                                         if(funciones.buscar(email))
                                             { 
                                                 sesion.setAttribute("mensajeError", "El email ya se encuentra registrado. Por favor elija otro.");
