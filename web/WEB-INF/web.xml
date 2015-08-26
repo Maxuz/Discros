@@ -20,7 +20,10 @@
         <servlet-name>cResetController</servlet-name>
         <servlet-class>Controller.Carrito.cResetController</servlet-class>
     </servlet>
-   
+    <servlet>
+        <servlet-name>caAddController</servlet-name>
+        <servlet-class>Controller.Canciones.caAddController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/usuario.do</url-pattern>
@@ -255,7 +258,10 @@
         <servlet-name>cResetController</servlet-name>
         <url-pattern>/cReset.do</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>caAddController</servlet-name>
+        <url-pattern>/caAdd.do</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>

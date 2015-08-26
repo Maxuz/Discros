@@ -33,10 +33,9 @@ public class caAddController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try{                        
         HttpSession sesion = request.getSession(true);
-
-         //SE INSTANCIA UNA CANCIÓN Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
+        try{                        
+          //SE INSTANCIA UNA CANCIÓN Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
         
                     String nombre = request.getParameter("nombre");
                     long upc = Long.parseLong((String) sesion.getAttribute("ultimoUpc"));
@@ -62,7 +61,8 @@ public class caAddController extends HttpServlet {
     }
     catch (Exception e)
         {
-        response.getWriter().print("ERROR OCURRIDO:  "+e);
+            sesion.setAttribute("mensajeError", "ERROR OCURRIDO: "+e);
+            response.sendRedirect("error.jsp");
         }
     }
 

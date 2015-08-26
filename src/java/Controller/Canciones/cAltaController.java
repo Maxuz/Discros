@@ -17,10 +17,10 @@ public class cAltaController extends HttpServlet {
             throws ServletException, IOException {
        
         Actions.Canciones.CancionesFunciones funciones = new Actions.Canciones.CancionesFunciones();
-        
+        HttpSession sesion = request.getSession(true);
         
     try{                        
-        HttpSession sesion = request.getSession(true);
+        
         if (sesion.getAttribute("ultimoUpc")!= null) {
             
             if (sesion.getAttribute("cancionesDisco") != null) {
@@ -33,14 +33,16 @@ public class cAltaController extends HttpServlet {
             
         }else{
          sesion.setAttribute("mensajeError", "Debe registrar un disco para crear canciones.");
-         response.sendRedirect("u_alta.jsp");
+         response.sendRedirect("c_alta.jsp");
         }
          //SE INSTANCIA UNA CANCIÓN Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
             
     }
     catch (Exception e)
         {
-        response.getWriter().print("ERROR OCURRIDO:  "+e);
+         sesion.setAttribute("mensajeError", "ERROR OCURRIDO: "+e);
+         response.sendRedirect("error.jsp");
+        //response.getWriter().print("ERROR OCURRIDO:  "+e);
         }
     }
 
