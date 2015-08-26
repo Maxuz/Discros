@@ -237,8 +237,6 @@
     //CODIGO PARA PAGINAR PÁGINA
     if(!ctrlTipo){
     %>
-    
-    
     <div style="text-align: center; font-size: 18px;">
         <%
         int cant = 0;
@@ -247,8 +245,7 @@
         }
         else{
             cant = funciones.cantDiscos(tipo, texto);
-        }
-        
+        } 
         int totalPag = (int)Math.ceil((double)cant / (double)cantPagina);
         for(int c = 1; c <= totalPag; c++)
         {
@@ -261,10 +258,10 @@
         }%>
     </div>
 <%}
-}else{%>
-                 <!-- HTML PARA UN TIPO DE BÚSQUEDA INCORRECTO -->
-            <h4 style="font-style: italic; margin-left:20px; text-align: center;"> URL INCORRECTA.<br>
-            Por favor, intente nuevamente.</h4>  <br><br><br>
+}else{//URL INCORRECTA
+        %>
+        <h4 style="font-style: italic; margin-left:20px; text-align: center;"> URL INCORRECTA.<br>
+        Por favor, intente nuevamente.</h4>  <br><br><br>
      <%}%>
     
 </div>                
