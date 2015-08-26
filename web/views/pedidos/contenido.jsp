@@ -96,7 +96,7 @@
                                      <td><strong>Artista</strong></td>
                                      <td><strong>Album</strong></td>
                                      <td><strong>Genero</strong></td>
-                                     <td><strong>Año</strong></td>
+                                     
                                      <td><strong>Precio</strong></td>
                                  </tr>
                                  
@@ -113,7 +113,7 @@
                                              <td><%out.print(dis.getArtista()); %></td>
                                              <td><%out.print(dis.getAlbum()); %></td>
                                              <td><%out.print(dis.getGenero()); %></td>
-                                             <td><%out.print(dis.getFecha()); %></td>
+                                             
                                              <td>$ <%out.print(precio); %></td>
                                              </tr>
                                      <%}
@@ -122,7 +122,7 @@
                                             <td><strong>Total</strong></td>
                                              <td></td>
                                              <td></td>
-                                             <td></td>
+                                           
                                              <td><strong>$ <% out.print(session.getAttribute("valorTotalCarrito")); %></strong></td>
                                              
                                              </tr>

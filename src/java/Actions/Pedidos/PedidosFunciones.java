@@ -1,14 +1,15 @@
 package Actions.Pedidos;
 
 import Actions.Conexion;
-import Model.Cancion;
-import Model.Pedido;
 import Actions.Util;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import Actions.Discos.DiscosFunciones;
+import Model.PedidoReporte;
+import Model.Pedido;
+import Model.Cancion;
 
 public class PedidosFunciones {
 
@@ -345,10 +346,75 @@ public class PedidosFunciones {
          
          return lista; 
     }
-    
-    
-    
-    
+ 
+    public ArrayList<PedidoReporte>  getAllPendientes() throws Exception
+    {
+        // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
+         Connection con = Conexion.getConexion();
+         PreparedStatement pst = null;  
+         ResultSet rs = null;  
+       
+         ArrayList<PedidoReporte> lista = new ArrayList<>();
+         
+        // </editor-fold>
+         
+        
+          try { // <editor-fold desc="QUERY Y RESULTADO">
+              //ESCRIBIR LA CONSULTA CORRECTA
+            pst = con.prepareStatement("select ped.`id_pedido`, ped.`fecha`, ped.`estado`, usr.`email`, usr.`nombre`, usr.`apellido`\n" +
+                                        "from pedidos ped\n" +
+                                        "INNER JOIN usuarios usr\n" +
+                                        "on ped.`email`= usr.`email`\n" +
+                                        "WHERE ped.`estado`=\"Pendiente\"\n" +
+                                        "ORDER BY ped.`fecha` ASC");  
+            rs = pst.executeQuery();  
+             
+            while(rs.next())
+            {  PedidoReporte pedido = new PedidoReporte();
+               pedido.setDatos(rs.getInt("id_pedido"), rs.getDate("fecha"), rs.getString("estado"), rs.getString("email"), rs.getString("nombre"), rs.getString("apellido"));
+               lista.add(pedido);
+            }
+             
+            
+        // </editor-fold>
+            
+              } 
+          catch (Exception e) {  
+                throw e;  
+              } 
+          finally {  
+               // <editor-fold desc="CIERRA: CON, PST, RS">
+            if (con != null) {  
+                try {  
+                    Actions.Conexion.cerrarConexion();
+                   
+                 } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (rs != null) {  
+                try {  
+                    rs.close();  
+                } catch (Exception e) {  
+                    System.out.println(e);
+                    //e.printStackTrace();  
+                }  
+                
+            }
+          
+            
+          }
+         // </editor-fold>
+         
+         return lista; 
+    }
 // </editor-fold>
     
 // <editor-fold desc="FUNCIONES: OTRAS">

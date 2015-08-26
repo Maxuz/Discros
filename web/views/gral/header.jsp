@@ -81,10 +81,10 @@
                                 <li style="background-color:#2a6496; color: #ffffff; text-align: center;"><strong>PEDIDOS</strong></li>
                                 <li><a id="btnModificardatos" href="p_informar.jsp?tipo=admin" role="button" class="btn">Actualizar estado</a></li>
                                 <li class="divider"></li>
-                                <!--
+                                
                                 <li style="background-color:#2a6496; color: #ffffff; text-align: center;"><strong>REPORTES</strong></li>
                                 
-                                <li><a id="btnModificardatos" href="p_reporte.jsp" role="button" class="btn">Pedidos pendientes</a></li>-->
+                                <li><a id="btnModificardatos" href="p_reporte.jsp" role="button" class="btn">Pedidos pendientes</a></li>
                                
                                 
                             </ul>

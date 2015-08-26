@@ -6,9 +6,15 @@
             
             <h2> Reestablecer contraseña</h2>
             <hr>
+            <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            Servicio momentáneamente fuera de línea.
+            </div>
+            <hr>
             <p style="font-style: italic;"> Ingrese su correo electrónico, si es válido se le enviará una nueva contraseña a su email.</p>
             
-            <form role="form" id="login" method="post" action="uOlvide.do" >
+            <form role="form" id="login" method="post" action="" >
             
              <label for="lEmail">Email</label>
              <input type="email" class="form-control" name="email" id="email" placeholder="Introduce tu email">
