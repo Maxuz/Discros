@@ -162,6 +162,7 @@
                                     
                                     <!-- BOTÓN QUE ABRE MODAL PARA MOSTRAR DETALLES DEL DISCO-->
                                     <a class="btn btn-info" data-toggle="modal" data-target="#layer<%= dis.getUpc() %>" style="margin-left: 30px; margin-top: 20px;">Mostrar m&aacute;s..</a></br></br>
+                                
                                 </div>
                                 
                                 <!-- DECLARACIÓN DEL MODAL -->
