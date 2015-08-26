@@ -6,6 +6,7 @@
         
         <br><h2 style="text-align: center;">Administración de Productos</h2>
         <br>
+        <div class="col-md-4"></div>
         <div class="col-md-4">
             <div class="thumbnail" style="text-align: center; height: 300px;">
                 <h3 style="font-weight: bold; text-decoration: underline;">Discos</h3>
@@ -19,33 +20,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="thumbnail" style="text-align: center;height: 300px;">
-                 
-                    <h3 style="font-weight: bold; text-decoration: underline;">Futuro Producto</h3>
-                    <div class="caption"> 
-                    <ul class="list-group">
-                    <li class="list-group-item list-group-item-success"> Agregar xxxx</li>
-                    <li class="list-group-item list-group-item-warning"> Modificar xxxx</li>
-                    <li class="list-group-item list-group-item-danger"> Eliminar xxxx</li>
-                    </ul>
-                    </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="thumbnail" style=" height: 300px; text-align: center;">
-
-             <h3 style="font-weight: bold; text-decoration: underline;">Futuro Producto</h3>
-                    <div class="caption"> 
-                    <ul class="list-group">
-                    <li class="list-group-item list-group-item-success"> Agregar xxxx</li>
-                    <li class="list-group-item list-group-item-warning"> Modificar xxxx</li>
-                    <li class="list-group-item list-group-item-danger"> Eliminar xxxx</li>
-                    </ul>
-                    </div>
-
-            </div>
-        </div>
+        
 
     </div>
 

@@ -20,6 +20,7 @@
                        session.setAttribute("mensajeExito", null);
                        %>
                        </div>
+                       <hr><div style="margin-left:  15px;"><a href="d_alta.jsp"><h3>Crear otro disco</h3></a></div> <br><br>
                        <hr><div style="margin-left:  15px;"><a href="p_admin.jsp"><h4>&laquo; Volver al menú principal..</h4></a></div> <br><br>
                             
                        
