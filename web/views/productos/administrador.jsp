@@ -21,7 +21,7 @@
                  
                   <ul class="list-group">
                     <li class="list-group-item list-group-item-success"><a href="d_alta.jsp" >Agregar disco</a></li>
-                    <li class="list-group-item list-group-item-warning"><a href="d_modificar.jsp" >Modificar disco</a></li>
+                    <li class="list-group-item list-group-item-warning"><a href="d_buscar.jsp" >Modificar disco</a></li>
                    
                   </ul>
                 </div>

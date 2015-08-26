@@ -40,7 +40,7 @@
                         <% } %>  
                 <!--FORMULARIO DE MODIFICAR-->
                 <%
-                String sUpc = request.getParameter("upc");
+                String sUpc = "1";
                 int upc = (sUpc == null || sUpc.equals("")) ? 0 : Integer.parseInt(sUpc);
                 DiscosFunciones funcionesDisco = new DiscosFunciones();
                 Disco dis = funcionesDisco.getOne(upc);
