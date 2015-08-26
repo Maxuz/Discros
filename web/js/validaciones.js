@@ -21,6 +21,15 @@ var soloNumero = function(campo){
         return false;
     }
 };
+var soloFloat = function(campo){
+    expr = /^([0-9])*[.]?[0-9]*$/;
+    if(expr.test(campo))
+        return true;
+    else{
+        return false;
+    }
+};
+
 var soloTexto = function(campo){
   expr = /^[A-Za-z\_\-\.\s\xF1\xD1]+$/;
     if (expr.test(campo)){

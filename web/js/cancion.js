@@ -44,7 +44,7 @@ agregarCancion:  function(){
             $('#lblDuracion').addClass('lblError').text("(*)Duraci\u00f3n: - Debe ingresar la duraci\u00f3n.");
             mensaje = mensaje + " Duracion\n";
         }
-        else if (!soloNumero(duracion)){
+        else if (!soloFloat(duracion)){
             $('#lblDuracion').addClass('lblError').text("(*)Duraci\u00f3n - La duracci\u00f3n acepta s\u00f3lo n\u00fameros.");
             mensaje = mensaje + " Duracion numero\n";
         }else {
@@ -54,7 +54,7 @@ agregarCancion:  function(){
             $('#lblPrecio2').addClass('lblError').text("(*)Precio: - Debe ingresar el precio.");
             mensaje = mensaje + " Precio\n";
         }
-        else if (!soloNumero(precio)){
+        else if (!soloFloat(precio)){
             $('#lblPrecio2').addClass('lblError').text("(*)Precio: - El precio acepta s\u00f3lo n\u00fameros.");
             mensaje = mensaje + " Precio número\n";
         }else {
