@@ -5,8 +5,8 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
     <error-page>
-    <error-code>404</error-code>
-    <location>/404.jsp</location>
+        <error-code>404</error-code>
+        <location>/404.jsp</location>
     </error-page>
     <servlet>
         <servlet-name>UsuarioController</servlet-name>
@@ -27,6 +27,10 @@
     <servlet>
         <servlet-name>caAddController</servlet-name>
         <servlet-class>Controller.Canciones.caAddController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>dBuscarController</servlet-name>
+        <servlet-class>Controller.Discos.dBuscarController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
@@ -265,6 +269,10 @@
     <servlet-mapping>
         <servlet-name>caAddController</servlet-name>
         <url-pattern>/caAdd.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dBuscarController</servlet-name>
+        <url-pattern>/dBuscar.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
