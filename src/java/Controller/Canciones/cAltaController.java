@@ -36,10 +36,7 @@ public class cAltaController extends HttpServlet {
          response.sendRedirect("u_alta.jsp");
         }
          //SE INSTANCIA UNA CANCIÓN Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
-        
-                  
-                    
-                    
+            
     }
     catch (Exception e)
         {

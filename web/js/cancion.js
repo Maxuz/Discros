@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-agregarCancion =  function(e){
+var funciones = {
+agregarCancion:  function(){
         var isrc = $("#isrc").val();            //vacio y longitud 12
         var track = $("#track").val();          //vacio solo numero
         var nombre = $("#nombre").val();        //vacio 
@@ -84,6 +84,7 @@ agregarCancion =  function(e){
             console.log(mensaje);
             return false;
         }
+    }
     };
     
 function agregar(isrc,track,nombre,duracion,precio){
@@ -108,8 +109,11 @@ function agregar(isrc,track,nombre,duracion,precio){
  };
  
  $(document).ready(function(){
+    
     $("#add").click(function(e){
-        funciones.agregarCancion(e);
+        e.preventDefault();
+        funciones.agregarCancion();
     });
+    
 });
 
