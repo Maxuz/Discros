@@ -1,45 +1,64 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Controller.Canciones;
 
-import Actions.Discos.DiscosFunciones;
 import Model.Cancion;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class cAltaController extends HttpServlet {
+/**
+ *
+ * @author MaximilianoDaniel
+ */
+public class caAddController extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        Actions.Canciones.CancionesFunciones funciones = new Actions.Canciones.CancionesFunciones();
-        
-        
-    try{                        
+        response.setContentType("text/html;charset=UTF-8");
+        try{                        
         HttpSession sesion = request.getSession(true);
-        if (sesion.getAttribute("ultimoUpc")!= null) {
-            
-            if (sesion.getAttribute("cancionesDisco") != null) {
-              ArrayList<Model.Cancion> lista = (ArrayList<Model.Cancion>) sesion.getAttribute("cancionesDisco");
-                funciones.alta(lista, (String) sesion.getAttribute("ultimoUpc"));
-            }else {
-             sesion.setAttribute("mensajeError", "Debe registrar al menos una canción.");
-             response.sendRedirect("c_alta.jsp");
-            }
-            
-        }else{
-         sesion.setAttribute("mensajeError", "Debe registrar un disco para crear canciones.");
-         response.sendRedirect("u_alta.jsp");
-        }
+
          //SE INSTANCIA UNA CANCIÓN Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
         
-                  
+                    String nombre = request.getParameter("nombre");
+                    long upc = Long.parseLong((String) sesion.getAttribute("ultimoUpc"));
+                    long isrc  = Long.parseLong(request.getParameter("isrc"));
+                    int track  = Integer.parseInt(request.getParameter("track"));
+                    float precio = Float.parseFloat(request.getParameter("precio"));
+                    float duracion = Float.parseFloat(request.getParameter("duracion"));
+
+                    Cancion cancion = new Cancion(nombre, precio, isrc, upc, duracion, track);
+                    ArrayList<Model.Cancion> lista = new ArrayList<>();
+                    ArrayList<Model.Cancion> listaAux = (ArrayList<Model.Cancion>)sesion.getAttribute("cancionesDisco");
                     
+                     if ( listaAux == null){
+                        lista.add(cancion);
+                        sesion.setAttribute("cancionesDisco", lista);
+                       }
+                     else{
+                         listaAux.add(cancion);
+                         sesion.setAttribute("cancionesDisco", listaAux); 
+                     }
                     
+                    //response.getWriter().print("LA CANCIÓN SE REGISTRÓ CORRECTAMENTE");
     }
     catch (Exception e)
         {

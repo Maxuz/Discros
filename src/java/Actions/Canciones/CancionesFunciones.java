@@ -66,7 +66,66 @@ public class CancionesFunciones {
     
         
     }
-    
+    public void alta(ArrayList<Model.Cancion> lista, String upc) throws Exception
+     {    
+        
+         // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
+         Connection con = Conexion.getConexion();
+         PreparedStatement pst = null;  
+         ResultSet rs = null;  
+         con.setAutoCommit(false);
+        // </editor-fold>
+        
+          try { // <editor-fold desc="QUERY Y RESULTADO">
+                for (int i = 0; i < lista.size(); i++) {
+                  Cancion get = lista.get(i);
+                
+                pst = con.prepareStatement("INSERT INTO `canciones` (isrc, nombre, duracion, precio, upc, track)"+" values(?,?,?,?,?,?)" );
+                pst.setLong(1, get.getIsrc());
+                pst.setString(2, get.getNombre());
+                pst.setFloat(3, get.getDuracion());
+                pst.setFloat(4, get.getPrecio());
+                pst.setLong(5,Long.parseLong(upc));
+                pst.setInt(6, get.getTrack());
+                pst.executeUpdate();
+              }           
+                // </editor-fold>
+            } 
+          catch (Exception e) {  
+              con.rollback();
+              throw e;  
+                
+              } 
+          finally {  
+               // <editor-fold desc="CIERRA: CON, PST, RS">
+            if (con != null) {  
+                try {  
+                    con.commit();
+                    con.setAutoCommit(true);
+                    Actions.Conexion.cerrarConexion();
+                   
+                 } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (Exception e) {  
+                   System.out.println(e);  
+                }  
+            }  
+            if (rs != null) {  
+                try {  
+                    rs.close();  
+                } catch (Exception e) {  
+                    System.out.println(e);
+                    //e.printStackTrace();  
+                }  
+            }
+            // </editor-fold>
+        }          
+    }
     public void baja (long UPC, long ISRC) throws Exception
     {
         // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">

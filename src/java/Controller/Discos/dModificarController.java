@@ -30,7 +30,7 @@ public class dModificarController extends HttpServlet {
                                         float precio = Float.parseFloat(request.getParameter("precio"));
                                         
                                         funcionesCanciones.modificarPrecio(precio, upc);
-                                        Disco disco = new Disco(artista, album, genero, descripcion, imagen, upc, stock, fechafecha);
+                                        Disco disco = new Disco(artista, album, genero, descripcion, imagen, upc, stock);
                                         
                                         
                                         

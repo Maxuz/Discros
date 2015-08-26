@@ -45,7 +45,7 @@ public class DiscosController extends HttpServlet {
                                         float precio = Float.parseFloat(request.getParameter("precio"));
                                         
                                         Cancion cancion = new Cancion(null, precio, 0, upc, 0, 0);
-                                        Disco disco = new Disco(artista, album, genero, descripcion, imagen, upc, stock, fechafecha);
+                                        Disco disco = new Disco(artista, album, genero, descripcion, imagen, upc, stock);
                                                                               
                                         funcionesCanciones.alta(cancion);
                                         response.getWriter().print("EL DISCO SE REGISTRÓ CORRECTAMENTE");
@@ -95,7 +95,7 @@ public class DiscosController extends HttpServlet {
                                         float precio = Float.parseFloat(request.getParameter("precio"));
                                         
                                         funcionesCanciones.modificarPrecio(precio, upc);
-                                        Disco disco = new Disco(artista, album, genero, descripcion, imagen, upc, stock, fechafecha);
+                                        Disco disco = new Disco(artista, album, genero, descripcion, imagen, upc, stock);
                                         
                                         
                                         

@@ -51,7 +51,7 @@ public class dAltaController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-         if (!ServletFileUpload.isMultipartContent(request)) {
+        if (!ServletFileUpload.isMultipartContent(request)) {
             // if not, we stop here
             PrintWriter writer = response.getWriter();
             writer.println("Error: Form must has enctype=multipart/form-data.");
@@ -88,108 +88,70 @@ public class dAltaController extends HttpServlet {
         Actions.Discos.DiscosFunciones funciones = new Actions.Discos.DiscosFunciones();
         HttpSession sesion = request.getSession(true); 
         try{
-                        
-                      
-                                   /* if(funciones.buscar(upc))
-                                    {   sesion.setAttribute("mensajeError", "El disco ya se encuentra registrado, por favor ingrese otro UPC.");
-                                        response.sendRedirect("d_alta.jsp");
-                                       
-                                        
-                                    } else if((ArrayList<Model.Cancion>)sesion.getAttribute("cancionesDisco") == null){
-                                        sesion.setAttribute("mensajeError", "No puede registrar un disco sin canciones, por favor ingrese al menos una canción");
-                                        response.sendRedirect("d_alta.jsp");
-                                    }else{
-                                         */
-                                        //SE INSTANCIA UN DISCO Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
-                                        String artista = "";
-                                        String album = "";
-                                        String genero = "";
-                                        String descripcion = "";
-                                        String stock = "";
-                                        String fecha = "";
-                                        String precio = "";
-                                        String upc = "";
-                                        
-                                        String isrc = "";
-                                        String track="";
-                                        String nombre="";
-                                        String duracion="";
-                                        String precio2="";
-                                        ArrayList<Model.Cancion> canciones = new ArrayList<Model.Cancion>();
-                                        
-                                        @SuppressWarnings("unchecked")
-                                        List<FileItem> formItems = upload.parseRequest(request);
-                                        String auxIMG= "";
-                                        if (formItems != null && formItems.size() > 0) {
-                                            // iterates over form's fields
-                                            for (FileItem item : formItems) {
-                                                // processes only fields that are not form fields
-                                                if (!item.isFormField()) {
-                                                    String fileName = new File(item.getName()).getName();
-                                                    //Modificar el fileName 
-                                                    String filePath = uploadPath + File.separator + upc +".jpg";
-                                                    File storeFile = new File(filePath);
-                                                    auxIMG = fileName;      
-                                                    // saves the file on disk
-                                                    item.write(storeFile);
-                                                    request.setAttribute("message","Upload has been done successfully!");
-                                                }else {
-                                                    String fieldname = item.getFieldName();
-                                                    String fieldvalue = item.getString();
-                                                    if (fieldname.equals("upc")) {
-                                                        upc = fieldvalue;
-                                                    } else if (fieldname.equals("artista")) {
-                                                        artista = fieldvalue;
-                                                    }else if(fieldname.equals("album")){
-                                                        album = fieldvalue;
-                                                    }
-                                                    else if (fieldname.equals("genero")){
-                                                        genero = fieldvalue;
-                                                    }else if(fieldname.equals("stock")){
-                                                        stock = fieldvalue;
-                                                    }else if(fieldname.equals("descripcion")){
-                                                        descripcion = fieldvalue;
-                                                    }else if(fieldname.equals("precio")){
-                                                        precio = fieldvalue;
-                                                    }else if(fieldname.equals("isrc")){
-                                                       break;// isrc = fieldvalue;
-                                                    }/*else if(fieldname.equals("track")){
-                                                        track = fieldvalue;
-                                                    }else if(fieldname.equals("nombre")){
-                                                        nombre = fieldvalue;
-                                                    }else if(fieldname.equals("duracion")){
-                                                        duracion = fieldvalue;
-                                                    }else if(fieldname.equals("precio2")){
-                                                        precio2 = fieldvalue;
-                                                        Model.Cancion cancion = new Model.Cancion(nombre,Float.parseFloat(precio2),Long.parseLong(isrc),Long.parseLong(upc),Integer.parseInt(duracion),Integer.parseInt(track));
-                                                        canciones.add(cancion);
-                                                    }*/
-                                                    
-                                                }
-                                            }
-                                        String imagen = "upload/"+upc+".jpg";
-                                        canciones = (ArrayList<Model.Cancion>) sesion.getAttribute("cancionesDisco");
-                                        String aux = "prueba";
-                                        
-                                        Disco disco = new Disco(artista, album, genero, descripcion, imagen, Long.parseLong(upc), Integer.parseInt(stock), String.valueOf(Date.from(Instant.EPOCH)));
-                                        
-                                        funciones.alta(disco,canciones,Float.parseFloat(precio));
-                                           
-                                        sesion.setAttribute("mensajeExito", "Disco agregado correctamente.");
-                                        response.sendRedirect("d_alta.jsp");
-                                        
-                                        }
-                                    }
-                                catch (Exception e)
-                                    {
-                                        sesion.setAttribute("errorCatch", e.toString());
-                                        response.sendRedirect("error.jsp");
-                                    }
-                                finally{
-                                    
-                                }
-    }
+                //SE INSTANCIA UN DISCO Y SE CARGA CON LOS VALORES OBTENIDOS DEL FORMULARIO
+                String artista = "";
+                String album = "";
+                String genero = "";
+                String descripcion = "";
+                String stock = "";
+                String precio = "";
+                String upc = "";
 
+                @SuppressWarnings("unchecked")
+                List<FileItem> formItems = upload.parseRequest(request);
+                if (formItems != null && formItems.size() > 0) {
+                    // iterates over form's fields
+                    for (FileItem item : formItems) {
+                        // processes only fields that are not form fields
+                        if (!item.isFormField()) {
+                            String fileName = new File(item.getName()).getName();
+                            //Modificar el fileName 
+                            String filePath = uploadPath + File.separator + upc +".jpg";
+                            File storeFile = new File(filePath);   
+                            // saves the file on disk
+                            item.write(storeFile);
+                            request.setAttribute("message","Upload has been done successfully!");   
+                        }else {
+                            String fieldname = item.getFieldName();
+                            String fieldvalue = item.getString();
+                            if (fieldname.equals("upc")) {
+                                upc = fieldvalue;
+                            } else if (fieldname.equals("artista")) {
+                                artista = fieldvalue;
+                            }else if(fieldname.equals("album")){
+                                album = fieldvalue;
+                            }else if (fieldname.equals("genero")){
+                                genero = fieldvalue;
+                            }else if(fieldname.equals("stock")){
+                                stock = fieldvalue;
+                            }else if(fieldname.equals("descripcion")){
+                                descripcion = fieldvalue;
+                            }else if(fieldname.equals("precio")){
+                                precio = fieldvalue;
+                            }else { 
+                            
+                            }
+                        }
+                    }
+                }
+                if(funciones.buscar(Long.parseLong(upc))){   
+                    sesion.setAttribute("mensajeError", "El disco ya se encuentra registrado, por favor ingrese otro UPC.");
+                    response.sendRedirect("d_alta.jsp");
+                }      
+                else{
+                    String imagen = "upload/"+upc+".jpg";
+                    Disco disco = new Disco(artista, album, genero, descripcion, imagen, Long.parseLong(upc), Integer.parseInt(stock));
+                    funciones.alta(disco,Float.parseFloat(precio));
+                    sesion.setAttribute("ultimoUpc", upc);
+                    response.sendRedirect("c_alta.jsp");
+                }
+            }     
+            catch (Exception e){
+                sesion.setAttribute("errorCatch", e.toString());
+                response.sendRedirect("error.jsp");
+            }
+    }
+    
    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

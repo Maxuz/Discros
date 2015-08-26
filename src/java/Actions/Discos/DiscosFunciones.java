@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class DiscosFunciones {
     
     // <editor-fold desc="FUNCIONES: ALTA BAJA MODIFICAR">
-    public boolean alta(Disco disco, ArrayList<Model.Cancion> canciones,float precio) throws Exception
+    public boolean alta(Disco disco,float precio) throws Exception
      {     boolean status = false;  
         
          // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
@@ -36,15 +36,15 @@ public class DiscosFunciones {
                 pst.setInt(8, user.getdni());
                 pst.setString(9, user.getProvincia());
                 pst.setBoolean(10,  user.getEstado());*/
-                pst = con.prepareStatement("INSERT INTO `discos` (upc, artista, album, genero, fecha_salida, stock, descripcion, imagen)"+" values(?,?,?,?,?,?,?,?)");
+                pst = con.prepareStatement("INSERT INTO `discos` (upc, artista, album, genero, stock, descripcion, imagen)"+" values(?,?,?,?,?,?,?)");
                 pst.setLong(1, disco.getUpc());
                 pst.setString(2, disco.getArtista());
                 pst.setString(3, disco.getAlbum());
                 pst.setString(4, disco.getGenero());
-                pst.setString(5, disco.getFecha());
-                pst.setInt(6, disco.getStock());
-                pst.setString(7, disco.getDescripcion());
-                pst.setString(8, disco.getImagen());
+                //pst.setString(5, disco.getFecha());
+                pst.setInt(5, disco.getStock());
+                pst.setString(6, disco.getDescripcion());
+                pst.setString(7, disco.getImagen());
                 pst.executeUpdate();  
                 
                 pst = con.prepareStatement("INSERT INTO `canciones` (isrc, nombre, duracion, precio, upc, track)"+" values(?,?,?,?,?,?)" );
@@ -56,20 +56,7 @@ public class DiscosFunciones {
                 pst.setInt(6, 0);
                 pst.executeUpdate();
                 
-              if (canciones.size() != 0) {
-               for (int i = 0; i < canciones.size(); i++) {
-                Cancion get = canciones.get(i);
-                pst = con.prepareStatement("INSERT INTO `canciones`(isrc, nombre, duracion, precio, upc, track)"+" values(?,?,?,?,?,?)" );
-               pst.setLong(1, get.getIsrc());
-               pst.setString(2, get.getNombre());
-               pst.setFloat(3, get.getDuracion());
-               pst.setFloat(4, get.getPrecio());
-               pst.setLong(5, disco.getUpc());
-               pst.setInt(6, get.getTrack());
-               pst.executeUpdate();
-              }
-             
-           } // </editor-fold>
+              // </editor-fold>
         } 
           catch (Exception e) {  
               con.rollback();
@@ -173,15 +160,15 @@ public class DiscosFunciones {
         // </editor-fold>
         
           try { // <editor-fold desc="QUERY Y RESULTADO">
-            pst = con.prepareStatement("UPDATE `discos` SET artista=?, album=?, genero=?, fecha_salida=?, stock=?, descripcion=?, imagen=? WHERE upc='"+ disco.getUpc()+"' ");
+            pst = con.prepareStatement("UPDATE `discos` SET artista=?, album=?, genero=?, stock=?, descripcion=?, imagen=? WHERE upc='"+ disco.getUpc()+"' ");
                
             pst.setString(1, disco.getArtista());
             pst.setString(2, disco.getAlbum());
             pst.setString(3, disco.getGenero());
-            pst.setString(4, disco.getFecha());
-            pst.setInt(5, disco.getStock());
-            pst.setString(6, disco.getDescripcion());
-            pst.setString(7, disco.getImagen());
+            //pst.setString(4, disco.getFecha());
+            pst.setInt(4, disco.getStock());
+            pst.setString(5, disco.getDescripcion());
+            pst.setString(6, disco.getImagen());
             
             pst.executeUpdate();  
           
@@ -247,7 +234,7 @@ public class DiscosFunciones {
             //String texto = rs.getString("email");
             disco.setDatos(rs.getString("artista"), rs.getString("album"),rs.getString("genero"),
                                     rs.getString("descripcion"), rs.getString("imagen"),rs.getInt("upc"),
-                                    rs.getInt("stock"),rs.getString("fecha_salida"));
+                                    rs.getInt("stock"));
             }
              
             
@@ -318,7 +305,7 @@ public class DiscosFunciones {
                 
                 disco.setDatos(rs.getString("artista"), rs.getString("album"),rs.getString("genero"),
                                     rs.getString("descripcion"), rs.getString("imagen"),rs.getLong("upc"),
-                                    rs.getInt("stock"),rs.getString("fecha_salida"));
+                                    rs.getInt("stock"));
               lista.add(disco);
             }
              
@@ -406,7 +393,7 @@ public class DiscosFunciones {
                 
                 disco.setDatos(rs.getString("artista"), rs.getString("album"),rs.getString("genero"),
                                     rs.getString("descripcion"), rs.getString("imagen"),rs.getInt("upc"),
-                                    rs.getInt("stock"),rs.getString("fecha_salida"));
+                                    rs.getInt("stock"));
               lista.add(disco);
             }
             }
@@ -476,7 +463,7 @@ public class DiscosFunciones {
                 Disco disco = new Disco();
                 disco.setDatos(rs.getString("artista"), rs.getString("album"),rs.getString("genero"),
                                     rs.getString("descripcion"), rs.getString("imagen"),rs.getInt("upc"),
-                                    rs.getInt("stock"),rs.getString("fecha_salida"));
+                                    rs.getInt("stock"));
                 lista.add(disco);
             }
             // </editor-fold>
@@ -542,7 +529,7 @@ public class DiscosFunciones {
                 
                 disco.setDatos(rs.getString("artista"), rs.getString("album"),rs.getString("genero"),
                                     rs.getString("descripcion"), rs.getString("imagen"),rs.getInt("upc"),
-                                    rs.getInt("stock"),rs.getString("fecha_salida"));
+                                    rs.getInt("stock"));
               lista.add(disco);
             }
              
