@@ -46,11 +46,7 @@
                                 <a id="modalformadepago" href="#Formasdepago" role="button" class="btn" data-toggle="modal">Formas de Pago</a>
                                 </li>
                                 <li>
-                                <li class="divider">
-                                </li>
-                                <li><a href="#">Preguntas Frecuentes</a>
-                                </li>
-                            </ul>
+                                </ul>
                         </li>
                     </ul>
                     
