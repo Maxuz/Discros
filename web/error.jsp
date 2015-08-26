@@ -8,7 +8,6 @@
     <title> Ups.. ¡Error! - Discros INC</title>
 
     <%session.setAttribute("paginaActual", "error");%>
-    
     <jsp:include page="views/gral/referencias.jsp"/>
     
   </head>
@@ -21,8 +20,5 @@
         <jsp:include page="views/gral/pie.jsp" />
         
 </div>
-
-      
-    
-  </body>
+</body>
 </html>

@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Confirmar Pedido - Discros INC</title>
+    <title>Problema en Stock - Discros INC</title>
 
     <%session.setAttribute("paginaActual", "p_excedeConfirmar");%>
     <script src="js/pedidos.js"></script>
@@ -15,7 +15,6 @@
     <div class="container-fluid">
         
         <jsp:include page="views/gral/header.jsp"/>
-        
         
         <%try{%>
         <jsp:include page="views/pedidos/excedeConfirmar.jsp"/>

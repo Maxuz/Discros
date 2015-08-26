@@ -6,8 +6,7 @@
 
     <title>Resultados - Discros INC</title>
 
-    <%session.setAttribute("paginaActual", "u_busqueda");%>
-    
+    <%session.setAttribute("paginaActual", "t_busqueda");%>
     <jsp:include page="views/gral/referencias.jsp"/>
     <jsp:include page="views/gral/t_referencias.jsp"/>
    
@@ -17,6 +16,7 @@
     <div class="container-fluid">
         
         <jsp:include page="views/gral/header.jsp"/>
+        
         <%try{%>
         <jsp:include page="views/tienda/busqueda.jsp"/>
         <%}catch (Exception e)
@@ -31,8 +31,5 @@
         <jsp:include page="views/gral/pie.jsp" />
         
 </div>
-
-      
-    
-  </body>
+</body>
 </html>

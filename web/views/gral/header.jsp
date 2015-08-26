@@ -8,7 +8,7 @@
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">MENU</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
 
-                  <a class="navbar-brand" href="#">DISCROS INC.</a>
+                  <a class="navbar-brand" href="index.jsp">DISCROS INC.</a>
                 </div>
 
                 
@@ -83,9 +83,9 @@
                                 <li class="divider"></li>
                                 
                                 <li style="background-color:#2a6496; color: #ffffff; text-align: center;"><strong>REPORTES</strong></li>
-                                <li><a id="btnModificardatos" href="#" role="button" class="btn">Usuarios</a></li>
-                                <li><a id="btnModificardatos" href="#" role="button" class="btn">Pedidos</a></li>
-                                <li><a id="btnModificardatos" href="#" role="button" class="btn">Productos</a></li>
+                                
+                                <li><a id="btnModificardatos" href="p_reporte.jsp" role="button" class="btn">Pedidos pendientes</a></li>
+                               
                                 
                             </ul>
                             
@@ -94,13 +94,8 @@
                             <%
                             }%>
                             
-                                      
-                                        
                             
-                         
-                         
-                         
-                         <%--BOTÓN PARA REGISTRARSE  --%>
+                         <%--BOTÓN PARA REGISTRARSE--%>
                         <% if (session.getAttribute("nombre")== null)
                                 {%>
                                 <% if(session.getAttribute("paginaActual").equals("u_alta"))
@@ -114,12 +109,11 @@
                                                 
                     
                     <!--INICIO DE SESIÓN O MENÚ DE OPCIONES PARA EL USUARIO-->
-                    
                             <% 
-                            
                             String nombre = (String)session.getAttribute("nombre");
                             if(nombre==null)
-                            {%>  
+                            {%>
+                            
                             <%-- INICIAR SESIÓN --%>
                             <li
                             <% if(session.getAttribute("paginaActual").equals("u_login"))
@@ -130,13 +124,10 @@
                             <%
                             }else{%>
                             
-                            <li class="dropdown">
                             <%-- MENÚ DEL USUARIO LOGUEADO --%>
-                            
+                            <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/usuario.png" alt="Usuario" WIDTH=20 HEIGHT=20> <strong>
                                 <% out.print(nombre);  %> </strong><strong class="caret"></strong>
-                            
-                            
                             </a>
                                         
                                 <ul class="dropdown-menu" style="text-align: center;">
@@ -147,28 +138,25 @@
                                 <li><a id="btnModificardatos" href="u_modificar.jsp" role="button" class="btn" >Modificar mis datos.</a></li>
                                 <li class="divider"></li>
                                 <li><a href="uLogout.do">Cerrar Sesión</a></li>
-                                
-                            </ul>
+                                </ul>
                             
-                             </li>            
+                            </li>            
                                         
                             <%}%>
                            
                                                
                                                               
-                     <%--CARRITO DE COMPRAS--%>                            
-                    <li class="dropdown" >
-                       
-                        
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/carrito.png" alt="Usuario" WIDTH=20 HEIGHT=20> <strong>
-                                Carrito 
-                              
-                                <% 
+                       <%--CARRITO DE COMPRAS--%>                            
+                       <li class="dropdown" >
+                       <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/carrito.png" alt="Usuario" WIDTH=20 HEIGHT=20> 
+                           <strong> Carrito 
+                              <% 
                                     int cantidad = Integer.parseInt(session.getAttribute("itemsTotal").toString());
                                     out.print("("+cantidad+")");
-                                %>
+                              %>
                              
-                                </strong><strong class="caret"></strong>
+                           </strong>
+                           <strong class="caret"></strong>
                             </a>
                           
                             <!--VALIDA QUE NO ESTÉ POR CONFIRMAR EL PEDIDO, DE SER ASÍ SE INHABILITA EL CARRITO PARA QUE NO SUFRA MODIFICACIONES EL MISMO-->    
@@ -179,23 +167,15 @@
                                 <li><p style="margin: 2px; text-align: center;"> <br><br><a href="t_index.jsp">Ir a tienda</a> </p></li>
                             
                             <%}else{%>
-                                  
-
-                                        
-                                         
-                                 <% 
-                                    
-                                    //if(cantidad==0)
-                                    ArrayList<Disco> lista = (ArrayList<Disco>)session.getAttribute("listaCarrito");
+                                    <% ArrayList<Disco> lista = (ArrayList<Disco>)session.getAttribute("listaCarrito");
                                     if(lista == null)
                                     { 
-                                        //CARRITO VACÍO
-                                        %> 
-                                        <li><p style="margin: 2px; text-align: center;"> UPS!<br> Carrito vacío</p></li>
-                                        <li><p style="margin: 2px; text-align: center;"> <br><br><a href="t_index.jsp">Agregue su primer producto</a> </p></li>
-                                        <%
-                                        
-                                     } else{
+                                    //CARRITO VACÍO
+                                    %> 
+                                    <li><p style="margin: 2px; text-align: center;"> UPS!<br> Carrito vacío</p></li>
+                                    <li><p style="margin: 2px; text-align: center;"> <br><br><a href="t_index.jsp">Agregue su primer producto</a> </p></li>
+                                    <%
+                                    }else{
                                         
                                         //CARRITO CON ITEMS
                                         CancionesFunciones funcionesCanciones = new CancionesFunciones();
@@ -210,10 +190,8 @@
                                         <%
                                         
                                         //CARGA DE ITEMS AL CARRITO
-                                       
-                                        
                                         for( Disco dis : lista)
-                                        {//Disco dis = lista.get(i);
+                                        {
                                             
                                         if(dis!=null)
                                         {
@@ -234,10 +212,11 @@
                                         
                                       <%}
                                         }
+                                      //VALOR TOTAL DEL CARRITO  
                                       session.setAttribute("valorTotalCarrito", total);
                                       %>
                                   
-                                
+                                    <!--OPCIONES DE PEDIDO-->                                
                                     <li style="text-align: right; margin-right: 5px;"><strong>VALOR TOTAL: $</strong><% out.print(total); %><br><br></li>
                                     <li style="background-color:#2a6496; color: #ffffff; text-align: center;"><strong>MI PEDIDO</strong></li>    
                                     <li style="text-align: center;"><a href="p_confirmar.jsp"><strong>REALIZAR COMPRA</strong></a></li>
@@ -246,24 +225,11 @@
                                     <li style="text-align: center;"><a href="cReset.do">Resetear pedido</a></li>
                                    
                                  <% }%>
-                                
                                 </ul>
                                  <%}%> 
                        </li>
-                        
-                   
-                       
-                       
-                       
-                       
-                        
-                    </ul>
-                                 
+                   </ul>
                 </div>
-                            
-
-	
-
             </nav>
 
           
@@ -285,8 +251,7 @@
                             <div class="col-md-8">
                                 <p> Contamos con diferentes formas de pago según las comodidades del cliente: <br/>
                                     Tarjeta de crédito<br/>
-                                    MercadoPago<br/>
-                                    Paypal<br/><br/>
+                                    Pago en efectivo contra entrega de producto en domicilio<br/>
                                 <h4>PROMOCIONES</h4><br/>
                                 <strong>VISA</strong>: 6 CUOTAS SIN INTERÉS.<br/>
                                 <strong>MASTERCARD</strong>:6 CUOTAS SIN INTERÉS.<br/>

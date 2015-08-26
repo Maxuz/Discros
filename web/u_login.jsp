@@ -8,7 +8,6 @@
     <title> Login - Discros INC</title>
 
     <%session.setAttribute("paginaActual", "u_login");%>
-    
     <jsp:include page="views/gral/referencias.jsp"/>
     <jsp:include page="views/gral/u_referencias.jsp"/>
     
@@ -32,9 +31,6 @@
                        }%>
         <jsp:include page="views/gral/pie.jsp" />
         
-</div>
-
-      
-    
-  </body>
+</div>  
+</body>
 </html>

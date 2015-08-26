@@ -7,27 +7,17 @@
 
     <title>Discros INC</title>
 
-    <%
-        session.setAttribute("paginaActual", "index");
-    %>
-    
+    <%session.setAttribute("paginaActual", "index");%>
     <jsp:include page="views/gral/referencias.jsp"/>
    
-    
-    
-    
   </head>
   <body>
        <div class="container-fluid">
           
         <jsp:include page="views/gral/header.jsp"/>
-        
-        <jsp:include page="views/index/contenido.jsp"/>
-        
+        <jsp:include page="views/index/contenido.jsp"/>       
         <jsp:include page="views/gral/pie.jsp" />
         
-        </div>
-    
-        
+        </div>        
   </body>
 </html>
