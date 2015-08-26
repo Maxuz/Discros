@@ -10,13 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Actions.Discos.DiscosFunciones;
 import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
 
 
 public class dModificarController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               
+        
+        HttpSession sesion = request.getSession(true); 
         DiscosFunciones funciones = new DiscosFunciones();
 	CancionesFunciones funcionesCanciones = new CancionesFunciones();
         try{
@@ -25,14 +27,15 @@ public class dModificarController extends HttpServlet {
             String album = request.getParameter("album");
             String genero = request.getParameter("genero");
             String descripcion = request.getParameter("descripcion");
-            String imagen = request.getParameter("imagen");
-            int upc= Integer.parseInt(request.getParameter("upc"));
+          
+            int upc1= Integer.parseInt(request.getParameter("upc1"));
+            long upc = (long)upc1;
             int stock = Integer.parseInt(request.getParameter("stock"));
-            String fechafecha = request.getParameter("fecha");
+           
 
             float precio = Float.parseFloat(request.getParameter("precio"));
             
-            ArrayList<Cancion> canciones = new ArrayList<Cancion>();
+            ArrayList<Cancion> canciones = new ArrayList<>();
             String[] isrc = request.getParameterValues("isrc"); // Trae todos los valores con el mismo name asociado
             String[] cancion = request.getParameterValues("cancion");
             String[] track = request.getParameterValues("track");
@@ -46,13 +49,15 @@ public class dModificarController extends HttpServlet {
             }
             
             funcionesCanciones.modificarPrecio(precio, upc);
-            Disco disco = new Disco(artista, album, genero, descripcion, imagen, upc, stock);
+            Disco disco = new Disco(artista, album, genero, descripcion, null, upc, stock);
             funciones.modificar(disco, canciones, precio);
-            response.getWriter().print("Disco actualizado correctamente.");
+            sesion.setAttribute("upc", null);
+            sesion.setAttribute("mensajeExito", "Disco modificado correctamente.");
+            response.sendRedirect("exito.jsp");
         }
         catch (Exception e)
-        {
-            response.getWriter().print("EL ERROR OCURRIDO ES:"+e);
+        {sesion.setAttribute("errorCatch", e.toString());
+         response.sendRedirect("error.jsp");
         } 
     }
 

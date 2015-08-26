@@ -169,7 +169,7 @@ public class DiscosFunciones {
             pst.setLong(6, 0);
             pst.executeUpdate();
           
-              for (int i = 1; i < canciones.size(); i++) {
+              for (int i = 0; i < canciones.size(); i++) {
                 // Controlar si la cancion existe. Si existe UPDATE, si no INSERT
                 Cancion get = canciones.get(i);
                 pst = con.prepareStatement("SELECT count(*) FROM canciones WHERE isrc=? and upc=?" );
@@ -177,12 +177,19 @@ public class DiscosFunciones {
                 pst.setLong(2, disco.getUpc());
                 rs = pst.executeQuery();
                 rs.next();
-                if(rs.getInt(1) == 0){
+                if(rs.getLong(1) == 0){
                     pst = con.prepareStatement("INSERT INTO `canciones`(isrc, nombre, duracion, precio, track, upc) values(?,?,?,?,?,?)");
+                    pst.setLong(1, get.getIsrc());
+                    pst.setString(2, get.getNombre());
+                    pst.setFloat(3, get.getDuracion());
+                    pst.setFloat(4, get.getPrecio());
+                    pst.setInt(5, get.getTrack());
+                    pst.setLong(6, disco.getUpc());
+                    pst.executeUpdate();
                 }
                 else{
-                    pst = con.prepareStatement("UPDATE `canciones` SET nombre = ?, duracion = ?, precio = ?, track = ? WHERE upc = ? and isrc = ?");
-                }
+                pst = con.prepareStatement("UPDATE `canciones` SET nombre = ?, duracion = ?, precio = ?, track = ? WHERE upc = ? and isrc = ?");
+                
                 pst.setString(1, get.getNombre());
                 pst.setFloat(2, get.getDuracion());
                 pst.setFloat(3, get.getPrecio());
@@ -190,6 +197,7 @@ public class DiscosFunciones {
                 pst.setLong(5, disco.getUpc());
                 pst.setLong(6, get.getIsrc());
                 pst.executeUpdate();
+                }
             }
          // </editor-fold>
             
@@ -233,7 +241,7 @@ public class DiscosFunciones {
      // </editor-fold>
     
     // <editor-fold desc="FUNCIONES: GETS">
-    public Disco getOne (int UPC) throws Exception
+    public Disco getOne (long UPC) throws Exception
     {
         // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
          Connection con = Conexion.getConexion();
@@ -248,14 +256,14 @@ public class DiscosFunciones {
           try { // <editor-fold desc="QUERY Y RESULTADO">
               //ESCRIBIR LA CONSULTA CORRECTA
             pst = con.prepareStatement("select * from discos where upc=?");  
-            pst.setInt(1, UPC);
+            pst.setLong(1, UPC);
             rs = pst.executeQuery();  
             
            
             if(rs.next()){
             //String texto = rs.getString("email");
             disco.setDatos(rs.getString("artista"), rs.getString("album"),rs.getString("genero"),
-                                    rs.getString("descripcion"), rs.getString("imagen"),rs.getInt("upc"),
+                                    rs.getString("descripcion"), rs.getString("imagen"),rs.getLong("upc"),
                                     rs.getInt("stock"));
             }
              

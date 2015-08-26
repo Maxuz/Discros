@@ -475,7 +475,7 @@ public class CancionesFunciones {
         // </editor-fold>
         
           try { // <editor-fold desc="QUERY Y RESULTADO">
-            pst = con.prepareStatement("UPDATE `canciones` SET precio=? WHERE isrc=0 upc=? ");
+            pst = con.prepareStatement("UPDATE `canciones` SET precio=? WHERE isrc=0 and upc=? ");
             
             pst.setFloat(1, precio);
             pst.setLong(2, upc);

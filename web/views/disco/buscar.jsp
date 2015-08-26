@@ -29,7 +29,7 @@
 
                             <form role="form" id="login" method="post" onsubmit="validaUPC(event)" action="dBuscar.do">
 
-                            <div class="form-group " id="upc">
+                            <div class="form-group " id="formUpc">
                             <label class="control-label">Ingrese UPC</label>
                             <div class="input-group" >   
                             <span class="input-group-addon"><span class="glyphicon glyphicon-text-color"></span></span>

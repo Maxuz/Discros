@@ -42,18 +42,18 @@
                 <%
                 String sUpc = (String)session.getAttribute("upc");
                 
-                int upc = (sUpc == null || sUpc.equals("")) ? 0 : Integer.parseInt(sUpc);
+                long upc = (sUpc == null || sUpc.equals("")) ? 0 : Long.parseLong(sUpc);
                 DiscosFunciones funcionesDisco = new DiscosFunciones();
                 Disco dis = funcionesDisco.getOne(upc);
                 CancionesFunciones funcionesCanciones = new CancionesFunciones();
                 float precio = funcionesCanciones.getOne(dis.getUpc(), 0).getPrecio();
                 %>
-                <form role="form" class="form-horizontal" enctype="multipart/form-data" id="dModificar" method="post" action="dModificar.do" onsubmit="/*validarForm()*/">
+                <form role="form" class="form-horizontal"  id="dModificar" method="post" action="dModificar.do" onsubmit="validaModificar(event)" >
                     <h4>Datos del disco</h4>
                     <hr>
                     <div class="col-xs-8">
                        <label for="UPC" id="lblUPC">UPC:</label>
-                       <input type="text" class="form-control" id="upc" name="upc" placeholder="Introduce UPC del disco" value="<%= dis.getUpc() %>">
+                       <input readonly type="text" class="form-control" id="upc" name="upc1" placeholder="Introduce UPC del disco" value="<%= dis.getUpc() %>">
                     </div>
                     <div class="col-xs-8">
                        <label for="Artista" id="lblArtista">Artista:</label>
@@ -134,7 +134,7 @@
                     </div>
                     <div class="col-xs-12" style="margin-bottom: 10px; text-align: center;">
                         <input type="submit" class="btn btn-primary" value="Confirmar" />
-                        <a href="t_index_modificar.jsp" class="btn btn-primary" style="margin-left: 10px">Volver</a>
+                        <a href="d_buscar.jsp" class="btn btn-primary" style="margin-left: 10px">Volver</a>
                     </div>
                 </form>
                 <% } else{ %>

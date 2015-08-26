@@ -181,6 +181,7 @@
                                                 <strong>Album: </strong><%out.print(dis.getAlbum());%> <br>
                                                 <strong>Género: </strong><%out.print(dis.getGenero());%> <br>
                                                 <strong>Precio: </strong>$<%out.print(precio);%> <br>
+                                                <strong>Descripción: </strong><%out.print(dis.getDescripcion());%> <br>
                                                 <%
                                                    //VERIFICA SI HAY STOCK 
                                                    if(cant > 0){
