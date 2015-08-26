@@ -105,7 +105,7 @@
                              </div>
                              <br><br><br><br><br><br>
 
-                             <button type="submit" class="btn btn-default" style="width: 220px; margin-left: 15px;">Registrar</button>
+                             <button type="submit" class="btn btn-default" style="width: 220px; margin-left: 15px;">Registrar canciones</button>
                              <br><br>
 
                          </form>

@@ -41,6 +41,7 @@
                 <!--FORMULARIO DE MODIFICAR-->
                 <%
                 String sUpc = request.getParameter("upc");
+                
                 int upc = (sUpc == null || sUpc.equals("")) ? 0 : Integer.parseInt(sUpc);
                 DiscosFunciones funcionesDisco = new DiscosFunciones();
                 Disco dis = funcionesDisco.getOne(upc);
@@ -78,7 +79,7 @@
                         <label for="precio" id="lblPrecio">Precio:</label>
                         <input type="text" class="form-control currency" id="precio" name="precio" value="<%= precio %>" />
                     </div>
-                  
+                    
                     <div class="col-xs-12">
                         <h3> Canciones del disco </h3>
                         <div>
@@ -102,7 +103,7 @@
                                     </tr>
                                     <% for(int j = 0; j < cantCanciones; j++){
                                         can = listaCancion.get(j); %>
-                                        <tr> id="<%= j %>"
+                                        <tr id="<%= j %>">
                                             <td style="width: 16%">
                                                 <span><%= can.getIsrc() %></span>
                                                 <input type="text" class="form-control hidden" name="isrc" value="<%= can.getIsrc() %>">
