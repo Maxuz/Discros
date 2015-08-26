@@ -18,6 +18,7 @@
                            
                        <% out.print((String)session.getAttribute("mensajeExito"));
                        session.setAttribute("mensajeExito", null);
+                       session.setAttribute("ultimoUpc",null);
                        %>
                        </div>
                        <hr><div style="margin-left:  15px;"><a href="d_alta.jsp"><h3>Crear otro disco</h3></a></div> <br><br>

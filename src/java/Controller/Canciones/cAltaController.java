@@ -26,7 +26,7 @@ public class cAltaController extends HttpServlet {
             if (sesion.getAttribute("cancionesDisco") != null) {
               ArrayList<Model.Cancion> lista = (ArrayList<Model.Cancion>) sesion.getAttribute("cancionesDisco");
                 funciones.alta(lista, (String) sesion.getAttribute("ultimoUpc"));
-                sesion.setAttribute("ultimoUpc",null);
+                
                 sesion.setAttribute("mensajeExito", "Disco registrado exitosamente");
                 sesion.setAttribute("cancionesDisco",null);
                 response.sendRedirect("c_alta.jsp");
