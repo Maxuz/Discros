@@ -7,8 +7,21 @@
    
     
                    <% 
-                       
+                        boolean ctrlURL=false;
                         String tipo = request.getParameter("tipo");
+                        
+                        //CONTROLA LOS PARÁMETROS ENVIADOS EN LA URL
+                        if(request.getParameter("tipo")==null || request.getParameter("tipo").toString().equals("") )
+                        {
+                               ctrlURL = false;
+                               
+                        }else{
+                               ctrlURL=true;
+                             }
+                        
+                    //URL CORRECTA        
+                    if(ctrlURL)     
+                        {
                         if(!tipo.equals("artista") && !tipo.equals("genero"))
                         {%><br>
                          
@@ -58,7 +71,14 @@
                                 
                        <% } %> 
                         
-                  <% } %> <br><br>
+                  <% } 
+             }else{%><br>
+                         
+                         <h1 style=" margin-left:20px; text-align: center;"> Resultado de listado</h1>  <hr>
+                         <div style="margin-left:  15px;"><a href="t_index.jsp"><h4>&laquo; Volver atrás</h4></a></div> 
+                         <h4 style=" margin-left:20px; text-align: center; font-style: italic;"> URL INCORRECTA, intente nuevamente.</h4>
+                         
+                 <%}%> <br><br>
                       
 
 
