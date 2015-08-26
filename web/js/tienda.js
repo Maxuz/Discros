@@ -39,11 +39,9 @@ function validaBusqueda()
     if(!estaVacio(texto))
     {   
         $("#formText").addClass('has-error');
-    
     }else   {
              $("#formText").removeClass('has-error');
              ok=ok+1;
-        
             }
             
     if(!estaVacio(tipo))
@@ -52,7 +50,6 @@ function validaBusqueda()
     }else   {
              $("#formTipo").removeClass('has-error');
              ok=ok+1;   
-        
             }
     
     if(ok===2){
@@ -64,7 +61,6 @@ var funciones = {
  validarr: function(e)
 { 
     var msj = "";
-    
     var tipo = $('#tipo').val();
     var texto = $('#texto').val();          
      
@@ -85,15 +81,10 @@ var funciones = {
        
     
     if(msj==="")
-    {
-      
-        
-    }else{
-        
+    {  
+    }else{   
      e.preventDefault();  
-    }
-         
-  
+    }  
 }
 }; 
 
@@ -102,7 +93,6 @@ $(document).ready(function(){
     $("#actualizarAdmin").submit(function(e){
     funciones.validarr(e);
     });   
-
 
     $("#actualizarCliente").submit(function(e){
     funciones.validarr(e);

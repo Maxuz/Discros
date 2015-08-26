@@ -5,10 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title> Ups.. ¡Error! - Discros INC</title>
+    <title> ¡Éxito! - Discros INC</title>
 
     <%session.setAttribute("paginaActual", "exito");%>
-    
     <jsp:include page="views/gral/referencias.jsp"/>
     
   </head>
@@ -21,8 +20,5 @@
         <jsp:include page="views/gral/pie.jsp" />
         
 </div>
-
-      
-    
-  </body>
+</body>
 </html>

@@ -16,7 +16,6 @@
         
         <jsp:include page="views/gral/header.jsp"/>
         
-        
         <%try{%>
         <jsp:include page="views/pedidos/contenido.jsp"/>
         <%}catch (Exception e)
