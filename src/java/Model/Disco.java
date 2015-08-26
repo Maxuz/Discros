@@ -34,7 +34,7 @@ public class Disco {
     {
     }
     
-    public Disco( String artista, String album, String genero, String descripcion, String imagen, long upc, int stock, String fecha)
+    public Disco( String artista, String album, String genero, String descripcion, String imagen, long upc, int stock)
     {
         this.upc=upc;
         this.artista=artista;
@@ -43,7 +43,7 @@ public class Disco {
         this.descripcion=descripcion;
         this.imagen=imagen;
         this.stock=stock;
-        this.fecha_salida=fecha;
+        this.fecha_salida="null";
                 
         
     }
@@ -115,7 +115,7 @@ public class Disco {
          this.hora=hora;
      }
      
-    public void setDatos( String artista, String album, String genero, String descripcion, String imagen, long upc, int stock, String fecha)
+    public void setDatos( String artista, String album, String genero, String descripcion, String imagen, long upc, int stock)
     {
         this.upc=upc;
         this.artista=artista;
@@ -124,7 +124,7 @@ public class Disco {
         this.descripcion=descripcion;
         this.imagen=imagen;
         this.stock=stock;
-        this.fecha_salida=fecha;
+        //this.fecha_salida=fecha;
                 
         
     }
