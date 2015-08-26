@@ -87,6 +87,7 @@ var funciones = {
     }
 };
 
+
 $(document).ready(function(){
    
     $("#dAlta").submit(function(e){
@@ -94,3 +95,14 @@ $(document).ready(function(){
     });
 });
 
+var validaUPC = function(event)
+{
+    var upc = $('#upc').val(); 
+    if (!estaVacio(upc)){
+     $('#formUpc').addClass('has-error');         
+      event.preventDefault();  
+    }else{ 
+        $('#formUpc').removeClass('has-error');    
+        return true;
+    }    
+ };
