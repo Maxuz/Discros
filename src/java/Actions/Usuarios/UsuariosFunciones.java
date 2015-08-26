@@ -14,34 +14,25 @@ public class UsuariosFunciones {
 public void alta (Usuario user) throws Exception
     {    
          // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
-        
          Connection con = Conexion.getConexion();
          PreparedStatement pst = null;  
          ResultSet rs = null;  
-                 
-          // </editor-fold>
+         // </editor-fold>
        
-        
-          try { // <editor-fold desc="QUERY">
-                pst = con.prepareStatement("INSERT INTO `usuarios` (email, password, tipo, nombre, apellido, direccion, ciudad, dni, provincia, estado)"+"values(?,?,?,?,?,?,?,?,?,?) ");
-                pst.setString(1, user.getEmail());
-                pst.setString(2, user.getPass());
-                pst.setString(3, user.getTipo());
-                pst.setString(4, user.getNombre());
-                pst.setString(5, user.getApellido());
-                pst.setString(6, user.getDireccion());
-                pst.setString(7, user.getCiudad());
-                pst.setInt(8, user.getdni());
-                pst.setString(9, user.getProvincia());
-                pst.setBoolean(10,  user.getEstado());
-                
-                
-                pst.executeUpdate();
-                
-              
-                
-                 // </editor-fold>
-                
+        try { // <editor-fold desc="QUERY">
+            pst = con.prepareStatement("INSERT INTO `usuarios` (email, password, tipo, nombre, apellido, direccion, ciudad, dni, provincia, estado)"+"values(?,?,?,?,?,?,?,?,?,?) ");
+            pst.setString(1, user.getEmail());
+            pst.setString(2, user.getPass());
+            pst.setString(3, user.getTipo());
+            pst.setString(4, user.getNombre());
+            pst.setString(5, user.getApellido());
+            pst.setString(6, user.getDireccion());
+            pst.setString(7, user.getCiudad());
+            pst.setInt(8, user.getdni());
+            pst.setString(9, user.getProvincia());
+            pst.setBoolean(10,  user.getEstado());
+            pst.executeUpdate();
+            // </editor-fold>
             } 
           catch (Exception e) {  
                 throw e;  
@@ -71,11 +62,8 @@ public void alta (Usuario user) throws Exception
                     //e.printStackTrace();  
                 }  
             }
-            
             // </editor-fold> 
-        
         }  
-      
     }
 
 public void baja (Usuario user) throws Exception
@@ -85,15 +73,13 @@ public void baja (Usuario user) throws Exception
          PreparedStatement pst = null;  
          ResultSet rs = null;  
          String email = user.getEmail();
-         
-        // </editor-fold>
+         // </editor-fold>
         
           try { // <editor-fold desc="QUERY Y RESULTADO">
             pst = con.prepareStatement("delete from discos where upc=?");  
             pst.setString(1, email);
             pst.executeUpdate();  
-          
-         // </editor-fold>
+          // </editor-fold>
             
               } 
           catch (Exception e) {  
@@ -125,9 +111,7 @@ public void baja (Usuario user) throws Exception
                 }  
             }
             // </editor-fold>
-        
         }  
-        
     }
 
 public void modificar (Usuario user) throws Exception
@@ -137,26 +121,22 @@ public void modificar (Usuario user) throws Exception
          Connection con = Conexion.getConexion();
          PreparedStatement pst = null;  
          ResultSet rs = null;  
-                 
-         
-        // </editor-fold>
+         // </editor-fold>
         
           try { // <editor-fold desc="QUERY Y RESULTADO">
                 
-              //COMPLETAR LA CONSULTA UPDATE
-                pst = con.prepareStatement("UPDATE `usuarios` SET password=?, nombre=?, apellido=?, direccion=?, ciudad=?, dni=?, provincia=? WHERE email='"+ user.getEmail()+"' ");
-                pst.setString(1, user.getPass());
-                pst.setString(2, user.getNombre());
-                pst.setString(3, user.getApellido());
-                pst.setString(4, user.getDireccion());
-                pst.setString(5, user.getCiudad());
-                pst.setInt(6, user.getdni());
-                pst.setString(7, user.getProvincia());
-               
-                
-                pst.executeUpdate();
-                
-                 // </editor-fold>
+            //COMPLETAR LA CONSULTA UPDATE
+            pst = con.prepareStatement("UPDATE `usuarios` SET password=?, nombre=?, apellido=?, direccion=?, ciudad=?, dni=?, provincia=? WHERE email='"+ user.getEmail()+"' ");
+            pst.setString(1, user.getPass());
+            pst.setString(2, user.getNombre());
+            pst.setString(3, user.getApellido());
+            pst.setString(4, user.getDireccion());
+            pst.setString(5, user.getCiudad());
+            pst.setInt(6, user.getdni());
+            pst.setString(7, user.getProvincia());
+
+            pst.executeUpdate();
+            // </editor-fold>
                 
             } 
           catch (Exception e) {  
@@ -345,7 +325,7 @@ public void setEstado(String email, boolean estado) throws Exception
                 pst = con.prepareStatement("UPDATE `usuarios` SET estado=? WHERE email=? ");  
                 pst.setString(2, email); 
                 pst.setBoolean(1, estado); 
-                rs = pst.executeQuery();  
+                pst.executeUpdate();  
                                  
                          
         // </editor-fold>
@@ -399,8 +379,7 @@ public boolean buscar(String email) throws Exception
                 pst.setString(1, email);  
                 rs = pst.executeQuery();  
                 status = rs.next();
-                    
-                         
+     
         // </editor-fold>
             } 
           catch (Exception e) {  
@@ -435,8 +414,7 @@ public boolean buscar(String email) throws Exception
         
         }  
         return status;  
-         
-}  
+ }  
 
 public boolean login (Usuario user) throws Exception
     {    boolean status = false;  
@@ -546,14 +524,7 @@ public void setPass (String email, String nuevapass)throws Exception
             }
             
             // </editor-fold>
-        
         }  
-
 }
-
-
-
- // </editor-fold>   
-
-
+// </editor-fold>   
 }

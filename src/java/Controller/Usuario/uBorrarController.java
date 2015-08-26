@@ -21,28 +21,25 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         
         try{
                                     String email = request.getParameter("email");
-                                    
-                                    Usuario user = new Usuario();
-                                    user = funciones.getOne(email);
-
-                                    if(user!=null)
-                                    {   
+                                     
+                                    //VERIFICA QUE EL USUARIO ESTÉ EN LA BASE DE DATOS
+                                    if(funciones.buscar(email))
+                                    {   Usuario user = new Usuario();
                                         user=funciones.getOne(email);
+                                        
+                                        //VERIFICA QUE EL USUARIO TRAÍDO SEA CLIENTE
                                         if(user.getTipo().equals("cliente"))
-                                        {
-                                        
-                                        
-                                            
-                                        funciones.setEstado(email, false);
-                                        sesion.setAttribute("mensajeExiste", "");
-                                        response.sendRedirect("u_borrar.jsp");
+                                        {       
+                                                funciones.setEstado(email, false);
+                                                sesion.setAttribute("mensajeExito", "Cliende inhabilitado correctamente.");
+                                                response.sendRedirect("u_baja.jsp");
                                         }
                                         else{
-                                              sesion.setAttribute("mensajeExiste", "No se puede deshabilitar a un administrador.");
-                                              response.sendRedirect("u_borrar.jsp");
+                                              sesion.setAttribute("mensajeError", "No se puede deshabilitar a un administrador.");
+                                              response.sendRedirect("u_baja.jsp");
                                             }
                                     }else{
-                                              sesion.setAttribute("mensajeExiste", "Cliente dado de baja correctamente.");
+                                              sesion.setAttribute("mensajeError", "Usuario no encontrado.");
                                               response.sendRedirect("u_baja.jsp");
                                     }
 
