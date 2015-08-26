@@ -25,23 +25,12 @@ public class DiscosFunciones {
         // </editor-fold>
         
           try { // <editor-fold desc="QUERY Y RESULTADO">
-                /*pst = con.prepareStatement("INSERT INTO `usuarios` (email, password, tipo, nombre, apellido, direccion, ciudad, dni, provincia, estado)"+"values(?,?,?,?,?,?,?,?,?,?) ");
-                pst.setString(1, user.getEmail());
-                pst.setString(2, user.getPass());
-                pst.setString(3, user.getTipo());
-                pst.setString(4, user.getNombre());
-                pst.setString(5, user.getApellido());
-                pst.setString(6, user.getDireccion());
-                pst.setString(7, user.getCiudad());
-                pst.setInt(8, user.getdni());
-                pst.setString(9, user.getProvincia());
-                pst.setBoolean(10,  user.getEstado());*/
+               
                 pst = con.prepareStatement("INSERT INTO `discos` (upc, artista, album, genero, stock, descripcion, imagen)"+" values(?,?,?,?,?,?,?)");
                 pst.setLong(1, disco.getUpc());
                 pst.setString(2, disco.getArtista());
                 pst.setString(3, disco.getAlbum());
                 pst.setString(4, disco.getGenero());
-                //pst.setString(5, disco.getFecha());
                 pst.setInt(5, disco.getStock());
                 pst.setString(6, disco.getDescripcion());
                 pst.setString(7, disco.getImagen());
@@ -149,40 +138,73 @@ public class DiscosFunciones {
         } 
     }
     
-    public void modificar (Disco disco) throws Exception
+    public void modificar (Disco disco,ArrayList<Model.Cancion> canciones,float precio) throws Exception
     {
         // <editor-fold desc="CONEXIÓN A LA BD - DECLARACIÓN Y ASIGNACIÓN DE VARIABLES">
          Connection con = Conexion.getConexion();
          PreparedStatement pst = null;  
          ResultSet rs = null;  
-         
+         con.setAutoCommit(false);
          
         // </editor-fold>
         
           try { // <editor-fold desc="QUERY Y RESULTADO">
-            pst = con.prepareStatement("UPDATE `discos` SET artista=?, album=?, genero=?, stock=?, descripcion=?, imagen=? WHERE upc='"+ disco.getUpc()+"' ");
+            pst = con.prepareStatement("UPDATE `discos` SET artista=?, album=?, genero=?, stock=?, descripcion=? WHERE upc=?");
                
             pst.setString(1, disco.getArtista());
             pst.setString(2, disco.getAlbum());
             pst.setString(3, disco.getGenero());
-            //pst.setString(4, disco.getFecha());
             pst.setInt(4, disco.getStock());
             pst.setString(5, disco.getDescripcion());
-            pst.setString(6, disco.getImagen());
+            pst.setLong(6,disco.getUpc());
             
             pst.executeUpdate();  
+            
+            pst = con.prepareStatement("UPDATE `canciones` SET nombre = ?, duracion = ?, precio = ?, track = ? WHERE upc = ? and isrc = ?");
+            pst.setString(1, "");
+            pst.setFloat(2, 0);
+            pst.setFloat(3, precio);
+            pst.setInt(4, 0);
+            pst.setLong(5, disco.getUpc());
+            pst.setLong(6, 0);
+            pst.executeUpdate();
           
+              for (int i = 1; i < canciones.size(); i++) {
+                // Controlar si la cancion existe. Si existe UPDATE, si no INSERT
+                Cancion get = canciones.get(i);
+                pst = con.prepareStatement("SELECT count(*) FROM canciones WHERE isrc=? and upc=?" );
+                pst.setLong(1, get.getIsrc());
+                pst.setLong(2, disco.getUpc());
+                rs = pst.executeQuery();
+                rs.next();
+                if(rs.getInt(1) == 0){
+                    pst = con.prepareStatement("INSERT INTO `canciones`(isrc, nombre, duracion, precio, track, upc) values(?,?,?,?,?,?)");
+                }
+                else{
+                    pst = con.prepareStatement("UPDATE `canciones` SET nombre = ?, duracion = ?, precio = ?, track = ? WHERE upc = ? and isrc = ?");
+                }
+                pst.setString(1, get.getNombre());
+                pst.setFloat(2, get.getDuracion());
+                pst.setFloat(3, get.getPrecio());
+                pst.setInt(4, get.getTrack());
+                pst.setLong(5, disco.getUpc());
+                pst.setLong(6, get.getIsrc());
+                pst.executeUpdate();
+            }
          // </editor-fold>
             
               } 
           catch (Exception e) {  
+              con.rollback();
                 throw e;  
               } 
           finally {  
                // <editor-fold desc="CIERRA: CON, PST, RS">
             if (con != null) {  
                 try {  
+                    con.commit();
                     Actions.Conexion.cerrarConexion();
+                    con.setAutoCommit(true);
                    
                  } catch (Exception e) {  
                    System.out.println(e);  

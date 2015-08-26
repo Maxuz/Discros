@@ -1,10 +1,8 @@
-
 package Controller.Canciones;
 
-import Actions.Discos.DiscosFunciones;
+import Actions.Canciones.CancionesFunciones;
 import Model.Cancion;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +13,7 @@ public class cModificarController extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                                 Actions.Canciones.CancionesFunciones funciones = new Actions.Canciones.CancionesFunciones();
+                                CancionesFunciones funciones = new CancionesFunciones();
         
         
                                 try{
