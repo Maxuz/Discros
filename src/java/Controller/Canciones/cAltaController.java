@@ -24,12 +24,39 @@ public class cAltaController extends HttpServlet {
         if (sesion.getAttribute("ultimoUpc")!= null) {
             
             if (sesion.getAttribute("cancionesDisco") != null) {
-              ArrayList<Model.Cancion> lista = (ArrayList<Model.Cancion>) sesion.getAttribute("cancionesDisco");
-                funciones.alta(lista, (String) sesion.getAttribute("ultimoUpc"));
+                ArrayList<Model.Cancion> lista = (ArrayList<Model.Cancion>) sesion.getAttribute("cancionesDisco");
+                //Validación de que no se hallan ingresado dos isrc duplicados
+                boolean valida = true;
+                String mensaje = "";
+                long isrc = lista.get(0).getIsrc();
+                int track = lista.get(0).getTrack();
+                for (int i = 1; i < lista.size(); i++) {
+                    long isrcAux = lista.get(i).getIsrc();
+                    if (isrc == isrcAux) {
+                        valida = false;
+                        mensaje = mensaje + "Las canciones deben tener distinto ISRC.";
+                        break;
+                    }
+                    int trackAux = lista.get(i).getTrack();
+                    if (track == trackAux) {
+                        valida = false;
+                        mensaje = mensaje +"No puede repetirse el número de track";
+                        break;
+                    }
+                }
                 
-                sesion.setAttribute("mensajeExito", "Disco registrado exitosamente");
-                sesion.setAttribute("cancionesDisco",null);
-                response.sendRedirect("c_alta.jsp");
+                if (valida) {
+                    funciones.alta(lista, (String) sesion.getAttribute("ultimoUpc"));
+                    sesion.setAttribute("mensajeExito", "Disco registrado exitosamente");
+                    sesion.setAttribute("cancionesDisco",null);
+                    response.sendRedirect("c_alta.jsp");
+                }else{
+                    lista = new ArrayList<>();
+                    sesion.setAttribute("cancionesDisco",lista );
+                    sesion.setAttribute("mensajeError", mensaje);
+                    response.sendRedirect("c_alta.jsp");
+                }
+                
             }else {
              sesion.setAttribute("mensajeError", "Debe registrar al menos una canción.");
              response.sendRedirect("c_alta.jsp");
