@@ -48,12 +48,12 @@
                 CancionesFunciones funcionesCanciones = new CancionesFunciones();
                 float precio = funcionesCanciones.getOne(dis.getUpc(), 0).getPrecio();
                 %>
-                <form role="form" class="form-horizontal"  id="dModificar" method="post" action="dModificar.do">
+                <form role="form" class="form-horizontal" id="dModificar" method="post" action="dModificar.do">
                     <h4>Datos del disco</h4>
                     <hr>
                     <div class="col-xs-8">
                        <label for="UPC" id="lblUPC">UPC:</label>
-                       <input readonly type="text" class="form-control" id="upc" name="upc1" placeholder="Introduce UPC del disco" value="<%= dis.getUpc() %>" disabled="disabled" />
+                       <input readonly="readonly" type="text" class="form-control" id="upc" name="upc1" placeholder="Introduce UPC del disco" value="<%= dis.getUpc() %>" />
                     </div>
                     <div class="col-xs-8">
                        <label for="Artista" id="lblArtista">Artista:</label>

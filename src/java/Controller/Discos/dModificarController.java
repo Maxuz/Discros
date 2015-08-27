@@ -28,8 +28,7 @@ public class dModificarController extends HttpServlet {
             String genero = request.getParameter("genero");
             String descripcion = request.getParameter("descripcion");
           
-            int upc1= Integer.parseInt(request.getParameter("upc1"));
-            long upc = (long)upc1;
+            long upc= Long.parseLong(request.getParameter("upc1"));
             int stock = Integer.parseInt(request.getParameter("stock"));
            
 

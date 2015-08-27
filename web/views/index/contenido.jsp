@@ -95,7 +95,7 @@
                                                <br><br><br><br><br>
                                            </h5>
                                            <p>
-                                               <a class="btn btn-primary" href="#">Ingresar a la Tienda</a> <a class="btn" href="#"> Leer más</a>
+                                               <a class="btn btn-primary" href="t_index.jsp">Ingresar a la Tienda</a> 
                                            </p>
                                        </div>
                                    </div>
@@ -113,10 +113,9 @@
                                                <br><br>
                                                Enterate de cuáles son las novedades.
                                                <br><br><br><br>
-
                                            </h5>
                                            <p>
-                                               <a class="btn btn-primary" href="#">Ingresar a la Tienda</a> <a class="btn" href="#">Leer más</a>
+                                               <a class="btn btn-primary" href="t_index.jsp">Ingresar a la Tienda</a> 
                                            </p>
                                        </div>
                                    </div>

@@ -94,7 +94,7 @@
 
                             <div class="col-xs-8"> 
                                 <label for="precio" id="lblPrecio">Precio:</label>
-                                <input type="number" value="0" min="0" step="5.0" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="precio" name="precio" />
+                                <input type="text" value="0" class="form-control currency" id="precio" name="precio" />
                             </div>
                             <br><br><br><br>
 
