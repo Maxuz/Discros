@@ -28,22 +28,31 @@ public class cAltaController extends HttpServlet {
                 //Validación de que no se hallan ingresado dos isrc duplicados
                 boolean valida = true;
                 String mensaje = "";
-                long isrc = lista.get(0).getIsrc();
-                int track = lista.get(0).getTrack();
-                for (int i = 1; i < lista.size(); i++) {
-                    long isrcAux = lista.get(i).getIsrc();
-                    if (isrc == isrcAux) {
-                        valida = false;
-                        mensaje = mensaje + "Las canciones deben tener distinto ISRC.";
-                        break;
+                for (int i = 0; i < lista.size(); i++) {
+                    long isrc = lista.get(i).getIsrc();
+                    int track = lista.get(i).getTrack();
+                    if ((i+1) <= lista.size()) {
+                       for (int j = i+1; j < lista.size(); j++) {
+                            long isrcAux = lista.get(j).getIsrc();
+                            if (isrc == isrcAux) {
+                                valida = false;
+                                mensaje = mensaje + "Las canciones deben tener distinto ISRC.";
+                                break;
+                            }
+                            int trackAux = lista.get(j).getTrack();
+                            if (track == trackAux) {
+                                valida = false;
+                                mensaje = mensaje +"No puede repetirse el número de track";
+                                break;
+                            }
+                        } 
                     }
-                    int trackAux = lista.get(i).getTrack();
-                    if (track == trackAux) {
-                        valida = false;
-                        mensaje = mensaje +"No puede repetirse el número de track";
-                        break;
-                    }
+                    else{
+                    break;
+                    } 
                 }
+                
+                
                 
                 if (valida) {
                     funciones.alta(lista, (String) sesion.getAttribute("ultimoUpc"));

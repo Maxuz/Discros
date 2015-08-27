@@ -49,6 +49,7 @@
                             <form role="form" class="form-horizontal" id="cAlta" method="post" action="cAlta.do" >
                             
                              <h3> Canciones del disco </h3>
+                             <h4>  Si desea registrar las canciones luego presione <a href="p_admin.jsp">aqui</a></h4>
                              <br><br>
 
                              <div class="col-xs-8">
@@ -100,12 +101,11 @@
                              </div>
                              <br><br>
 
-                             <button type="submit" class="btn btn-default" style="width: 220px; margin-left: 15px;">Registrar</button>
-                             <br><br>
-
-                         </form>
-
-                          
+                             <button type="submit" class="btn btn-default" style="width: 220px; margin-left: 15px;">Registrar Disco</button>
+                             &nbsp;&nbsp;&nbsp;&nbsp;
+                             
+                         </form>                     
+                         <br><br>
                       <% }else{ %>
                                     <!--RESTRICCIÓN PARA LOS NO ADMINISTRADORES -->
                                     <h3 style="text-align: center; font-style: italic;">
