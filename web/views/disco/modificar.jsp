@@ -48,28 +48,28 @@
                 CancionesFunciones funcionesCanciones = new CancionesFunciones();
                 float precio = funcionesCanciones.getOne(dis.getUpc(), 0).getPrecio();
                 %>
-                <form role="form" class="form-horizontal"  id="dModificar" method="post" action="dModificar.do" onsubmit="validaModificar(event)" >
+                <form role="form" class="form-horizontal"  id="dModificar" method="post" action="dModificar.do">
                     <h4>Datos del disco</h4>
                     <hr>
                     <div class="col-xs-8">
                        <label for="UPC" id="lblUPC">UPC:</label>
-                       <input readonly type="text" class="form-control" id="upc" name="upc1" placeholder="Introduce UPC del disco" value="<%= dis.getUpc() %>">
+                       <input readonly type="text" class="form-control" id="upc" name="upc1" placeholder="Introduce UPC del disco" value="<%= dis.getUpc() %>" disabled="disabled" />
                     </div>
                     <div class="col-xs-8">
                        <label for="Artista" id="lblArtista">Artista:</label>
-                       <input type="text" class="form-control" id="artista"  name="artista" placeholder="Ingrese el artista." value="<%= dis.getArtista() %>">
+                       <input type="text" class="form-control" id="artista"  name="artista" placeholder="Ingrese el artista." value="<%= dis.getArtista() %>" />
                     </div>
                     <div class="col-xs-8">
                        <label for="album" id="lblAlbum">Album:</label>
-                       <input type="text" class="form-control" placeholder="Ingrese el Album" name="album" id="album" value="<%= dis.getAlbum() %>"><br>
+                       <input type="text" class="form-control" placeholder="Ingrese el Album" name="album" id="album" value="<%= dis.getAlbum() %>" /><br>
                     </div>
                     <div class="col-xs-8">
                        <label for="genero" id="lblGenero">Género:</label>
-                       <input type="text" class="form-control" placeholder="Ingrese el genero" name="genero" id="genero" value="<%= dis.getGenero() %>"><br>
+                       <input type="text" class="form-control" placeholder="Ingrese el genero" name="genero" id="genero" value="<%= dis.getGenero() %>" /><br>
                     </div>
                     <div class="col-xs-8">
                        <label for="stock" id="lblStock">Stock:</label>
-                       <input type="text" class="form-control" placeholder="Ingrese Stock" name="stock" id="stock" value="<%= dis.getStock() %>"><br>
+                       <input type="text" class="form-control" placeholder="Ingrese Stock" name="stock" id="stock" value="<%= dis.getStock() %>" /><br>
                     </div>
                     <div class="col-xs-8">
                        <label for="descripcion" id="lblDescripcion">Descripción:</label>
@@ -84,7 +84,6 @@
                         <h3> Canciones del disco </h3>
                         <div>
                             <%
-
                             Cancion can = new Cancion();
                             ArrayList<Model.Cancion> listaCancion;
                             
@@ -106,24 +105,28 @@
                                         <tr id="<%= j %>">
                                             <td style="width: 16%">
                                                 <span><%= can.getIsrc() %></span>
-                                                <input type="text" class="form-control hidden" name="isrc" value="<%= can.getIsrc() %>">
+                                                <input type="text" class="form-control hidden" name="isrc" value="<%= can.getIsrc() %>" />
+                                                <span id="isrcError" class="glyphicon glyphicon-warning-sign hidden" style="color: red;"></span>
                                             </td>
                                             <td style="width: 10%">
                                                 <span><%= can.getTrack() %></span>
-                                                <input type="text" class="form-control hidden" name="track" value="<%= can.getTrack() %>">
+                                                <input type="text" class="form-control hidden" name="track" value="<%= can.getTrack() %>" />
+                                                <span id="trackError" class="glyphicon glyphicon-warning-sign hidden" style="color: red;"></span>
                                             </td>
                                             <td style="width: 44%">
                                                 <span><%= can.getNombre() %></span>
-                                                <input type="text" class="form-control hidden" name="cancion" value="<%= can.getNombre() %>">
+                                                <input type="text" class="form-control hidden" name="cancion" value="<%= can.getNombre() %>" />
+                                                <span id="cancionError" class="glyphicon glyphicon-warning-sign hidden" style="color: red;"></span>
                                             </td>
                                             <td style="width: 10%">
                                                 <span><%= can.getDuracion() %></span>
-                                                <input type="text" class="form-control hidden" name="duracion" value="<%= can.getDuracion() %>">
+                                                <input type="text" class="form-control hidden" name="duracion" value="<%= can.getDuracion() %>" />
+                                                <span id="duracionError" class="glyphicon glyphicon-warning-sign hidden" style="color: red;"></span>
                                             </td>
                                             <td style="width: 20%">
                                                 <a class="btn btn-primary btn-warning" onclick="editarCancion('<%= j %>')">e</a>
                                                 <a class="btn btn-primary btn-danger" onclick="eliminarCancion('<%= j %>')">-</a>
-                                                <a class="btn btn-primary btn-success hidden" onclick="confirmarCancion('<%= j %>')">c</a>
+                                                <a class="btn btn-primary btn-success hidden" onclick="confirmarCancion('<%= j %>');">c</a>
                                             </td>
                                         </tr>
                                     <% } %>
@@ -158,21 +161,24 @@
 <script>
     function editarCancion(i){
         var row = $("tr#" + i);
+        row.find("input[name='isbn']").attr("disabled","disabled");
         row.find("span").addClass("hidden");
         row.find("input").removeClass("hidden");
         row.find("a").toggleClass("hidden");
         $("form a, form input[type=submit]").not("tr#" + i + " a").attr("disabled", "disabled");
     }
     function confirmarCancion(i){
-        // Faltan validaciones
         var row = $("tr#" + i);
-        $.each(row.find("td"), function(index, value){
-            $(value).find("span").text($(value).find("input").val());
-        });
-        row.find("span").removeClass("hidden");
-        row.find("input").addClass("hidden");
-        row.find("a").toggleClass("hidden");
-        $("form a, form input[type=submit]").removeAttr("disabled");
+        if(funciones.validaCancion(row)){
+            row.find("input[name='isbn']").removeAttr("disabled");
+            $.each(row.find("td"), function(index, value){
+                $(value).find("span").not(".glyphicon").text($(value).find("input").val());
+            });
+            row.find("span").not(".glyphicon").removeClass("hidden");
+            row.find("input").addClass("hidden");
+            row.find("a").toggleClass("hidden");
+            $("form a, form input[type=submit]").removeAttr("disabled");
+        }
     }
     function eliminarCancion(i){
         if(confirm("¿Esta seguro de eliminar la canción?")){

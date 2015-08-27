@@ -84,7 +84,54 @@ agregarCancion:  function(){
             console.log(mensaje);
             return false;
         }
-    }
+    },
+validaCancion: function(cancion){
+        var isrc = cancion.find("input[name='isrc']").val();
+        var track = cancion.find("input[name='track']").val();
+        var nombre = cancion.find("input[name='cancion']").val();
+        var duracion = cancion.find("input[name='duracion']").val();
+        var mensaje ="";
+    
+        if(!estaVacio(isrc)){
+            $('#isrcError').removeClass('hidden').attr("title", "Debe ingresar un ISRC.");
+            mensaje = mensaje + " ISRC\n";
+        }else if(isrc.length !== 12){
+            $('#isrcError').removeClass('hidden').attr("title", "La longitud del ISRC debe ser 12.");
+            mensaje = mensaje + " ISRC\n";
+        }else if(!soloNumero(isrc.length)) {
+            $('#isrcError').removeClass('hidden').attr("title", "Sólo número.");
+            mensaje = mensaje + " ISRC número\n";
+        } else{
+            $('#isrcError').addClass('hidden');
+        }
+        if (!estaVacio(track)){
+            $('#trackError').removeClass('hidden').attr("title", "Debe ingresar un Track.");
+            mensaje = mensaje + " Track\n";
+        }
+        else if (!soloNumero(track)){
+            $('#trackError').removeClass('hidden').attr("title", "El track acepta s\u00f3lo n\u00fameros.");
+            mensaje = mensaje + " Track numero\n";
+        }else {
+            $('#trackError').addClass('hidden');
+        }
+        if (!estaVacio(nombre)){
+            $('#cancionError').removeClass('hidden').attr("title", "Debe ingresar un Nombre.");
+            mensaje = mensaje + " Nombre\n";
+        }else{
+            $('#cancionError').addClass('hidden');
+        }
+        if (!estaVacio(duracion)){
+            $('#duracionError').removeClass('hidden').attr("title", "Debe ingresar la duraci\u00f3n.");
+            mensaje = mensaje + " Duracion\n";
+        }
+        else if (!validaDuracion(duracion)){
+            $('#duracionError').removeClass('hidden').attr("title", "La duracci\u00f3n acepta s\u00f3lo n\u00fameros.");
+            mensaje = mensaje + " Duracion numero\n";
+        }else {
+            $('#duracionError').addClass('hidden');
+        }
+         return mensaje === "";
+     }
     };
     
 function agregar(isrc,track,nombre,duracion,precio){
