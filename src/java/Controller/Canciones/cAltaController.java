@@ -51,9 +51,6 @@ public class cAltaController extends HttpServlet {
                     break;
                     } 
                 }
-                
-                
-                
                 if (valida) {
                     funciones.alta(lista, (String) sesion.getAttribute("ultimoUpc"));
                     sesion.setAttribute("mensajeExito", "Disco registrado exitosamente");
